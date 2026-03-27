@@ -1,0 +1,41 @@
+aid: hatchet
+name: Hatchet
+description: >-
+  Hatchet is a distributed task queue and workflow engine for building
+  resilient backend applications with durable execution.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - API Composition
+  - Workflow Engine
+  - Task Queue
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: hatchet:hatchet
+    name: Hatchet
+    description: >-
+      Hatchet is a distributed task queue and workflow engine for building
+      resilient backend applications with durable execution.
+    humanURL: https://hatchet.run/
+    tags:
+      - API Composition
+      - Workflow Engine
+    properties:
+      - type: Documentation
+        url: https://docs.hatchet.run/
+      - type: Getting Started
+        url: https://docs.hatchet.run/home/quickstart
+common:
+  - type: Website
+    url: https://hatchet.run/
+  - type: Documentation
+    url: https://docs.hatchet.run/
+  - type: GitHub Organization
+    url: https://github.com/hatchet-dev
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
