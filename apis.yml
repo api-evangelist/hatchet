@@ -41,6 +41,8 @@ apis:
       - type: SelfHosting
         url: https://docs.hatchet.run/self-hosting
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/hatchet-run
   - type: Website
     url: https://hatchet.run/
   - type: Documentation
