@@ -55,6 +55,8 @@ common:
     url: https://hatchet.run/pricing
   - type: Blog
     url: https://hatchet.run/blog
+  - type: LLMsTxt
+    url: https://docs.hatchet.run/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
