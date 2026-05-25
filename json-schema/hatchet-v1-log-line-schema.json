@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-v1-log-line-schema.json",
+  "title": "V1LogLine",
+  "description": "Hatchet V1LogLine entity, derived from the Hatchet OpenAPI spec.",
+  "properties": {
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The creation date of the log line."
+    },
+    "message": {
+      "type": "string",
+      "description": "The log message."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "The log metadata."
+    },
+    "taskExternalId": {
+      "type": "string",
+      "description": "The external ID of the task associated with the log line.",
+      "format": "uuid",
+      "minLength": 36,
+      "maxLength": 36
+    },
+    "taskDisplayName": {
+      "type": "string",
+      "description": "The display name of the task associated with the log line."
+    },
+    "retryCount": {
+      "type": "integer",
+      "description": "The retry count of the log line."
+    },
+    "attempt": {
+      "type": "integer",
+      "description": "The attempt number of the log line."
+    },
+    "level": {
+      "$ref": "#/components/schemas/V1LogLineLevel",
+      "description": "The log level."
+    }
+  },
+  "required": [
+    "createdAt",
+    "message",
+    "metadata"
+  ]
+}

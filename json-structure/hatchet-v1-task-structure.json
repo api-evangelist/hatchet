@@ -1,0 +1,8 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:v1-task",
+  "name": "V1TaskSummary",
+  "description": "Hatchet V1TaskSummary entity, derived from the Hatchet OpenAPI spec."
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-v1-task-event-schema.json",
+  "title": "V1TaskEvent",
+  "description": "Hatchet V1TaskEvent entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "taskId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "REQUEUED_NO_WORKER",
+        "REQUEUED_RATE_LIMIT",
+        "SCHEDULING_TIMED_OUT",
+        "ASSIGNED",
+        "STARTED",
+        "FINISHED",
+        "FAILED",
+        "RETRYING",
+        "CANCELLED",
+        "TIMED_OUT",
+        "REASSIGNED",
+        "SLOT_RELEASED",
+        "TIMEOUT_REFRESHED",
+        "RETRIED_BY_USER",
+        "SENT_TO_WORKER",
+        "RATE_LIMIT_ERROR",
+        "ACKNOWLEDGED",
+        "CREATED",
+        "QUEUED",
+        "SKIPPED",
+        "COULD_NOT_SEND_TO_WORKER",
+        "DURABLE_EVICTED",
+        "DURABLE_RESTORING"
+      ]
+    },
+    "message": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "workerId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "taskDisplayName": {
+      "type": "string"
+    },
+    "retryCount": {
+      "type": "integer",
+      "description": "The number of retries of the task."
+    },
+    "attempt": {
+      "type": "integer",
+      "description": "The attempt number of the task."
+    }
+  },
+  "required": [
+    "id",
+    "taskId",
+    "timestamp",
+    "eventType",
+    "message"
+  ]
+}

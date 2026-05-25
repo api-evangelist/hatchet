@@ -1,0 +1,18 @@
+{
+  "operation": "GET /api/v1/tenants/{tenant}/workers",
+  "response": {
+    "rows": [
+      {
+        "metadata": {
+          "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF500",
+          "createdAt": "2026-05-25T14:00:00Z"
+        },
+        "name": "worker-prod-1",
+        "status": "ACTIVE",
+        "maxRuns": 100,
+        "availableRuns": 37,
+        "lastHeartbeatAt": "2026-05-25T14:30:39Z"
+      }
+    ]
+  }
+}

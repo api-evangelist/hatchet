@@ -1,0 +1,484 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-workflow-schema.json",
+  "title": "Workflow",
+  "description": "Hatchet Workflow entity, derived from the Hatchet OpenAPI spec.",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "the id of this resource, in UUID format",
+          "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+          "minLength": 0,
+          "maxLength": 36
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "the time that this resource was created",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "the time that this resource was last updated",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the workflow."
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the workflow."
+    },
+    "isPaused": {
+      "type": "boolean",
+      "description": "Whether the workflow is paused."
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "the id of this resource, in UUID format",
+                "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                "minLength": 0,
+                "maxLength": 36
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "the time that this resource was created",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "the time that this resource was last updated",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              }
+            },
+            "required": [
+              "id",
+              "createdAt",
+              "updatedAt"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "description": "The version of the workflow."
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "workflow": {
+            "properties": {
+              "metadata": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "the id of this resource, in UUID format",
+                    "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                    "minLength": 0,
+                    "maxLength": 36
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": "the time that this resource was created",
+                    "format": "date-time",
+                    "example": "2022-12-13T15:06:48.888358-05:00"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "description": "the time that this resource was last updated",
+                    "format": "date-time",
+                    "example": "2022-12-13T15:06:48.888358-05:00"
+                  }
+                },
+                "required": [
+                  "id",
+                  "createdAt",
+                  "updatedAt"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the workflow."
+              },
+              "description": {
+                "type": "string",
+                "description": "The description of the workflow."
+              },
+              "isPaused": {
+                "type": "boolean",
+                "description": "Whether the workflow is paused."
+              },
+              "versions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/WorkflowVersionMeta"
+                }
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the workflow."
+                    },
+                    "color": {
+                      "type": "string",
+                      "description": "The description of the workflow."
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "color"
+                  ]
+                },
+                "description": "The tags of the workflow."
+              },
+              "jobs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "metadata": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "the id of this resource, in UUID format",
+                          "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                          "minLength": 0,
+                          "maxLength": 36
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "description": "the time that this resource was created",
+                          "format": "date-time",
+                          "example": "2022-12-13T15:06:48.888358-05:00"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "description": "the time that this resource was last updated",
+                          "format": "date-time",
+                          "example": "2022-12-13T15:06:48.888358-05:00"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    },
+                    "tenantId": {
+                      "type": "string"
+                    },
+                    "versionId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "The description of the job."
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "metadata": {
+                            "description": "Recursive reference truncated"
+                          },
+                          "readableId": {
+                            "type": "string",
+                            "description": "The readable id of the step."
+                          },
+                          "tenantId": {
+                            "type": "string"
+                          },
+                          "jobId": {
+                            "type": "string"
+                          },
+                          "action": {
+                            "type": "string"
+                          },
+                          "timeout": {
+                            "type": "string",
+                            "description": "The timeout of the step."
+                          },
+                          "isDurable": {
+                            "type": "boolean",
+                            "description": "Whether the step is durable."
+                          },
+                          "slotRequests": {
+                            "type": "object",
+                            "description": "Slot requests for the step (slot_type -> units).",
+                            "additionalProperties": {
+                              "type": "integer"
+                            }
+                          },
+                          "children": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "parents": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "metadata",
+                          "readableId",
+                          "tenantId",
+                          "jobId",
+                          "action",
+                          "nextId"
+                        ]
+                      }
+                    },
+                    "timeout": {
+                      "type": "string",
+                      "description": "The timeout of the job."
+                    }
+                  },
+                  "required": [
+                    "metadata",
+                    "tenantId",
+                    "versionId",
+                    "name",
+                    "steps"
+                  ]
+                },
+                "description": "The jobs of the workflow."
+              },
+              "tenantId": {
+                "type": "string",
+                "description": "The tenant id of the workflow."
+              }
+            },
+            "required": [
+              "metadata",
+              "name",
+              "tenantId"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "metadata",
+          "version",
+          "order",
+          "workflowId"
+        ]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the workflow."
+          },
+          "color": {
+            "type": "string",
+            "description": "The description of the workflow."
+          }
+        },
+        "required": [
+          "name",
+          "color"
+        ]
+      },
+      "description": "The tags of the workflow."
+    },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "the id of this resource, in UUID format",
+                "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                "minLength": 0,
+                "maxLength": 36
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "the time that this resource was created",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "the time that this resource was last updated",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              }
+            },
+            "required": [
+              "id",
+              "createdAt",
+              "updatedAt"
+            ]
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "versionId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the job."
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "the id of this resource, in UUID format",
+                      "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                      "minLength": 0,
+                      "maxLength": 36
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "the time that this resource was created",
+                      "format": "date-time",
+                      "example": "2022-12-13T15:06:48.888358-05:00"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "the time that this resource was last updated",
+                      "format": "date-time",
+                      "example": "2022-12-13T15:06:48.888358-05:00"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                },
+                "readableId": {
+                  "type": "string",
+                  "description": "The readable id of the step."
+                },
+                "tenantId": {
+                  "type": "string"
+                },
+                "jobId": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string"
+                },
+                "timeout": {
+                  "type": "string",
+                  "description": "The timeout of the step."
+                },
+                "isDurable": {
+                  "type": "boolean",
+                  "description": "Whether the step is durable."
+                },
+                "slotRequests": {
+                  "type": "object",
+                  "description": "Slot requests for the step (slot_type -> units).",
+                  "additionalProperties": {
+                    "type": "integer"
+                  }
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "metadata",
+                "readableId",
+                "tenantId",
+                "jobId",
+                "action",
+                "nextId"
+              ]
+            }
+          },
+          "timeout": {
+            "type": "string",
+            "description": "The timeout of the job."
+          }
+        },
+        "required": [
+          "metadata",
+          "tenantId",
+          "versionId",
+          "name",
+          "steps"
+        ]
+      },
+      "description": "The jobs of the workflow."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "The tenant id of the workflow."
+    }
+  },
+  "required": [
+    "metadata",
+    "name",
+    "tenantId"
+  ],
+  "type": "object"
+}

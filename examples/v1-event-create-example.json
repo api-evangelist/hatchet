@@ -1,0 +1,21 @@
+{
+  "operation": "POST /api/v1/stable/tenants/{tenant}/events",
+  "request": {
+    "key": "user:signup",
+    "data": {
+      "user_id": "u_8821",
+      "plan": "team"
+    },
+    "additionalMetadata": {
+      "env": "prod"
+    }
+  },
+  "response": {
+    "metadata": {
+      "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF001",
+      "createdAt": "2026-05-25T14:30:00Z"
+    },
+    "key": "user:signup",
+    "tenantId": "01HW0000000000000000000000"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:v1-log-line",
+  "name": "V1LogLine",
+  "description": "Hatchet V1LogLine entity, derived from the Hatchet OpenAPI spec."
+}

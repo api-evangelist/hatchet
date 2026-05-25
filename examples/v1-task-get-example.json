@@ -1,0 +1,26 @@
+{
+  "operation": "GET /api/v1/stable/tasks/{task}",
+  "metadata": {
+    "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF123",
+    "createdAt": "2026-05-25T14:30:00Z",
+    "updatedAt": "2026-05-25T14:30:42Z"
+  },
+  "displayName": "process-invoice",
+  "tenantId": "01HW0000000000000000000000",
+  "workflowRunId": "01HW3K4ZJ2NQ8XYZ9ABCDEF999",
+  "status": "COMPLETED",
+  "taskExternalId": "01HW3K4ZJ2NQ8XYZ9ABCDEF123",
+  "input": {
+    "invoice_id": "INV-7142",
+    "amount_cents": 49900
+  },
+  "output": {
+    "ok": true,
+    "processed_at": "2026-05-25T14:30:42Z"
+  },
+  "retryCount": 0,
+  "additionalMetadata": {
+    "team": "billing",
+    "env": "prod"
+  }
+}

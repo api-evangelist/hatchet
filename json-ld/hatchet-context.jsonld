@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "hatchet": "https://api-evangelist.github.io/hatchet/json-ld/hatchet-context.jsonld#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Tenant": "hatchet:Tenant",
+    "Task": "hatchet:Task",
+    "TaskEvent": "hatchet:TaskEvent",
+    "Workflow": "hatchet:Workflow",
+    "WorkflowRun": "hatchet:WorkflowRun",
+    "Worker": "hatchet:Worker",
+    "Event": "hatchet:Event",
+    "Filter": "hatchet:Filter",
+    "Webhook": "hatchet:Webhook",
+    "RateLimit": "hatchet:RateLimit",
+    "APIToken": "hatchet:APIToken",
+    "LogLine": "hatchet:LogLine",
+    "DurableTask": "hatchet:DurableTask",
+    "ScheduledRun": "hatchet:ScheduledRun",
+    "CronWorkflow": "hatchet:CronWorkflow",
+    "Alert": "hatchet:Alert",
+
+    "metadata": "hatchet:metadata",
+    "createdAt": { "@id": "hatchet:createdAt", "@type": "xsd:dateTime" },
+    "updatedAt": { "@id": "hatchet:updatedAt", "@type": "xsd:dateTime" },
+    "startedAt": { "@id": "hatchet:startedAt", "@type": "xsd:dateTime" },
+    "finishedAt": { "@id": "hatchet:finishedAt", "@type": "xsd:dateTime" },
+
+    "tenantId": "hatchet:tenantId",
+    "externalId": "hatchet:externalId",
+    "displayName": "hatchet:displayName",
+    "status": "hatchet:status",
+    "input": "hatchet:input",
+    "output": "hatchet:output",
+    "error": "hatchet:error",
+    "retryCount": { "@id": "hatchet:retryCount", "@type": "xsd:integer" },
+    "additionalMetadata": "hatchet:additionalMetadata",
+
+    "workflow": { "@id": "hatchet:workflow", "@type": "@id" },
+    "workflowRun": { "@id": "hatchet:workflowRun", "@type": "@id" },
+    "parent": { "@id": "hatchet:parent", "@type": "@id" },
+    "children": { "@id": "hatchet:children", "@type": "@id", "@container": "@set" },
+    "worker": { "@id": "hatchet:worker", "@type": "@id" },
+    "tenant": { "@id": "hatchet:tenant", "@type": "@id" },
+
+    "level": "hatchet:level",
+    "message": "hatchet:message",
+    "eventType": "hatchet:eventType",
+    "key": "hatchet:key",
+    "scope": "hatchet:scope",
+    "expression": "hatchet:expression",
+    "duration": { "@id": "hatchet:duration", "@type": "xsd:duration" },
+    "units": { "@id": "hatchet:units", "@type": "xsd:integer" },
+    "limit": { "@id": "hatchet:limit", "@type": "xsd:integer" },
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": { "@id": "schema:url", "@type": "@id" },
+    "identifier": "schema:identifier"
+  }
+}

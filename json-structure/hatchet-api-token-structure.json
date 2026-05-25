@@ -1,0 +1,29 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:api-token",
+  "name": "APIToken",
+  "description": "Hatchet APIToken entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "object",
+      "required": true
+    },
+    {
+      "name": "name",
+      "description": "The name of the API token.",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "expiresAt",
+      "description": "When the API token expires.",
+      "type": "string",
+      "format": "date-time",
+      "required": true
+    }
+  ]
+}

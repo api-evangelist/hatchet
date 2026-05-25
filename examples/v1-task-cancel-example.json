@@ -1,0 +1,18 @@
+{
+  "operation": "POST /api/v1/stable/tenants/{tenant}/tasks/cancel",
+  "request": {
+    "externalIds": [
+      "01HW3K4ZJ2NQ8XYZ9ABCDEF123",
+      "01HW3K4ZJ2NQ8XYZ9ABCDEF124"
+    ],
+    "filter": {
+      "status": "RUNNING"
+    }
+  },
+  "response": {
+    "cancelledTasks": [
+      "01HW3K4ZJ2NQ8XYZ9ABCDEF123",
+      "01HW3K4ZJ2NQ8XYZ9ABCDEF124"
+    ]
+  }
+}

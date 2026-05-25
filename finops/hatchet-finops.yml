@@ -9,18 +9,25 @@ alignedWith:
 provider: Hatchet
 providerId: hatchet
 publisherName: Hatchet
-serviceCategory: API
+serviceCategory: Developer Tools / Orchestration
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-25'
 tags:
-  - API Composition
   - Task Queue
   - Workflow Engine
+  - Durable Execution
+  - Background Tasks
   - FinOps
   - Cost Management
   - FOCUS
-description: FinOps framework definition for the Hatchet API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: >-
+  FinOps framework definition for Hatchet Cloud, the managed orchestration
+  service for background tasks, AI agents, and durable workflows. The
+  primary billable unit is the task run; Hatchet Cloud meters task runs per
+  month against an included allowance per plan (e.g. 100K runs free on the
+  Developer tier, with $10 per additional million). Self-hosted Hatchet
+  deployments have no Hatchet-side billable surface; cost lives in the
+  underlying Postgres, compute, and (optional) RabbitMQ infrastructure.
 principles:
   - name: Visibility
     description: Make API consumption costs visible to engineering, product, and finance teams in near
@@ -73,60 +80,84 @@ billingModel:
     - Adjustment
   chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Hatchet
-  ServiceCategory: Developer Tools / API
+  ServiceName: Hatchet Cloud
+  ServiceCategory: Developer Tools / Orchestration
   ProviderName: Hatchet
   PublisherName: Hatchet
   InvoiceIssuerName: Hatchet
   PricingCategory: Usage-Based
-  PricingUnit: request
+  PricingUnit: task-run
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: task_runs
+    description: >-
+      Count of executed task runs. Hatchet Cloud's primary billable unit.
+      A task run is one invocation of a registered task, including durable
+      workflow steps and AI agent tool calls.
+    unit: task_run
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
+      - tenant
+      - workflow
+      - task
       - tier
-      - region
+      - environment
       - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: workflow_runs
+    description: >-
+      Count of top-level workflow run instances, useful for tracking
+      orchestration density independent of fan-out.
+    unit: workflow_run
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
+      - tenant
+      - workflow
+      - tier
+  - name: active_workers
+    description: >-
+      Concurrent worker processes connected to the orchestration engine.
+      Workers run on customer infrastructure; this meter tracks concurrency,
+      not Hatchet-side compute.
+    unit: worker
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
+      - tenant
+      - workflow
+      - region
+  - name: retained_history_days
+    description: >-
+      Number of days of task and workflow run history retained. Plans cap
+      retention at 3 (Team) or 7 (Scale) days; Enterprise can negotiate
+      longer windows.
+    unit: day
+    aggregation: max
+    dimensions:
+      - tenant
       - tier
 apis:
   - name: Hatchet API
     baseURL: ''
     tags:
-      - API Composition
-      - Background Tasks
-      - Workflow Engine
       - Task Queue
+      - Workflow Engine
       - Durable Execution
+      - Background Tasks
     serviceName: Hatchet API
-    serviceCategory: API
+    serviceCategory: Developer Tools / Orchestration
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: Cost per Million Task Runs
+    metric: billed_cost / (task_runs / 1000000)
+    target: '10.00 USD (Developer overage benchmark)'
+  - name: Cost per Workflow Run
+    metric: billed_cost / workflow_runs
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+  - name: Subscription Coverage Ratio
+    metric: (included_task_runs - overage_task_runs) / included_task_runs
+    target: '>= 0.85 (signals the right plan is selected)'
+  - name: Self-Hosting Break-Even
+    metric: hatchet_cloud_monthly_spend / (postgres_infra_cost + ops_overhead)
+    target: '>= 1.0 (when ratio exceeds 1, self-hosting becomes cheaper)'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

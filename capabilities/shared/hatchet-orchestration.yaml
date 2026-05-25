@@ -1,0 +1,44 @@
+name: hatchet-orchestration
+description: >-
+  Trigger, observe, and control durable workflow and task runs through the
+  Hatchet engine. Covers the headline orchestration surface that AI agents
+  and background-job operators interact with day-to-day.
+provider: hatchet
+api: hatchet-api
+operations:
+  - id: triggerWorkflowRun
+    method: POST
+    path: /api/v1/stable/tenants/{tenant}/workflow-runs/trigger
+    description: Start a new workflow run with input data and optional metadata.
+  - id: getWorkflowRunStatus
+    method: GET
+    path: /api/v1/stable/workflow-runs/{v1-workflow-run}/status
+    description: Read the current status of a workflow run (running, completed, failed, cancelled).
+  - id: listWorkflowRuns
+    method: GET
+    path: /api/v1/stable/tenants/{tenant}/workflow-runs
+    description: List workflow runs for a tenant with filtering by status, workflow, time window, and metadata.
+  - id: getTask
+    method: GET
+    path: /api/v1/stable/tasks/{task}
+    description: Fetch a single task run by external ID with its current status, input, output, and timestamps.
+  - id: cancelTasks
+    method: POST
+    path: /api/v1/stable/tenants/{tenant}/tasks/cancel
+    description: Cancel one or more in-flight tasks, propagating cancellation to children.
+  - id: replayTasks
+    method: POST
+    path: /api/v1/stable/tenants/{tenant}/tasks/replay
+    description: Replay one or more previously failed or completed tasks with the same input.
+  - id: restoreTask
+    method: POST
+    path: /api/v1/stable/tasks/{task}/restore
+    description: Restore a cancelled task back into the run queue.
+  - id: listTaskEvents
+    method: GET
+    path: /api/v1/stable/tasks/{task}/task-events
+    description: List the queued/started/finished/failed/retrying state-change events for a task.
+  - id: listTaskLogs
+    method: GET
+    path: /api/v1/stable/tasks/{task}/logs
+    description: Stream structured log lines emitted by the worker that ran this task.

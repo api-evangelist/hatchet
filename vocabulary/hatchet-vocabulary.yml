@@ -1,0 +1,150 @@
+name: Hatchet Vocabulary
+description: >-
+  Controlled vocabulary covering the Hatchet orchestration platform: the
+  durable-execution engine, REST API, SDKs, and Hatchet Cloud managed service.
+  Maps every first-class concept exposed by the Hatchet API to a stable term.
+provider: Hatchet
+providerId: hatchet
+modified: '2026-05-25'
+specificationVersion: '0.1'
+
+domains:
+  - id: orchestration
+    name: Orchestration
+    description: Engine-level concepts that drive task scheduling and durable execution.
+  - id: workflow
+    name: Workflow
+    description: Authored definitions composed of one or more tasks with dependencies.
+  - id: execution
+    name: Execution
+    description: Runtime concerns: task runs, workflow runs, retries, replays.
+  - id: ingestion
+    name: Event Ingestion
+    description: Ways work enters the system: events, schedules, crons, webhooks, filters.
+  - id: observability
+    name: Observability
+    description: Telemetry surface: task events, logs, metrics, traces, alerting.
+  - id: governance
+    name: Governance
+    description: Tenants, users, API tokens, rate limits, feature flags.
+  - id: deployment
+    name: Deployment
+    description: Cloud, self-hosted, Helm, Docker Compose, Hatchet Lite.
+
+terms:
+  - term: Tenant
+    domain: governance
+    definition: A logical isolation boundary in Hatchet; all tasks, workflows, workers, and tokens are scoped to a tenant.
+  - term: Task
+    domain: orchestration
+    definition: A single unit of work wrapping a function in an SDK; the smallest schedulable entity.
+  - term: Workflow
+    domain: workflow
+    definition: A definition composed of one or more tasks with optional parent/child relationships and conditional triggers.
+  - term: Workflow Run
+    domain: execution
+    definition: A single execution instance of a workflow; the parent of task runs.
+  - term: Task Run
+    domain: execution
+    definition: A single execution of a task, including its retries and replays.
+  - term: DAG
+    domain: workflow
+    definition: A directed acyclic graph of tasks within a workflow, expressing parent/child execution order.
+  - term: Durable Task
+    domain: execution
+    definition: A long-running task whose progress is checkpointed to Postgres so it can resume exactly where it left off after a failure or restart.
+  - term: Durable Execution
+    domain: execution
+    definition: Hatchet's core guarantee that task and workflow state is persisted so executions survive worker restarts, network partitions, and engine upgrades.
+  - term: Replay
+    domain: execution
+    definition: Re-executing a previous task or workflow run with the same input, typically for debugging or recovering from a fix.
+  - term: Restore
+    domain: execution
+    definition: Re-instating a cancelled or failed task back into the run queue.
+  - term: Cancel
+    domain: execution
+    definition: Stop an in-flight task or workflow run; cancellation propagates to child tasks.
+  - term: Worker
+    domain: deployment
+    definition: A long-running process running on the customer's infrastructure that connects to the Hatchet engine over gRPC and executes tasks.
+  - term: Worker Slot
+    domain: deployment
+    definition: A single concurrency unit on a worker; the engine respects per-worker and per-task slot limits when assigning work.
+  - term: Engine
+    domain: orchestration
+    definition: The Hatchet orchestrator process; in production the API server, gRPC engine, and dashboard are deployed separately.
+  - term: Hatchet Lite
+    domain: deployment
+    definition: A single-image bundled deployment of the engine, API, and dashboard intended for development, testing, and low-throughput production.
+  - term: Hatchet Cloud
+    domain: deployment
+    definition: Hatchet's managed orchestration service, billed by task runs against tier-included allowances.
+  - term: Helm Chart
+    domain: deployment
+    definition: The official Kubernetes Helm chart in hatchet-dev/hatchet-charts for production self-hosting.
+  - term: Event
+    domain: ingestion
+    definition: An asynchronous trigger published to Hatchet that can fan out to one or more workflow runs.
+  - term: Event Key
+    domain: ingestion
+    definition: A string identifier used to bind events to workflow triggers.
+  - term: Filter
+    domain: ingestion
+    definition: A CEL expression evaluated against an incoming event to decide whether a workflow should run.
+  - term: CEL Expression
+    domain: ingestion
+    definition: Common Expression Language predicate used in filters and conditional triggers.
+  - term: Cron Workflow
+    domain: ingestion
+    definition: A workflow registered to fire on a cron schedule.
+  - term: Scheduled Workflow
+    domain: ingestion
+    definition: A one-shot workflow trigger registered to fire at a specific future time.
+  - term: Webhook Worker
+    domain: ingestion
+    definition: An external HTTP endpoint registered as a worker; the engine delivers task runs as signed webhook requests.
+  - term: Task Event
+    domain: observability
+    definition: A timestamped state-change record for a task run (queued, started, finished, failed, retrying, cancelled).
+  - term: Log Line
+    domain: observability
+    definition: A single structured log record emitted by a worker for a given task run.
+  - term: Trace
+    domain: observability
+    definition: An OpenTelemetry trace covering one or more task runs in a workflow.
+  - term: Metric
+    domain: observability
+    definition: A numeric sample of engine or workflow behavior (task counts, queue depth, latency).
+  - term: Alert
+    domain: observability
+    definition: A notification dispatched via Slack, email, or webhook when configured task or workflow conditions are met.
+  - term: Rate Limit
+    domain: governance
+    definition: A first-class engine primitive that throttles task execution by named key, scope, and time window — independent of HTTP rate limits.
+  - term: API Token
+    domain: governance
+    definition: Bearer credential issued per tenant that authenticates SDKs and REST API clients.
+  - term: User
+    domain: governance
+    definition: A human identity in Hatchet, authenticated via password, OAuth, or SSO.
+  - term: Feature Flag
+    domain: governance
+    definition: Engine-managed toggle exposed under /feature-flags for gating in-development or per-tenant capabilities.
+  - term: Healthcheck
+    domain: observability
+    definition: Engine liveness/readiness endpoint used by orchestrators (Kubernetes, ECS) to determine whether to route traffic.
+
+tags:
+  - Task Queue
+  - Workflow Engine
+  - Durable Execution
+  - Background Tasks
+  - AI Agents
+  - Orchestration
+  - PostgreSQL
+  - Open Source
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

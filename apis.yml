@@ -1,62 +1,324 @@
 aid: hatchet
 name: Hatchet
 description: >-
-  Hatchet is a distributed task queue and workflow engine for building
-  resilient backend applications with durable execution.
+  Hatchet is an open-source distributed task queue and workflow orchestration
+  engine for background jobs, AI agents, and durable workflows. It is
+  Postgres-backed, MIT-licensed, and ships with first-class SDKs for Python,
+  TypeScript, Go, and Ruby plus a managed offering (Hatchet Cloud) and a
+  self-hostable engine (Docker Compose, Hatchet Lite, Helm chart). The
+  platform separates the orchestration engine from worker execution so
+  workers can run on the operator's own infrastructure (Kubernetes, ECS,
+  Render, Railway, Porter, or any container platform).
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API Composition
   - Task Queue
   - Workflow Engine
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml
+  - Durable Execution
+  - Background Tasks
+  - AI Agents
+  - Orchestration
+  - PostgreSQL
+  - Open Source
+url: https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml
+humanURL: https://hatchet.run/
 created: '2026-03-27'
-modified: '2026-04-28'
+modified: '2026-05-25'
 specificationVersion: '0.19'
 apis:
   - aid: hatchet:hatchet-api
     name: Hatchet API
     description: >-
-      Hatchet is a distributed task queue and workflow engine for building
-      resilient backend applications with durable execution. The REST API
-      exposes operations for tasks, workflow runs, events, filters, webhooks,
-      tenants, workers, scheduled and cron workflows, alerting, and metadata.
+      The Hatchet REST API is the control plane for the Hatchet engine. It
+      exposes operations for tasks, workflow runs, durable tasks, events,
+      filters (CEL-based event routing), webhooks/webhook workers, tenants,
+      users, workers, scheduled and cron workflows, alerting, rate limits,
+      API tokens, observability (logs, traces, metrics), feature flags, and
+      engine metadata. The contract is OpenAPI 3.1 and ships in-tree at
+      hatchet-dev/hatchet under api-contracts/openapi. Stable endpoints are
+      namespaced under /api/v1/stable; legacy endpoints remain under
+      /api/v1. Authentication is bearer token or session cookie.
     humanURL: https://docs.hatchet.run/
+    baseURL: https://api.hatchet-cloud.run
     tags:
-      - API Composition
-      - Background Tasks
-      - Workflow Engine
       - Task Queue
+      - Workflow Engine
       - Durable Execution
+      - Background Tasks
+      - AI Agents
+      - Orchestration
     properties:
       - type: Documentation
         url: https://docs.hatchet.run/
       - type: GettingStarted
         url: https://docs.hatchet.run/home/quickstart
+      - type: Quickstart
+        url: https://docs.hatchet.run/home/quickstart
+      - type: APIReference
+        url: https://docs.hatchet.run/
+      - type: OpenAPI
+        url: openapi/hatchet-openapi.yml
       - type: OpenAPI
         url: https://raw.githubusercontent.com/hatchet-dev/hatchet/main/api-contracts/openapi/openapi.yaml
-      - type: SourceCode
-        url: https://github.com/hatchet-dev/hatchet
+        title: Source OpenAPI (canonical, $ref-composed)
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-task-schema.json
+        title: V1 Task
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-workflow-run-schema.json
+        title: V1 Workflow Run
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-event-schema.json
+        title: V1 Event
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-filter-schema.json
+        title: V1 Filter
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-webhook-schema.json
+        title: V1 Webhook
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-task-event-schema.json
+        title: V1 Task Event
+      - type: JSONSchema
+        url: json-schema/hatchet-v1-log-line-schema.json
+        title: V1 Log Line
+      - type: JSONSchema
+        url: json-schema/hatchet-tenant-schema.json
+        title: Tenant
+      - type: JSONSchema
+        url: json-schema/hatchet-worker-schema.json
+        title: Worker
+      - type: JSONSchema
+        url: json-schema/hatchet-rate-limit-schema.json
+        title: Rate Limit
+      - type: JSONSchema
+        url: json-schema/hatchet-api-token-schema.json
+        title: API Token
+      - type: JSONSchema
+        url: json-schema/hatchet-workflow-schema.json
+        title: Workflow
+      - type: Example
+        url: examples/v1-task-get-example.json
+        title: Get Task
+      - type: Example
+        url: examples/v1-workflow-run-trigger-example.json
+        title: Trigger Workflow Run
+      - type: Example
+        url: examples/v1-event-create-example.json
+        title: Publish Event
+      - type: Example
+        url: examples/v1-filter-create-example.json
+        title: Create Filter
+      - type: Example
+        url: examples/v1-task-cancel-example.json
+        title: Cancel Tasks
+      - type: Example
+        url: examples/v1-task-replay-example.json
+        title: Replay Tasks
+      - type: Example
+        url: examples/v1-log-line-list-example.json
+        title: List Task Logs
+      - type: Example
+        url: examples/rate-limit-upsert-example.json
+        title: Upsert Rate Limit
+      - type: Example
+        url: examples/webhook-worker-create-example.json
+        title: Register Webhook Worker
+      - type: Example
+        url: examples/worker-list-example.json
+        title: List Workers
+      - type: SDK
+        url: https://pypi.org/project/hatchet-sdk/
+        title: Python SDK (hatchet-sdk on PyPI)
+      - type: SDK
+        url: https://www.npmjs.com/package/@hatchet-dev/typescript-sdk
+        title: TypeScript SDK (@hatchet-dev/typescript-sdk on npm)
+      - type: SDK
+        url: https://github.com/hatchet-dev/hatchet/tree/main/sdks/go
+        title: Go SDK (in-tree at sdks/go)
+      - type: SDK
+        url: https://github.com/hatchet-dev/hatchet/tree/main/sdks/ruby
+        title: Ruby SDK (in-tree at sdks/ruby)
+      - type: CodeExamples
+        url: https://github.com/hatchet-dev/hatchet-python-quickstart
+        title: Python Quickstart
+      - type: CodeExamples
+        url: https://github.com/hatchet-dev/hatchet-typescript-quickstart
+        title: TypeScript Quickstart
+      - type: CodeExamples
+        url: https://github.com/hatchet-dev/hatchet-go-quickstart
+        title: Go Quickstart
+      - type: CodeExamples
+        url: https://github.com/hatchet-dev/hatchet-typescript-deep-research
+        title: Deep Research Agent Pattern (TypeScript)
+      - type: CodeExamples
+        url: https://github.com/hatchet-dev/hatchet-typescript-code-agent
+        title: Coding Agent Pattern (TypeScript)
+      - type: CodeExamples
+        url: https://github.com/hatchet-dev/hatchet-infra-examples
+        title: Worker Infrastructure Walkthroughs
+      - type: Authentication
+        url: https://docs.hatchet.run/
+        title: Bearer Token + Session Cookie
+      - type: RateLimits
+        url: rate-limits/hatchet-rate-limits.yml
       - type: SelfHosting
         url: https://docs.hatchet.run/self-hosting
+      - type: SourceCode
+        url: https://github.com/hatchet-dev/hatchet
 common:
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/hatchet-run
   - type: Website
     url: https://hatchet.run/
   - type: Documentation
     url: https://docs.hatchet.run/
-  - type: GitHubOrganization
-    url: https://github.com/hatchet-dev
-  - type: SourceCode
-    url: https://github.com/hatchet-dev/hatchet
-  - type: Pricing
-    url: https://hatchet.run/pricing
-  - type: Blog
-    url: https://hatchet.run/blog
   - type: LLMsTxt
     url: https://docs.hatchet.run/llms.txt
+  - type: Pricing
+    url: https://hatchet.run/pricing
+  - type: Plans
+    url: plans/hatchet-plans-pricing.yml
+  - type: Blog
+    url: https://hatchet.run/blog
+  - type: GitHubOrganization
+    url: https://github.com/hatchet-dev
+  - type: GitHubRepository
+    url: https://github.com/hatchet-dev/hatchet
+    title: hatchet-dev/hatchet (engine + API + dashboard)
+  - type: SourceCode
+    url: https://github.com/hatchet-dev/hatchet
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/hatchet-run
+  - type: CLI
+    url: https://install.hatchet.run/install.sh
+    title: hatchet CLI installer (curl | bash)
+  - type: Tools
+    url: https://github.com/hatchet-dev/homebrew-hatchet
+    title: Homebrew Tap
+  - type: Tools
+    url: https://github.com/hatchet-dev/hatchet-charts
+    title: Helm Chart (production self-hosting)
+  - type: Tools
+    url: https://github.com/hatchet-dev/terraform-provider-hatchet
+    title: Terraform Provider for Hatchet Cloud
+  - type: Tools
+    url: https://github.com/hatchet-dev/pgoutbox
+    title: pgoutbox (transactional outbox for pgx)
+  - type: Tools
+    url: https://github.com/hatchet-dev/s3-batch-object-store
+    title: s3-batch-object-store (batched S3 fetch utility)
+  - type: Tools
+    url: https://github.com/hatchet-dev/buffered
+    title: buffered (Go buffered writes library)
+  - type: Tools
+    url: https://github.com/hatchet-dev/timediff
+    title: timediff (human-readable relative time)
+  - type: Tutorials
+    url: https://github.com/hatchet-dev/hatchet-infra-examples
+    title: Deploying Workers on Infrastructure (Terraform)
+  - type: SpectralRules
+    url: rules/hatchet-rules.yml
+  - type: Vocabulary
+    url: vocabulary/hatchet-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/hatchet-context.jsonld
+  - type: NaftikoCapability
+    url: capabilities/shared/hatchet-orchestration.yaml
+    title: Orchestration (trigger / observe / control runs)
+  - type: NaftikoCapability
+    url: capabilities/shared/hatchet-events-and-filters.yaml
+    title: Events and CEL Filters
+  - type: NaftikoCapability
+    url: capabilities/shared/hatchet-tenant-governance.yaml
+    title: Tenant Governance (tokens, workers, rate limits)
+  - type: Compliance
+    url: https://hatchet.run/pricing
+    title: SOC 2 Type II (platform) + HIPAA (Scale and above)
+  - type: Features
+    data:
+      - name: Durable Execution
+        description: Task and workflow state is persisted to Postgres so executions survive worker restarts, network partitions, and engine upgrades.
+      - name: Low-Latency Scheduling
+        description: Sub-20ms task start times with intelligent assignment rules.
+      - name: Code-First SDKs
+        description: Native language SDKs for Python, TypeScript, Go, and Ruby; tasks are versionable, testable functions.
+      - name: Engine / Worker Separation
+        description: The orchestration engine and workers are decoupled; workers run on the customer's own infrastructure.
+      - name: Postgres-Backed
+        description: Hatchet's only hard dependency is PostgreSQL; RabbitMQ is optional for higher-throughput deployments.
+      - name: First-Class Rate Limits
+        description: Engine-level rate-limit primitive throttles task execution by named key, scope, and window — independent of HTTP rate limits.
+      - name: CEL Event Filters
+        description: Common Expression Language filters bind incoming events to workflows with payload predicates.
+      - name: Scheduled and Cron Workflows
+        description: One-shot scheduled runs and recurring cron-triggered workflows are first-class engine resources.
+      - name: Webhook Workers
+        description: External HTTPS endpoints can be registered as workers; the engine delivers task runs as signed webhook requests.
+      - name: OpenTelemetry Tracing
+        description: Workflows and tasks emit OTel traces; the engine exposes a trace lookup endpoint.
+      - name: Replays and Restores
+        description: Failed or cancelled tasks can be replayed with the same input or restored to the run queue.
+      - name: Multi-Tenant
+        description: Tenants isolate workflows, tasks, workers, and tokens; quotas and throughput are scoped per tenant.
+      - name: Dashboard
+        description: Built-in web dashboard for inspecting runs, replaying tasks, and managing tenants.
+      - name: Slack and SNS Alerting
+        description: Alerts can be dispatched to Slack channels or AWS SNS topics for ops escalation.
+      - name: MIT-Licensed
+        description: Engine, API, SDKs, dashboard, and Helm chart are all MIT-licensed.
+  - type: UseCases
+    data:
+      - name: AI Agent Orchestration
+        description: Manage tool calls, conversation state, timeouts, and checkpointing for production AI agents.
+      - name: Background Jobs
+        description: Classic distributed task-queue use case — replace Celery, Sidekiq, BullMQ, or RQ with durable equivalents.
+      - name: Durable Workflows
+        description: Multi-step pipelines with retries, conditional branching, and exactly-once semantics.
+      - name: Ingestion and Indexing
+        description: Keep vector databases, knowledge graphs, and search indexes up-to-date as upstream sources change.
+      - name: Massive Parallelization
+        description: Fan out to thousands of workers for batch processing and embarrassingly parallel workloads.
+      - name: Mission-Critical Workloads
+        description: Workloads where retries, checkpointing, and replay are non-negotiable (payments, billing, compliance).
+      - name: Event-Driven Architectures
+        description: Use events + CEL filters to route external signals into the right workflows without bespoke routing code.
+  - type: Integrations
+    data:
+      - name: PostgreSQL
+        description: The durability substrate; Hatchet ships with managed migrations and is happy on RDS, Cloud SQL, Neon, Supabase, or self-hosted Postgres.
+      - name: RabbitMQ
+        description: Optional message bus for inter-service communication and high-throughput real-time updates.
+      - name: Kubernetes
+        description: Official Helm chart at hatchet-dev/hatchet-charts for production self-hosting.
+      - name: Docker
+        description: Hatchet Lite single-image deployment plus a production Docker Compose stack.
+      - name: AWS (ECS, SNS)
+        description: ECS-friendly worker deployment patterns and first-class SNS alerting.
+      - name: Slack
+        description: Native Slack alerting integration for run failures and SLA breaches.
+      - name: GitHub
+        description: GitHub OAuth login for the dashboard plus repo-linked workflow source.
+      - name: OpenTelemetry
+        description: Engine and SDKs emit OTel traces; the API exposes trace lookup.
+      - name: Terraform
+        description: Official Terraform provider for managing Hatchet Cloud resources as code.
+      - name: Homebrew
+        description: brew install via the hatchet-dev/homebrew-hatchet tap.
+      - name: FastAPI
+        description: Documented quickstart for combining Hatchet Python SDK with FastAPI services.
+      - name: Next.js
+        description: Multiple Next.js starter templates wire Hatchet into App Router and Pages Router projects.
+      - name: Anthropic
+        description: Hatchet's durable-execution model is a natural substrate for orchestrating Anthropic Claude tool calls and multi-step agents; the hatchet-typescript-deep-research and hatchet-typescript-code-agent reference patterns illustrate the integration shape.
+  - type: Solutions
+    data:
+      - name: Hatchet Cloud
+        description: Fully managed orchestration engine on Hatchet's infrastructure with tier-included task-run allowances and SOC 2 / HIPAA controls.
+      - name: Self-Hosted (Open Source)
+        description: MIT-licensed engine, API, dashboard, and Helm chart for running Hatchet on the operator's own infrastructure.
+      - name: Hatchet Lite
+        description: Single-image bundled deployment of engine, API, and dashboard for development, testing, and low-throughput production.
+      - name: Bring-Your-Own-Cloud (Enterprise)
+        description: Enterprise tier deploys the Hatchet engine inside the customer's own VPC while remaining managed by Hatchet.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

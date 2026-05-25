@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-worker-schema.json",
+  "title": "Worker",
+  "description": "Hatchet Worker entity, derived from the Hatchet OpenAPI spec.",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "the id of this resource, in UUID format",
+          "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+          "minLength": 0,
+          "maxLength": 36
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "the time that this resource was created",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "the time that this resource was last updated",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the worker."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "SELFHOSTED",
+        "MANAGED",
+        "WEBHOOK"
+      ]
+    },
+    "lastHeartbeatAt": {
+      "type": "string",
+      "description": "The time this worker last sent a heartbeat.",
+      "format": "date-time",
+      "example": "2022-12-13T15:06:48.888358-05:00"
+    },
+    "lastListenerEstablished": {
+      "type": "string",
+      "description": "The time this worker last sent a heartbeat.",
+      "format": "date-time",
+      "example": "2022-12-13T15:06:48.888358-05:00"
+    },
+    "actions": {
+      "type": "array",
+      "description": "The actions this worker can perform.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "registeredWorkflows": {
+      "type": "array",
+      "description": "The workflow ids registered on this worker.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The workflow id registered on this worker.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the workflow registered on this worker."
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      }
+    },
+    "slots": {
+      "type": "array",
+      "description": "The semaphore slot state for the worker.",
+      "items": {
+        "properties": {
+          "stepRunId": {
+            "type": "string",
+            "description": "The step run id.",
+            "format": "uuid"
+          },
+          "actionId": {
+            "type": "string",
+            "description": "The action id."
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "The time this slot was started.",
+            "format": "date-time"
+          },
+          "timeoutAt": {
+            "type": "string",
+            "description": "The time this slot will timeout.",
+            "format": "date-time"
+          },
+          "workflowRunId": {
+            "type": "string",
+            "description": "The workflow run id.",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PENDING_ASSIGNMENT",
+              "ASSIGNED",
+              "RUNNING",
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED",
+              "CANCELLING",
+              "BACKOFF"
+            ]
+          }
+        },
+        "required": [
+          "stepRunId",
+          "actionId",
+          "workflowRunId"
+        ]
+      }
+    },
+    "recentStepRuns": {
+      "type": "array",
+      "description": "The recent step runs for the worker.",
+      "items": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "the id of this resource, in UUID format",
+                "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                "minLength": 0,
+                "maxLength": 36
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "the time that this resource was created",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "the time that this resource was last updated",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              }
+            },
+            "required": [
+              "id",
+              "createdAt",
+              "updatedAt"
+            ]
+          },
+          "actionId": {
+            "type": "string",
+            "description": "The action id."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PENDING_ASSIGNMENT",
+              "ASSIGNED",
+              "RUNNING",
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED",
+              "CANCELLING",
+              "BACKOFF"
+            ]
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cancelledAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workflowRunId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "actionId",
+          "metadata",
+          "status",
+          "workflowRunId"
+        ],
+        "type": "object"
+      }
+    },
+    "status": {
+      "$ref": "#/components/schemas/WorkerStatus",
+      "description": "The status of the worker."
+    },
+    "slotConfig": {
+      "type": "object",
+      "description": "Slot availability and limits for this worker (slot_type -> { available, limit }).",
+      "additionalProperties": {
+        "type": "object",
+        "description": "Slot availability and limits for a slot type.",
+        "properties": {
+          "available": {
+            "type": "integer",
+            "description": "The number of available units for this slot type."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The maximum number of units for this slot type."
+          }
+        },
+        "required": [
+          "limit"
+        ]
+      }
+    },
+    "dispatcherId": {
+      "type": "string",
+      "description": "the id of the assigned dispatcher, in UUID format",
+      "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+      "minLength": 36,
+      "maxLength": 36,
+      "format": "uuid"
+    },
+    "labels": {
+      "type": "array",
+      "description": "The current label state of the worker.",
+      "items": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "the id of this resource, in UUID format",
+                "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+                "minLength": 0,
+                "maxLength": 36
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "the time that this resource was created",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "the time that this resource was last updated",
+                "format": "date-time",
+                "example": "2022-12-13T15:06:48.888358-05:00"
+              }
+            },
+            "required": [
+              "id",
+              "createdAt",
+              "updatedAt"
+            ]
+          },
+          "key": {
+            "type": "string",
+            "description": "The key of the label."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the label."
+          }
+        },
+        "required": [
+          "metadata",
+          "key"
+        ],
+        "type": "object"
+      }
+    },
+    "webhookUrl": {
+      "type": "string",
+      "description": "The webhook URL for the worker."
+    },
+    "webhookId": {
+      "type": "string",
+      "description": "The webhook ID for the worker.",
+      "format": "uuid"
+    },
+    "runtimeInfo": {
+      "properties": {
+        "sdkVersion": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "GOLANG",
+            "PYTHON",
+            "TYPESCRIPT",
+            "RUBY"
+          ]
+        },
+        "languageVersion": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        },
+        "runtimeExtra": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "metadata",
+    "name",
+    "type"
+  ],
+  "type": "object"
+}

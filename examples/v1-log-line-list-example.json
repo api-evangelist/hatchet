@@ -1,0 +1,30 @@
+{
+  "operation": "GET /api/v1/stable/tasks/{task}/logs",
+  "response": {
+    "pagination": {
+      "next_page": null,
+      "current_page": 1,
+      "num_pages": 1
+    },
+    "rows": [
+      {
+        "metadata": {
+          "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF200",
+          "createdAt": "2026-05-25T14:30:01Z"
+        },
+        "taskId": "01HW3K4ZJ2NQ8XYZ9ABCDEF123",
+        "level": "INFO",
+        "message": "Fetching invoice INV-7142"
+      },
+      {
+        "metadata": {
+          "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF201",
+          "createdAt": "2026-05-25T14:30:42Z"
+        },
+        "taskId": "01HW3K4ZJ2NQ8XYZ9ABCDEF123",
+        "level": "INFO",
+        "message": "Invoice processed successfully"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:workflow",
+  "name": "Workflow",
+  "description": "Hatchet Workflow entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "object",
+      "required": true
+    },
+    {
+      "name": "name",
+      "description": "The name of the workflow.",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "description": "The description of the workflow.",
+      "type": "string"
+    },
+    {
+      "name": "isPaused",
+      "description": "Whether the workflow is paused.",
+      "type": "boolean"
+    },
+    {
+      "name": "versions",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "tags",
+      "description": "The tags of the workflow.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "jobs",
+      "description": "The jobs of the workflow.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "tenantId",
+      "description": "The tenant id of the workflow.",
+      "type": "string",
+      "required": true
+    }
+  ]
+}

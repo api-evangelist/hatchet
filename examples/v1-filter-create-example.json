@@ -1,0 +1,11 @@
+{
+  "operation": "POST /api/v1/stable/tenants/{tenant}/filters",
+  "request": {
+    "workflowName": "onboard-team-user",
+    "scope": "team",
+    "expression": "event.data.plan == \"team\" && event.key == \"user:signup\"",
+    "payload": {
+      "welcome_template": "team-v2"
+    }
+  }
+}

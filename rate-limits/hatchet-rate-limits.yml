@@ -4,17 +4,20 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Hatchet
 providerId: hatchet
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-25'
 tags:
-  - API Composition
   - Task Queue
   - Workflow Engine
+  - Durable Execution
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Hatchet API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+  - Throughput
+description: >-
+  Rate, throughput, and quota policies for Hatchet Cloud and the open-source
+  Hatchet engine. Cloud throughput limits are sourced from hatchet.run/pricing
+  (Team tier 500 RPS, Enterprise sustained 300M+ runs/month). Engine-level
+  rate-limit primitives are part of the Hatchet API surface itself (the
+  /tenants/{tenant}/rate-limits endpoints) and apply to task execution, not
+  HTTP requests.
 headers:
   limit: X-RateLimit-Limit
   remaining: X-RateLimit-Remaining
@@ -26,62 +29,88 @@ responseCodes:
   quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Hatchet API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Hatchet API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - tier: developer
+    name: Hatchet Cloud Developer Throughput
+    scope: tenant
+    metric: requests_per_second
     limit: 100
     burst: 200
-    timeFrame: minute
+    timeFrame: second
     applies:
       - Hatchet API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
+  - tier: developer
+    name: Hatchet Cloud Developer Included Runs
+    scope: tenant
+    metric: task_runs_per_month
     limit: 100000
     timeFrame: month
     applies:
       - Hatchet API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
+  - tier: team
+    name: Hatchet Cloud Team Throughput
+    scope: tenant
+    metric: requests_per_second
+    limit: 500
+    burst: 1000
+    timeFrame: second
+    applies:
+      - Hatchet API
+  - tier: scale
+    name: Hatchet Cloud Scale Throughput
+    scope: tenant
+    metric: requests_per_second
+    limit: 2000
     burst: 5000
-    timeFrame: minute
+    timeFrame: second
+    applies:
+      - Hatchet API
+  - tier: enterprise
+    name: Hatchet Cloud Enterprise Sustained Capacity
+    scope: contract
+    metric: task_runs_per_month
+    limit: 300000000
+    timeFrame: month
+    applies:
+      - Hatchet API
+  - tier: self-hosted
+    name: Self-Hosted Engine
+    scope: operator-defined
+    metric: requests_per_second
+    limit: -1
+    timeFrame: second
     applies:
       - Hatchet API
 policies:
+  - name: Engine-Level Rate Limits
+    description: >-
+      Hatchet exposes a first-class rate-limit primitive via the
+      /api/v1/tenants/{tenant}/rate-limits endpoints. Workflows can declare
+      and consume named rate limits that throttle task execution (not HTTP
+      ingress) at configurable units per duration.
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
+    description: >-
+      Clients should implement exponential backoff with jitter and honor the
+      Retry-After header on 429 and 503 responses.
   - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: >-
+      Short bursts above the steady-state RPS are tolerated up to the
+      documented burst ceiling before the orchestrator throttles task
+      ingestion.
+  - name: Tenant Isolation
+    description: >-
+      Quotas and throughput ceilings are scoped per Hatchet tenant; multiple
+      tenants on the same account each receive the full configured allowance
+      independently.
+  - name: Fair Use (Enterprise)
+    description: >-
+      Enterprise contracts can negotiate sustained capacity well above the
+      300M-run/month baseline; sustained usage materially in excess of
+      contracted capacity is subject to fair-use review.
+  - name: Self-Hosting
+    description: >-
+      The open-source Hatchet engine imposes no service-level rate limits;
+      throughput is bounded by the underlying Postgres database, worker
+      pool, and (optionally) RabbitMQ deployment chosen by the operator.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

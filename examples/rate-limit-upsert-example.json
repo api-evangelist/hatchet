@@ -1,0 +1,19 @@
+{
+  "operation": "PUT /api/v1/tenants/{tenant}/rate-limits",
+  "request": {
+    "key": "openai-tokens-per-minute",
+    "limit": 60000,
+    "duration": "MINUTE"
+  },
+  "response": {
+    "metadata": {
+      "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF300",
+      "createdAt": "2026-05-25T14:30:00Z"
+    },
+    "tenantId": "01HW0000000000000000000000",
+    "key": "openai-tokens-per-minute",
+    "value": 60000,
+    "limitValue": 60000,
+    "window": "1m"
+  }
+}

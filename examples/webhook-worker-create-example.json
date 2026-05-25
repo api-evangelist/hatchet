@@ -1,0 +1,17 @@
+{
+  "operation": "POST /api/v1/tenants/{tenant}/webhook-workers",
+  "request": {
+    "name": "shopify-webhook-receiver",
+    "url": "https://hooks.example.com/shopify",
+    "secret": "whsec_\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+  },
+  "response": {
+    "metadata": {
+      "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF400",
+      "createdAt": "2026-05-25T14:30:00Z"
+    },
+    "name": "shopify-webhook-receiver",
+    "url": "https://hooks.example.com/shopify",
+    "tenantId": "01HW0000000000000000000000"
+  }
+}

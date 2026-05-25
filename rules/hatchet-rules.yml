@@ -1,0 +1,157 @@
+extends:
+  - [spectral:oas, recommended]
+
+documentationUrl: https://docs.hatchet.run/
+
+description: >-
+  Spectral ruleset enforcing the conventions observed in the Hatchet OpenAPI
+  contract (api-contracts/openapi in hatchet-dev/hatchet). The Hatchet API is
+  OpenAPI 3.1, uses bearer + cookie auth, namespaces stable endpoints under
+  /api/v1/stable, and tags operations by resource (Task, Workflow, Workflow
+  Run, Tenant, Worker, Event, Webhook, Rate Limits, API Token, Log,
+  Observability, etc.).
+
+functions: []
+
+rules:
+  hatchet-openapi-version:
+    description: Hatchet uses OpenAPI 3.1.
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.1"
+
+  hatchet-info-title:
+    description: The API info title must mention Hatchet.
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "Hatchet"
+
+  hatchet-stable-path-prefix:
+    description: Hatchet stable operations live under /api/v1/stable; older endpoints under /api/v1.
+    severity: warn
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/(api|api/v1|api/v1/stable|api/v1alpha1)/.+"
+
+  hatchet-operation-id-kebab-namespaced:
+    description: >-
+      Operation IDs follow the pattern "<resource>:<verb>" or
+      "<resource>:<verb>:<qualifier>" with lowercase kebab segments
+      (e.g. "v1-task:get", "tenant:create", "workflow-run:create").
+    severity: warn
+    given: $.paths.*.*.operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z0-9]+(?:-[a-z0-9]+)*(?::[a-z0-9]+(?:-[a-z0-9]+)*)+$"
+
+  hatchet-operation-summary-required:
+    description: Every operation must have a summary.
+    severity: warn
+    given: $.paths.*[get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  hatchet-operation-summary-title-case:
+    description: Operation summaries should be Title Cased.
+    severity: warn
+    given: $.paths.*[get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  hatchet-operation-must-have-tag:
+    description: Every operation must declare at least one tag.
+    severity: error
+    given: $.paths.*[get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  hatchet-known-tags:
+    description: Operation tags should be drawn from the Hatchet resource taxonomy.
+    severity: info
+    given: $.paths.*[get,post,put,patch,delete].tags[*]
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - API Token
+          - CEL
+          - Durable Tasks
+          - Event
+          - Feature Flags
+          - Filter
+          - Github
+          - Healthcheck
+          - Log
+          - Metadata
+          - Observability
+          - Rate Limits
+          - SNS
+          - Slack
+          - Step Run
+          - Task
+          - Tenant
+          - User
+          - Webhook
+          - Worker
+          - Workflow
+          - Workflow Run
+          - Workflow Runs
+
+  hatchet-bearer-auth-required:
+    description: Hatchet uses bearer tokens for SDK and REST API access.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      field: bearerAuth
+      function: truthy
+
+  hatchet-error-schema-standard:
+    description: Error responses should reference the APIErrors schema.
+    severity: warn
+    given: $.paths.*[get,post,put,patch,delete].responses[400,401,403,404,405,409,429,500]
+    then:
+      field: content.application/json.schema.$ref
+      function: pattern
+      functionOptions:
+        match: "APIErrors?$"
+
+  hatchet-path-parameter-named:
+    description: Path parameters should be lowercase kebab-cased (e.g. {workflow-run}, {v1-workflow-run}).
+    severity: info
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\{[a-z0-9]+(?:-[a-z0-9]+)*\\}"
+
+  hatchet-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    severity: warn
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+
+  hatchet-tenant-scoped-resources:
+    description: Tenant-scoped resources should be reachable under /tenants/{tenant}/...
+    severity: info
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?:tenants/\\{tenant\\}|/api/v1(?!.*tenants/\\{tenant\\}))"

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-v1-filter-schema.json",
+  "title": "V1Filter",
+  "description": "Hatchet V1Filter entity, derived from the Hatchet OpenAPI spec.",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "the id of this resource, in UUID format",
+          "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+          "minLength": 0,
+          "maxLength": 36
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "the time that this resource was created",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "the time that this resource was last updated",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "The ID of the tenant associated with this filter."
+    },
+    "workflowId": {
+      "type": "string",
+      "format": "uuid",
+      "minLength": 36,
+      "maxLength": 36,
+      "description": "The workflow id associated with this filter."
+    },
+    "scope": {
+      "type": "string",
+      "description": "The scope associated with this filter. Used for subsetting candidate filters at evaluation time"
+    },
+    "expression": {
+      "type": "string",
+      "description": "The expression associated with this filter."
+    },
+    "payload": {
+      "type": "object",
+      "description": "Additional payload data associated with the filter"
+    },
+    "isDeclarative": {
+      "type": "boolean",
+      "description": "Whether the filter is declarative (true) or programmatic (false)"
+    }
+  },
+  "required": [
+    "metadata",
+    "tenantId",
+    "workflowId",
+    "scope",
+    "expression",
+    "payload"
+  ]
+}

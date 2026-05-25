@@ -1,0 +1,14 @@
+{
+  "operation": "POST /api/v1/stable/tenants/{tenant}/tasks/replay",
+  "request": {
+    "externalIds": [
+      "01HW3K4ZJ2NQ8XYZ9ABCDEF123"
+    ],
+    "overrideInput": false
+  },
+  "response": {
+    "replayedTasks": [
+      "01HW3K4ZJ2NQ8XYZ9ABCDEF123"
+    ]
+  }
+}

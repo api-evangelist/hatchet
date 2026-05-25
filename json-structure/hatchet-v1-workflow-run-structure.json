@@ -1,0 +1,8 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:v1-workflow-run",
+  "name": "V1WorkflowRun",
+  "description": "Hatchet V1WorkflowRun entity, derived from the Hatchet OpenAPI spec."
+}

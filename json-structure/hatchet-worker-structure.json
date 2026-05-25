@@ -1,0 +1,113 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:worker",
+  "name": "Worker",
+  "description": "Hatchet Worker entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "object",
+      "required": true
+    },
+    {
+      "name": "name",
+      "description": "The name of the worker.",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "enum": [
+        "SELFHOSTED",
+        "MANAGED",
+        "WEBHOOK"
+      ],
+      "required": true
+    },
+    {
+      "name": "lastHeartbeatAt",
+      "description": "The time this worker last sent a heartbeat.",
+      "type": "string",
+      "format": "date-time"
+    },
+    {
+      "name": "lastListenerEstablished",
+      "description": "The time this worker last sent a heartbeat.",
+      "type": "string",
+      "format": "date-time"
+    },
+    {
+      "name": "actions",
+      "description": "The actions this worker can perform.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "registeredWorkflows",
+      "description": "The workflow ids registered on this worker.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "slots",
+      "description": "The semaphore slot state for the worker.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "recentStepRuns",
+      "description": "The recent step runs for the worker.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "status",
+      "description": "The status of the worker."
+    },
+    {
+      "name": "slotConfig",
+      "description": "Slot availability and limits for this worker (slot_type -> { available, limit }).",
+      "type": "object"
+    },
+    {
+      "name": "dispatcherId",
+      "description": "the id of the assigned dispatcher, in UUID format",
+      "type": "string",
+      "format": "uuid"
+    },
+    {
+      "name": "labels",
+      "description": "The current label state of the worker.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "webhookUrl",
+      "description": "The webhook URL for the worker.",
+      "type": "string"
+    },
+    {
+      "name": "webhookId",
+      "description": "The webhook ID for the worker.",
+      "type": "string",
+      "format": "uuid"
+    },
+    {
+      "name": "runtimeInfo"
+    }
+  ]
+}

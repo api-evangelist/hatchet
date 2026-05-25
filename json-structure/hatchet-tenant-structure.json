@@ -1,0 +1,57 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:tenant",
+  "name": "Tenant",
+  "description": "Hatchet Tenant entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "object",
+      "required": true
+    },
+    {
+      "name": "name",
+      "description": "The name of the tenant.",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "slug",
+      "description": "The slug of the tenant.",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "analyticsOptOut",
+      "description": "Whether the tenant has opted out of analytics.",
+      "type": "boolean"
+    },
+    {
+      "name": "alertMemberEmails",
+      "description": "Whether to alert tenant members.",
+      "type": "boolean"
+    },
+    {
+      "name": "version",
+      "description": "The version of the tenant.",
+      "required": true
+    },
+    {
+      "name": "environment",
+      "description": "The environment type of the tenant."
+    },
+    {
+      "name": "serverUrl",
+      "description": "The server URL for the tenant (includes scheme)",
+      "type": "string"
+    },
+    {
+      "name": "region",
+      "description": "Control-plane shard region for the tenant (e.g. aws:us-west-2).",
+      "type": "string"
+    }
+  ]
+}

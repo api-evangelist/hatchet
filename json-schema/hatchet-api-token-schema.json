@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-api-token-schema.json",
+  "title": "APIToken",
+  "description": "Hatchet APIToken entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "the id of this resource, in UUID format",
+          "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+          "minLength": 0,
+          "maxLength": 36
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "the time that this resource was created",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "the time that this resource was last updated",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the API token.",
+      "maxLength": 255
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the API token expires."
+    }
+  },
+  "required": [
+    "metadata",
+    "name",
+    "expiresAt"
+  ]
+}

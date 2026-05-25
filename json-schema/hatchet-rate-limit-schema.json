@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-rate-limit-schema.json",
+  "title": "RateLimit",
+  "description": "Hatchet RateLimit entity, derived from the Hatchet OpenAPI spec.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The key for the rate limit."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "The ID of the tenant associated with this rate limit."
+    },
+    "limitValue": {
+      "type": "integer",
+      "description": "The maximum number of requests allowed within the window."
+    },
+    "value": {
+      "type": "integer",
+      "description": "The current number of requests made within the window."
+    },
+    "window": {
+      "type": "string",
+      "description": "The window of time in which the limitValue is enforced."
+    },
+    "lastRefill": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-12-13T15:06:48.888358-05:00",
+      "description": "The last time the rate limit was refilled."
+    }
+  },
+  "required": [
+    "key",
+    "tenantId",
+    "limitValue",
+    "value",
+    "window",
+    "lastRefill"
+  ]
+}

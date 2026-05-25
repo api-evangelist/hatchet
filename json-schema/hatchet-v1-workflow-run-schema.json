@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hatchet/json-schema/hatchet-v1-workflow-run-schema.json",
+  "title": "V1WorkflowRun",
+  "description": "Hatchet V1WorkflowRun entity, derived from the Hatchet OpenAPI spec.",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "the id of this resource, in UUID format",
+          "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+          "minLength": 0,
+          "maxLength": 36
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "the time that this resource was created",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "the time that this resource was last updated",
+          "format": "date-time",
+          "example": "2022-12-13T15:06:48.888358-05:00"
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "CANCELLED",
+        "FAILED"
+      ]
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp the task run started."
+    },
+    "finishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp the task run finished."
+    },
+    "duration": {
+      "type": "integer",
+      "description": "The duration of the task run, in milliseconds."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "The ID of the tenant.",
+      "example": "bb214807-246e-43a5-a25d-41761d1cff9e",
+      "minLength": 36,
+      "maxLength": 36,
+      "format": "uuid"
+    },
+    "additionalMetadata": {
+      "type": "object",
+      "description": "Additional metadata for the task run."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display name of the task run."
+    },
+    "workflowId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "output": {
+      "type": "object",
+      "x-go-type": "openapi.NonNullableJSON",
+      "x-go-type-import": {
+        "path": "github.com/hatchet-dev/hatchet/api/v1/server/oas",
+        "name": "NonNullableJSON"
+      },
+      "x-nullable": false,
+      "description": "The output of the task run (for the latest run)"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "The error message of the task run (for the latest run)"
+    },
+    "workflowVersionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The ID of the workflow version."
+    },
+    "input": {
+      "type": "object",
+      "x-go-type": "openapi.NonNullableJSON",
+      "x-go-type-import": {
+        "path": "github.com/hatchet-dev/hatchet/api/v1/server/oas",
+        "name": "NonNullableJSON"
+      },
+      "x-nullable": false,
+      "description": "The input of the task run."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp the task run was created."
+    },
+    "parentTaskExternalId": {
+      "type": "string",
+      "format": "uuid",
+      "minLength": 36,
+      "maxLength": 36
+    }
+  },
+  "required": [
+    "metadata",
+    "id",
+    "status",
+    "tenantId",
+    "displayName",
+    "workflowId",
+    "output",
+    "input"
+  ]
+}

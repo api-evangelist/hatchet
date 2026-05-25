@@ -1,0 +1,90 @@
+{
+  "$schema": "https://api-evangelist.github.io/json-structure/0.1/schema.json",
+  "specification": "JSON Structure",
+  "specificationVersion": "0.1",
+  "id": "hatchet:v1-task-event",
+  "name": "V1TaskEvent",
+  "description": "Hatchet V1TaskEvent entity, derived from the Hatchet OpenAPI spec.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "id",
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "taskId",
+      "type": "string",
+      "format": "uuid",
+      "required": true
+    },
+    {
+      "name": "timestamp",
+      "type": "string",
+      "format": "date-time",
+      "required": true
+    },
+    {
+      "name": "eventType",
+      "type": "string",
+      "enum": [
+        "REQUEUED_NO_WORKER",
+        "REQUEUED_RATE_LIMIT",
+        "SCHEDULING_TIMED_OUT",
+        "ASSIGNED",
+        "STARTED",
+        "FINISHED",
+        "FAILED",
+        "RETRYING",
+        "CANCELLED",
+        "TIMED_OUT",
+        "REASSIGNED",
+        "SLOT_RELEASED",
+        "TIMEOUT_REFRESHED",
+        "RETRIED_BY_USER",
+        "SENT_TO_WORKER",
+        "RATE_LIMIT_ERROR",
+        "ACKNOWLEDGED",
+        "CREATED",
+        "QUEUED",
+        "SKIPPED",
+        "COULD_NOT_SEND_TO_WORKER",
+        "DURABLE_EVICTED",
+        "DURABLE_RESTORING"
+      ],
+      "required": true
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "errorMessage",
+      "type": "string"
+    },
+    {
+      "name": "output",
+      "type": "string"
+    },
+    {
+      "name": "workerId",
+      "type": "string",
+      "format": "uuid"
+    },
+    {
+      "name": "taskDisplayName",
+      "type": "string"
+    },
+    {
+      "name": "retryCount",
+      "description": "The number of retries of the task.",
+      "type": "integer"
+    },
+    {
+      "name": "attempt",
+      "description": "The attempt number of the task.",
+      "type": "integer"
+    }
+  ]
+}

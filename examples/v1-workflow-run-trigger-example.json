@@ -1,0 +1,23 @@
+{
+  "operation": "POST /api/v1/stable/tenants/{tenant}/workflow-runs/trigger",
+  "request": {
+    "workflowName": "ingest-document",
+    "input": {
+      "document_url": "https://example.com/doc.pdf",
+      "tenant": "acme"
+    },
+    "additionalMetadata": {
+      "source": "cli",
+      "requested_by": "kin@apievangelist.com"
+    }
+  },
+  "response": {
+    "metadata": {
+      "id": "01HW3K4ZJ2NQ8XYZ9ABCDEF999",
+      "createdAt": "2026-05-25T14:30:00Z"
+    },
+    "displayName": "ingest-document-2026-05-25-14-30",
+    "status": "RUNNING",
+    "workflowVersionId": "01HW00000000000000000000WV"
+  }
+}
