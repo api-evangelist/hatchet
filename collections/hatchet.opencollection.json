@@ -1,0 +1,4049 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tasks/:task",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              },
+              {
+                "name": "attempt",
+                "value": "",
+                "type": "query",
+                "description": "The attempt number"
+              }
+            ]
+          },
+          "docs": "Get a task by id"
+        },
+        {
+          "info": {
+            "name": "List Events for a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tasks/:task/task-events",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              }
+            ]
+          },
+          "docs": "List events for a task"
+        },
+        {
+          "info": {
+            "name": "Cancel Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/tasks/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel tasks"
+        },
+        {
+          "info": {
+            "name": "Replay Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/tasks/replay",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replay tasks"
+        },
+        {
+          "info": {
+            "name": "Restore a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tasks/:task/restore",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              }
+            ]
+          },
+          "docs": "Restore an evicted durable task"
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/dags/tasks",
+            "params": [
+              {
+                "name": "dag_ids",
+                "value": "",
+                "type": "query",
+                "description": "The external id of the DAG"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "query",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all tasks that belong a specific list of dags"
+        },
+        {
+          "info": {
+            "name": "Get Task Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/task-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get metrics for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get metrics for"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to find runs for"
+              },
+              {
+                "name": "parent_task_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The parent task's external id"
+              },
+              {
+                "name": "triggering_event_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the event that triggered the task"
+              },
+              {
+                "name": "additional_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Additional metadata k-v pairs to filter by"
+              }
+            ]
+          },
+          "docs": "Get a summary of task run metrics for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Task Point Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/task-point-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "createdAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the task was created"
+              },
+              {
+                "name": "finishedBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the task was completed"
+              }
+            ]
+          },
+          "docs": "Get a minute by minute breakdown of task metrics for a tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Log Lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tasks/:task/logs",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get logs for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get logs for"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A full-text search query to filter for"
+              },
+              {
+                "name": "levels",
+                "value": "",
+                "type": "query",
+                "description": "The log level(s) to include"
+              },
+              {
+                "name": "order_by_direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction to order by"
+              },
+              {
+                "name": "attempt",
+                "value": "",
+                "type": "query",
+                "description": "The attempt number to filter for"
+              }
+            ]
+          },
+          "docs": "Lists log lines for a task"
+        },
+        {
+          "info": {
+            "name": "List Log Lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/logs",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get logs for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get logs for"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A full-text search query to filter for"
+              },
+              {
+                "name": "levels",
+                "value": "",
+                "type": "query",
+                "description": "The log level(s) to include"
+              },
+              {
+                "name": "order_by_direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction to order by"
+              },
+              {
+                "name": "attempt",
+                "value": "",
+                "type": "query",
+                "description": "The attempt number to filter for"
+              },
+              {
+                "name": "taskExternalIds",
+                "value": "",
+                "type": "query",
+                "description": "The task external ID(s) to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id(s) to filter for"
+              },
+              {
+                "name": "step_ids",
+                "value": "",
+                "type": "query",
+                "description": "The step id(s) to filter for"
+              }
+            ]
+          },
+          "docs": "Lists log lines for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Log Point Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/log-point-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get logs for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get logs for"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A full-text search query to filter for"
+              },
+              {
+                "name": "levels",
+                "value": "",
+                "type": "query",
+                "description": "The log level(s) to include"
+              },
+              {
+                "name": "taskExternalIds",
+                "value": "",
+                "type": "query",
+                "description": "The task external ID(s) to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id(s) to filter for"
+              },
+              {
+                "name": "step_ids",
+                "value": "",
+                "type": "query",
+                "description": "The step id(s) to filter for"
+              }
+            ]
+          },
+          "docs": "Get a minute by minute breakdown of log metrics for a tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of statuses to filter by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The earliest date to filter by"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The latest date to filter by"
+              },
+              {
+                "name": "additional_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Additional metadata k-v pairs to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow ids to find runs for"
+              },
+              {
+                "name": "worker_id",
+                "value": "",
+                "type": "query",
+                "description": "The worker id to filter by"
+              },
+              {
+                "name": "only_tasks",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include DAGs or only to include tasks"
+              },
+              {
+                "name": "parent_task_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The parent task external id to filter by"
+              },
+              {
+                "name": "triggering_event_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The external id of the event that triggered the workflow run"
+              },
+              {
+                "name": "include_payloads",
+                "value": "",
+                "type": "query",
+                "description": "A flag for whether or not to include the input and output payloads in the response. Defaults to `true` if unset."
+              },
+              {
+                "name": "running_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter within the RUNNING status bucket. ALL returns both on-worker and evicted tasks, ON_WORKER returns only tasks running on a worker, EVICTED returns only evicted tasks. Defaults to ALL."
+              }
+            ]
+          },
+          "docs": "Lists workflow runs for a tenant."
+        },
+        {
+          "info": {
+            "name": "List Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs/display-names",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "external_ids",
+                "value": "",
+                "type": "query",
+                "description": "The external ids of the workflow runs to get display names for"
+              }
+            ]
+          },
+          "docs": "Lists displayable names of workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "List Workflow Run External Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs/external-ids",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of statuses to filter by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The earliest date to filter by"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The latest date to filter by"
+              },
+              {
+                "name": "additional_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Additional metadata k-v pairs to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow ids to find runs for"
+              },
+              {
+                "name": "running_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter within the RUNNING status bucket. ALL returns both on-worker and evicted tasks, ON_WORKER returns only tasks running on a worker, EVICTED returns only evicted tasks. Defaults to ALL."
+              }
+            ]
+          },
+          "docs": "Lists external ids for workflow runs matching filters"
+        },
+        {
+          "info": {
+            "name": "Create Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs/trigger",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a new workflow run"
+        },
+        {
+          "info": {
+            "name": "Branch Durable Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/durable-tasks/branch",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Branch a durable task from a specific node, creating a new branch and re-processing its matches."
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run",
+            "params": [
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to get"
+              }
+            ]
+          },
+          "docs": "Get a workflow run and its metadata to display on the \"detail\" page"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run/status",
+            "params": [
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to get the status for"
+              }
+            ]
+          },
+          "docs": "Get the status of a workflow run."
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run/task-events",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to find runs for"
+              }
+            ]
+          },
+          "docs": "List all tasks for a workflow run"
+        },
+        {
+          "info": {
+            "name": "List Timings for a Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run/task-timings",
+            "params": [
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to get"
+              },
+              {
+                "name": "depth",
+                "value": "",
+                "type": "query",
+                "description": "The depth to retrieve children"
+              }
+            ]
+          },
+          "docs": "Get the timings for a workflow run"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Durable Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Durable Event Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/durable-tasks/:durable-task",
+            "params": [
+              {
+                "name": "durable-task",
+                "value": "",
+                "type": "path",
+                "description": "The durable task external id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of event log entries to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of event log entries to limit by"
+              }
+            ]
+          },
+          "docs": "Lists all event log entries for a durable task."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Observability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Otel Trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/traces",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "run_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The workflow run external id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of spans to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of spans to limit by"
+              }
+            ]
+          },
+          "docs": "Get OTel trace for a workflow run"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "A list of keys to filter by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Consider events that occurred after this time"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Consider events that occurred before this time"
+              },
+              {
+                "name": "workflowIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter to events that are associated with a specific workflow run"
+              },
+              {
+                "name": "workflowRunStatuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter to events that are associated with workflow runs matching a certain status"
+              },
+              {
+                "name": "eventIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific events by their ids"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by additional metadata on the events"
+              },
+              {
+                "name": "scopes",
+                "value": "",
+                "type": "query",
+                "description": "The scopes to filter by"
+              }
+            ]
+          },
+          "docs": "Lists all events for a tenant."
+        },
+        {
+          "info": {
+            "name": "Get Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/events/:v1-event",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-event",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              }
+            ]
+          },
+          "docs": "Get an event by its id"
+        },
+        {
+          "info": {
+            "name": "List Event Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/events/keys",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all event keys for a tenant."
+        },
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "A list of keys to filter by"
+              },
+              {
+                "name": "workflows",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow IDs to filter by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow run statuses to filter by"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "The search query to filter for"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "What to order by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order direction"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "eventIds",
+                "value": "",
+                "type": "query",
+                "description": "A list of event ids to filter by"
+              }
+            ]
+          },
+          "docs": "Lists all events for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new event."
+        },
+        {
+          "info": {
+            "name": "Bulk Create Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events/bulk",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk creates new events."
+        },
+        {
+          "info": {
+            "name": "Replay Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events/replay",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replays a list of events."
+        },
+        {
+          "info": {
+            "name": "Replay Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels all runs for a list of events."
+        },
+        {
+          "info": {
+            "name": "Get Event Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/events/:event",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              }
+            ]
+          },
+          "docs": "Get an event."
+        },
+        {
+          "info": {
+            "name": "Get Event Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/events/:event/data",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              }
+            ]
+          },
+          "docs": "Get the data for an event."
+        },
+        {
+          "info": {
+            "name": "Get Event Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/events/:event-with-tenant/data",
+            "params": [
+              {
+                "name": "event-with-tenant",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Get the data for an event."
+        },
+        {
+          "info": {
+            "name": "List Event Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/events/keys",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all event keys for a tenant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/filters",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "workflowIds",
+                "value": "",
+                "type": "query",
+                "description": "The workflow ids to filter by"
+              },
+              {
+                "name": "scopes",
+                "value": "",
+                "type": "query",
+                "description": "The scopes to subset candidate filters by"
+              }
+            ]
+          },
+          "docs": "Lists all filters for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create a Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/filters",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new filter"
+        },
+        {
+          "info": {
+            "name": "Get a Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-filter",
+                "value": "",
+                "type": "path",
+                "description": "The filter id"
+              }
+            ]
+          },
+          "docs": "Get a filter by its id"
+        },
+        {
+          "info": {
+            "name": "v1-filter:update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-filter",
+                "value": "",
+                "type": "path",
+                "description": "The filter id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a filter"
+        },
+        {
+          "info": {
+            "name": "v1-filter:delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-filter",
+                "value": "",
+                "type": "path",
+                "description": "The filter id to delete"
+              }
+            ]
+          },
+          "docs": "Delete a filter"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "sourceNames",
+                "value": "",
+                "type": "query",
+                "description": "The source names to filter by"
+              },
+              {
+                "name": "webhookNames",
+                "value": "",
+                "type": "query",
+                "description": "The webhook names to filter by"
+              }
+            ]
+          },
+          "docs": "Lists all webhook for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook"
+        },
+        {
+          "info": {
+            "name": "Get a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook name"
+              }
+            ]
+          },
+          "docs": "Get a webhook by its name"
+        },
+        {
+          "info": {
+            "name": "Post a Webhook Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook name"
+              }
+            ]
+          },
+          "docs": "Post an incoming webhook message"
+        },
+        {
+          "info": {
+            "name": "Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook"
+        },
+        {
+          "info": {
+            "name": "v1-webhook:delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The name of the webhook to delete"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CEL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Debug a CEL Expression",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/cel/debug",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Evaluate a CEL expression against provided input data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Healthcheck",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Readiness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/ready"
+          },
+          "docs": "Gets the readiness status"
+        },
+        {
+          "info": {
+            "name": "Get Liveness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/live"
+          },
+          "docs": "Gets the liveness status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/meta"
+          },
+          "docs": "Gets metadata for the Hatchet instance"
+        },
+        {
+          "info": {
+            "name": "Get Cloud Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/cloud/metadata"
+          },
+          "docs": "Gets metadata for the Hatchet cloud instance"
+        },
+        {
+          "info": {
+            "name": "List Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/meta/integrations"
+          },
+          "docs": "List all integrations"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logs in a user."
+        },
+        {
+          "info": {
+            "name": "Start Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/google/start"
+          },
+          "docs": "Starts the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Complete Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/google/callback"
+          },
+          "docs": "Completes the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Start Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/github/start"
+          },
+          "docs": "Starts the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Complete Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/github/callback"
+          },
+          "docs": "Completes the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Start Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/slack/start",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Starts the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Complete Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/slack/callback",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Completes the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Get Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/current",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Gets the current user"
+        },
+        {
+          "info": {
+            "name": "Change User Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Update a user password."
+        },
+        {
+          "info": {
+            "name": "Register User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a user."
+        },
+        {
+          "info": {
+            "name": "Logout User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/logout",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Logs out a user."
+        },
+        {
+          "info": {
+            "name": "List Tenant Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/memberships",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Lists all tenant memberships for the current user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Github",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Github App Tenant Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/sns/:tenant/:event",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "The event key"
+              }
+            ]
+          },
+          "docs": "SNS event"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SNS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SNS Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/sns",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "List SNS integrations"
+        },
+        {
+          "info": {
+            "name": "Create SNS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/sns",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create SNS integration"
+        },
+        {
+          "info": {
+            "name": "Delete SNS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/sns/:sns",
+            "params": [
+              {
+                "name": "sns",
+                "value": "",
+                "type": "path",
+                "description": "The SNS integration id"
+              }
+            ]
+          },
+          "docs": "Delete SNS integration"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenant Alert Email Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/alerting-email-groups",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets a list of tenant alert email groups"
+        },
+        {
+          "info": {
+            "name": "Create Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/alerting-email-groups",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant alert email group"
+        },
+        {
+          "info": {
+            "name": "Create Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/resource-policy",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets the resource policy for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/alerting-email-groups/:alert-email-group",
+            "params": [
+              {
+                "name": "alert-email-group",
+                "value": "",
+                "type": "path",
+                "description": "The tenant alert email group id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a tenant alert email group"
+        },
+        {
+          "info": {
+            "name": "Delete Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/alerting-email-groups/:alert-email-group",
+            "params": [
+              {
+                "name": "alert-email-group",
+                "value": "",
+                "type": "path",
+                "description": "The tenant alert email group id"
+              }
+            ]
+          },
+          "docs": "Deletes a tenant alert email group"
+        },
+        {
+          "info": {
+            "name": "List Tenant Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/invites",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Lists all tenant invites for the current user"
+        },
+        {
+          "info": {
+            "name": "Accept Tenant Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/invites/accept",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accepts a tenant invite"
+        },
+        {
+          "info": {
+            "name": "Reject Tenant Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/invites/reject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rejects a tenant invite"
+        },
+        {
+          "info": {
+            "name": "Create Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant"
+        },
+        {
+          "info": {
+            "name": "Get Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id to get details for"
+              }
+            ]
+          },
+          "docs": "Get the details of a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing tenant"
+        },
+        {
+          "info": {
+            "name": "Get Tenant Alerting Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/alerting/settings",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets the alerting settings for a tenant"
+        },
+        {
+          "info": {
+            "name": "List Tenant Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/invites",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets a list of tenant invites"
+        },
+        {
+          "info": {
+            "name": "Create Tenant Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/invites",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant invite"
+        },
+        {
+          "info": {
+            "name": "Get Step Run Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/step-run-queue-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Get the queue metrics for the tenant"
+        },
+        {
+          "info": {
+            "name": "List Tenant Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/members",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets a list of tenant members"
+        },
+        {
+          "info": {
+            "name": "Update a Tenant Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/members/:member",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "member",
+                "value": "",
+                "type": "path",
+                "description": "The tenant member id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a tenant member"
+        },
+        {
+          "info": {
+            "name": "Delete a Tenant Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/members/:member",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "member",
+                "value": "",
+                "type": "path",
+                "description": "The tenant member id"
+              }
+            ]
+          },
+          "docs": "Delete a member from a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Prometheus Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/prometheus-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Get the prometheus metrics for the tenant"
+        },
+        {
+          "info": {
+            "name": "Get Task Stats for Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/task-stats",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant ID"
+              },
+              {
+                "name": "taskNames",
+                "value": "",
+                "type": "query",
+                "description": "Task names that must appear in the response. Missing tasks are zero-filled so KEDA's metrics-api JSONPath always resolves."
+              }
+            ]
+          },
+          "docs": "Get task stats for tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Slack",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Slack Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/slack",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "List Slack webhooks"
+        },
+        {
+          "info": {
+            "name": "Delete Slack Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/slack/:slack",
+            "params": [
+              {
+                "name": "slack",
+                "value": "",
+                "type": "path",
+                "description": "The Slack webhook id"
+              }
+            ]
+          },
+          "docs": "Delete Slack webhook"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/invites/:tenant-invite",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "tenant-invite",
+                "value": "",
+                "type": "path",
+                "description": "The tenant invite id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a tenant invite"
+        },
+        {
+          "info": {
+            "name": "Delete Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/invites/:tenant-invite",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "tenant-invite",
+                "value": "",
+                "type": "path",
+                "description": "The tenant invite id"
+              }
+            ]
+          },
+          "docs": "Deletes a tenant invite"
+        },
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/webhook-workers",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all webhooks"
+        },
+        {
+          "info": {
+            "name": "Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/webhook-workers",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a webhook"
+        },
+        {
+          "info": {
+            "name": "Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/webhook-workers/:webhook",
+            "params": [
+              {
+                "name": "webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook"
+        },
+        {
+          "info": {
+            "name": "List Webhook Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/webhook-workers/:webhook/requests",
+            "params": [
+              {
+                "name": "webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Lists all requests for a webhook"
+        },
+        {
+          "info": {
+            "name": "Detailed Health Probe for the Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/monitoring/:tenant/probe",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Triggers a workflow to check the status of the instance"
+        },
+        {
+          "info": {
+            "name": "We Return the Version for the Currently Running Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/version"
+          },
+          "docs": "Get the version of the server"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/api-tokens",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "List API tokens for a tenant"
+        },
+        {
+          "info": {
+            "name": "Create API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/api-tokens",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API token for a tenant"
+        },
+        {
+          "info": {
+            "name": "Revoke API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/api-tokens/:api-token",
+            "params": [
+              {
+                "name": "api-token",
+                "value": "",
+                "type": "path",
+                "description": "The API token"
+              }
+            ]
+          },
+          "docs": "Revoke an API token for a tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workflow Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/queue-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflows",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow IDs to filter by"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              }
+            ]
+          },
+          "docs": "Get the queue metrics for the tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Search by name"
+              }
+            ]
+          },
+          "docs": "Get all workflows for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "The order by field"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order by direction"
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "parentWorkflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent workflow run id"
+              },
+              {
+                "name": "parentStepRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent step run id"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of scheduled run statuses to filter by"
+              }
+            ]
+          },
+          "docs": "Get all scheduled workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/:scheduled-workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "scheduled-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The scheduled workflow id"
+              }
+            ]
+          },
+          "docs": "Get a scheduled workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Scheduled Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/:scheduled-workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "scheduled-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The scheduled workflow id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (reschedule) a scheduled workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Scheduled Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/:scheduled-workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "scheduled-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The scheduled workflow id"
+              }
+            ]
+          },
+          "docs": "Delete a scheduled workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Bulk Delete Scheduled Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/bulk-delete",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk delete scheduled workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Bulk Update Scheduled Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/bulk-update",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk update (reschedule) scheduled workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Cron Job Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/crons",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "query",
+                "description": "The workflow name to get runs for."
+              },
+              {
+                "name": "cronName",
+                "value": "",
+                "type": "query",
+                "description": "The cron name to get runs for."
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "The order by field"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order by direction"
+              }
+            ]
+          },
+          "docs": "Get all cron job workflow triggers for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Cron Job Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/crons/:cron-workflow",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "cron-workflow",
+                "value": "",
+                "type": "path",
+                "description": "The cron job id"
+              }
+            ]
+          },
+          "docs": "Get a cron job workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Cron Job Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/workflows/crons/:cron-workflow",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "cron-workflow",
+                "value": "",
+                "type": "path",
+                "description": "The cron job id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a cron workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Cron Job Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/workflows/crons/:cron-workflow",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "cron-workflow",
+                "value": "",
+                "type": "path",
+                "description": "The cron job id"
+              }
+            ]
+          },
+          "docs": "Delete a cron job workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workflows/:workflow",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ]
+          },
+          "docs": "Get a workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/workflows/:workflow",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/workflows/:workflow",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ]
+          },
+          "docs": "Delete a workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workflows/:workflow/versions",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The workflow version. If not supplied, the latest version is fetched."
+              }
+            ]
+          },
+          "docs": "Get a workflow version for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workflows/:workflow/metrics",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "A status of workflow run statuses to filter by"
+              },
+              {
+                "name": "groupKey",
+                "value": "",
+                "type": "query",
+                "description": "A group key to filter metrics by"
+              }
+            ]
+          },
+          "docs": "Get the metrics for a workflow version"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Worker Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/:workflow/worker-count",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ]
+          },
+          "docs": "Get a count of the workers available for workflow"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/runs",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "The event id to get runs for."
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "parentWorkflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent workflow run id"
+              },
+              {
+                "name": "parentStepRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent step run id"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow run statuses to filter by"
+              },
+              {
+                "name": "kinds",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow kinds to filter by"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "createdAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the workflow run was created"
+              },
+              {
+                "name": "createdBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the workflow run was created"
+              },
+              {
+                "name": "finishedAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the workflow run was finished"
+              },
+              {
+                "name": "finishedBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the workflow run was finished"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "The order by field"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order by direction"
+              }
+            ]
+          },
+          "docs": "Get all workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Runs Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/runs/metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "The event id to get runs for."
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "parentWorkflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent workflow run id"
+              },
+              {
+                "name": "parentStepRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent step run id"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "createdAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the workflow run was created"
+              },
+              {
+                "name": "createdBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the workflow run was created"
+              }
+            ]
+          },
+          "docs": "Get a summary of  workflow run metrics for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              }
+            ]
+          },
+          "docs": "Get a workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run/shape",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              }
+            ]
+          },
+          "docs": "Get a workflow run for a tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rate Limits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Rate Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/rate-limits",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "The search query to filter for"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "What to order by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order direction"
+              }
+            ]
+          },
+          "docs": "Lists all rate limits for a tenant."
+        },
+        {
+          "info": {
+            "name": "Delete Rate Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/rate-limits",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The limit key"
+              }
+            ]
+          },
+          "docs": "Delete a rate limit for a tenant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow Run",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/:workflow/scheduled",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedule a new workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Create Cron Job Workflow Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/:workflow/crons",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new cron job workflow trigger for a tenant"
+        },
+        {
+          "info": {
+            "name": "Cancel Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a batch of workflow runs"
+        },
+        {
+          "info": {
+            "name": "Trigger Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/workflows/:workflow/trigger",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The workflow version. If not supplied, the latest version is fetched."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a new workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Replay Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/replay",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replays a list of workflow runs."
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run/input",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              }
+            ]
+          },
+          "docs": "Get the input for a workflow run."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Step Run",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events for Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/step-runs/:step-run/events",
+            "params": [
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              }
+            ]
+          },
+          "docs": "List events for a step run"
+        },
+        {
+          "info": {
+            "name": "List Events for All Step Runs for a Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              },
+              {
+                "name": "lastId",
+                "value": "",
+                "type": "query",
+                "description": "Last ID of the last event"
+              }
+            ]
+          },
+          "docs": "List events for all step runs for a workflow run"
+        },
+        {
+          "info": {
+            "name": "List Archives for Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/step-runs/:step-run/archives",
+            "params": [
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              }
+            ]
+          },
+          "docs": "List archives for a step run"
+        },
+        {
+          "info": {
+            "name": "Get Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ]
+          },
+          "docs": "Get a step run by id"
+        },
+        {
+          "info": {
+            "name": "Rerun Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run/rerun",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reruns a step run"
+        },
+        {
+          "info": {
+            "name": "Attempts to Cancel a Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ]
+          },
+          "docs": "Attempts to cancel a step run"
+        },
+        {
+          "info": {
+            "name": "Get Step Run Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ]
+          },
+          "docs": "Get the schema for a step run"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Worker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/worker",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by worker status"
+              }
+            ]
+          },
+          "docs": "Get all workers for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workers/:worker",
+            "params": [
+              {
+                "name": "worker",
+                "value": "",
+                "type": "path",
+                "description": "The worker id"
+              }
+            ]
+          },
+          "docs": "Get a worker"
+        },
+        {
+          "info": {
+            "name": "Update Worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/workers/:worker",
+            "params": [
+              {
+                "name": "worker",
+                "value": "",
+                "type": "path",
+                "description": "The worker id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a worker"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feature Flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Evaluate a Feature Flag for a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/feature-flags",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant ID"
+              },
+              {
+                "name": "featureFlagId",
+                "value": "",
+                "type": "query",
+                "description": "The feature flag id to evaluate"
+              },
+              {
+                "name": "isEnabledIfNoPosthog",
+                "value": "",
+                "type": "query",
+                "description": "A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable"
+              }
+            ]
+          },
+          "docs": "Evaluate a feature flag for a tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
