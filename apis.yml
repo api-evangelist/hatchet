@@ -7,7 +7,7 @@ description: >-
   chart). The platform separates the orchestration engine from worker execution so workers can run on the operator's own
   infrastructure (Kubernetes, ECS, Render, Railway, Porter, or any container platform).
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Task Queue
   - Workflow Engine
