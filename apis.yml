@@ -46,7 +46,7 @@ apis:
         url: https://docs.hatchet.run/
       - type: GettingStarted
         url: https://docs.hatchet.run/home/quickstart
-      - type: Quickstart
+      - type: GettingStarted
         url: https://docs.hatchet.run/home/quickstart
       - type: APIReference
         url: https://docs.hatchet.run/
@@ -91,46 +91,46 @@ apis:
       - type: JSONSchema
         url: json-schema/hatchet-workflow-schema.json
         title: Workflow
-      - type: Example
+      - type: Examples
         url: examples/v1-task-get-example.json
         title: Get Task
-      - type: Example
+      - type: Examples
         url: examples/v1-workflow-run-trigger-example.json
         title: Trigger Workflow Run
-      - type: Example
+      - type: Examples
         url: examples/v1-event-create-example.json
         title: Publish Event
-      - type: Example
+      - type: Examples
         url: examples/v1-filter-create-example.json
         title: Create Filter
-      - type: Example
+      - type: Examples
         url: examples/v1-task-cancel-example.json
         title: Cancel Tasks
-      - type: Example
+      - type: Examples
         url: examples/v1-task-replay-example.json
         title: Replay Tasks
-      - type: Example
+      - type: Examples
         url: examples/v1-log-line-list-example.json
         title: List Task Logs
-      - type: Example
+      - type: Examples
         url: examples/rate-limit-upsert-example.json
         title: Upsert Rate Limit
-      - type: Example
+      - type: Examples
         url: examples/webhook-worker-create-example.json
         title: Register Webhook Worker
-      - type: Example
+      - type: Examples
         url: examples/worker-list-example.json
         title: List Workers
-      - type: SDK
+      - type: SDKs
         url: https://pypi.org/project/hatchet-sdk/
         title: Python SDK (hatchet-sdk on PyPI)
-      - type: SDK
+      - type: SDKs
         url: https://www.npmjs.com/package/@hatchet-dev/typescript-sdk
         title: TypeScript SDK (@hatchet-dev/typescript-sdk on npm)
-      - type: SDK
+      - type: SDKs
         url: https://github.com/hatchet-dev/hatchet/tree/main/sdks/go
         title: Go SDK (in-tree at sdks/go)
-      - type: SDK
+      - type: SDKs
         url: https://github.com/hatchet-dev/hatchet/tree/main/sdks/ruby
         title: Ruby SDK (in-tree at sdks/ruby)
       - type: CodeExamples
@@ -165,7 +165,7 @@ common:
     url: https://hatchet.run/
   - type: Documentation
     url: https://docs.hatchet.run/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.hatchet.run/llms.txt
   - type: Pricing
     url: https://hatchet.run/pricing

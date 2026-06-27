@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://hatchet.run/blog",
-      "feed_url": "",
-      "title": "",
+      "feed_url": "https://hatchet.run/blog",
+      "title": "Hatchet Blog (HTML scrape; no RSS/Atom feed)",
       "saved": 0,
-      "error": "no_feed"
+      "note": "No RSS/Atom feed resolves (rss.xml, feed.xml, rss all return HTTP 500); fell back to HTML scraping. Newest post 2026-03-06 predates fetched cutoff 2026-06-07, so nothing new this run."
     }
   ],
-  "fetched": "2026-06-07T00:00:00Z",
+  "fetched": "2026-06-21T17:00:00Z",
   "post_count": 0
 }
