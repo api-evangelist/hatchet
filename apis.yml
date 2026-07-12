@@ -161,6 +161,10 @@ apis:
       - type: SourceCode
         url: https://github.com/hatchet-dev/hatchet
 common:
+  - type: DomainSecurity
+    url: security/hatchet-domain-security.yml
+  - type: Authentication
+    url: authentication/hatchet-authentication.yml
   - type: Website
     url: https://hatchet.run/
   - type: Documentation

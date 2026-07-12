@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/hatchet-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - cookie
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/hatchet-openapi.yml
+- name: cookieAuth
+  type: apiKey
+  in: cookie
+  parameter: hatchet
+  sources:
+  - openapi/hatchet-openapi.yml
