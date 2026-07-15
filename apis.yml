@@ -161,6 +161,8 @@ apis:
       - type: SourceCode
         url: https://github.com/hatchet-dev/hatchet
 common:
+  - type: AgenticAccess
+    url: agentic-access/hatchet-agentic-access.yml
   - type: DomainSecurity
     url: security/hatchet-domain-security.yml
   - type: Authentication
