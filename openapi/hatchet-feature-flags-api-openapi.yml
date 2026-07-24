@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Feature Flags API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Feature Flags
+paths:
+  /api/v1/tenants/{tenant}/feature-flags:
+    get:
+      x-resources:
+      - tenant
+      description: Evaluate a feature flag for a tenant
+      operationId: tenant:feature-flag:evaluate
+      parameters:
+      - description: The tenant ID
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The feature flag id to evaluate
+        in: query
+        name: featureFlagId
+        required: true
+        schema:
+          $ref: '#/components/schemas/FeatureFlagId'
+      - description: A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable
+        in: query
+        name: isEnabledIfNoPosthog
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagEvaluationResult'
+          description: Successfully evaluated the feature flag for the tenant
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not found
+      summary: Evaluate a Feature Flag for a Tenant
+      tags:
+      - Feature Flags
+components:
+  schemas:
+    FeatureFlagId:
+      type: string
+      enum:
+      - tenant-log-workflow-filter-enabled
+      - trace-minimap-enabled
+      - organization-sso-enabled
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    FeatureFlagEvaluationResult:
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+          description: Whether the feature flag is enabled for the tenant
+      required:
+      - isEnabled
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

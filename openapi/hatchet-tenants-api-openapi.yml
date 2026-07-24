@@ -1,0 +1,386 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Tenants API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Tenants
+paths:
+  /api/v1/tenants/{tenant}/invites/{tenant-invite}:
+    patch:
+      x-resources:
+      - tenant
+      - tenant-invite
+      description: Updates a tenant invite
+      operationId: tenant-invite:update
+      summary: Update Invite
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The tenant invite id
+        in: path
+        name: tenant-invite
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantInviteRequest'
+        description: The tenant invite to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInvite'
+          description: Successfully updated the tenant invite
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+      tags:
+      - Tenants
+    delete:
+      x-resources:
+      - tenant
+      - tenant-invite
+      description: Deletes a tenant invite
+      operationId: tenant-invite:delete
+      summary: Delete Invite
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The tenant invite id
+        in: path
+        name: tenant-invite
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInvite'
+          description: Successfully deleted the tenant invite
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+      tags:
+      - Tenants
+  /api/v1/tenants/{tenant}/webhook-workers:
+    get:
+      description: Lists all webhooks
+      summary: List Webhooks
+      operationId: webhook:list
+      x-resources:
+      - tenant
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookWorkerListResponse'
+          description: The list of webhook workers
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      tags:
+      - Tenants
+    post:
+      description: Creates a webhook
+      summary: Create a Webhook
+      operationId: webhook:create
+      x-resources:
+      - tenant
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookWorkerCreateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookWorkerCreated'
+          description: Successfully created the webhook
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      tags:
+      - Tenants
+components:
+  schemas:
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    WebhookWorkerCreateRequest:
+      properties:
+        name:
+          type: string
+          description: The name of the webhook worker.
+        url:
+          type: string
+          description: The webhook url.
+        secret:
+          type: string
+          description: The secret key for validation. If not provided, a random secret will be generated.
+          minLength: 32
+      required:
+      - name
+      - url
+      type: object
+    WebhookWorker:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the webhook worker.
+        url:
+          type: string
+          description: The webhook url.
+      required:
+      - metadata
+      - name
+      - url
+      type: object
+    WebhookWorkerListResponse:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/WebhookWorker'
+          type: array
+      type: object
+    TenantMemberRole:
+      enum:
+      - OWNER
+      - ADMIN
+      - MEMBER
+      type: string
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    UpdateTenantInviteRequest:
+      properties:
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+          x-oapi-codegen-extra-tags:
+            validate: required
+      required:
+      - role
+      type: object
+    WebhookWorkerCreated:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the webhook worker.
+        url:
+          type: string
+          description: The webhook url.
+        secret:
+          type: string
+          description: The secret key for validation.
+      required:
+      - metadata
+      - name
+      - url
+      - secret
+      type: object
+    TenantInvite:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        email:
+          type: string
+          description: The email of the user to invite.
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+        tenantId:
+          type: string
+          description: The tenant id associated with this tenant invite.
+        tenantName:
+          type: string
+          description: The tenant name for the tenant.
+        expires:
+          type: string
+          description: The time that this invite expires.
+          format: date-time
+      required:
+      - metadata
+      - email
+      - role
+      - expires
+      - tenantId
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

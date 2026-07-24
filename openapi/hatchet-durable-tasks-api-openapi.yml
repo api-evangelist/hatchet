@@ -1,0 +1,211 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Durable Tasks API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Durable Tasks
+paths:
+  /api/v1/stable/durable-tasks/{durable-task}:
+    get:
+      x-resources:
+      - durable-task
+      description: Lists all event log entries for a durable task.
+      operationId: v1-durable-task:event-log:list
+      parameters:
+      - description: The durable task external id
+        in: path
+        name: durable-task
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number of event log entries to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number of event log entries to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1DurableEventLogList'
+          description: Successfully listed event log entries
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not found
+      summary: List Durable Event Log
+      tags:
+      - Durable Tasks
+components:
+  schemas:
+    V1DurableWaitCondition:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/V1DurableWaitConditionKind'
+        sleepDurationMs:
+          type: integer
+          format: int64
+        eventKey:
+          type: string
+        workflowName:
+          type: string
+      required:
+      - kind
+    V1DurableEventLogEntry:
+      type: object
+      properties:
+        nodeId:
+          type: integer
+          format: int64
+          description: The monotonically increasing node id in the event log.
+        branchId:
+          type: integer
+          format: int64
+          description: The branch id when this entry was first seen.
+        kind:
+          $ref: '#/components/schemas/V1DurableEventLogKind'
+        waitData:
+          $ref: '#/components/schemas/V1WaitData'
+        isSatisfied:
+          type: boolean
+          description: Whether this entry has been satisfied.
+        satisfiedAt:
+          type: string
+          format: date-time
+          description: When this entry was satisfied, if it has been satisfied.
+        insertedAt:
+          type: string
+          format: date-time
+          description: When this entry was inserted.
+        userMessage:
+          type: string
+          description: A user-provided message or label, sent when establishing a durable wait.
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The external id of the durable task this event log entry is associated with.
+        taskDisplayName:
+          type: string
+          description: The display name of the durable task this event log entry is associated with.
+      required:
+      - nodeId
+      - branchId
+      - kind
+      - isSatisfied
+      - insertedAt
+      - taskExternalId
+      - taskDisplayName
+    V1WaitItem:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/V1DurableWaitConditionKind'
+        sleepDurationMs:
+          type: integer
+          format: int64
+        eventKey:
+          type: string
+        workflowName:
+          type: string
+        or:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1DurableWaitCondition'
+    V1WaitData:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1WaitItem'
+    V1DurableWaitConditionKind:
+      type: string
+      enum:
+      - SLEEP
+      - USER_EVENT
+      - CHILD_WORKFLOW
+    V1DurableEventLogList:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1DurableEventLogEntry'
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    V1DurableEventLogKind:
+      type: string
+      enum:
+      - RUN
+      - WAIT_FOR
+      - MEMO
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

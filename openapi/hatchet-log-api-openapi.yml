@@ -1,0 +1,469 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Log API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Log
+paths:
+  /api/v1/stable/tasks/{task}/logs:
+    get:
+      x-resources:
+      - tenant
+      - task
+      description: Lists log lines for a task
+      operationId: v1-log-line:list
+      parameters:
+      - description: The task id
+        in: path
+        name: task
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The start time to get logs for
+        in: query
+        name: since
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: The end time to get logs for
+        in: query
+        name: until
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: A full-text search query to filter for
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+      - description: The log level(s) to include
+        in: query
+        name: levels
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1LogLineLevel'
+      - description: The direction to order by
+        in: query
+        name: order_by_direction
+        required: false
+        schema:
+          $ref: '#/components/schemas/V1LogLineOrderByDirection'
+      - description: The attempt number to filter for
+        in: query
+        name: attempt
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1LogLineList'
+          description: Successfully listed the events
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: List Log Lines
+      tags:
+      - Log
+  /api/v1/stable/tenants/{tenant}/logs:
+    get:
+      x-resources:
+      - tenant
+      description: Lists log lines for a tenant
+      operationId: v1-tenant-log-line:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The start time to get logs for
+        in: query
+        name: since
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: The end time to get logs for
+        in: query
+        name: until
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: A full-text search query to filter for
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+      - description: The log level(s) to include
+        in: query
+        name: levels
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1LogLineLevel'
+      - description: The direction to order by
+        in: query
+        name: order_by_direction
+        required: false
+        schema:
+          $ref: '#/components/schemas/V1LogLineOrderByDirection'
+      - description: The attempt number to filter for
+        in: query
+        name: attempt
+        required: false
+        schema:
+          type: integer
+      - description: The task external ID(s) to filter by
+        in: query
+        name: taskExternalIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The workflow id(s) to filter for
+        in: query
+        name: workflow_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The step id(s) to filter for
+        in: query
+        name: step_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1LogLineList'
+          description: Successfully listed the logs
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: List Log Lines
+      tags:
+      - Log
+  /api/v1/stable/tenants/{tenant}/log-point-metrics:
+    get:
+      x-resources:
+      - tenant
+      description: Get a minute by minute breakdown of log metrics for a tenant
+      operationId: v1-tenant-log-line:get:point-metrics
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The start time to get logs for
+        in: query
+        name: since
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: The end time to get logs for
+        in: query
+        name: until
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: A full-text search query to filter for
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+      - description: The log level(s) to include
+        in: query
+        name: levels
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1LogLineLevel'
+      - description: The task external ID(s) to filter by
+        in: query
+        name: taskExternalIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The workflow id(s) to filter for
+        in: query
+        name: workflow_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The step id(s) to filter for
+        in: query
+        name: step_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1LogsPointMetrics'
+          description: Successfully retrieved the log point metrics
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Get Log Point Metrics
+      tags:
+      - Log
+components:
+  schemas:
+    V1LogLine:
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          description: The creation date of the log line.
+        message:
+          type: string
+          description: The log message.
+        metadata:
+          type: object
+          description: The log metadata.
+        taskExternalId:
+          type: string
+          description: The external ID of the task associated with the log line.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskDisplayName:
+          type: string
+          description: The display name of the task associated with the log line.
+        retryCount:
+          type: integer
+          description: The retry count of the log line.
+        attempt:
+          type: integer
+          description: The attempt number of the log line.
+        level:
+          $ref: '#/components/schemas/V1LogLineLevel'
+          description: The log level.
+      required:
+      - createdAt
+      - message
+      - metadata
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    V1LogsPointMetric:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+        DEBUG:
+          type: integer
+        INFO:
+          type: integer
+        WARN:
+          type: integer
+        ERROR:
+          type: integer
+      required:
+      - time
+      - DEBUG
+      - INFO
+      - WARN
+      - ERROR
+    V1LogsPointMetrics:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1LogsPointMetric'
+    V1LogLineOrderByDirection:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    V1LogLineList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1LogLine'
+          type: array
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1LogLineLevel:
+      type: string
+      enum:
+      - DEBUG
+      - INFO
+      - WARN
+      - ERROR
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

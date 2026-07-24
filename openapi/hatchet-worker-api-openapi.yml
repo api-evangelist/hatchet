@@ -1,0 +1,469 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Worker API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Worker
+paths:
+  /api/v1/tenants/{tenant}/worker:
+    get:
+      x-resources:
+      - tenant
+      description: Get all workers for a tenant
+      operationId: worker:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: Filter by worker status
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkerStatus'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerList'
+          description: Successfully retrieved the workflows
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Get Workers
+      tags:
+      - Worker
+  /api/v1/workers/{worker}:
+    patch:
+      x-resources:
+      - tenant
+      - worker
+      description: Update a worker
+      operationId: worker:update
+      parameters:
+      - description: The worker id
+        in: path
+        name: worker
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkerRequest'
+        description: The worker update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Worker'
+          description: Successfully updated the worker
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Update Worker
+      tags:
+      - Worker
+    get:
+      x-resources:
+      - tenant
+      - worker
+      description: Get a worker
+      operationId: worker:get
+      parameters:
+      - description: The worker id
+        in: path
+        name: worker
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Worker'
+          description: Successfully retrieved the worker
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Get Worker
+      tags:
+      - Worker
+components:
+  schemas:
+    WorkerSlotConfig:
+      type: object
+      description: Slot availability and limits for a slot type.
+      properties:
+        available:
+          type: integer
+          description: The number of available units for this slot type.
+        limit:
+          type: integer
+          description: The maximum number of units for this slot type.
+      required:
+      - limit
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    UpdateWorkerRequest:
+      properties:
+        isPaused:
+          type: boolean
+          description: Whether the worker is paused and cannot accept new runs.
+      type: object
+    WorkerLabel:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        key:
+          type: string
+          description: The key of the label.
+        value:
+          type: string
+          description: The value of the label.
+      required:
+      - metadata
+      - key
+      type: object
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    WorkerList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/Worker'
+          type: array
+    StepRunStatus:
+      type: string
+      enum:
+      - PENDING
+      - PENDING_ASSIGNMENT
+      - ASSIGNED
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - CANCELLED
+      - CANCELLING
+      - BACKOFF
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    WorkerStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - PAUSED
+    RecentStepRuns:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        actionId:
+          type: string
+          description: The action id.
+        status:
+          $ref: '#/components/schemas/StepRunStatus'
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        cancelledAt:
+          type: string
+          format: date-time
+        workflowRunId:
+          type: string
+          format: uuid
+      required:
+      - actionId
+      - metadata
+      - status
+      - workflowRunId
+      type: object
+    RegisteredWorkflow:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The workflow id registered on this worker.
+          format: uuid
+        name:
+          type: string
+          description: The name of the workflow registered on this worker.
+      required:
+      - id
+      - name
+    WorkerType:
+      type: string
+      enum:
+      - SELFHOSTED
+      - MANAGED
+      - WEBHOOK
+    WorkerRuntimeInfo:
+      properties:
+        sdkVersion:
+          type: string
+        language:
+          $ref: '#/components/schemas/WorkerRuntimeSDKs'
+        languageVersion:
+          type: string
+        os:
+          type: string
+        runtimeExtra:
+          type: string
+    Worker:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the worker.
+        type:
+          $ref: '#/components/schemas/WorkerType'
+        lastHeartbeatAt:
+          type: string
+          description: The time this worker last sent a heartbeat.
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        lastListenerEstablished:
+          type: string
+          description: The time this worker last sent a heartbeat.
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        actions:
+          type: array
+          description: The actions this worker can perform.
+          items:
+            type: string
+        registeredWorkflows:
+          type: array
+          description: The workflow ids registered on this worker.
+          items:
+            $ref: '#/components/schemas/RegisteredWorkflow'
+        slots:
+          type: array
+          description: The semaphore slot state for the worker.
+          items:
+            $ref: '#/components/schemas/SemaphoreSlots'
+        recentStepRuns:
+          type: array
+          description: The recent step runs for the worker.
+          items:
+            $ref: '#/components/schemas/RecentStepRuns'
+        status:
+          $ref: '#/components/schemas/WorkerStatus'
+          description: The status of the worker.
+        slotConfig:
+          type: object
+          description: Slot availability and limits for this worker (slot_type -> { available, limit }).
+          additionalProperties:
+            $ref: '#/components/schemas/WorkerSlotConfig'
+        dispatcherId:
+          type: string
+          description: the id of the assigned dispatcher, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        labels:
+          type: array
+          description: The current label state of the worker.
+          items:
+            $ref: '#/components/schemas/WorkerLabel'
+        webhookUrl:
+          type: string
+          description: The webhook URL for the worker.
+        webhookId:
+          type: string
+          description: The webhook ID for the worker.
+          format: uuid
+        runtimeInfo:
+          $ref: '#/components/schemas/WorkerRuntimeInfo'
+      required:
+      - metadata
+      - name
+      - type
+      type: object
+    WorkerRuntimeSDKs:
+      type: string
+      enum:
+      - GOLANG
+      - PYTHON
+      - TYPESCRIPT
+      - RUBY
+    SemaphoreSlots:
+      properties:
+        stepRunId:
+          type: string
+          description: The step run id.
+          format: uuid
+        actionId:
+          type: string
+          description: The action id.
+        startedAt:
+          type: string
+          description: The time this slot was started.
+          format: date-time
+        timeoutAt:
+          type: string
+          description: The time this slot will timeout.
+          format: date-time
+        workflowRunId:
+          type: string
+          description: The workflow run id.
+          format: uuid
+        status:
+          $ref: '#/components/schemas/StepRunStatus'
+      required:
+      - stepRunId
+      - actionId
+      - workflowRunId
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

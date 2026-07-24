@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Webhook Workers API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Webhook Workers
+paths:
+  /api/v1/webhook-workers/{webhook}:
+    delete:
+      description: Deletes a webhook
+      summary: Delete a Webhook
+      operationId: webhook:delete
+      x-resources:
+      - tenant
+      - webhook
+      parameters:
+      - description: The webhook id
+        in: path
+        name: webhook
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          description: Successfully deleted the webhook
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      tags:
+      - Webhook Workers
+  /api/v1/webhook-workers/{webhook}/requests:
+    get:
+      description: Lists all requests for a webhook
+      summary: List Webhook Requests
+      operationId: webhook-requests:list
+      x-resources:
+      - tenant
+      - webhook
+      parameters:
+      - description: The webhook id
+        in: path
+        name: webhook
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookWorkerRequestListResponse'
+          description: The list of webhook requests
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      tags:
+      - Webhook Workers
+components:
+  schemas:
+    WebhookWorkerRequestMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
+    WebhookWorkerRequest:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the request was created.
+        method:
+          $ref: '#/components/schemas/WebhookWorkerRequestMethod'
+          description: The HTTP method used for the request.
+        statusCode:
+          type: integer
+          description: The HTTP status code of the response.
+      required:
+      - created_at
+      - method
+      - statusCode
+      type: object
+    WebhookWorkerRequestListResponse:
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookWorkerRequest'
+          description: The list of webhook requests.
+      type: object
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

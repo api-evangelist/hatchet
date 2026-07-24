@@ -1,0 +1,1221 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Workflow Runs API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Workflow Runs
+paths:
+  /api/v1/stable/tenants/{tenant}/workflow-runs:
+    get:
+      x-resources:
+      - tenant
+      description: Lists workflow runs for a tenant.
+      operationId: v1-workflow-run:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: A list of statuses to filter by
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskStatus'
+      - description: The earliest date to filter by
+        in: query
+        name: since
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - description: The latest date to filter by
+        in: query
+        name: until
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: Additional metadata k-v pairs to filter by
+        in: query
+        name: additional_metadata
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - description: The workflow ids to find runs for
+        in: query
+        name: workflow_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The worker id to filter by
+        in: query
+        name: worker_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: Whether to include DAGs or only to include tasks
+        in: query
+        name: only_tasks
+        required: true
+        schema:
+          type: boolean
+      - description: The parent task external id to filter by
+        in: query
+        name: parent_task_external_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The external id of the event that triggered the workflow run
+        in: query
+        name: triggering_event_external_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: A flag for whether or not to include the input and output payloads in the response. Defaults to `true` if unset.
+        in: query
+        name: include_payloads
+        required: false
+        schema:
+          type: boolean
+      - description: Filter within the RUNNING status bucket. ALL returns both on-worker and evicted tasks, ON_WORKER returns only tasks running on a worker, EVICTED returns only evicted tasks. Defaults to ALL.
+        in: query
+        name: running_filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/V1RunningFilter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskSummaryList'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Workflow Runs
+      tags:
+      - Workflow Runs
+  /api/v1/stable/tenants/{tenant}/workflow-runs/display-names:
+    get:
+      x-resources:
+      - tenant
+      description: Lists displayable names of workflow runs for a tenant
+      operationId: v1-workflow-run:display-names:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The external ids of the workflow runs to get display names for
+        in: query
+        name: external_ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1WorkflowRunDisplayNameList'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Workflow Runs
+      tags:
+      - Workflow Runs
+  /api/v1/stable/tenants/{tenant}/workflow-runs/external-ids:
+    get:
+      x-resources:
+      - tenant
+      description: Lists external ids for workflow runs matching filters
+      operationId: v1-workflow-run:external-ids:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: A list of statuses to filter by
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskStatus'
+      - description: The earliest date to filter by
+        in: query
+        name: since
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - description: The latest date to filter by
+        in: query
+        name: until
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: Additional metadata k-v pairs to filter by
+        in: query
+        name: additional_metadata
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - description: The workflow ids to find runs for
+        in: query
+        name: workflow_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: Filter within the RUNNING status bucket. ALL returns both on-worker and evicted tasks, ON_WORKER returns only tasks running on a worker, EVICTED returns only evicted tasks. Defaults to ALL.
+        in: query
+        name: running_filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/V1RunningFilter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1WorkflowRunExternalIdList'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Workflow Run External Ids
+      tags:
+      - Workflow Runs
+  /api/v1/stable/tenants/{tenant}/workflow-runs/trigger:
+    post:
+      x-resources:
+      - tenant
+      description: Trigger a new workflow run
+      operationId: v1-workflow-run:create
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1TriggerWorkflowRunRequest'
+        description: The workflow run to create
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1WorkflowRunDetails'
+          description: Successfully created the workflow run
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Create Workflow Run
+      tags:
+      - Workflow Runs
+  /api/v1/stable/tenants/{tenant}/durable-tasks/branch:
+    post:
+      x-resources:
+      - tenant
+      description: Branch a durable task from a specific node, creating a new branch and re-processing its matches.
+      operationId: v1-durable-task:branch
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1BranchDurableTaskRequest'
+        description: The branch request
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1BranchDurableTaskResponse'
+          description: Successfully branch the durable task
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Branch Durable Task
+      tags:
+      - Workflow Runs
+  /api/v1/stable/workflow-runs/{v1-workflow-run}:
+    get:
+      x-resources:
+      - tenant
+      - v1-workflow-run
+      description: Get a workflow run and its metadata to display on the "detail" page
+      operationId: v1-workflow-run:get
+      parameters:
+      - description: The workflow run id to get
+        in: path
+        name: v1-workflow-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1WorkflowRunDetails'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Tasks
+      tags:
+      - Workflow Runs
+  /api/v1/stable/workflow-runs/{v1-workflow-run}/status:
+    get:
+      x-resources:
+      - tenant
+      - v1-workflow-run
+      description: Get the status of a workflow run.
+      operationId: v1-workflow-run:get-status
+      parameters:
+      - description: The workflow run id to get the status for
+        in: path
+        name: v1-workflow-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskStatus'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Could not find the workflow run
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Get Workflow Run Status
+      tags:
+      - Workflow Runs
+  /api/v1/stable/workflow-runs/{v1-workflow-run}/task-events:
+    get:
+      x-resources:
+      - tenant
+      - v1-workflow-run
+      description: List all tasks for a workflow run
+      operationId: v1-workflow-run:task-events:list
+      parameters:
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The workflow run id to find runs for
+        in: path
+        name: v1-workflow-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskEventList'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Tasks
+      tags:
+      - Workflow Runs
+  /api/v1/stable/workflow-runs/{v1-workflow-run}/task-timings:
+    get:
+      x-resources:
+      - tenant
+      - v1-workflow-run
+      description: Get the timings for a workflow run
+      operationId: v1-workflow-run:get:timings
+      parameters:
+      - description: The workflow run id to get
+        in: path
+        name: v1-workflow-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The depth to retrieve children
+        in: query
+        name: depth
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskTimingList'
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Timings for a Workflow Run
+      tags:
+      - Workflow Runs
+components:
+  schemas:
+    V1TaskEventType:
+      type: string
+      enum:
+      - REQUEUED_NO_WORKER
+      - REQUEUED_RATE_LIMIT
+      - SCHEDULING_TIMED_OUT
+      - ASSIGNED
+      - STARTED
+      - FINISHED
+      - FAILED
+      - RETRYING
+      - CANCELLED
+      - TIMED_OUT
+      - REASSIGNED
+      - SLOT_RELEASED
+      - TIMEOUT_REFRESHED
+      - RETRIED_BY_USER
+      - SENT_TO_WORKER
+      - RATE_LIMIT_ERROR
+      - ACKNOWLEDGED
+      - CREATED
+      - QUEUED
+      - SKIPPED
+      - COULD_NOT_SEND_TO_WORKER
+      - DURABLE_EVICTED
+      - DURABLE_RESTORING
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    V1RunningFilter:
+      type: string
+      enum:
+      - ALL
+      - EVICTED
+      - ON_WORKER
+    V1WorkflowType:
+      type: string
+      enum:
+      - DAG
+      - TASK
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    V1WorkflowRunDetails:
+      properties:
+        run:
+          $ref: '#/components/schemas/V1WorkflowRun'
+        taskEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskEvent'
+          description: The list of task events for the workflow run
+        shape:
+          $ref: '#/components/schemas/WorkflowRunShapeForWorkflowRunDetails'
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+        workflowConfig:
+          type: object
+      required:
+      - run
+      - taskEvents
+      - shape
+      - tasks
+    V1TaskSummaryList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+          description: The list of tasks
+      required:
+      - pagination
+      - rows
+    V1WorkflowRunDisplayNameList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1WorkflowRunDisplayName'
+          description: The list of display names
+      required:
+      - pagination
+      - rows
+    V1TaskTiming:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        depth:
+          type: integer
+          description: The depth of the task in the waterfall.
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        isEvicted:
+          type: boolean
+          description: Whether the task has been evicted from a worker (still counts as RUNNING).
+        taskDisplayName:
+          type: string
+          description: The display name of the task run.
+        taskExternalId:
+          type: string
+          description: The external ID of the task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskId:
+          type: integer
+          description: The ID of the task.
+        taskInsertedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task was inserted.
+        tenantId:
+          type: string
+          description: The ID of the tenant.
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        parentTaskExternalId:
+          type: string
+          description: The external ID of the parent task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        queuedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run was queued.
+        startedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run started.
+        finishedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run finished.
+        workflowRunId:
+          type: string
+          format: uuid
+          description: The external ID of the workflow run.
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+      required:
+      - metadata
+      - depth
+      - status
+      - taskDisplayName
+      - taskExternalId
+      - taskId
+      - taskInsertedAt
+      - tenantId
+    V1TriggerWorkflowRunRequest:
+      properties:
+        workflowName:
+          type: string
+          description: The name of the workflow.
+        input:
+          type: object
+        additionalMetadata:
+          type: object
+        priority:
+          type: integer
+          description: The priority of the workflow run.
+      required:
+      - workflowName
+      - input
+    V1WorkflowRun:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        startedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run started.
+        finishedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run finished.
+        duration:
+          type: integer
+          description: The duration of the task run, in milliseconds.
+        tenantId:
+          type: string
+          description: The ID of the tenant.
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        additionalMetadata:
+          type: object
+          description: Additional metadata for the task run.
+        displayName:
+          type: string
+          description: The display name of the task run.
+        workflowId:
+          type: string
+          format: uuid
+        output:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The output of the task run (for the latest run)
+        errorMessage:
+          type: string
+          description: The error message of the task run (for the latest run)
+        workflowVersionId:
+          type: string
+          format: uuid
+          description: The ID of the workflow version.
+        input:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The input of the task run.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run was created.
+        parentTaskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      required:
+      - metadata
+      - id
+      - status
+      - tenantId
+      - displayName
+      - workflowId
+      - output
+      - input
+    V1TaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/V1TaskEventType'
+        message:
+          type: string
+        errorMessage:
+          type: string
+        output:
+          type: string
+        workerId:
+          type: string
+          format: uuid
+        taskDisplayName:
+          type: string
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+      required:
+      - id
+      - taskId
+      - timestamp
+      - eventType
+      - message
+    V1BranchDurableTaskRequest:
+      properties:
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The external id of the durable task to branch.
+        nodeId:
+          type: integer
+          format: int64
+          description: The node id to replay from.
+        branchId:
+          type: integer
+          format: int64
+          description: The branch id to replay from.
+      required:
+      - taskExternalId
+      - nodeId
+      - branchId
+    V1WorkflowRunExternalIdList:
+      type: array
+      items:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+      description: The list of external IDs
+    WorkflowRunShapeForWorkflowRunDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/WorkflowRunShapeItemForWorkflowRunDetails'
+    V1TaskSummary:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        actionId:
+          type: string
+          description: The action ID of the task.
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+        additionalMetadata:
+          type: object
+          description: Additional metadata for the task run.
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+          description: The list of children tasks
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the task was created.
+        displayName:
+          type: string
+          description: The display name of the task run.
+        duration:
+          type: integer
+          description: The duration of the task run, in milliseconds.
+        isDurable:
+          type: boolean
+          description: Whether this task was created as a durable task.
+        errorMessage:
+          type: string
+          description: The error message of the task run (for the latest run)
+        finishedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run finished.
+        input:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The input of the task run.
+        numSpawnedChildren:
+          type: integer
+          description: The number of spawned children tasks
+        output:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The output of the task run (for the latest run)
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        isEvicted:
+          type: boolean
+          description: Whether the task has been evicted from a worker (still counts as RUNNING).
+        startedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run started.
+        stepId:
+          type: string
+          description: The step ID of the task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskExternalId:
+          type: string
+          description: The external ID of the task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskId:
+          type: integer
+          description: The ID of the task.
+        taskInsertedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task was inserted.
+        tenantId:
+          type: string
+          description: The ID of the tenant.
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        type:
+          $ref: '#/components/schemas/V1WorkflowType'
+          description: The type of the workflow (whether it's a DAG or a task)
+        workflowId:
+          type: string
+          format: uuid
+        workflowName:
+          type: string
+        workflowRunExternalId:
+          type: string
+          format: uuid
+          description: The external ID of the workflow run
+        workflowVersionId:
+          type: string
+          format: uuid
+          description: The version ID of the workflow
+        workflowConfig:
+          type: object
+        parentTaskExternalId:
+          type: string
+          description: The external ID of the parent task.
+          format: uuid
+      required:
+      - metadata
+      - createdAt
+      - displayName
+      - id
+      - input
+      - numSpawnedChildren
+      - output
+      - status
+      - taskExternalId
+      - taskId
+      - taskInsertedAt
+      - tenantId
+      - type
+      - workflowId
+      - workflowRunExternalId
+    V1TaskEventList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1TaskEvent'
+          type: array
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1TaskTimingList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskTiming'
+          description: The list of task timings
+      required:
+      - pagination
+      - rows
+    WorkflowRunShapeItemForWorkflowRunDetails:
+      type: object
+      properties:
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        stepId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        childrenStepIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+        taskName:
+          type: string
+      required:
+      - taskExternalId
+      - stepId
+      - childrenStepIds
+      - taskName
+    V1WorkflowRunDisplayName:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        displayName:
+          type: string
+      required:
+      - metadata
+      - displayName
+    V1TaskStatus:
+      type: string
+      enum:
+      - QUEUED
+      - RUNNING
+      - COMPLETED
+      - CANCELLED
+      - FAILED
+    V1BranchDurableTaskResponse:
+      properties:
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The external id of the durable task.
+        nodeId:
+          type: integer
+          format: int64
+          description: The node id of the new entry.
+        branchId:
+          type: integer
+          format: int64
+          description: The branch id of the new entry.
+      required:
+      - taskExternalId
+      - nodeId
+      - branchId
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

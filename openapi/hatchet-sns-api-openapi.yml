@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token SNS API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: SNS
+paths:
+  /api/v1/tenants/{tenant}/sns:
+    get:
+      description: List SNS integrations
+      operationId: sns:list
+      x-resources:
+      - tenant
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSNSIntegrations'
+          description: Successfully retrieved SNS integrations
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      summary: List SNS Integrations
+      tags:
+      - SNS
+    post:
+      description: Create SNS integration
+      operationId: sns:create
+      x-resources:
+      - tenant
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSNSIntegrationRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SNSIntegration'
+          description: Successfully created SNS integration
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      summary: Create SNS Integration
+      tags:
+      - SNS
+  /api/v1/sns/{sns}:
+    delete:
+      description: Delete SNS integration
+      operationId: sns:delete
+      x-resources:
+      - tenant
+      - sns
+      parameters:
+      - description: The SNS integration id
+        in: path
+        name: sns
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '204':
+          description: Successfully deleted SNS integration
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Unauthorized
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Method not allowed
+      summary: Delete SNS Integration
+      tags:
+      - SNS
+components:
+  schemas:
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    CreateSNSIntegrationRequest:
+      properties:
+        topicArn:
+          type: string
+          description: The Amazon Resource Name (ARN) of the SNS topic.
+          x-oapi-codegen-extra-tags:
+            validate: required,min=1,max=256
+      required:
+      - topicArn
+      type: object
+    ListSNSIntegrations:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SNSIntegration'
+      required:
+      - pagination
+      - rows
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    SNSIntegration:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+          format: uuid
+          description: The unique identifier for the tenant that the SNS integration belongs to.
+        topicArn:
+          type: string
+          description: The Amazon Resource Name (ARN) of the SNS topic.
+        ingestUrl:
+          type: string
+          description: The URL to send SNS messages to.
+      required:
+      - metadata
+      - tenantId
+      - topicArn
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

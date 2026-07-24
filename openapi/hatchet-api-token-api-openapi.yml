@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: API Token
+paths:
+  /api/v1/tenants/{tenant}/api-tokens:
+    post:
+      x-resources:
+      - tenant
+      description: Create an API token for a tenant
+      operationId: api-token:create
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAPITokenRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAPITokenResponse'
+          description: Successfully retrieved the workflows
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Create API Token
+      tags:
+      - API Token
+    get:
+      x-resources:
+      - tenant
+      description: List API tokens for a tenant
+      operationId: api-token:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAPITokensResponse'
+          description: Successfully retrieved the workflows
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: List API Tokens
+      tags:
+      - API Token
+  /api/v1/api-tokens/{api-token}:
+    post:
+      x-resources:
+      - tenant
+      - api-token
+      description: Revoke an API token for a tenant
+      operationId: api-token:update:revoke
+      parameters:
+      - description: The API token
+        in: path
+        name: api-token
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '204':
+          description: Successfully revoked the token
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Revoke API Token
+      tags:
+      - API Token
+components:
+  schemas:
+    APIToken:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the API token.
+          maxLength: 255
+        expiresAt:
+          type: string
+          format: date-time
+          description: When the API token expires.
+      required:
+      - metadata
+      - name
+      - expiresAt
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    CreateAPITokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The API token.
+      required:
+      - token
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    CreateAPITokenRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the API token.
+          maxLength: 255
+        expiresIn:
+          type: string
+          description: The duration for which the token is valid.
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,duration
+      required:
+      - name
+    ListAPITokensResponse:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/APIToken'
+          type: array
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

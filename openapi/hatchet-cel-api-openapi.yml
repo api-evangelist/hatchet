@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token CEL API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: CEL
+paths:
+  /api/v1/stable/tenants/{tenant}/cel/debug:
+    post:
+      x-resources:
+      - tenant
+      description: Evaluate a CEL expression against provided input data.
+      operationId: v1-cel:debug
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1CELDebugRequest'
+        description: The inputs to test the CEL expression against
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1CELDebugResponse'
+          description: Successfully evaluated the CEL expression
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Debug a CEL Expression
+      tags:
+      - CEL
+components:
+  schemas:
+    V1CELDebugResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/V1CELDebugResponseStatus'
+        output:
+          type: boolean
+          description: The result of the CEL expression evaluation, if successful
+        error:
+          type: string
+          description: The error message if the evaluation failed
+      required:
+      - status
+    V1CELDebugResponseStatus:
+      type: string
+      description: The status of the CEL evaluation
+      enum:
+      - SUCCESS
+      - ERROR
+    V1CELDebugRequest:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: The CEL expression to evaluate
+        input:
+          type: object
+          description: The input, which simulates the workflow run input
+        filterPayload:
+          type: object
+          description: The filter payload, which simulates a payload set on a previous-created filter
+        additionalMetadata:
+          type: object
+          description: Additional metadata, which simulates metadata that could be sent with an event or a workflow run
+      required:
+      - expression
+      - input
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

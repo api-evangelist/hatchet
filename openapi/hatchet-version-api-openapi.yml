@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Version API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Version
+paths:
+  /api/v1/version:
+    get:
+      description: Get the version of the server
+      summary: We Return the Version for the Currently Running Server
+      operationId: info:get:version
+      security: []
+      x-security-optional: true
+      responses:
+        '200':
+          description: The version of the server
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - version
+                properties:
+                  version:
+                    type: string
+                    example: 1.0.0
+      tags:
+      - Version
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,191 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Metadata API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Metadata
+paths:
+  /api/v1/meta:
+    get:
+      description: Gets metadata for the Hatchet instance
+      operationId: metadata:get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIMeta'
+          description: Successfully retrieved the metadata
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+      security: []
+      x-security-optional: true
+      summary: Get Metadata
+      tags:
+      - Metadata
+  /api/v1/cloud/metadata:
+    get:
+      description: Gets metadata for the Hatchet cloud instance
+      operationId: cloudMetadata::get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Cloud unavailable
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+      security: []
+      x-security-optional: true
+      summary: Get Cloud Metadata
+      tags:
+      - Metadata
+  /api/v1/meta/integrations:
+    get:
+      description: List all integrations
+      operationId: metadata:list:integrations
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAPIMetaIntegration'
+          description: Successfully retrieved the list of integrations
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+      summary: List Integrations
+      tags:
+      - Metadata
+components:
+  schemas:
+    APIMetaPosthog:
+      type: object
+      properties:
+        apiKey:
+          type: string
+          description: the PostHog API key
+          example: phk_1234567890abcdef
+        apiHost:
+          type: string
+          description: the PostHog API host
+          example: https://posthog.example.com
+    ListAPIMetaIntegration:
+      type: array
+      items:
+        $ref: '#/components/schemas/APIMetaIntegration'
+    APIMetaAuth:
+      type: object
+      properties:
+        schemes:
+          items:
+            type: string
+          type: array
+          description: the supported types of authentication
+          example:
+          - basic
+          - google
+    APIMetaIntegration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of the integration
+          example: github
+        enabled:
+          type: boolean
+          description: whether this integration is enabled on the instance
+      required:
+      - name
+      - enabled
+    APIMeta:
+      type: object
+      properties:
+        auth:
+          $ref: '#/components/schemas/APIMetaAuth'
+        pylonAppId:
+          type: string
+          description: the Pylon app ID for usepylon.com chat support
+          example: 12345678-1234-1234-1234-123456789012
+        posthog:
+          $ref: '#/components/schemas/APIMetaPosthog'
+        allowSignup:
+          type: boolean
+          description: whether or not users can sign up for this instance
+          example: true
+        allowInvites:
+          type: boolean
+          description: whether or not users can invite other users to this instance
+          example: true
+        allowCreateTenant:
+          type: boolean
+          description: whether or not users can create new tenants
+          example: true
+        allowChangePassword:
+          type: boolean
+          description: whether or not users can change their password
+          example: true
+        observabilityEnabled:
+          type: boolean
+          description: whether or not observability (trace collection) is enabled on this instance
+          example: false
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

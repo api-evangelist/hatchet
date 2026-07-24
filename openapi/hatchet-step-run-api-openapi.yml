@@ -1,0 +1,1102 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Step Run API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Step Run
+paths:
+  /api/v1/step-runs/{step-run}/events:
+    get:
+      x-resources:
+      - tenant
+      - step-run
+      description: List events for a step run
+      operationId: step-run:list:events
+      parameters:
+      - description: The step run id
+        in: path
+        name: step-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRunEventList'
+          description: Successfully retrieved the events
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The step run was not found
+      summary: List Events for Step Run
+      tags:
+      - Step Run
+  /api/v1/tenants/{tenant}/workflow-runs/{workflow-run}/step-run-events:
+    get:
+      x-resources:
+      - tenant
+      description: List events for all step runs for a workflow run
+      operationId: workflow-run:list:step-run-events
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The workflow run id
+        in: path
+        name: workflow-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: Last ID of the last event
+        in: query
+        name: lastId
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRunEventList'
+          description: Successfully retrieved the events
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The step run was not found
+      summary: List Events for All Step Runs for a Workflow Run
+      tags:
+      - Step Run
+  /api/v1/step-runs/{step-run}/archives:
+    get:
+      x-resources:
+      - tenant
+      - step-run
+      description: List archives for a step run
+      operationId: step-run:list:archives
+      parameters:
+      - description: The step run id
+        in: path
+        name: step-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRunArchiveList'
+          description: Successfully retrieved the events
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The step run was not found
+      summary: List Archives for Step Run
+      tags:
+      - Step Run
+  /api/v1/tenants/{tenant}/step-runs/{step-run}:
+    get:
+      x-resources:
+      - tenant
+      - step-run
+      description: Get a step run by id
+      operationId: step-run:get
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The step run id
+        in: path
+        name: step-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRun'
+          description: Successfully retrieved the step run
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The step run was not found
+      summary: Get Step Run
+      tags:
+      - Step Run
+  /api/v1/tenants/{tenant}/step-runs/{step-run}/rerun:
+    post:
+      x-resources:
+      - tenant
+      - step-run
+      description: Reruns a step run
+      operationId: step-run:update:rerun
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The step run id
+        in: path
+        name: step-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RerunStepRunRequest'
+        description: The input to the rerun
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRun'
+          description: Successfully replayed the events
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Rerun Step Run
+      tags:
+      - Step Run
+  /api/v1/tenants/{tenant}/step-runs/{step-run}/cancel:
+    post:
+      x-resources:
+      - tenant
+      - step-run
+      description: Attempts to cancel a step run
+      operationId: step-run:update:cancel
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The step run id
+        in: path
+        name: step-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRun'
+          description: Successfully dispatched the cancellation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Attempts to Cancel a Step Run
+      tags:
+      - Step Run
+  /api/v1/tenants/{tenant}/step-runs/{step-run}/schema:
+    get:
+      x-resources:
+      - tenant
+      - step-run
+      description: Get the schema for a step run
+      operationId: step-run:get:schema
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The step run id
+        in: path
+        name: step-run
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successfully retrieved the step run schema
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The step run was not found
+      summary: Get Step Run Schema
+      tags:
+      - Step Run
+components:
+  schemas:
+    RerunStepRunRequest:
+      properties:
+        input:
+          type: object
+      required:
+      - input
+    StepRunArchiveList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/StepRunArchive'
+          type: array
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    WorkflowTriggerCronRef:
+      type: object
+      properties:
+        parent_id:
+          type: string
+        cron:
+          type: string
+    Workflow:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the workflow.
+        description:
+          type: string
+          description: The description of the workflow.
+        isPaused:
+          type: boolean
+          description: Whether the workflow is paused.
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowVersionMeta'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowTag'
+          description: The tags of the workflow.
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+          description: The jobs of the workflow.
+        tenantId:
+          type: string
+          description: The tenant id of the workflow.
+      required:
+      - metadata
+      - name
+      - tenantId
+      type: object
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    StepRunEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        timeFirstSeen:
+          type: string
+          format: date-time
+        timeLastSeen:
+          type: string
+          format: date-time
+        stepRunId:
+          type: string
+        workflowRunId:
+          type: string
+        reason:
+          $ref: '#/components/schemas/StepRunEventReason'
+        severity:
+          $ref: '#/components/schemas/StepRunEventSeverity'
+        message:
+          type: string
+        count:
+          type: integer
+        data:
+          type: object
+      required:
+      - id
+      - timeFirstSeen
+      - timeLastSeen
+      - reason
+      - severity
+      - message
+      - count
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    WorkflowVersion:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        version:
+          type: string
+          description: The version of the workflow.
+        order:
+          type: integer
+          format: int32
+        workflowId:
+          type: string
+        sticky:
+          type: string
+          description: The sticky strategy of the workflow.
+        defaultPriority:
+          type: integer
+          format: int32
+          description: The default priority of the workflow.
+        workflow:
+          $ref: '#/components/schemas/Workflow'
+        concurrency:
+          $ref: '#/components/schemas/WorkflowConcurrency'
+        triggers:
+          $ref: '#/components/schemas/WorkflowTriggers'
+        scheduleTimeout:
+          type: string
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        workflowConfig:
+          type: object
+        v1Concurrency:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConcurrencySetting'
+        inputJsonSchema:
+          type: object
+          description: The JSON schema for the workflow input.
+      required:
+      - metadata
+      - version
+      - order
+      - workflowId
+    JobRunStatus:
+      type: string
+      enum:
+      - PENDING
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - CANCELLED
+      - BACKOFF
+    StepRunEventList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/StepRunEvent'
+          type: array
+    StepRunArchive:
+      type: object
+      properties:
+        stepRunId:
+          type: string
+        order:
+          type: integer
+        input:
+          type: string
+        output:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        error:
+          type: string
+        retryCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        startedAtEpoch:
+          type: integer
+        finishedAt:
+          type: string
+          format: date-time
+        finishedAtEpoch:
+          type: integer
+        timeoutAt:
+          type: string
+          format: date-time
+        timeoutAtEpoch:
+          type: integer
+        cancelledAt:
+          type: string
+          format: date-time
+        cancelledAtEpoch:
+          type: integer
+        cancelledReason:
+          type: string
+        cancelledError:
+          type: string
+      required:
+      - stepRunId
+      - retryCount
+      - order
+      - createdAt
+    WorkflowRun:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+        workflowVersionId:
+          type: string
+        workflowVersion:
+          $ref: '#/components/schemas/WorkflowVersion'
+        status:
+          $ref: '#/components/schemas/WorkflowRunStatus'
+        displayName:
+          type: string
+        jobRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRun'
+        triggeredBy:
+          $ref: '#/components/schemas/WorkflowRunTriggeredBy'
+        input:
+          type: object
+          additionalProperties: true
+        error:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          example: 1000
+        parentId:
+          type: string
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        parentStepRunId:
+          type: string
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        additionalMetadata:
+          type: object
+          additionalProperties: true
+      required:
+      - metadata
+      - tenantId
+      - workflowVersionId
+      - status
+      - triggeredBy
+    StepRunEventReason:
+      type: string
+      enum:
+      - REQUEUED_NO_WORKER
+      - REQUEUED_RATE_LIMIT
+      - SCHEDULING_TIMED_OUT
+      - ASSIGNED
+      - STARTED
+      - ACKNOWLEDGED
+      - FINISHED
+      - FAILED
+      - RETRYING
+      - CANCELLED
+      - TIMEOUT_REFRESHED
+      - REASSIGNED
+      - TIMED_OUT
+      - SLOT_RELEASED
+      - RETRIED_BY_USER
+      - WORKFLOW_RUN_GROUP_KEY_SUCCEEDED
+      - WORKFLOW_RUN_GROUP_KEY_FAILED
+    Job:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+        versionId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          description: The description of the job.
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+        timeout:
+          type: string
+          description: The timeout of the job.
+      required:
+      - metadata
+      - tenantId
+      - versionId
+      - name
+      - steps
+    ConcurrencySetting:
+      type: object
+      properties:
+        maxRuns:
+          type: integer
+          format: int32
+          description: The maximum number of concurrent workflow runs.
+        limitStrategy:
+          $ref: '#/components/schemas/ConcurrencyLimitStrategy'
+          description: The strategy to use when the concurrency limit is reached.
+        expression:
+          type: string
+          description: The concurrency expression, used to generate a key from task inputs, metadata, etc.
+        stepReadableId:
+          type: string
+          description: The readable id of the step to which this concurrency setting applies.
+        scope:
+          $ref: '#/components/schemas/ConcurrencyScope'
+          description: The scope of the concurrency setting.
+      required:
+      - maxRuns
+      - limitStrategy
+      - expression
+      - scope
+    StepRunStatus:
+      type: string
+      enum:
+      - PENDING
+      - PENDING_ASSIGNMENT
+      - ASSIGNED
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - CANCELLED
+      - CANCELLING
+      - BACKOFF
+    ConcurrencyLimitStrategy:
+      type: string
+      enum:
+      - CANCEL_IN_PROGRESS
+      - DROP_NEWEST
+      - QUEUE_NEWEST
+      - GROUP_ROUND_ROBIN
+    ConcurrencyScope:
+      type: string
+      enum:
+      - WORKFLOW
+      - TASK
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    WorkflowTriggerEventRef:
+      type: object
+      properties:
+        parent_id:
+          type: string
+        event_key:
+          type: string
+    WorkflowRunStatus:
+      type: string
+      enum:
+      - PENDING
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - CANCELLED
+      - QUEUED
+      - BACKOFF
+    WorkflowTag:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the workflow.
+        color:
+          type: string
+          description: The description of the workflow.
+      required:
+      - name
+      - color
+    StepRunEventSeverity:
+      type: string
+      enum:
+      - INFO
+      - WARNING
+      - CRITICAL
+    JobRun:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+        workflowRunId:
+          type: string
+        workflowRun:
+          $ref: '#/components/schemas/WorkflowRun'
+        jobId:
+          type: string
+        job:
+          $ref: '#/components/schemas/Job'
+        tickerId:
+          type: string
+        stepRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRun'
+        status:
+          $ref: '#/components/schemas/JobRunStatus'
+        result:
+          type: object
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        timeoutAt:
+          type: string
+          format: date-time
+        cancelledAt:
+          type: string
+          format: date-time
+        cancelledReason:
+          type: string
+        cancelledError:
+          type: string
+      required:
+      - metadata
+      - tenantId
+      - workflowRunId
+      - jobId
+      - status
+    Step:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        readableId:
+          type: string
+          description: The readable id of the step.
+        tenantId:
+          type: string
+        jobId:
+          type: string
+        action:
+          type: string
+        timeout:
+          type: string
+          description: The timeout of the step.
+        isDurable:
+          type: boolean
+          description: Whether the step is durable.
+        slotRequests:
+          type: object
+          description: Slot requests for the step (slot_type -> units).
+          additionalProperties:
+            type: integer
+        children:
+          type: array
+          items:
+            type: string
+        parents:
+          type: array
+          items:
+            type: string
+      required:
+      - metadata
+      - readableId
+      - tenantId
+      - jobId
+      - action
+      - nextId
+    WorkflowRunTriggeredBy:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        parentWorkflowRunId:
+          type: string
+        eventId:
+          type: string
+        cronParentId:
+          type: string
+        cronSchedule:
+          type: string
+      required:
+      - metadata
+    WorkflowConcurrency:
+      type: object
+      properties:
+        maxRuns:
+          type: integer
+          format: int32
+          description: The maximum number of concurrent workflow runs.
+        limitStrategy:
+          $ref: '#/components/schemas/ConcurrencyLimitStrategy'
+          description: The strategy to use when the concurrency limit is reached.
+        getConcurrencyGroup:
+          type: string
+          description: An action which gets the concurrency group for the WorkflowRun.
+      required:
+      - maxRuns
+      - limitStrategy
+      - getConcurrencyGroup
+    WorkflowVersionMeta:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        version:
+          type: string
+          description: The version of the workflow.
+        order:
+          type: integer
+          format: int32
+        workflowId:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/Workflow'
+      required:
+      - metadata
+      - version
+      - order
+      - workflowId
+    StepRun:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+        jobRunId:
+          type: string
+        jobRun:
+          $ref: '#/components/schemas/JobRun'
+        stepId:
+          type: string
+        step:
+          $ref: '#/components/schemas/Step'
+        childWorkflowsCount:
+          type: integer
+        parents:
+          type: array
+          items:
+            type: string
+        childWorkflowRuns:
+          type: array
+          items:
+            type: string
+        workerId:
+          type: string
+        input:
+          type: string
+        output:
+          type: string
+        status:
+          $ref: '#/components/schemas/StepRunStatus'
+        requeueAfter:
+          type: string
+          format: date-time
+        result:
+          type: object
+        error:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        startedAtEpoch:
+          type: integer
+        finishedAt:
+          type: string
+          format: date-time
+        finishedAtEpoch:
+          type: integer
+        timeoutAt:
+          type: string
+          format: date-time
+        timeoutAtEpoch:
+          type: integer
+        cancelledAt:
+          type: string
+          format: date-time
+        cancelledAtEpoch:
+          type: integer
+        cancelledReason:
+          type: string
+        cancelledError:
+          type: string
+      required:
+      - metadata
+      - tenantId
+      - jobRunId
+      - stepId
+      - status
+    WorkflowTriggers:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        workflow_version_id:
+          type: string
+        tenant_id:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowTriggerEventRef'
+        crons:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowTriggerCronRef'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

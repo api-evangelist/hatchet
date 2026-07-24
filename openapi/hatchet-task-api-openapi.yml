@@ -1,0 +1,945 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Task API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Task
+paths:
+  /api/v1/stable/tasks/{task}:
+    get:
+      x-resources:
+      - tenant
+      - task
+      description: Get a task by id
+      operationId: v1-task:get
+      parameters:
+      - description: The task id
+        in: path
+        name: task
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The attempt number
+        in: query
+        name: attempt
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskSummary'
+          description: Successfully retrieved the task
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The task was not found
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Get a Task
+      tags:
+      - Task
+  /api/v1/stable/tasks/{task}/task-events:
+    get:
+      x-resources:
+      - tenant
+      - task
+      description: List events for a task
+      operationId: v1-task-event:list
+      parameters:
+      - description: The task id
+        in: path
+        name: task
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskEventList'
+          description: Successfully retrieved the events
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The task was not found
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Events for a Task
+      tags:
+      - Task
+  /api/v1/stable/tenants/{tenant}/tasks/cancel:
+    post:
+      x-resources:
+      - tenant
+      description: Cancel tasks
+      operationId: v1-task:cancel
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1CancelTaskRequest'
+        description: The tasks to cancel
+        required: true
+      responses:
+        '200':
+          description: Successfully cancelled the tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1CancelledTasks'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The task was not found
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Cancel Tasks
+      tags:
+      - Task
+  /api/v1/stable/tenants/{tenant}/tasks/replay:
+    post:
+      x-resources:
+      - tenant
+      description: Replay tasks
+      operationId: v1-task:replay
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1ReplayTaskRequest'
+        description: The tasks to replay
+        required: true
+      responses:
+        '200':
+          description: Successfully replayed the tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1ReplayedTasks'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The task was not found
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Replay Tasks
+      tags:
+      - Task
+  /api/v1/stable/tasks/{task}/restore:
+    post:
+      x-resources:
+      - tenant
+      - task
+      description: Restore an evicted durable task
+      operationId: v1-task:restore
+      parameters:
+      - description: The task id
+        in: path
+        name: task
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1RestoreTaskResponse'
+          description: Successfully restored the task
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: The task was not found
+      summary: Restore a Task
+      tags:
+      - Task
+  /api/v1/stable/dags/tasks:
+    get:
+      description: Lists all tasks that belong a specific list of dags
+      operationId: v1-dag:list:tasks
+      parameters:
+      - description: The external id of the DAG
+        in: query
+        name: dag_ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The tenant id
+        in: query
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/V1DagChildren'
+                description: The list of tasks
+          description: Successfully listed the tasks
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: List Tasks
+      tags:
+      - Task
+  /api/v1/stable/tenants/{tenant}/task-metrics:
+    get:
+      x-resources:
+      - tenant
+      description: Get a summary of task run metrics for a tenant
+      operationId: v1-task:list:status-metrics
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The start time to get metrics for
+        in: query
+        name: since
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - description: The end time to get metrics for
+        in: query
+        name: until
+        schema:
+          type: string
+          format: date-time
+      - description: The workflow id to find runs for
+        in: query
+        name: workflow_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The parent task's external id
+        in: query
+        name: parent_task_external_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The id of the event that triggered the task
+        in: query
+        name: triggering_event_external_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: Additional metadata k-v pairs to filter by
+        in: query
+        name: additional_metadata
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskRunMetrics'
+          description: Successfully retrieved the task run metrics
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Get Task Metrics
+      tags:
+      - Task
+  /api/v1/stable/tenants/{tenant}/task-point-metrics:
+    get:
+      x-resources:
+      - tenant
+      description: Get a minute by minute breakdown of task metrics for a tenant
+      operationId: v1-task:get:point-metrics
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The time after the task was created
+        in: query
+        name: createdAfter
+        example: '2021-01-01T00:00:00Z'
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - description: The time before the task was completed
+        in: query
+        name: finishedBefore
+        example: '2021-01-01T00:00:00Z'
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1TaskPointMetrics'
+          description: Successfully retrieved the task point metrics
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '501':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not implemented
+      summary: Get Task Point Metrics
+      tags:
+      - Task
+components:
+  schemas:
+    V1ReplayTaskRequest:
+      type: object
+      properties:
+        externalIds:
+          type: array
+          description: A list of external IDs, which can refer to either task or workflow run external IDs
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+        filter:
+          $ref: '#/components/schemas/V1TaskFilter'
+    V1TaskEventType:
+      type: string
+      enum:
+      - REQUEUED_NO_WORKER
+      - REQUEUED_RATE_LIMIT
+      - SCHEDULING_TIMED_OUT
+      - ASSIGNED
+      - STARTED
+      - FINISHED
+      - FAILED
+      - RETRYING
+      - CANCELLED
+      - TIMED_OUT
+      - REASSIGNED
+      - SLOT_RELEASED
+      - TIMEOUT_REFRESHED
+      - RETRIED_BY_USER
+      - SENT_TO_WORKER
+      - RATE_LIMIT_ERROR
+      - ACKNOWLEDGED
+      - CREATED
+      - QUEUED
+      - SKIPPED
+      - COULD_NOT_SEND_TO_WORKER
+      - DURABLE_EVICTED
+      - DURABLE_RESTORING
+    V1TaskRunMetric:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        count:
+          type: integer
+        runningDetailCount:
+          $ref: '#/components/schemas/V1RunningDetailCount'
+      required:
+      - status
+      - count
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    V1TaskRunMetrics:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1TaskRunMetric'
+    V1TaskPointMetric:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+        SUCCEEDED:
+          type: integer
+        FAILED:
+          type: integer
+      required:
+      - time
+      - SUCCEEDED
+      - FAILED
+    V1WorkflowType:
+      type: string
+      enum:
+      - DAG
+      - TASK
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    V1TaskFilter:
+      type: object
+      properties:
+        since:
+          type: string
+          format: date-time
+        until:
+          type: string
+          format: date-time
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskStatus'
+        workflowIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        additionalMetadata:
+          type: array
+          items:
+            type: string
+      required:
+      - since
+    V1ReplayedTasks:
+      properties:
+        ids:
+          type: array
+          description: The list of task external ids that were replayed
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+    V1TaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/V1TaskEventType'
+        message:
+          type: string
+        errorMessage:
+          type: string
+        output:
+          type: string
+        workerId:
+          type: string
+          format: uuid
+        taskDisplayName:
+          type: string
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+      required:
+      - id
+      - taskId
+      - timestamp
+      - eventType
+      - message
+    V1TaskPointMetrics:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskPointMetric'
+    V1DagChildren:
+      type: object
+      properties:
+        dagId:
+          type: string
+          format: uuid
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+    V1CancelledTasks:
+      properties:
+        ids:
+          type: array
+          description: The list of task external ids that were cancelled
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+    V1TaskSummary:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        actionId:
+          type: string
+          description: The action ID of the task.
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+        additionalMetadata:
+          type: object
+          description: Additional metadata for the task run.
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+          description: The list of children tasks
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the task was created.
+        displayName:
+          type: string
+          description: The display name of the task run.
+        duration:
+          type: integer
+          description: The duration of the task run, in milliseconds.
+        isDurable:
+          type: boolean
+          description: Whether this task was created as a durable task.
+        errorMessage:
+          type: string
+          description: The error message of the task run (for the latest run)
+        finishedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run finished.
+        input:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The input of the task run.
+        numSpawnedChildren:
+          type: integer
+          description: The number of spawned children tasks
+        output:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The output of the task run (for the latest run)
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        isEvicted:
+          type: boolean
+          description: Whether the task has been evicted from a worker (still counts as RUNNING).
+        startedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run started.
+        stepId:
+          type: string
+          description: The step ID of the task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskExternalId:
+          type: string
+          description: The external ID of the task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskId:
+          type: integer
+          description: The ID of the task.
+        taskInsertedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task was inserted.
+        tenantId:
+          type: string
+          description: The ID of the tenant.
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        type:
+          $ref: '#/components/schemas/V1WorkflowType'
+          description: The type of the workflow (whether it's a DAG or a task)
+        workflowId:
+          type: string
+          format: uuid
+        workflowName:
+          type: string
+        workflowRunExternalId:
+          type: string
+          format: uuid
+          description: The external ID of the workflow run
+        workflowVersionId:
+          type: string
+          format: uuid
+          description: The version ID of the workflow
+        workflowConfig:
+          type: object
+        parentTaskExternalId:
+          type: string
+          description: The external ID of the parent task.
+          format: uuid
+      required:
+      - metadata
+      - createdAt
+      - displayName
+      - id
+      - input
+      - numSpawnedChildren
+      - output
+      - status
+      - taskExternalId
+      - taskId
+      - taskInsertedAt
+      - tenantId
+      - type
+      - workflowId
+      - workflowRunExternalId
+    V1TaskEventList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1TaskEvent'
+          type: array
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1RestoreTaskResponse:
+      type: object
+      properties:
+        requeued:
+          type: boolean
+      required:
+      - requeued
+    V1CancelTaskRequest:
+      type: object
+      properties:
+        externalIds:
+          type: array
+          description: A list of external IDs, which can refer to either task or workflow run external IDs
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+        filter:
+          $ref: '#/components/schemas/V1TaskFilter'
+    V1RunningDetailCount:
+      type: object
+      properties:
+        evicted:
+          type: integer
+          description: The number of evicted tasks within the RUNNING status bucket.
+        onWorker:
+          type: integer
+          description: The number of tasks currently on a worker within the RUNNING status bucket.
+      required:
+      - evicted
+      - onWorker
+    V1TaskStatus:
+      type: string
+      enum:
+      - QUEUED
+      - RUNNING
+      - COMPLETED
+      - CANCELLED
+      - FAILED
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

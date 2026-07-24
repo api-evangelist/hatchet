@@ -1,0 +1,91 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Healthcheck API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Healthcheck
+paths:
+  /api/ready:
+    get:
+      description: Gets the readiness status
+      operationId: readiness:get
+      responses:
+        '200':
+          description: Healthy
+        '500':
+          description: Not ready to accept traffic
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+      security: []
+      summary: Get Readiness
+      tags:
+      - Healthcheck
+  /api/live:
+    get:
+      description: Gets the liveness status
+      operationId: liveness:get
+      responses:
+        '200':
+          description: Healthy
+        '500':
+          description: Not liveness
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+      security: []
+      summary: Get Liveness
+      tags:
+      - Healthcheck
+components:
+  schemas:
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer

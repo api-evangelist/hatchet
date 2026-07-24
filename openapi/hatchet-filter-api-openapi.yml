@@ -1,0 +1,459 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Hatchet API Token Filter API
+  description: The Hatchet API
+servers:
+- url: ''
+security:
+- bearerAuth: []
+- cookieAuth: []
+tags:
+- name: Filter
+paths:
+  /api/v1/stable/tenants/{tenant}/filters:
+    get:
+      x-resources:
+      - tenant
+      description: Lists all filters for a tenant.
+      operationId: v1-filter:list
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The number to skip
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The number to limit by
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - description: The workflow ids to filter by
+        in: query
+        name: workflowIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            description: The workflow id associated with this filter.
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      - description: The scopes to subset candidate filters by
+        in: query
+        name: scopes
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1FilterList'
+          description: Successfully listed the filters
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: List Filters
+      tags:
+      - Filter
+    post:
+      x-resources:
+      - tenant
+      description: Create a new filter
+      operationId: v1-filter:create
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1CreateFilterRequest'
+        description: The input to the filter creation
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1Filter'
+          description: Successfully created the filter
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not found
+      summary: Create a Filter
+      tags:
+      - Filter
+  /api/v1/stable/tenants/{tenant}/filters/{v1-filter}:
+    get:
+      x-resources:
+      - tenant
+      - v1-filter
+      description: Get a filter by its id
+      operationId: v1-filter:get
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The filter id
+        in: path
+        name: v1-filter
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1Filter'
+          description: Successfully got the filter
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+      summary: Get a Filter
+      tags:
+      - Filter
+    delete:
+      x-resources:
+      - tenant
+      - v1-filter
+      description: Delete a filter
+      operationId: v1-filter:delete
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The filter id to delete
+        in: path
+        name: v1-filter
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1Filter'
+          description: Successfully deleted filter
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not found
+      tags:
+      - Filter
+    patch:
+      x-resources:
+      - tenant
+      - v1-filter
+      description: Update a filter
+      operationId: v1-filter:update
+      parameters:
+      - description: The tenant id
+        in: path
+        name: tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      - description: The filter id to update
+        in: path
+        name: v1-filter
+        required: true
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1UpdateFilterRequest'
+        description: The input to the filter update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1Filter'
+          description: Successfully updated filter
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: A malformed or bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
+          description: Not found
+      tags:
+      - Filter
+components:
+  schemas:
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    V1UpdateFilterRequest:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: The expression for the filter
+        scope:
+          type: string
+          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
+        payload:
+          type: object
+          description: The payload for the filter
+    V1CreateFilterRequest:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The workflow id
+        expression:
+          type: string
+          description: The expression for the filter
+        scope:
+          type: string
+          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
+        payload:
+          type: object
+          description: The payload for the filter
+      required:
+      - workflowId
+      - scope
+      - expression
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    V1Filter:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+          description: The ID of the tenant associated with this filter.
+        workflowId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The workflow id associated with this filter.
+        scope:
+          type: string
+          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
+        expression:
+          type: string
+          description: The expression associated with this filter.
+        payload:
+          type: object
+          description: Additional payload data associated with the filter
+        isDeclarative:
+          type: boolean
+          description: Whether the filter is declarative (true) or programmatic (false)
+      required:
+      - metadata
+      - tenantId
+      - workflowId
+      - scope
+      - expression
+      - payload
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1FilterList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1Filter'
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: hatchet
+    customAuth:
+      type: http
+      scheme: bearer
