@@ -1,0 +1,1019 @@
+{
+  "info": {
+    "_postman_id": "3502fdc9-d2c7-46b5-a28c-2eeda763741c",
+    "name": "Hatchet API Token Tenants API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:21.000Z",
+    "updatedAt": "2026-07-28T01:54:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3502fdc9-d2c7-46b5-a28c-2eeda763741c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "invites",
+                      "item": [
+                        {
+                          "name": "{tenant-invite}",
+                          "item": [
+                            {
+                              "name": "Update Invite",
+                              "id": "0f629ada-acf4-44dd-927d-b4cfdb46551e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"role\": \"MEMBER\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/invites/:tenant-invite",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "invites",
+                                    ":tenant-invite"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7b565555-5a28-4b36-bdcf-8ab6fefbf0ac",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    },
+                                    {
+                                      "id": "87e6eb36-9689-4b03-9748-bd84af73f527",
+                                      "key": "tenant-invite",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant invite id"
+                                    }
+                                  ]
+                                },
+                                "description": "Updates a tenant invite"
+                              },
+                              "response": [
+                                {
+                                  "id": "eaaaed54-18e6-4c9d-b568-9c275eee9b2d",
+                                  "name": "Successfully updated the tenant invite",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"role\": \"MEMBER\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/invites/:tenant-invite",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "invites",
+                                        ":tenant-invite"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "tenant-invite"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"email\": \"<string>\",\n  \"role\": \"MEMBER\",\n  \"expires\": \"<dateTime>\",\n  \"tenantId\": \"<string>\",\n  \"tenantName\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:54:22.000Z",
+                                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                                  "uid": "35240-eaaaed54-18e6-4c9d-b568-9c275eee9b2d"
+                                },
+                                {
+                                  "id": "17e4550e-2275-4b5a-b4ea-9099da6342af",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"role\": \"MEMBER\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/invites/:tenant-invite",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "invites",
+                                        ":tenant-invite"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "tenant-invite"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:22.000Z",
+                                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                                  "uid": "35240-17e4550e-2275-4b5a-b4ea-9099da6342af"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-0f629ada-acf4-44dd-927d-b4cfdb46551e"
+                            },
+                            {
+                              "name": "Delete Invite",
+                              "id": "11b185dd-3336-4f0b-b6e8-1a8b88fe01fb",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/invites/:tenant-invite",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "invites",
+                                    ":tenant-invite"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4ca0b787-a728-449f-af81-3f82b34373a0",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    },
+                                    {
+                                      "id": "bc02ba58-65c5-40aa-a585-564d42c11d8a",
+                                      "key": "tenant-invite",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant invite id"
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes a tenant invite"
+                              },
+                              "response": [
+                                {
+                                  "id": "0786d94e-8036-4c64-b3d9-087ae4640d67",
+                                  "name": "Successfully deleted the tenant invite",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/invites/:tenant-invite",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "invites",
+                                        ":tenant-invite"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "tenant-invite"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"email\": \"<string>\",\n  \"role\": \"MEMBER\",\n  \"expires\": \"<dateTime>\",\n  \"tenantId\": \"<string>\",\n  \"tenantName\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:54:22.000Z",
+                                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                                  "uid": "35240-0786d94e-8036-4c64-b3d9-087ae4640d67"
+                                },
+                                {
+                                  "id": "5c0f4ee2-9f76-44b3-9251-c630bd6069a8",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/invites/:tenant-invite",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "invites",
+                                        ":tenant-invite"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "tenant-invite"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:22.000Z",
+                                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                                  "uid": "35240-5c0f4ee2-9f76-44b3-9251-c630bd6069a8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-11b185dd-3336-4f0b-b6e8-1a8b88fe01fb"
+                            }
+                          ],
+                          "id": "718e1b0c-8614-4b70-b8f0-83f161360953",
+                          "createdAt": "2026-07-28T01:54:22.000Z",
+                          "updatedAt": "2026-07-28T01:54:22.000Z",
+                          "uid": "35240-718e1b0c-8614-4b70-b8f0-83f161360953"
+                        }
+                      ],
+                      "id": "f43c5af4-c754-47b5-a1e0-6890747f1953",
+                      "createdAt": "2026-07-28T01:54:22.000Z",
+                      "updatedAt": "2026-07-28T01:54:22.000Z",
+                      "uid": "35240-f43c5af4-c754-47b5-a1e0-6890747f1953"
+                    },
+                    {
+                      "name": "webhook-workers",
+                      "item": [
+                        {
+                          "name": "List Webhooks",
+                          "id": "62677306-bd78-402e-82da-21532efa330c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "webhook-workers"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "56af686d-c20e-4054-ad08-19ed57c5f9e1",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Lists all webhooks"
+                          },
+                          "response": [
+                            {
+                              "id": "b6863b4e-c649-44fc-8b4c-eadc24c2b915",
+                              "name": "The list of webhook workers",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-b6863b4e-c649-44fc-8b4c-eadc24c2b915"
+                            },
+                            {
+                              "id": "cdd5439e-3bbf-4815-935f-901cedcbadc7",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-cdd5439e-3bbf-4815-935f-901cedcbadc7"
+                            },
+                            {
+                              "id": "e9e8b814-8807-4a31-bdcb-a1be70c12c2b",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-e9e8b814-8807-4a31-bdcb-a1be70c12c2b"
+                            },
+                            {
+                              "id": "66ffa703-5b8c-4694-acd7-4e4d15d188c3",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-66ffa703-5b8c-4694-acd7-4e4d15d188c3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:54:22.000Z",
+                          "updatedAt": "2026-07-28T01:54:22.000Z",
+                          "uid": "35240-62677306-bd78-402e-82da-21532efa330c"
+                        },
+                        {
+                          "name": "Create a Webhook",
+                          "id": "be753c74-fc11-4670-b3d7-2b9c76bdb82c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "webhook-workers"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e6135768-6959-497f-82ed-796ff1ae0d45",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Creates a webhook"
+                          },
+                          "response": [
+                            {
+                              "id": "d5138d4d-b70b-4713-93ba-bbcaf158724b",
+                              "name": "Successfully created the webhook",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-d5138d4d-b70b-4713-93ba-bbcaf158724b"
+                            },
+                            {
+                              "id": "8d537d8b-0a48-4985-9d67-28e767c0b7cc",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-8d537d8b-0a48-4985-9d67-28e767c0b7cc"
+                            },
+                            {
+                              "id": "bf3b57a3-a873-469b-b065-b50ecd3a896a",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-bf3b57a3-a873-469b-b065-b50ecd3a896a"
+                            },
+                            {
+                              "id": "12b6e04c-6e42-4a37-8253-d1a44b128f45",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/webhook-workers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhook-workers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:22.000Z",
+                              "updatedAt": "2026-07-28T01:54:22.000Z",
+                              "uid": "35240-12b6e04c-6e42-4a37-8253-d1a44b128f45"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:54:22.000Z",
+                          "updatedAt": "2026-07-28T01:54:22.000Z",
+                          "uid": "35240-be753c74-fc11-4670-b3d7-2b9c76bdb82c"
+                        }
+                      ],
+                      "id": "1f8850a2-5477-4ace-b757-eb08bacfe25a",
+                      "createdAt": "2026-07-28T01:54:22.000Z",
+                      "updatedAt": "2026-07-28T01:54:22.000Z",
+                      "uid": "35240-1f8850a2-5477-4ace-b757-eb08bacfe25a"
+                    }
+                  ],
+                  "id": "0fc2ad1e-216b-411e-98f4-d36f995fbce0",
+                  "createdAt": "2026-07-28T01:54:22.000Z",
+                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                  "uid": "35240-0fc2ad1e-216b-411e-98f4-d36f995fbce0"
+                }
+              ],
+              "id": "d99278de-a923-469f-84c5-a9d419c89c5b",
+              "createdAt": "2026-07-28T01:54:22.000Z",
+              "updatedAt": "2026-07-28T01:54:22.000Z",
+              "uid": "35240-d99278de-a923-469f-84c5-a9d419c89c5b"
+            }
+          ],
+          "id": "094f64d5-64c3-4ea2-b8b1-a22fb9e1799d",
+          "createdAt": "2026-07-28T01:54:22.000Z",
+          "updatedAt": "2026-07-28T01:54:22.000Z",
+          "uid": "35240-094f64d5-64c3-4ea2-b8b1-a22fb9e1799d"
+        }
+      ],
+      "id": "059c1b25-3fe1-4318-b4fd-9e27638b9fe8",
+      "createdAt": "2026-07-28T01:54:22.000Z",
+      "updatedAt": "2026-07-28T01:54:22.000Z",
+      "uid": "35240-059c1b25-3fe1-4318-b4fd-9e27638b9fe8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

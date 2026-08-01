@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "ae98932d-822a-48f6-9ce5-db1b03f01953",
+    "name": "Hatchet API Token Github API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:17.000Z",
+    "updatedAt": "2026-07-28T01:53:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae98932d-822a-48f6-9ce5-db1b03f01953"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "sns",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "{event}",
+                      "item": [
+                        {
+                          "name": "Github App Tenant Webhook",
+                          "id": "1700cb13-7f28-4bf4-bc8a-b9e86af5eef1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/sns/:tenant/:event",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "sns",
+                                ":tenant",
+                                ":event"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5942d57e-225e-486b-8f23-1264b07de1a1",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                },
+                                {
+                                  "id": "1c361186-b9f1-4e66-9721-f0fe71af24a1",
+                                  "key": "event",
+                                  "value": "<string>",
+                                  "description": "(Required) The event key"
+                                }
+                              ]
+                            },
+                            "description": "SNS event"
+                          },
+                          "response": [
+                            {
+                              "id": "0599da43-728c-47ff-8d14-5c575a5c1513",
+                              "name": "Successfully processed webhook",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/sns/:tenant/:event",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "sns",
+                                    ":tenant",
+                                    ":event"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    },
+                                    {
+                                      "key": "event"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:53:17.000Z",
+                              "updatedAt": "2026-07-28T01:53:17.000Z",
+                              "uid": "35240-0599da43-728c-47ff-8d14-5c575a5c1513"
+                            },
+                            {
+                              "id": "0a408fba-d070-44d7-8caf-2603768e879a",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/sns/:tenant/:event",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "sns",
+                                    ":tenant",
+                                    ":event"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    },
+                                    {
+                                      "key": "event"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:17.000Z",
+                              "updatedAt": "2026-07-28T01:53:17.000Z",
+                              "uid": "35240-0a408fba-d070-44d7-8caf-2603768e879a"
+                            },
+                            {
+                              "id": "32fd5bdf-9c77-4fd7-954b-38c68b8e474d",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/sns/:tenant/:event",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "sns",
+                                    ":tenant",
+                                    ":event"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    },
+                                    {
+                                      "key": "event"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:17.000Z",
+                              "updatedAt": "2026-07-28T01:53:17.000Z",
+                              "uid": "35240-32fd5bdf-9c77-4fd7-954b-38c68b8e474d"
+                            },
+                            {
+                              "id": "f4eff7c4-4d89-4a2b-b847-367efa6b2df6",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/sns/:tenant/:event",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "sns",
+                                    ":tenant",
+                                    ":event"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    },
+                                    {
+                                      "key": "event"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:17.000Z",
+                              "updatedAt": "2026-07-28T01:53:17.000Z",
+                              "uid": "35240-f4eff7c4-4d89-4a2b-b847-367efa6b2df6"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:17.000Z",
+                          "updatedAt": "2026-07-28T01:53:17.000Z",
+                          "uid": "35240-1700cb13-7f28-4bf4-bc8a-b9e86af5eef1"
+                        }
+                      ],
+                      "id": "ca58d2cc-4890-4632-9a20-9cda6494eaf8",
+                      "createdAt": "2026-07-28T01:53:17.000Z",
+                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                      "uid": "35240-ca58d2cc-4890-4632-9a20-9cda6494eaf8"
+                    }
+                  ],
+                  "id": "f013e65c-01a8-4050-bdee-27501f74a8c0",
+                  "createdAt": "2026-07-28T01:53:17.000Z",
+                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                  "uid": "35240-f013e65c-01a8-4050-bdee-27501f74a8c0"
+                }
+              ],
+              "id": "3ce2005e-09be-4410-a382-a4c0c332868b",
+              "createdAt": "2026-07-28T01:53:17.000Z",
+              "updatedAt": "2026-07-28T01:53:17.000Z",
+              "uid": "35240-3ce2005e-09be-4410-a382-a4c0c332868b"
+            }
+          ],
+          "id": "6d297f17-d46a-49c8-b9be-537c73044c04",
+          "createdAt": "2026-07-28T01:53:17.000Z",
+          "updatedAt": "2026-07-28T01:53:17.000Z",
+          "uid": "35240-6d297f17-d46a-49c8-b9be-537c73044c04"
+        }
+      ],
+      "id": "b8675bfe-c295-4450-9668-e326adbd9877",
+      "createdAt": "2026-07-28T01:53:17.000Z",
+      "updatedAt": "2026-07-28T01:53:17.000Z",
+      "uid": "35240-b8675bfe-c295-4450-9668-e326adbd9877"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

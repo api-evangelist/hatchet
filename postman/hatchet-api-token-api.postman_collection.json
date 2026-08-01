@@ -1,0 +1,724 @@
+{
+  "info": {
+    "_postman_id": "aa22d189-b040-4924-8456-9a3216b9800c",
+    "name": "Hatchet API Token API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:11.000Z",
+    "updatedAt": "2026-07-28T01:53:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aa22d189-b040-4924-8456-9a3216b9800c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "api-tokens",
+                      "item": [
+                        {
+                          "name": "Create API Token",
+                          "id": "ff065f3b-fdd5-4cab-9c44-60f87b85c474",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"expiresIn\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "api-tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4c706fab-6342-49c7-9daa-a8c6b318ddc4",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Create an API token for a tenant"
+                          },
+                          "response": [
+                            {
+                              "id": "6413300b-2a70-47d4-a994-66c434079340",
+                              "name": "Successfully retrieved the workflows",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"expiresIn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "api-tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"token\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:53:12.000Z",
+                              "updatedAt": "2026-07-28T01:53:12.000Z",
+                              "uid": "35240-6413300b-2a70-47d4-a994-66c434079340"
+                            },
+                            {
+                              "id": "b44a621a-ce5a-4e6f-bdb3-bc7c5d2fb8be",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"expiresIn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "api-tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:12.000Z",
+                              "updatedAt": "2026-07-28T01:53:12.000Z",
+                              "uid": "35240-b44a621a-ce5a-4e6f-bdb3-bc7c5d2fb8be"
+                            },
+                            {
+                              "id": "96e18bd2-162a-43ee-9e66-05cbdd3e02b9",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"expiresIn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "api-tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:12.000Z",
+                              "updatedAt": "2026-07-28T01:53:12.000Z",
+                              "uid": "35240-96e18bd2-162a-43ee-9e66-05cbdd3e02b9"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:11.000Z",
+                          "updatedAt": "2026-07-28T01:53:11.000Z",
+                          "uid": "35240-ff065f3b-fdd5-4cab-9c44-60f87b85c474"
+                        },
+                        {
+                          "name": "List API Tokens",
+                          "id": "202e8550-7de0-443d-b779-62b79ac84561",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "api-tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9afcbd44-3a23-4da0-9d3f-6bc34bc78581",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "List API tokens for a tenant"
+                          },
+                          "response": [
+                            {
+                              "id": "e19bcfa0-a4f5-442b-baf5-d64309f4245c",
+                              "name": "Successfully retrieved the workflows",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "api-tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:12.000Z",
+                              "updatedAt": "2026-07-28T01:53:12.000Z",
+                              "uid": "35240-e19bcfa0-a4f5-442b-baf5-d64309f4245c"
+                            },
+                            {
+                              "id": "1ed025ef-1714-44d9-9d8c-cc438ff88f45",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "api-tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:12.000Z",
+                              "updatedAt": "2026-07-28T01:53:12.000Z",
+                              "uid": "35240-1ed025ef-1714-44d9-9d8c-cc438ff88f45"
+                            },
+                            {
+                              "id": "0a7b9f86-296f-4ea0-94e4-054cef514b95",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/api-tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "api-tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:12.000Z",
+                              "updatedAt": "2026-07-28T01:53:12.000Z",
+                              "uid": "35240-0a7b9f86-296f-4ea0-94e4-054cef514b95"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:11.000Z",
+                          "updatedAt": "2026-07-28T01:53:11.000Z",
+                          "uid": "35240-202e8550-7de0-443d-b779-62b79ac84561"
+                        }
+                      ],
+                      "id": "fec1c8fa-4468-46d9-811c-78dfb8ec14c5",
+                      "createdAt": "2026-07-28T01:53:11.000Z",
+                      "updatedAt": "2026-07-28T01:53:11.000Z",
+                      "uid": "35240-fec1c8fa-4468-46d9-811c-78dfb8ec14c5"
+                    }
+                  ],
+                  "id": "43e708fd-1d5f-43b7-b26b-2760000c96cd",
+                  "createdAt": "2026-07-28T01:53:11.000Z",
+                  "updatedAt": "2026-07-28T01:53:11.000Z",
+                  "uid": "35240-43e708fd-1d5f-43b7-b26b-2760000c96cd"
+                }
+              ],
+              "id": "f4c2e4e7-6b01-4574-adab-73604d3b56d4",
+              "createdAt": "2026-07-28T01:53:11.000Z",
+              "updatedAt": "2026-07-28T01:53:11.000Z",
+              "uid": "35240-f4c2e4e7-6b01-4574-adab-73604d3b56d4"
+            },
+            {
+              "name": "api-tokens",
+              "item": [
+                {
+                  "name": "{api-token}",
+                  "item": [
+                    {
+                      "name": "Revoke API Token",
+                      "id": "42c43552-e41f-4463-b2d6-1d98a60a6c25",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/api-tokens/:api-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "api-tokens",
+                            ":api-token"
+                          ],
+                          "variable": [
+                            {
+                              "id": "34c50d4b-d106-4363-b76c-e0c6a257de29",
+                              "key": "api-token",
+                              "value": "<uuid>",
+                              "description": "(Required) The API token"
+                            }
+                          ]
+                        },
+                        "description": "Revoke an API token for a tenant"
+                      },
+                      "response": [
+                        {
+                          "id": "26dcb643-c49c-4586-924e-ab48829499a3",
+                          "name": "Successfully revoked the token",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/api-tokens/:api-token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "api-tokens",
+                                ":api-token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api-token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:53:12.000Z",
+                          "updatedAt": "2026-07-28T01:53:12.000Z",
+                          "uid": "35240-26dcb643-c49c-4586-924e-ab48829499a3"
+                        },
+                        {
+                          "id": "9e6d6d9d-dfbb-41be-84fd-d6a0ca7e0aac",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/api-tokens/:api-token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "api-tokens",
+                                ":api-token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api-token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:12.000Z",
+                          "updatedAt": "2026-07-28T01:53:12.000Z",
+                          "uid": "35240-9e6d6d9d-dfbb-41be-84fd-d6a0ca7e0aac"
+                        },
+                        {
+                          "id": "007b3a39-56d5-4527-ac72-8cc823c98238",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/api-tokens/:api-token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "api-tokens",
+                                ":api-token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api-token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:12.000Z",
+                          "updatedAt": "2026-07-28T01:53:12.000Z",
+                          "uid": "35240-007b3a39-56d5-4527-ac72-8cc823c98238"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:53:11.000Z",
+                      "updatedAt": "2026-07-28T01:53:11.000Z",
+                      "uid": "35240-42c43552-e41f-4463-b2d6-1d98a60a6c25"
+                    }
+                  ],
+                  "id": "b95f8313-d907-42ec-b69c-bb835b5768c5",
+                  "createdAt": "2026-07-28T01:53:11.000Z",
+                  "updatedAt": "2026-07-28T01:53:11.000Z",
+                  "uid": "35240-b95f8313-d907-42ec-b69c-bb835b5768c5"
+                }
+              ],
+              "id": "183f7b90-7c70-41cc-bbd2-e49e0d3eb233",
+              "createdAt": "2026-07-28T01:53:11.000Z",
+              "updatedAt": "2026-07-28T01:53:11.000Z",
+              "uid": "35240-183f7b90-7c70-41cc-bbd2-e49e0d3eb233"
+            }
+          ],
+          "id": "9c8da729-c17c-4da2-8bbc-1293ea3abef2",
+          "createdAt": "2026-07-28T01:53:11.000Z",
+          "updatedAt": "2026-07-28T01:53:11.000Z",
+          "uid": "35240-9c8da729-c17c-4da2-8bbc-1293ea3abef2"
+        }
+      ],
+      "id": "d2a7d41f-0062-46fa-91f4-7bbbfb97cef5",
+      "createdAt": "2026-07-28T01:53:11.000Z",
+      "updatedAt": "2026-07-28T01:53:11.000Z",
+      "uid": "35240-d2a7d41f-0062-46fa-91f4-7bbbfb97cef5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

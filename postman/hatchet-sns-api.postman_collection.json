@@ -1,0 +1,890 @@
+{
+  "info": {
+    "_postman_id": "6a305a4f-3241-4ae0-b336-d4029adbaee0",
+    "name": "Hatchet API Token SNS API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:28.000Z",
+    "updatedAt": "2026-07-28T01:53:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6a305a4f-3241-4ae0-b336-d4029adbaee0"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "sns",
+                      "item": [
+                        {
+                          "name": "List SNS Integrations",
+                          "id": "31f0319d-afe6-401e-80ea-8e409b7b1b7e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "sns"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ca6bcff2-6229-4944-b683-195dca07288d",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "List SNS integrations"
+                          },
+                          "response": [
+                            {
+                              "id": "f5db3e29-7ec4-4f9a-9e13-e1b68b81ce36",
+                              "name": "Successfully retrieved SNS integrations",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<uuid>\",\n      \"topicArn\": \"<string>\",\n      \"ingestUrl\": \"<string>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<uuid>\",\n      \"topicArn\": \"<string>\",\n      \"ingestUrl\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-f5db3e29-7ec4-4f9a-9e13-e1b68b81ce36"
+                            },
+                            {
+                              "id": "4dd875b6-1733-48f9-925d-e0a2b7566607",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-4dd875b6-1733-48f9-925d-e0a2b7566607"
+                            },
+                            {
+                              "id": "317349f7-5516-4095-a2ba-9312111507e5",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-317349f7-5516-4095-a2ba-9312111507e5"
+                            },
+                            {
+                              "id": "79a199cc-6d18-4a6b-8578-d0cd754253fd",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-79a199cc-6d18-4a6b-8578-d0cd754253fd"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:29.000Z",
+                          "updatedAt": "2026-07-28T01:53:29.000Z",
+                          "uid": "35240-31f0319d-afe6-401e-80ea-8e409b7b1b7e"
+                        },
+                        {
+                          "name": "Create SNS Integration",
+                          "id": "99c01717-74ae-4e26-8a8c-1842c376458c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"topicArn\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "sns"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "19c83b84-4716-4eb5-93c3-5fbdb76524e3",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Create SNS integration"
+                          },
+                          "response": [
+                            {
+                              "id": "88e933cf-fe80-406d-850a-e95690203563",
+                              "name": "Successfully created SNS integration",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"topicArn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<uuid>\",\n  \"topicArn\": \"<string>\",\n  \"ingestUrl\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-88e933cf-fe80-406d-850a-e95690203563"
+                            },
+                            {
+                              "id": "11d23ba5-8914-4d7b-923a-dbf687f2e23c",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"topicArn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-11d23ba5-8914-4d7b-923a-dbf687f2e23c"
+                            },
+                            {
+                              "id": "403532e0-d9fc-4cb9-b8ed-53128647361d",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"topicArn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-403532e0-d9fc-4cb9-b8ed-53128647361d"
+                            },
+                            {
+                              "id": "0cf8bc51-cac7-48e3-8d52-45e457e546d7",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"topicArn\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/sns",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "sns"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:29.000Z",
+                              "updatedAt": "2026-07-28T01:53:29.000Z",
+                              "uid": "35240-0cf8bc51-cac7-48e3-8d52-45e457e546d7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:29.000Z",
+                          "updatedAt": "2026-07-28T01:53:29.000Z",
+                          "uid": "35240-99c01717-74ae-4e26-8a8c-1842c376458c"
+                        }
+                      ],
+                      "id": "3423c69f-0531-4478-bf4c-7f84080958db",
+                      "createdAt": "2026-07-28T01:53:29.000Z",
+                      "updatedAt": "2026-07-28T01:53:29.000Z",
+                      "uid": "35240-3423c69f-0531-4478-bf4c-7f84080958db"
+                    }
+                  ],
+                  "id": "7b491e8f-c27f-436d-aa46-51df2ec9988e",
+                  "createdAt": "2026-07-28T01:53:29.000Z",
+                  "updatedAt": "2026-07-28T01:53:29.000Z",
+                  "uid": "35240-7b491e8f-c27f-436d-aa46-51df2ec9988e"
+                }
+              ],
+              "id": "abd3ddd8-9289-446b-b6e6-03ffdb944984",
+              "createdAt": "2026-07-28T01:53:29.000Z",
+              "updatedAt": "2026-07-28T01:53:29.000Z",
+              "uid": "35240-abd3ddd8-9289-446b-b6e6-03ffdb944984"
+            },
+            {
+              "name": "sns",
+              "item": [
+                {
+                  "name": "{sns}",
+                  "item": [
+                    {
+                      "name": "Delete SNS Integration",
+                      "id": "7f439e9c-6649-4424-a5a1-1a97f34328fa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/sns/:sns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "sns",
+                            ":sns"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ce4ece0d-315a-455c-97a1-e50ca42ab805",
+                              "key": "sns",
+                              "value": "<uuid>",
+                              "description": "(Required) The SNS integration id"
+                            }
+                          ]
+                        },
+                        "description": "Delete SNS integration"
+                      },
+                      "response": [
+                        {
+                          "id": "29423e3c-b116-4603-9407-222b456c3abd",
+                          "name": "Successfully deleted SNS integration",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/sns/:sns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "sns",
+                                ":sns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sns"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:53:29.000Z",
+                          "updatedAt": "2026-07-28T01:53:29.000Z",
+                          "uid": "35240-29423e3c-b116-4603-9407-222b456c3abd"
+                        },
+                        {
+                          "id": "0caf03e4-7d31-4b60-8f90-5857a9c9e14f",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/sns/:sns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "sns",
+                                ":sns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sns"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:29.000Z",
+                          "updatedAt": "2026-07-28T01:53:29.000Z",
+                          "uid": "35240-0caf03e4-7d31-4b60-8f90-5857a9c9e14f"
+                        },
+                        {
+                          "id": "7de7618d-6b11-4def-a0ca-c0fb65a21983",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/sns/:sns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "sns",
+                                ":sns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sns"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:29.000Z",
+                          "updatedAt": "2026-07-28T01:53:29.000Z",
+                          "uid": "35240-7de7618d-6b11-4def-a0ca-c0fb65a21983"
+                        },
+                        {
+                          "id": "74c85ad9-ca16-4f1d-877b-0e575b8b1456",
+                          "name": "Method not allowed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/sns/:sns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "sns",
+                                ":sns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sns"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:29.000Z",
+                          "updatedAt": "2026-07-28T01:53:29.000Z",
+                          "uid": "35240-74c85ad9-ca16-4f1d-877b-0e575b8b1456"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:53:29.000Z",
+                      "updatedAt": "2026-07-28T01:53:29.000Z",
+                      "uid": "35240-7f439e9c-6649-4424-a5a1-1a97f34328fa"
+                    }
+                  ],
+                  "id": "49b56f28-307a-47ee-b9b0-c416c1c60a61",
+                  "createdAt": "2026-07-28T01:53:29.000Z",
+                  "updatedAt": "2026-07-28T01:53:29.000Z",
+                  "uid": "35240-49b56f28-307a-47ee-b9b0-c416c1c60a61"
+                }
+              ],
+              "id": "1f10073a-4d31-443b-a4a3-533d1f98af20",
+              "createdAt": "2026-07-28T01:53:29.000Z",
+              "updatedAt": "2026-07-28T01:53:29.000Z",
+              "uid": "35240-1f10073a-4d31-443b-a4a3-533d1f98af20"
+            }
+          ],
+          "id": "bd1259a7-2a6f-4303-a3de-fc9b32d037dc",
+          "createdAt": "2026-07-28T01:53:29.000Z",
+          "updatedAt": "2026-07-28T01:53:29.000Z",
+          "uid": "35240-bd1259a7-2a6f-4303-a3de-fc9b32d037dc"
+        }
+      ],
+      "id": "55b21a60-d40f-43bd-95f1-3257445a8d61",
+      "createdAt": "2026-07-28T01:53:29.000Z",
+      "updatedAt": "2026-07-28T01:53:29.000Z",
+      "uid": "35240-55b21a60-d40f-43bd-95f1-3257445a8d61"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

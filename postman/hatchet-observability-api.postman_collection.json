@@ -1,0 +1,421 @@
+{
+  "info": {
+    "_postman_id": "dfdaade4-c789-4399-a207-26d72e6a9fb3",
+    "name": "Hatchet API Token Observability API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:21.000Z",
+    "updatedAt": "2026-07-28T01:53:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dfdaade4-c789-4399-a207-26d72e6a9fb3"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "stable",
+              "item": [
+                {
+                  "name": "tenants",
+                  "item": [
+                    {
+                      "name": "{tenant}",
+                      "item": [
+                        {
+                          "name": "traces",
+                          "item": [
+                            {
+                              "name": "Get Otel Trace",
+                              "id": "f38355b0-8e3a-4c06-94ae-dbf1909b3499",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/traces?run_external_id=<uuid>&offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "traces"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The workflow run external id",
+                                      "key": "run_external_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The number of spans to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number of spans to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "38e3c028-7a6e-4a91-8f3c-2c4bdcc1c00c",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Get OTel trace for a workflow run"
+                              },
+                              "response": [
+                                {
+                                  "id": "cb12fb1b-3238-45f7-a4ee-08aa5f969a2d",
+                                  "name": "Successfully retrieved the OTel trace",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/traces?run_external_id=<uuid>&offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "traces"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The workflow run external id",
+                                          "key": "run_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The number of spans to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number of spans to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"retryCounts\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"rows\": [\n    {\n      \"traceId\": \"<string>\",\n      \"spanId\": \"<string>\",\n      \"spanName\": \"<string>\",\n      \"spanKind\": \"INTERNAL\",\n      \"serviceName\": \"<string>\",\n      \"statusCode\": \"UNSET\",\n      \"durationNs\": \"<long>\",\n      \"createdAt\": \"<dateTime>\",\n      \"retryCount\": \"<integer>\",\n      \"parentSpanId\": \"<string>\",\n      \"statusMessage\": \"<string>\",\n      \"resourceAttributes\": {\n        \"est__5\": \"<string>\"\n      },\n      \"spanAttributes\": {\n        \"minim_8d5\": \"<string>\"\n      },\n      \"scopeName\": \"<string>\",\n      \"scopeVersion\": \"<string>\"\n    },\n    {\n      \"traceId\": \"<string>\",\n      \"spanId\": \"<string>\",\n      \"spanName\": \"<string>\",\n      \"spanKind\": \"CLIENT\",\n      \"serviceName\": \"<string>\",\n      \"statusCode\": \"ERROR\",\n      \"durationNs\": \"<long>\",\n      \"createdAt\": \"<dateTime>\",\n      \"retryCount\": \"<integer>\",\n      \"parentSpanId\": \"<string>\",\n      \"statusMessage\": \"<string>\",\n      \"resourceAttributes\": {\n        \"voluptate_a\": \"<string>\",\n        \"Ut3a\": \"<string>\"\n      },\n      \"spanAttributes\": {\n        \"mollit_ec\": \"<string>\",\n        \"reprehenderitc\": \"<string>\"\n      },\n      \"scopeName\": \"<string>\",\n      \"scopeVersion\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:22.000Z",
+                                  "updatedAt": "2026-07-28T01:53:22.000Z",
+                                  "uid": "35240-cb12fb1b-3238-45f7-a4ee-08aa5f969a2d"
+                                },
+                                {
+                                  "id": "9b0fb2b2-8629-41e0-9236-c8823fbc94aa",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/traces?run_external_id=<uuid>&offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "traces"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The workflow run external id",
+                                          "key": "run_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The number of spans to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number of spans to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:22.000Z",
+                                  "updatedAt": "2026-07-28T01:53:22.000Z",
+                                  "uid": "35240-9b0fb2b2-8629-41e0-9236-c8823fbc94aa"
+                                },
+                                {
+                                  "id": "b51f1b80-fe3d-4115-ac05-7341016ef799",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/traces?run_external_id=<uuid>&offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "traces"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The workflow run external id",
+                                          "key": "run_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The number of spans to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number of spans to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:22.000Z",
+                                  "updatedAt": "2026-07-28T01:53:22.000Z",
+                                  "uid": "35240-b51f1b80-fe3d-4115-ac05-7341016ef799"
+                                },
+                                {
+                                  "id": "f3e7a20e-0514-48d3-857f-03e4de485eab",
+                                  "name": "Trace not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/traces?run_external_id=<uuid>&offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "traces"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The workflow run external id",
+                                          "key": "run_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The number of spans to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number of spans to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:22.000Z",
+                                  "updatedAt": "2026-07-28T01:53:22.000Z",
+                                  "uid": "35240-f3e7a20e-0514-48d3-857f-03e4de485eab"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:22.000Z",
+                              "updatedAt": "2026-07-28T01:53:22.000Z",
+                              "uid": "35240-f38355b0-8e3a-4c06-94ae-dbf1909b3499"
+                            }
+                          ],
+                          "id": "3c52627a-34c8-4216-aa52-4719e1c0a373",
+                          "createdAt": "2026-07-28T01:53:22.000Z",
+                          "updatedAt": "2026-07-28T01:53:22.000Z",
+                          "uid": "35240-3c52627a-34c8-4216-aa52-4719e1c0a373"
+                        }
+                      ],
+                      "id": "2c29ce05-318d-42a7-b4c8-0f855a48095f",
+                      "createdAt": "2026-07-28T01:53:22.000Z",
+                      "updatedAt": "2026-07-28T01:53:22.000Z",
+                      "uid": "35240-2c29ce05-318d-42a7-b4c8-0f855a48095f"
+                    }
+                  ],
+                  "id": "93181658-308b-4341-ab6d-f3e9353b44b3",
+                  "createdAt": "2026-07-28T01:53:22.000Z",
+                  "updatedAt": "2026-07-28T01:53:22.000Z",
+                  "uid": "35240-93181658-308b-4341-ab6d-f3e9353b44b3"
+                }
+              ],
+              "id": "6c39fb09-962a-462d-b09e-4bb1714f72fc",
+              "createdAt": "2026-07-28T01:53:22.000Z",
+              "updatedAt": "2026-07-28T01:53:22.000Z",
+              "uid": "35240-6c39fb09-962a-462d-b09e-4bb1714f72fc"
+            }
+          ],
+          "id": "dc7cae92-9990-4f69-b3bc-eac4780876cd",
+          "createdAt": "2026-07-28T01:53:22.000Z",
+          "updatedAt": "2026-07-28T01:53:22.000Z",
+          "uid": "35240-dc7cae92-9990-4f69-b3bc-eac4780876cd"
+        }
+      ],
+      "id": "23a6593f-9d13-48a8-a5ce-3d5eae3e04c7",
+      "createdAt": "2026-07-28T01:53:22.000Z",
+      "updatedAt": "2026-07-28T01:53:22.000Z",
+      "uid": "35240-23a6593f-9d13-48a8-a5ce-3d5eae3e04c7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

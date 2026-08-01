@@ -1,0 +1,1552 @@
+{
+  "info": {
+    "_postman_id": "085cdfc3-c6fe-4bda-9015-3a76318e7837",
+    "name": "Hatchet API Token Filter API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:16.000Z",
+    "updatedAt": "2026-07-28T01:53:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-085cdfc3-c6fe-4bda-9015-3a76318e7837"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "stable",
+              "item": [
+                {
+                  "name": "tenants",
+                  "item": [
+                    {
+                      "name": "{tenant}",
+                      "item": [
+                        {
+                          "name": "filters",
+                          "item": [
+                            {
+                              "name": "{v1-filter}",
+                              "item": [
+                                {
+                                  "name": "Get a Filter",
+                                  "id": "6740618a-91ba-4dfe-bedb-20e7058c3f3e",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters",
+                                        ":v1-filter"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "0ebaf452-ee45-4beb-a6e2-de508ecb9d74",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "563b4c3b-3f79-4f01-888c-cf0f17dd6864",
+                                          "key": "v1-filter",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The filter id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get a filter by its id"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a514c736-524b-4299-9b5a-f22262721ca3",
+                                      "name": "Successfully got the filter",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {},\n  \"isDeclarative\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-a514c736-524b-4299-9b5a-f22262721ca3"
+                                    },
+                                    {
+                                      "id": "7f78525f-4479-4d4f-9934-0327fe55c9ee",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-7f78525f-4479-4d4f-9934-0327fe55c9ee"
+                                    },
+                                    {
+                                      "id": "d185c8d8-ce42-41e4-9dad-7d99464cc8f9",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-d185c8d8-ce42-41e4-9dad-7d99464cc8f9"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-6740618a-91ba-4dfe-bedb-20e7058c3f3e"
+                                },
+                                {
+                                  "name": "v1-filter:delete",
+                                  "id": "874cdfda-1bf6-4360-901e-3ed1609d56d1",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters",
+                                        ":v1-filter"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a181ec36-a6f0-46ba-b0d8-49f3618fd984",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "549c2566-7dc3-4b38-825a-f32031f10f8a",
+                                          "key": "v1-filter",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The filter id to delete"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Delete a filter"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "3644a787-7d48-40bf-8b33-c71b1f1f66cf",
+                                      "name": "Successfully deleted filter",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {},\n  \"isDeclarative\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-3644a787-7d48-40bf-8b33-c71b1f1f66cf"
+                                    },
+                                    {
+                                      "id": "3e52ac1a-981b-454a-8eeb-0ea4d452ab9a",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-3e52ac1a-981b-454a-8eeb-0ea4d452ab9a"
+                                    },
+                                    {
+                                      "id": "955fe4fe-a518-4f8c-874f-aed0b5e882c4",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-955fe4fe-a518-4f8c-874f-aed0b5e882c4"
+                                    },
+                                    {
+                                      "id": "90d92a00-866a-4105-b091-37f9bda83e3b",
+                                      "name": "Not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-90d92a00-866a-4105-b091-37f9bda83e3b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-874cdfda-1bf6-4360-901e-3ed1609d56d1"
+                                },
+                                {
+                                  "name": "v1-filter:update",
+                                  "id": "db66631a-f799-4bdc-acf3-b1f50334feec",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"expression\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"payload\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters",
+                                        ":v1-filter"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "14d38a9c-be9f-46a7-9828-be3775175221",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "eb555eec-4e44-4139-ab74-212143f94227",
+                                          "key": "v1-filter",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The filter id to update"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Update a filter"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9b4fd48e-281d-43ca-b34f-bd4f0ab75f5b",
+                                      "name": "Successfully updated filter",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"expression\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"payload\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {},\n  \"isDeclarative\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-9b4fd48e-281d-43ca-b34f-bd4f0ab75f5b"
+                                    },
+                                    {
+                                      "id": "96fc0e70-fab0-44ec-87ae-9482b0435688",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"expression\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"payload\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-96fc0e70-fab0-44ec-87ae-9482b0435688"
+                                    },
+                                    {
+                                      "id": "78e9d671-f7fb-4204-97c9-66ffef2bf524",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"expression\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"payload\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-78e9d671-f7fb-4204-97c9-66ffef2bf524"
+                                    },
+                                    {
+                                      "id": "789cf177-9f80-44b7-9419-a23e3f0fbdc7",
+                                      "name": "Not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"expression\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"payload\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "filters",
+                                            ":v1-filter"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-filter"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:17.000Z",
+                                      "updatedAt": "2026-07-28T01:53:17.000Z",
+                                      "uid": "35240-789cf177-9f80-44b7-9419-a23e3f0fbdc7"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-db66631a-f799-4bdc-acf3-b1f50334feec"
+                                }
+                              ],
+                              "id": "c4519d7f-0c63-46ff-86ab-3d0e7367a68b",
+                              "createdAt": "2026-07-28T01:53:16.000Z",
+                              "updatedAt": "2026-07-28T01:53:16.000Z",
+                              "uid": "35240-c4519d7f-0c63-46ff-86ab-3d0e7367a68b"
+                            },
+                            {
+                              "name": "List Filters",
+                              "id": "3a324326-e2f9-4efc-8e7a-8a9e445a7b4d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters?offset=<long>&limit=<long>&workflowIds=<uuid>&workflowIds=<uuid>&scopes=<string>&scopes=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "filters"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The workflow ids to filter by",
+                                      "key": "workflowIds",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The workflow ids to filter by",
+                                      "key": "workflowIds",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The scopes to subset candidate filters by",
+                                      "key": "scopes",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The scopes to subset candidate filters by",
+                                      "key": "scopes",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e7a96f60-f1db-4e07-be85-d6ac028ee0c3",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Lists all filters for a tenant."
+                              },
+                              "response": [
+                                {
+                                  "id": "35c999ff-f788-4efb-be1a-1ba36fcda224",
+                                  "name": "Successfully listed the filters",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters?offset=<long>&limit=<long>&workflowIds=<uuid>&scopes=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The workflow ids to filter by",
+                                          "key": "workflowIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The scopes to subset candidate filters by",
+                                          "key": "scopes",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"workflowId\": \"<uuid>\",\n      \"scope\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"payload\": {},\n      \"isDeclarative\": \"<boolean>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"workflowId\": \"<uuid>\",\n      \"scope\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"payload\": {},\n      \"isDeclarative\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-35c999ff-f788-4efb-be1a-1ba36fcda224"
+                                },
+                                {
+                                  "id": "3a5f929d-1667-46cd-9391-a06ddde803fe",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters?offset=<long>&limit=<long>&workflowIds=<uuid>&scopes=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The workflow ids to filter by",
+                                          "key": "workflowIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The scopes to subset candidate filters by",
+                                          "key": "scopes",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-3a5f929d-1667-46cd-9391-a06ddde803fe"
+                                },
+                                {
+                                  "id": "3f8c30d8-1b1b-406e-9099-95aa984f3d31",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters?offset=<long>&limit=<long>&workflowIds=<uuid>&scopes=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The workflow ids to filter by",
+                                          "key": "workflowIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The scopes to subset candidate filters by",
+                                          "key": "scopes",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-3f8c30d8-1b1b-406e-9099-95aa984f3d31"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:17.000Z",
+                              "updatedAt": "2026-07-28T01:53:17.000Z",
+                              "uid": "35240-3a324326-e2f9-4efc-8e7a-8a9e445a7b4d"
+                            },
+                            {
+                              "name": "Create a Filter",
+                              "id": "c728f21e-3960-40f7-b7fd-ad4470ae0956",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8b92cc60-2dd2-462c-bd4b-da59aabfb022",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new filter"
+                              },
+                              "response": [
+                                {
+                                  "id": "6a0d8971-103a-4835-9113-f9115d5ac612",
+                                  "name": "Successfully created the filter",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {},\n  \"isDeclarative\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-6a0d8971-103a-4835-9113-f9115d5ac612"
+                                },
+                                {
+                                  "id": "a6cf8d89-2b50-4213-a400-78acb2176a45",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-a6cf8d89-2b50-4213-a400-78acb2176a45"
+                                },
+                                {
+                                  "id": "7ebd9a53-9709-48c3-9cb1-c8ccfb40b824",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-7ebd9a53-9709-48c3-9cb1-c8ccfb40b824"
+                                },
+                                {
+                                  "id": "0e031032-e83f-44e0-ae7e-589e510e9b11",
+                                  "name": "Not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"workflowId\": \"<uuid>\",\n  \"scope\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"payload\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/filters",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "filters"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:17.000Z",
+                                  "updatedAt": "2026-07-28T01:53:17.000Z",
+                                  "uid": "35240-0e031032-e83f-44e0-ae7e-589e510e9b11"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:17.000Z",
+                              "updatedAt": "2026-07-28T01:53:17.000Z",
+                              "uid": "35240-c728f21e-3960-40f7-b7fd-ad4470ae0956"
+                            }
+                          ],
+                          "id": "155e9b5c-e7d5-4f53-88cf-6b29cc00033b",
+                          "createdAt": "2026-07-28T01:53:16.000Z",
+                          "updatedAt": "2026-07-28T01:53:16.000Z",
+                          "uid": "35240-155e9b5c-e7d5-4f53-88cf-6b29cc00033b"
+                        }
+                      ],
+                      "id": "60c7e1d8-aea1-422f-8ccc-be18f17cbd7d",
+                      "createdAt": "2026-07-28T01:53:16.000Z",
+                      "updatedAt": "2026-07-28T01:53:16.000Z",
+                      "uid": "35240-60c7e1d8-aea1-422f-8ccc-be18f17cbd7d"
+                    }
+                  ],
+                  "id": "24ee9c6e-9058-424c-a33b-95a85dba180b",
+                  "createdAt": "2026-07-28T01:53:16.000Z",
+                  "updatedAt": "2026-07-28T01:53:16.000Z",
+                  "uid": "35240-24ee9c6e-9058-424c-a33b-95a85dba180b"
+                }
+              ],
+              "id": "92da6500-ea80-44ac-9a80-d5b069a6425a",
+              "createdAt": "2026-07-28T01:53:16.000Z",
+              "updatedAt": "2026-07-28T01:53:16.000Z",
+              "uid": "35240-92da6500-ea80-44ac-9a80-d5b069a6425a"
+            }
+          ],
+          "id": "af23f96a-bfc6-4f4e-ac7e-03260228cbec",
+          "createdAt": "2026-07-28T01:53:16.000Z",
+          "updatedAt": "2026-07-28T01:53:16.000Z",
+          "uid": "35240-af23f96a-bfc6-4f4e-ac7e-03260228cbec"
+        }
+      ],
+      "id": "20b3d7b6-dc17-4fcb-8c5c-047bffd902f2",
+      "createdAt": "2026-07-28T01:53:16.000Z",
+      "updatedAt": "2026-07-28T01:53:16.000Z",
+      "uid": "35240-20b3d7b6-dc17-4fcb-8c5c-047bffd902f2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "05e80069-d7e8-47ca-8a94-4fd9de94ff22",
+    "name": "Hatchet API Token Version API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:24.000Z",
+    "updatedAt": "2026-07-28T01:54:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-05e80069-d7e8-47ca-8a94-4fd9de94ff22"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "version",
+              "item": [
+                {
+                  "name": "We Return the Version for the Currently Running Server",
+                  "id": "4bb1ccc3-f563-4f9a-91fc-43c8c41b3093",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "version"
+                      ]
+                    },
+                    "description": "Get the version of the server"
+                  },
+                  "response": [
+                    {
+                      "id": "3d649924-d6e9-442d-89f9-7a0b437925df",
+                      "name": "The version of the server",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "version"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"version\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:54:25.000Z",
+                      "updatedAt": "2026-07-28T01:54:25.000Z",
+                      "uid": "35240-3d649924-d6e9-442d-89f9-7a0b437925df"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:25.000Z",
+                  "updatedAt": "2026-07-28T01:54:25.000Z",
+                  "uid": "35240-4bb1ccc3-f563-4f9a-91fc-43c8c41b3093"
+                }
+              ],
+              "id": "b51bd827-c17b-4e29-850f-28e663bf282d",
+              "createdAt": "2026-07-28T01:54:25.000Z",
+              "updatedAt": "2026-07-28T01:54:25.000Z",
+              "uid": "35240-b51bd827-c17b-4e29-850f-28e663bf282d"
+            }
+          ],
+          "id": "1cbcfba5-125a-4127-9bf0-d65bb61d2707",
+          "createdAt": "2026-07-28T01:54:25.000Z",
+          "updatedAt": "2026-07-28T01:54:25.000Z",
+          "uid": "35240-1cbcfba5-125a-4127-9bf0-d65bb61d2707"
+        }
+      ],
+      "id": "f59c36ae-e000-4807-aa6c-29052b928b58",
+      "createdAt": "2026-07-28T01:54:25.000Z",
+      "updatedAt": "2026-07-28T01:54:25.000Z",
+      "uid": "35240-f59c36ae-e000-4807-aa6c-29052b928b58"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

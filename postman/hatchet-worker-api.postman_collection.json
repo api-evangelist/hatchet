@@ -1,0 +1,802 @@
+{
+  "info": {
+    "_postman_id": "db960ae3-3bc7-42ca-9181-81d275d18aa4",
+    "name": "Hatchet API Token Worker API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:27.000Z",
+    "updatedAt": "2026-07-28T01:54:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-db960ae3-3bc7-42ca-9181-81d275d18aa4"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "worker",
+                      "item": [
+                        {
+                          "name": "Get Workers",
+                          "id": "175c27af-b7b3-4765-8ed5-9fe23a02da44",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/worker?offset=<long>&limit=<long>&statuses=INACTIVE&statuses=INACTIVE",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "worker"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number to skip",
+                                  "key": "offset",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "The number to limit by",
+                                  "key": "limit",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "Filter by worker status",
+                                  "key": "statuses",
+                                  "value": "INACTIVE"
+                                },
+                                {
+                                  "description": "Filter by worker status",
+                                  "key": "statuses",
+                                  "value": "INACTIVE"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cf4b9e6b-7898-4702-b947-9539f417487c",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Get all workers for a tenant"
+                          },
+                          "response": [
+                            {
+                              "id": "49bc7379-2cdd-4f34-bf97-80cf0fbf3ab0",
+                              "name": "Successfully retrieved the workflows",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/worker?offset=<long>&limit=<long>&statuses=INACTIVE",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "worker"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Filter by worker status",
+                                      "key": "statuses",
+                                      "value": "INACTIVE"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"type\": \"WEBHOOK\",\n      \"lastHeartbeatAt\": \"<dateTime>\",\n      \"lastListenerEstablished\": \"<dateTime>\",\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"registeredWorkflows\": [\n        {\n          \"id\": \"<uuid>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"slots\": [\n        {\n          \"stepRunId\": \"<uuid>\",\n          \"actionId\": \"<string>\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"timeoutAt\": \"<dateTime>\",\n          \"status\": \"BACKOFF\"\n        },\n        {\n          \"stepRunId\": \"<uuid>\",\n          \"actionId\": \"<string>\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"timeoutAt\": \"<dateTime>\",\n          \"status\": \"PENDING\"\n        }\n      ],\n      \"recentStepRuns\": [\n        {\n          \"actionId\": \"<string>\",\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"status\": \"BACKOFF\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"finishedAt\": \"<dateTime>\",\n          \"cancelledAt\": \"<dateTime>\"\n        },\n        {\n          \"actionId\": \"<string>\",\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"status\": \"BACKOFF\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"finishedAt\": \"<dateTime>\",\n          \"cancelledAt\": \"<dateTime>\"\n        }\n      ],\n      \"status\": \"PAUSED\",\n      \"slotConfig\": {\n        \"nisi_09\": {\n          \"limit\": \"<integer>\",\n          \"available\": \"<integer>\"\n        }\n      },\n      \"dispatcherId\": \"<uuid>\",\n      \"labels\": [\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"webhookUrl\": \"<string>\",\n      \"webhookId\": \"<uuid>\",\n      \"runtimeInfo\": {\n        \"sdkVersion\": \"<string>\",\n        \"language\": \"TYPESCRIPT\",\n        \"languageVersion\": \"<string>\",\n        \"os\": \"<string>\",\n        \"runtimeExtra\": \"<string>\"\n      }\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"type\": \"WEBHOOK\",\n      \"lastHeartbeatAt\": \"<dateTime>\",\n      \"lastListenerEstablished\": \"<dateTime>\",\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"registeredWorkflows\": [\n        {\n          \"id\": \"<uuid>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"slots\": [\n        {\n          \"stepRunId\": \"<uuid>\",\n          \"actionId\": \"<string>\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"timeoutAt\": \"<dateTime>\",\n          \"status\": \"PENDING\"\n        },\n        {\n          \"stepRunId\": \"<uuid>\",\n          \"actionId\": \"<string>\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"timeoutAt\": \"<dateTime>\",\n          \"status\": \"RUNNING\"\n        }\n      ],\n      \"recentStepRuns\": [\n        {\n          \"actionId\": \"<string>\",\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"status\": \"CANCELLED\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"finishedAt\": \"<dateTime>\",\n          \"cancelledAt\": \"<dateTime>\"\n        },\n        {\n          \"actionId\": \"<string>\",\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"status\": \"PENDING\",\n          \"workflowRunId\": \"<uuid>\",\n          \"startedAt\": \"<dateTime>\",\n          \"finishedAt\": \"<dateTime>\",\n          \"cancelledAt\": \"<dateTime>\"\n        }\n      ],\n      \"status\": \"PAUSED\",\n      \"slotConfig\": {\n        \"ea_42\": {\n          \"limit\": \"<integer>\",\n          \"available\": \"<integer>\"\n        }\n      },\n      \"dispatcherId\": \"<uuid>\",\n      \"labels\": [\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"webhookUrl\": \"<string>\",\n      \"webhookId\": \"<uuid>\",\n      \"runtimeInfo\": {\n        \"sdkVersion\": \"<string>\",\n        \"language\": \"RUBY\",\n        \"languageVersion\": \"<string>\",\n        \"os\": \"<string>\",\n        \"runtimeExtra\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:28.000Z",
+                              "updatedAt": "2026-07-28T01:54:28.000Z",
+                              "uid": "35240-49bc7379-2cdd-4f34-bf97-80cf0fbf3ab0"
+                            },
+                            {
+                              "id": "15dd9f99-084b-4bb3-be81-a8176258f8d1",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/worker?offset=<long>&limit=<long>&statuses=INACTIVE",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "worker"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Filter by worker status",
+                                      "key": "statuses",
+                                      "value": "INACTIVE"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:28.000Z",
+                              "updatedAt": "2026-07-28T01:54:28.000Z",
+                              "uid": "35240-15dd9f99-084b-4bb3-be81-a8176258f8d1"
+                            },
+                            {
+                              "id": "e6f8c470-34b7-40cd-a426-18ccfa722bb4",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/worker?offset=<long>&limit=<long>&statuses=INACTIVE",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "worker"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Filter by worker status",
+                                      "key": "statuses",
+                                      "value": "INACTIVE"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:28.000Z",
+                              "updatedAt": "2026-07-28T01:54:28.000Z",
+                              "uid": "35240-e6f8c470-34b7-40cd-a426-18ccfa722bb4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-175c27af-b7b3-4765-8ed5-9fe23a02da44"
+                        }
+                      ],
+                      "id": "5e1d4c94-d639-45d8-aae6-dfc7ec27cb4d",
+                      "createdAt": "2026-07-28T01:54:28.000Z",
+                      "updatedAt": "2026-07-28T01:54:28.000Z",
+                      "uid": "35240-5e1d4c94-d639-45d8-aae6-dfc7ec27cb4d"
+                    }
+                  ],
+                  "id": "a3cc0a6a-dd3a-42e6-a998-d5b8fded658b",
+                  "createdAt": "2026-07-28T01:54:28.000Z",
+                  "updatedAt": "2026-07-28T01:54:28.000Z",
+                  "uid": "35240-a3cc0a6a-dd3a-42e6-a998-d5b8fded658b"
+                }
+              ],
+              "id": "bcba8ebe-23de-426a-ac06-f6984acb5ff2",
+              "createdAt": "2026-07-28T01:54:28.000Z",
+              "updatedAt": "2026-07-28T01:54:28.000Z",
+              "uid": "35240-bcba8ebe-23de-426a-ac06-f6984acb5ff2"
+            },
+            {
+              "name": "workers",
+              "item": [
+                {
+                  "name": "{worker}",
+                  "item": [
+                    {
+                      "name": "Update Worker",
+                      "id": "4291421b-fe30-474c-9cf0-bcd8ad2fd2de",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "workers",
+                            ":worker"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d1be4e6b-9d9a-481d-af11-4a9a9e1c51cf",
+                              "key": "worker",
+                              "value": "<uuid>",
+                              "description": "(Required) The worker id"
+                            }
+                          ]
+                        },
+                        "description": "Update a worker"
+                      },
+                      "response": [
+                        {
+                          "id": "15a65668-c334-4645-97bc-74c1c74686ed",
+                          "name": "Successfully updated the worker",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "workers",
+                                ":worker"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "worker"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"name\": \"<string>\",\n  \"type\": \"WEBHOOK\",\n  \"lastHeartbeatAt\": \"<dateTime>\",\n  \"lastListenerEstablished\": \"<dateTime>\",\n  \"actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"registeredWorkflows\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"slots\": [\n    {\n      \"stepRunId\": \"<uuid>\",\n      \"actionId\": \"<string>\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"timeoutAt\": \"<dateTime>\",\n      \"status\": \"CANCELLING\"\n    },\n    {\n      \"stepRunId\": \"<uuid>\",\n      \"actionId\": \"<string>\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"timeoutAt\": \"<dateTime>\",\n      \"status\": \"PENDING\"\n    }\n  ],\n  \"recentStepRuns\": [\n    {\n      \"actionId\": \"<string>\",\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"status\": \"ASSIGNED\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"cancelledAt\": \"<dateTime>\"\n    },\n    {\n      \"actionId\": \"<string>\",\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"status\": \"CANCELLING\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"cancelledAt\": \"<dateTime>\"\n    }\n  ],\n  \"status\": \"ACTIVE\",\n  \"slotConfig\": {\n    \"Duis69\": {\n      \"limit\": \"<integer>\",\n      \"available\": \"<integer>\"\n    },\n    \"sunt_8\": {\n      \"limit\": \"<integer>\",\n      \"available\": \"<integer>\"\n    }\n  },\n  \"dispatcherId\": \"<uuid>\",\n  \"labels\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"webhookId\": \"<uuid>\",\n  \"runtimeInfo\": {\n    \"sdkVersion\": \"<string>\",\n    \"language\": \"TYPESCRIPT\",\n    \"languageVersion\": \"<string>\",\n    \"os\": \"<string>\",\n    \"runtimeExtra\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-15a65668-c334-4645-97bc-74c1c74686ed"
+                        },
+                        {
+                          "id": "5d975fd0-3171-4077-a1e6-95f07add82de",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "workers",
+                                ":worker"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "worker"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-5d975fd0-3171-4077-a1e6-95f07add82de"
+                        },
+                        {
+                          "id": "1eb7931d-b396-4479-aa10-56792d6e1425",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "workers",
+                                ":worker"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "worker"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-1eb7931d-b396-4479-aa10-56792d6e1425"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:54:28.000Z",
+                      "updatedAt": "2026-07-28T01:54:28.000Z",
+                      "uid": "35240-4291421b-fe30-474c-9cf0-bcd8ad2fd2de"
+                    },
+                    {
+                      "name": "Get Worker",
+                      "id": "ebe6c95f-aafd-4d95-94de-b6a30128160c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "workers",
+                            ":worker"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8a9226c6-28c4-44b5-8297-e0afd15a8654",
+                              "key": "worker",
+                              "value": "<uuid>",
+                              "description": "(Required) The worker id"
+                            }
+                          ]
+                        },
+                        "description": "Get a worker"
+                      },
+                      "response": [
+                        {
+                          "id": "34a36ed1-d7d8-4a98-a240-d972bce7b5ed",
+                          "name": "Successfully retrieved the worker",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "workers",
+                                ":worker"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "worker"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"name\": \"<string>\",\n  \"type\": \"WEBHOOK\",\n  \"lastHeartbeatAt\": \"<dateTime>\",\n  \"lastListenerEstablished\": \"<dateTime>\",\n  \"actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"registeredWorkflows\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"slots\": [\n    {\n      \"stepRunId\": \"<uuid>\",\n      \"actionId\": \"<string>\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"timeoutAt\": \"<dateTime>\",\n      \"status\": \"CANCELLING\"\n    },\n    {\n      \"stepRunId\": \"<uuid>\",\n      \"actionId\": \"<string>\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"timeoutAt\": \"<dateTime>\",\n      \"status\": \"PENDING\"\n    }\n  ],\n  \"recentStepRuns\": [\n    {\n      \"actionId\": \"<string>\",\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"status\": \"ASSIGNED\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"cancelledAt\": \"<dateTime>\"\n    },\n    {\n      \"actionId\": \"<string>\",\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"status\": \"CANCELLING\",\n      \"workflowRunId\": \"<uuid>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"cancelledAt\": \"<dateTime>\"\n    }\n  ],\n  \"status\": \"ACTIVE\",\n  \"slotConfig\": {\n    \"Duis69\": {\n      \"limit\": \"<integer>\",\n      \"available\": \"<integer>\"\n    },\n    \"sunt_8\": {\n      \"limit\": \"<integer>\",\n      \"available\": \"<integer>\"\n    }\n  },\n  \"dispatcherId\": \"<uuid>\",\n  \"labels\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"webhookId\": \"<uuid>\",\n  \"runtimeInfo\": {\n    \"sdkVersion\": \"<string>\",\n    \"language\": \"TYPESCRIPT\",\n    \"languageVersion\": \"<string>\",\n    \"os\": \"<string>\",\n    \"runtimeExtra\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-34a36ed1-d7d8-4a98-a240-d972bce7b5ed"
+                        },
+                        {
+                          "id": "8755a54d-6334-4a96-bf0f-f7707a00aa76",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "workers",
+                                ":worker"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "worker"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-8755a54d-6334-4a96-bf0f-f7707a00aa76"
+                        },
+                        {
+                          "id": "a9c7ed55-06fb-439a-afed-7662c7170e5c",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/workers/:worker",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "workers",
+                                ":worker"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "worker"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:54:28.000Z",
+                          "updatedAt": "2026-07-28T01:54:28.000Z",
+                          "uid": "35240-a9c7ed55-06fb-439a-afed-7662c7170e5c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:54:28.000Z",
+                      "updatedAt": "2026-07-28T01:54:28.000Z",
+                      "uid": "35240-ebe6c95f-aafd-4d95-94de-b6a30128160c"
+                    }
+                  ],
+                  "id": "d8b5b094-db43-4f7a-90ed-b401aec6956b",
+                  "createdAt": "2026-07-28T01:54:28.000Z",
+                  "updatedAt": "2026-07-28T01:54:28.000Z",
+                  "uid": "35240-d8b5b094-db43-4f7a-90ed-b401aec6956b"
+                }
+              ],
+              "id": "34b16e5b-3f56-4a4a-b6c8-9e204d072d85",
+              "createdAt": "2026-07-28T01:54:28.000Z",
+              "updatedAt": "2026-07-28T01:54:28.000Z",
+              "uid": "35240-34b16e5b-3f56-4a4a-b6c8-9e204d072d85"
+            }
+          ],
+          "id": "01252814-5a77-4408-8ad0-77518bd7933a",
+          "createdAt": "2026-07-28T01:54:28.000Z",
+          "updatedAt": "2026-07-28T01:54:28.000Z",
+          "uid": "35240-01252814-5a77-4408-8ad0-77518bd7933a"
+        }
+      ],
+      "id": "8f46b20a-bf36-4091-b81e-9944e619f6d9",
+      "createdAt": "2026-07-28T01:54:28.000Z",
+      "updatedAt": "2026-07-28T01:54:28.000Z",
+      "uid": "35240-8f46b20a-bf36-4091-b81e-9944e619f6d9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

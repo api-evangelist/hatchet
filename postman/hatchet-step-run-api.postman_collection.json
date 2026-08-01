@@ -1,0 +1,2137 @@
+{
+  "info": {
+    "_postman_id": "87eb9e34-d5db-4d66-9523-80220f8baf61",
+    "name": "Hatchet API Token Step Run API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:29.000Z",
+    "updatedAt": "2026-07-28T01:53:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-87eb9e34-d5db-4d66-9523-80220f8baf61"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "step-runs",
+              "item": [
+                {
+                  "name": "{step-run}",
+                  "item": [
+                    {
+                      "name": "events",
+                      "item": [
+                        {
+                          "name": "List Events for Step Run",
+                          "id": "396f9b72-97ad-4c46-bd5d-6668563a2cbc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/events?offset=<long>&limit=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "step-runs",
+                                ":step-run",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number to skip",
+                                  "key": "offset",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "The number to limit by",
+                                  "key": "limit",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9741dabc-e81f-45d1-a22c-ee75c2f8c050",
+                                  "key": "step-run",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The step run id"
+                                }
+                              ]
+                            },
+                            "description": "List events for a step run"
+                          },
+                          "response": [
+                            {
+                              "id": "113938e2-6db2-429a-a269-2a55dda7bd03",
+                              "name": "Successfully retrieved the events",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/events?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"id\": \"<integer>\",\n      \"timeFirstSeen\": \"<dateTime>\",\n      \"timeLastSeen\": \"<dateTime>\",\n      \"reason\": \"WORKFLOW_RUN_GROUP_KEY_SUCCEEDED\",\n      \"severity\": \"INFO\",\n      \"message\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"stepRunId\": \"<string>\",\n      \"workflowRunId\": \"<string>\",\n      \"data\": {}\n    },\n    {\n      \"id\": \"<integer>\",\n      \"timeFirstSeen\": \"<dateTime>\",\n      \"timeLastSeen\": \"<dateTime>\",\n      \"reason\": \"FINISHED\",\n      \"severity\": \"CRITICAL\",\n      \"message\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"stepRunId\": \"<string>\",\n      \"workflowRunId\": \"<string>\",\n      \"data\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-113938e2-6db2-429a-a269-2a55dda7bd03"
+                            },
+                            {
+                              "id": "1a96a5af-6bff-4cc7-88bf-076e2b95b9cb",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/events?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-1a96a5af-6bff-4cc7-88bf-076e2b95b9cb"
+                            },
+                            {
+                              "id": "40a4438d-095c-4bfb-8732-12133e1bc3e6",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/events?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-40a4438d-095c-4bfb-8732-12133e1bc3e6"
+                            },
+                            {
+                              "id": "704918ff-88a7-409d-823f-f4d9bf615f2e",
+                              "name": "The step run was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/events?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-704918ff-88a7-409d-823f-f4d9bf615f2e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:30.000Z",
+                          "updatedAt": "2026-07-28T01:53:30.000Z",
+                          "uid": "35240-396f9b72-97ad-4c46-bd5d-6668563a2cbc"
+                        }
+                      ],
+                      "id": "e7842bbb-2e58-4605-8103-edd934a98f49",
+                      "createdAt": "2026-07-28T01:53:30.000Z",
+                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                      "uid": "35240-e7842bbb-2e58-4605-8103-edd934a98f49"
+                    },
+                    {
+                      "name": "archives",
+                      "item": [
+                        {
+                          "name": "List Archives for Step Run",
+                          "id": "75ae69c3-0b4d-4565-9376-475573639cb1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/archives?offset=<long>&limit=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "step-runs",
+                                ":step-run",
+                                "archives"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number to skip",
+                                  "key": "offset",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "The number to limit by",
+                                  "key": "limit",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a6a28264-0a0b-4284-b05b-7f118e72ee04",
+                                  "key": "step-run",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The step run id"
+                                }
+                              ]
+                            },
+                            "description": "List archives for a step run"
+                          },
+                          "response": [
+                            {
+                              "id": "a14fb3c9-8d1d-4a88-b878-96e887101d61",
+                              "name": "Successfully retrieved the events",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/archives?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "archives"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"stepRunId\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"order\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"input\": \"<string>\",\n      \"output\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"error\": \"<string>\",\n      \"startedAtEpoch\": \"<integer>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"finishedAtEpoch\": \"<integer>\",\n      \"timeoutAt\": \"<dateTime>\",\n      \"timeoutAtEpoch\": \"<integer>\",\n      \"cancelledAt\": \"<dateTime>\",\n      \"cancelledAtEpoch\": \"<integer>\",\n      \"cancelledReason\": \"<string>\",\n      \"cancelledError\": \"<string>\"\n    },\n    {\n      \"stepRunId\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"order\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"input\": \"<string>\",\n      \"output\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"error\": \"<string>\",\n      \"startedAtEpoch\": \"<integer>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"finishedAtEpoch\": \"<integer>\",\n      \"timeoutAt\": \"<dateTime>\",\n      \"timeoutAtEpoch\": \"<integer>\",\n      \"cancelledAt\": \"<dateTime>\",\n      \"cancelledAtEpoch\": \"<integer>\",\n      \"cancelledReason\": \"<string>\",\n      \"cancelledError\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-a14fb3c9-8d1d-4a88-b878-96e887101d61"
+                            },
+                            {
+                              "id": "4eab6db8-9528-4d05-8a9c-1c72e73d88f9",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/archives?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "archives"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-4eab6db8-9528-4d05-8a9c-1c72e73d88f9"
+                            },
+                            {
+                              "id": "3ef4c52b-5161-4d12-8f7d-285035613a3f",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/archives?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "archives"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-3ef4c52b-5161-4d12-8f7d-285035613a3f"
+                            },
+                            {
+                              "id": "1b98169c-ecd6-4bd5-8e5e-e2bc6536c710",
+                              "name": "The step run was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/step-runs/:step-run/archives?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "step-runs",
+                                    ":step-run",
+                                    "archives"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "step-run"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-1b98169c-ecd6-4bd5-8e5e-e2bc6536c710"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:30.000Z",
+                          "updatedAt": "2026-07-28T01:53:30.000Z",
+                          "uid": "35240-75ae69c3-0b4d-4565-9376-475573639cb1"
+                        }
+                      ],
+                      "id": "588b5c21-8e26-4f71-9250-d8650fa65328",
+                      "createdAt": "2026-07-28T01:53:30.000Z",
+                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                      "uid": "35240-588b5c21-8e26-4f71-9250-d8650fa65328"
+                    }
+                  ],
+                  "id": "7f11f2e5-65fb-4418-be67-ce61b928eb80",
+                  "createdAt": "2026-07-28T01:53:30.000Z",
+                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                  "uid": "35240-7f11f2e5-65fb-4418-be67-ce61b928eb80"
+                }
+              ],
+              "id": "2ec9eedc-778b-4083-8df8-b07a2f909d49",
+              "createdAt": "2026-07-28T01:53:30.000Z",
+              "updatedAt": "2026-07-28T01:53:30.000Z",
+              "uid": "35240-2ec9eedc-778b-4083-8df8-b07a2f909d49"
+            },
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "workflow-runs",
+                      "item": [
+                        {
+                          "name": "{workflow-run}",
+                          "item": [
+                            {
+                              "name": "step-run-events",
+                              "item": [
+                                {
+                                  "name": "List Events for All Step Runs for a Workflow Run",
+                                  "id": "95e352e6-2cdf-4a3c-91f5-f01d63dcb541",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events?lastId=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "workflow-runs",
+                                        ":workflow-run",
+                                        "step-run-events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Last ID of the last event",
+                                          "key": "lastId",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b6415086-73c7-4d21-bbb4-8e118ecd5721",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "fe530865-b55e-4180-9984-292d34552f33",
+                                          "key": "workflow-run",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The workflow run id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "List events for all step runs for a workflow run"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ee6fd249-3403-4152-8bd1-5ad403321e0d",
+                                      "name": "Successfully retrieved the events",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events?lastId=<integer>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "workflow-runs",
+                                            ":workflow-run",
+                                            "step-run-events"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Last ID of the last event",
+                                              "key": "lastId",
+                                              "value": "<integer>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workflow-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"id\": \"<integer>\",\n      \"timeFirstSeen\": \"<dateTime>\",\n      \"timeLastSeen\": \"<dateTime>\",\n      \"reason\": \"WORKFLOW_RUN_GROUP_KEY_SUCCEEDED\",\n      \"severity\": \"INFO\",\n      \"message\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"stepRunId\": \"<string>\",\n      \"workflowRunId\": \"<string>\",\n      \"data\": {}\n    },\n    {\n      \"id\": \"<integer>\",\n      \"timeFirstSeen\": \"<dateTime>\",\n      \"timeLastSeen\": \"<dateTime>\",\n      \"reason\": \"FINISHED\",\n      \"severity\": \"CRITICAL\",\n      \"message\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"stepRunId\": \"<string>\",\n      \"workflowRunId\": \"<string>\",\n      \"data\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-ee6fd249-3403-4152-8bd1-5ad403321e0d"
+                                    },
+                                    {
+                                      "id": "bf77ceff-1b8e-4ef4-a83a-c616331d4299",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events?lastId=<integer>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "workflow-runs",
+                                            ":workflow-run",
+                                            "step-run-events"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Last ID of the last event",
+                                              "key": "lastId",
+                                              "value": "<integer>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workflow-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-bf77ceff-1b8e-4ef4-a83a-c616331d4299"
+                                    },
+                                    {
+                                      "id": "c246c1ec-0625-4938-b59c-53d721060ea6",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events?lastId=<integer>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "workflow-runs",
+                                            ":workflow-run",
+                                            "step-run-events"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Last ID of the last event",
+                                              "key": "lastId",
+                                              "value": "<integer>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workflow-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-c246c1ec-0625-4938-b59c-53d721060ea6"
+                                    },
+                                    {
+                                      "id": "e7dbe8c0-252d-4372-b8ca-85aa9ba14656",
+                                      "name": "The step run was not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events?lastId=<integer>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "workflow-runs",
+                                            ":workflow-run",
+                                            "step-run-events"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Last ID of the last event",
+                                              "key": "lastId",
+                                              "value": "<integer>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workflow-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-e7dbe8c0-252d-4372-b8ca-85aa9ba14656"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-95e352e6-2cdf-4a3c-91f5-f01d63dcb541"
+                                }
+                              ],
+                              "id": "502fa8d0-3749-46f4-9c3a-001e63bedf91",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-502fa8d0-3749-46f4-9c3a-001e63bedf91"
+                            }
+                          ],
+                          "id": "2fbeb4ba-046f-43cd-b293-4cb8d2feb371",
+                          "createdAt": "2026-07-28T01:53:30.000Z",
+                          "updatedAt": "2026-07-28T01:53:30.000Z",
+                          "uid": "35240-2fbeb4ba-046f-43cd-b293-4cb8d2feb371"
+                        }
+                      ],
+                      "id": "75ed8ba6-4b7e-404c-ab59-c47f5b7f021c",
+                      "createdAt": "2026-07-28T01:53:30.000Z",
+                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                      "uid": "35240-75ed8ba6-4b7e-404c-ab59-c47f5b7f021c"
+                    },
+                    {
+                      "name": "step-runs",
+                      "item": [
+                        {
+                          "name": "{step-run}",
+                          "item": [
+                            {
+                              "name": "rerun",
+                              "item": [
+                                {
+                                  "name": "Rerun Step Run",
+                                  "id": "44b5c081-96f2-4037-8851-d4501f3541a8",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"input\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/rerun",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run",
+                                        "rerun"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "8322ee41-dd7f-4e4e-90fc-25802221164e",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "7715f089-995d-4bf3-935a-cf7893d632b5",
+                                          "key": "step-run",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The step run id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Reruns a step run"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ac6e1a97-ca53-4fba-9da4-9c1f932c1d3a",
+                                      "name": "Successfully replayed the events",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"input\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/rerun",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "rerun"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"jobRunId\": \"<string>\",\n  \"stepId\": \"<string>\",\n  \"status\": \"BACKOFF\",\n  \"jobRun\": {\n    \"metadata\": {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"tenantId\": \"<string>\",\n    \"workflowRunId\": \"<string>\",\n    \"jobId\": \"<string>\",\n    \"status\": \"FAILED\",\n    \"workflowRun\": {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"workflowVersionId\": \"<string>\",\n      \"status\": \"SUCCEEDED\",\n      \"triggeredBy\": {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"parentWorkflowRunId\": \"<string>\",\n        \"eventId\": \"<string>\",\n        \"cronParentId\": \"<string>\",\n        \"cronSchedule\": \"<string>\"\n      },\n      \"workflowVersion\": {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"version\": \"<string>\",\n        \"order\": \"<integer>\",\n        \"workflowId\": \"<string>\",\n        \"sticky\": \"<string>\",\n        \"defaultPriority\": \"<integer>\",\n        \"workflow\": {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isPaused\": \"<boolean>\",\n          \"versions\": [\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"version\": \"<string>\",\n              \"order\": \"<integer>\",\n              \"workflowId\": \"<string>\",\n              \"workflow\": {\n                \"value\": \"<Circular reference to #/components/schemas/Workflow detected>\"\n              }\n            },\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"version\": \"<string>\",\n              \"order\": \"<integer>\",\n              \"workflowId\": \"<string>\",\n              \"workflow\": {\n                \"value\": \"<Circular reference to #/components/schemas/Workflow detected>\"\n              }\n            }\n          ],\n          \"tags\": [\n            {\n              \"name\": \"<string>\",\n              \"color\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"color\": \"<string>\"\n            }\n          ],\n          \"jobs\": [\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"tenantId\": \"<string>\",\n              \"versionId\": \"<string>\",\n              \"name\": \"<string>\",\n              \"steps\": [\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"fugiat92f\": \"<integer>\",\n                    \"irure_fa_\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"ametf_3\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"description\": \"<string>\",\n              \"timeout\": \"<string>\"\n            },\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"tenantId\": \"<string>\",\n              \"versionId\": \"<string>\",\n              \"name\": \"<string>\",\n              \"steps\": [\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"nisi_63c\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"exf63\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"description\": \"<string>\",\n              \"timeout\": \"<string>\"\n            }\n          ]\n        },\n        \"concurrency\": {\n          \"maxRuns\": \"<integer>\",\n          \"limitStrategy\": \"CANCEL_IN_PROGRESS\",\n          \"getConcurrencyGroup\": \"<string>\"\n        },\n        \"triggers\": {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"workflow_version_id\": \"<string>\",\n          \"tenant_id\": \"<string>\",\n          \"events\": [\n            {\n              \"parent_id\": \"<string>\",\n              \"event_key\": \"<string>\"\n            },\n            {\n              \"parent_id\": \"<string>\",\n              \"event_key\": \"<string>\"\n            }\n          ],\n          \"crons\": [\n            {\n              \"parent_id\": \"<string>\",\n              \"cron\": \"<string>\"\n            },\n            {\n              \"parent_id\": \"<string>\",\n              \"cron\": \"<string>\"\n            }\n          ]\n        },\n        \"scheduleTimeout\": \"<string>\",\n        \"jobs\": [\n          {\n            \"metadata\": {\n              \"id\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\"\n            },\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"steps\": [\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"mollit_621\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"inec8\": \"<integer>\",\n                  \"et_95\": \"<integer>\",\n                  \"culpaffe\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            ],\n            \"description\": \"<string>\",\n            \"timeout\": \"<string>\"\n          },\n          {\n            \"metadata\": {\n              \"id\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\"\n            },\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"steps\": [\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"ipsum_804\": \"<integer>\",\n                  \"voluptate9\": \"<integer>\",\n                  \"dolore_c\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"id997\": \"<integer>\",\n                  \"sed_5_5\": \"<integer>\",\n                  \"sed_952\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            ],\n            \"description\": \"<string>\",\n            \"timeout\": \"<string>\"\n          }\n        ],\n        \"workflowConfig\": {},\n        \"v1Concurrency\": [\n          {\n            \"maxRuns\": \"<integer>\",\n            \"limitStrategy\": \"DROP_NEWEST\",\n            \"expression\": \"<string>\",\n            \"scope\": \"TASK\",\n            \"stepReadableId\": \"<string>\"\n          },\n          {\n            \"maxRuns\": \"<integer>\",\n            \"limitStrategy\": \"DROP_NEWEST\",\n            \"expression\": \"<string>\",\n            \"scope\": \"WORKFLOW\",\n            \"stepReadableId\": \"<string>\"\n          }\n        ],\n        \"inputJsonSchema\": {}\n      },\n      \"displayName\": \"<string>\",\n      \"jobRuns\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/JobRun detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/JobRun detected>\"\n        }\n      ],\n      \"input\": {\n        \"nulla6\": \"voluptate ut dolor ea\",\n        \"dolor_c\": false\n      },\n      \"error\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"parentId\": \"<uuid>\",\n      \"parentStepRunId\": \"<uuid>\",\n      \"additionalMetadata\": {\n        \"irure_a\": \"quis dolor in ut\"\n      }\n    },\n    \"job\": {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"versionId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"steps\": [\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"readableId\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"jobId\": \"<string>\",\n          \"action\": \"<string>\",\n          \"timeout\": \"<string>\",\n          \"isDurable\": \"<boolean>\",\n          \"slotRequests\": {\n            \"ina8\": \"<integer>\",\n            \"dolore_d1\": \"<integer>\",\n            \"aliquip_25\": \"<integer>\",\n            \"nullab\": \"<integer>\"\n          },\n          \"children\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"parents\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"readableId\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"jobId\": \"<string>\",\n          \"action\": \"<string>\",\n          \"timeout\": \"<string>\",\n          \"isDurable\": \"<boolean>\",\n          \"slotRequests\": {\n            \"sede91\": \"<integer>\",\n            \"laboris_c4\": \"<integer>\"\n          },\n          \"children\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"parents\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"timeout\": \"<string>\"\n    },\n    \"tickerId\": \"<string>\",\n    \"stepRuns\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/StepRun detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/StepRun detected>\"\n      }\n    ],\n    \"result\": {},\n    \"startedAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"timeoutAt\": \"<dateTime>\",\n    \"cancelledAt\": \"<dateTime>\",\n    \"cancelledReason\": \"<string>\",\n    \"cancelledError\": \"<string>\"\n  },\n  \"step\": {\n    \"metadata\": {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"readableId\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"jobId\": \"<string>\",\n    \"action\": \"<string>\",\n    \"timeout\": \"<string>\",\n    \"isDurable\": \"<boolean>\",\n    \"slotRequests\": {\n      \"consectetur_33a\": \"<integer>\",\n      \"Excepteur16\": \"<integer>\"\n    },\n    \"children\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"parents\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"childWorkflowsCount\": \"<integer>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childWorkflowRuns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workerId\": \"<string>\",\n  \"input\": \"<string>\",\n  \"output\": \"<string>\",\n  \"requeueAfter\": \"<dateTime>\",\n  \"result\": {},\n  \"error\": \"<string>\",\n  \"startedAt\": \"<dateTime>\",\n  \"startedAtEpoch\": \"<integer>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"finishedAtEpoch\": \"<integer>\",\n  \"timeoutAt\": \"<dateTime>\",\n  \"timeoutAtEpoch\": \"<integer>\",\n  \"cancelledAt\": \"<dateTime>\",\n  \"cancelledAtEpoch\": \"<integer>\",\n  \"cancelledReason\": \"<string>\",\n  \"cancelledError\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-ac6e1a97-ca53-4fba-9da4-9c1f932c1d3a"
+                                    },
+                                    {
+                                      "id": "b1c5f353-35e0-4740-acd5-8a793da0711f",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"input\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/rerun",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "rerun"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-b1c5f353-35e0-4740-acd5-8a793da0711f"
+                                    },
+                                    {
+                                      "id": "985239ee-0a67-4ca1-9323-3118dcdc225e",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"input\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/rerun",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "rerun"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-985239ee-0a67-4ca1-9323-3118dcdc225e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-44b5c081-96f2-4037-8851-d4501f3541a8"
+                                }
+                              ],
+                              "id": "715e7e26-96c6-48c4-910d-faca1c083f0f",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-715e7e26-96c6-48c4-910d-faca1c083f0f"
+                            },
+                            {
+                              "name": "cancel",
+                              "item": [
+                                {
+                                  "name": "Attempts to Cancel a Step Run",
+                                  "id": "3647480f-fec2-4f48-a1ec-1d4074f5371b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/cancel",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run",
+                                        "cancel"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3e1463b9-2f9c-4d04-9c58-4fe5fa63b39f",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "b49a3388-fff7-4efb-b9fb-431042e6421f",
+                                          "key": "step-run",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The step run id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Attempts to cancel a step run"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8d4d397f-772e-4307-a2bb-2626b0feeee9",
+                                      "name": "Successfully dispatched the cancellation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"jobRunId\": \"<string>\",\n  \"stepId\": \"<string>\",\n  \"status\": \"BACKOFF\",\n  \"jobRun\": {\n    \"metadata\": {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"tenantId\": \"<string>\",\n    \"workflowRunId\": \"<string>\",\n    \"jobId\": \"<string>\",\n    \"status\": \"FAILED\",\n    \"workflowRun\": {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"workflowVersionId\": \"<string>\",\n      \"status\": \"SUCCEEDED\",\n      \"triggeredBy\": {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"parentWorkflowRunId\": \"<string>\",\n        \"eventId\": \"<string>\",\n        \"cronParentId\": \"<string>\",\n        \"cronSchedule\": \"<string>\"\n      },\n      \"workflowVersion\": {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"version\": \"<string>\",\n        \"order\": \"<integer>\",\n        \"workflowId\": \"<string>\",\n        \"sticky\": \"<string>\",\n        \"defaultPriority\": \"<integer>\",\n        \"workflow\": {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isPaused\": \"<boolean>\",\n          \"versions\": [\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"version\": \"<string>\",\n              \"order\": \"<integer>\",\n              \"workflowId\": \"<string>\",\n              \"workflow\": {\n                \"value\": \"<Circular reference to #/components/schemas/Workflow detected>\"\n              }\n            },\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"version\": \"<string>\",\n              \"order\": \"<integer>\",\n              \"workflowId\": \"<string>\",\n              \"workflow\": {\n                \"value\": \"<Circular reference to #/components/schemas/Workflow detected>\"\n              }\n            }\n          ],\n          \"tags\": [\n            {\n              \"name\": \"<string>\",\n              \"color\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"color\": \"<string>\"\n            }\n          ],\n          \"jobs\": [\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"tenantId\": \"<string>\",\n              \"versionId\": \"<string>\",\n              \"name\": \"<string>\",\n              \"steps\": [\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"fugiat92f\": \"<integer>\",\n                    \"irure_fa_\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"ametf_3\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"description\": \"<string>\",\n              \"timeout\": \"<string>\"\n            },\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"tenantId\": \"<string>\",\n              \"versionId\": \"<string>\",\n              \"name\": \"<string>\",\n              \"steps\": [\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"nisi_63c\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"exf63\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"description\": \"<string>\",\n              \"timeout\": \"<string>\"\n            }\n          ]\n        },\n        \"concurrency\": {\n          \"maxRuns\": \"<integer>\",\n          \"limitStrategy\": \"CANCEL_IN_PROGRESS\",\n          \"getConcurrencyGroup\": \"<string>\"\n        },\n        \"triggers\": {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"workflow_version_id\": \"<string>\",\n          \"tenant_id\": \"<string>\",\n          \"events\": [\n            {\n              \"parent_id\": \"<string>\",\n              \"event_key\": \"<string>\"\n            },\n            {\n              \"parent_id\": \"<string>\",\n              \"event_key\": \"<string>\"\n            }\n          ],\n          \"crons\": [\n            {\n              \"parent_id\": \"<string>\",\n              \"cron\": \"<string>\"\n            },\n            {\n              \"parent_id\": \"<string>\",\n              \"cron\": \"<string>\"\n            }\n          ]\n        },\n        \"scheduleTimeout\": \"<string>\",\n        \"jobs\": [\n          {\n            \"metadata\": {\n              \"id\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\"\n            },\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"steps\": [\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"mollit_621\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"inec8\": \"<integer>\",\n                  \"et_95\": \"<integer>\",\n                  \"culpaffe\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            ],\n            \"description\": \"<string>\",\n            \"timeout\": \"<string>\"\n          },\n          {\n            \"metadata\": {\n              \"id\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\"\n            },\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"steps\": [\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"ipsum_804\": \"<integer>\",\n                  \"voluptate9\": \"<integer>\",\n                  \"dolore_c\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"id997\": \"<integer>\",\n                  \"sed_5_5\": \"<integer>\",\n                  \"sed_952\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            ],\n            \"description\": \"<string>\",\n            \"timeout\": \"<string>\"\n          }\n        ],\n        \"workflowConfig\": {},\n        \"v1Concurrency\": [\n          {\n            \"maxRuns\": \"<integer>\",\n            \"limitStrategy\": \"DROP_NEWEST\",\n            \"expression\": \"<string>\",\n            \"scope\": \"TASK\",\n            \"stepReadableId\": \"<string>\"\n          },\n          {\n            \"maxRuns\": \"<integer>\",\n            \"limitStrategy\": \"DROP_NEWEST\",\n            \"expression\": \"<string>\",\n            \"scope\": \"WORKFLOW\",\n            \"stepReadableId\": \"<string>\"\n          }\n        ],\n        \"inputJsonSchema\": {}\n      },\n      \"displayName\": \"<string>\",\n      \"jobRuns\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/JobRun detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/JobRun detected>\"\n        }\n      ],\n      \"input\": {\n        \"nulla6\": \"voluptate ut dolor ea\",\n        \"dolor_c\": false\n      },\n      \"error\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"parentId\": \"<uuid>\",\n      \"parentStepRunId\": \"<uuid>\",\n      \"additionalMetadata\": {\n        \"irure_a\": \"quis dolor in ut\"\n      }\n    },\n    \"job\": {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"versionId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"steps\": [\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"readableId\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"jobId\": \"<string>\",\n          \"action\": \"<string>\",\n          \"timeout\": \"<string>\",\n          \"isDurable\": \"<boolean>\",\n          \"slotRequests\": {\n            \"ina8\": \"<integer>\",\n            \"dolore_d1\": \"<integer>\",\n            \"aliquip_25\": \"<integer>\",\n            \"nullab\": \"<integer>\"\n          },\n          \"children\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"parents\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"readableId\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"jobId\": \"<string>\",\n          \"action\": \"<string>\",\n          \"timeout\": \"<string>\",\n          \"isDurable\": \"<boolean>\",\n          \"slotRequests\": {\n            \"sede91\": \"<integer>\",\n            \"laboris_c4\": \"<integer>\"\n          },\n          \"children\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"parents\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"timeout\": \"<string>\"\n    },\n    \"tickerId\": \"<string>\",\n    \"stepRuns\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/StepRun detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/StepRun detected>\"\n      }\n    ],\n    \"result\": {},\n    \"startedAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"timeoutAt\": \"<dateTime>\",\n    \"cancelledAt\": \"<dateTime>\",\n    \"cancelledReason\": \"<string>\",\n    \"cancelledError\": \"<string>\"\n  },\n  \"step\": {\n    \"metadata\": {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"readableId\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"jobId\": \"<string>\",\n    \"action\": \"<string>\",\n    \"timeout\": \"<string>\",\n    \"isDurable\": \"<boolean>\",\n    \"slotRequests\": {\n      \"consectetur_33a\": \"<integer>\",\n      \"Excepteur16\": \"<integer>\"\n    },\n    \"children\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"parents\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"childWorkflowsCount\": \"<integer>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childWorkflowRuns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workerId\": \"<string>\",\n  \"input\": \"<string>\",\n  \"output\": \"<string>\",\n  \"requeueAfter\": \"<dateTime>\",\n  \"result\": {},\n  \"error\": \"<string>\",\n  \"startedAt\": \"<dateTime>\",\n  \"startedAtEpoch\": \"<integer>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"finishedAtEpoch\": \"<integer>\",\n  \"timeoutAt\": \"<dateTime>\",\n  \"timeoutAtEpoch\": \"<integer>\",\n  \"cancelledAt\": \"<dateTime>\",\n  \"cancelledAtEpoch\": \"<integer>\",\n  \"cancelledReason\": \"<string>\",\n  \"cancelledError\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-8d4d397f-772e-4307-a2bb-2626b0feeee9"
+                                    },
+                                    {
+                                      "id": "8765004b-6ffa-49e9-a0ed-d0efaab47887",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-8765004b-6ffa-49e9-a0ed-d0efaab47887"
+                                    },
+                                    {
+                                      "id": "e3f00c90-895c-40c1-a8e0-98fbdc7c2bf5",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-e3f00c90-895c-40c1-a8e0-98fbdc7c2bf5"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-3647480f-fec2-4f48-a1ec-1d4074f5371b"
+                                }
+                              ],
+                              "id": "06687b90-cc35-41e2-8376-615996bd3981",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-06687b90-cc35-41e2-8376-615996bd3981"
+                            },
+                            {
+                              "name": "schema",
+                              "item": [
+                                {
+                                  "name": "Get Step Run Schema",
+                                  "id": "9a3b5594-6c50-4a61-b6ac-15a979cab4f1",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run",
+                                        "schema"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7eb14534-17d6-4417-ab22-625c8a59bbec",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "41d9f23b-286b-45e0-8a7c-1d39aa8c1d58",
+                                          "key": "step-run",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The step run id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get the schema for a step run"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "97ab19d2-c036-4911-ba6e-66943b509134",
+                                      "name": "Successfully retrieved the step run schema",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "schema"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-97ab19d2-c036-4911-ba6e-66943b509134"
+                                    },
+                                    {
+                                      "id": "228250a2-0128-48e1-931a-1859bf4cba13",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "schema"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-228250a2-0128-48e1-931a-1859bf4cba13"
+                                    },
+                                    {
+                                      "id": "eb7bcd53-27fa-4f49-8102-51546c4f425b",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "schema"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-eb7bcd53-27fa-4f49-8102-51546c4f425b"
+                                    },
+                                    {
+                                      "id": "dfbde6c2-e6d9-422a-be5d-c17b7f0cd9c0",
+                                      "name": "The step run was not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "tenants",
+                                            ":tenant",
+                                            "step-runs",
+                                            ":step-run",
+                                            "schema"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "step-run"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:53:30.000Z",
+                                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                                      "uid": "35240-dfbde6c2-e6d9-422a-be5d-c17b7f0cd9c0"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-9a3b5594-6c50-4a61-b6ac-15a979cab4f1"
+                                }
+                              ],
+                              "id": "45140210-654f-4dbe-ae40-a9b19b8d0f31",
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-45140210-654f-4dbe-ae40-a9b19b8d0f31"
+                            },
+                            {
+                              "name": "Get Step Run",
+                              "id": "67435d40-7b60-471d-a158-1c734e9010aa",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "step-runs",
+                                    ":step-run"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6c3c02d7-da42-418d-99ec-85d7289869e4",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    },
+                                    {
+                                      "id": "3d3bbdae-b071-48af-ad06-b363e0b2533c",
+                                      "key": "step-run",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The step run id"
+                                    }
+                                  ]
+                                },
+                                "description": "Get a step run by id"
+                              },
+                              "response": [
+                                {
+                                  "id": "cd455224-6da9-4f3a-afc2-bd081803a59a",
+                                  "name": "Successfully retrieved the step run",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "step-run"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"jobRunId\": \"<string>\",\n  \"stepId\": \"<string>\",\n  \"status\": \"BACKOFF\",\n  \"jobRun\": {\n    \"metadata\": {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"tenantId\": \"<string>\",\n    \"workflowRunId\": \"<string>\",\n    \"jobId\": \"<string>\",\n    \"status\": \"FAILED\",\n    \"workflowRun\": {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"workflowVersionId\": \"<string>\",\n      \"status\": \"SUCCEEDED\",\n      \"triggeredBy\": {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"parentWorkflowRunId\": \"<string>\",\n        \"eventId\": \"<string>\",\n        \"cronParentId\": \"<string>\",\n        \"cronSchedule\": \"<string>\"\n      },\n      \"workflowVersion\": {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"version\": \"<string>\",\n        \"order\": \"<integer>\",\n        \"workflowId\": \"<string>\",\n        \"sticky\": \"<string>\",\n        \"defaultPriority\": \"<integer>\",\n        \"workflow\": {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isPaused\": \"<boolean>\",\n          \"versions\": [\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"version\": \"<string>\",\n              \"order\": \"<integer>\",\n              \"workflowId\": \"<string>\",\n              \"workflow\": {\n                \"value\": \"<Circular reference to #/components/schemas/Workflow detected>\"\n              }\n            },\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"version\": \"<string>\",\n              \"order\": \"<integer>\",\n              \"workflowId\": \"<string>\",\n              \"workflow\": {\n                \"value\": \"<Circular reference to #/components/schemas/Workflow detected>\"\n              }\n            }\n          ],\n          \"tags\": [\n            {\n              \"name\": \"<string>\",\n              \"color\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"color\": \"<string>\"\n            }\n          ],\n          \"jobs\": [\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"tenantId\": \"<string>\",\n              \"versionId\": \"<string>\",\n              \"name\": \"<string>\",\n              \"steps\": [\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"fugiat92f\": \"<integer>\",\n                    \"irure_fa_\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"ametf_3\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"description\": \"<string>\",\n              \"timeout\": \"<string>\"\n            },\n            {\n              \"metadata\": {\n                \"id\": \"<string>\",\n                \"createdAt\": \"<dateTime>\",\n                \"updatedAt\": \"<dateTime>\"\n              },\n              \"tenantId\": \"<string>\",\n              \"versionId\": \"<string>\",\n              \"name\": \"<string>\",\n              \"steps\": [\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"nisi_63c\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"metadata\": {\n                    \"id\": \"<string>\",\n                    \"createdAt\": \"<dateTime>\",\n                    \"updatedAt\": \"<dateTime>\"\n                  },\n                  \"readableId\": \"<string>\",\n                  \"tenantId\": \"<string>\",\n                  \"jobId\": \"<string>\",\n                  \"action\": \"<string>\",\n                  \"timeout\": \"<string>\",\n                  \"isDurable\": \"<boolean>\",\n                  \"slotRequests\": {\n                    \"exf63\": \"<integer>\"\n                  },\n                  \"children\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ],\n                  \"parents\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"description\": \"<string>\",\n              \"timeout\": \"<string>\"\n            }\n          ]\n        },\n        \"concurrency\": {\n          \"maxRuns\": \"<integer>\",\n          \"limitStrategy\": \"CANCEL_IN_PROGRESS\",\n          \"getConcurrencyGroup\": \"<string>\"\n        },\n        \"triggers\": {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"workflow_version_id\": \"<string>\",\n          \"tenant_id\": \"<string>\",\n          \"events\": [\n            {\n              \"parent_id\": \"<string>\",\n              \"event_key\": \"<string>\"\n            },\n            {\n              \"parent_id\": \"<string>\",\n              \"event_key\": \"<string>\"\n            }\n          ],\n          \"crons\": [\n            {\n              \"parent_id\": \"<string>\",\n              \"cron\": \"<string>\"\n            },\n            {\n              \"parent_id\": \"<string>\",\n              \"cron\": \"<string>\"\n            }\n          ]\n        },\n        \"scheduleTimeout\": \"<string>\",\n        \"jobs\": [\n          {\n            \"metadata\": {\n              \"id\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\"\n            },\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"steps\": [\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"mollit_621\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"inec8\": \"<integer>\",\n                  \"et_95\": \"<integer>\",\n                  \"culpaffe\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            ],\n            \"description\": \"<string>\",\n            \"timeout\": \"<string>\"\n          },\n          {\n            \"metadata\": {\n              \"id\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\"\n            },\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"steps\": [\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"ipsum_804\": \"<integer>\",\n                  \"voluptate9\": \"<integer>\",\n                  \"dolore_c\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              {\n                \"metadata\": {\n                  \"id\": \"<string>\",\n                  \"createdAt\": \"<dateTime>\",\n                  \"updatedAt\": \"<dateTime>\"\n                },\n                \"readableId\": \"<string>\",\n                \"tenantId\": \"<string>\",\n                \"jobId\": \"<string>\",\n                \"action\": \"<string>\",\n                \"timeout\": \"<string>\",\n                \"isDurable\": \"<boolean>\",\n                \"slotRequests\": {\n                  \"id997\": \"<integer>\",\n                  \"sed_5_5\": \"<integer>\",\n                  \"sed_952\": \"<integer>\"\n                },\n                \"children\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"parents\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            ],\n            \"description\": \"<string>\",\n            \"timeout\": \"<string>\"\n          }\n        ],\n        \"workflowConfig\": {},\n        \"v1Concurrency\": [\n          {\n            \"maxRuns\": \"<integer>\",\n            \"limitStrategy\": \"DROP_NEWEST\",\n            \"expression\": \"<string>\",\n            \"scope\": \"TASK\",\n            \"stepReadableId\": \"<string>\"\n          },\n          {\n            \"maxRuns\": \"<integer>\",\n            \"limitStrategy\": \"DROP_NEWEST\",\n            \"expression\": \"<string>\",\n            \"scope\": \"WORKFLOW\",\n            \"stepReadableId\": \"<string>\"\n          }\n        ],\n        \"inputJsonSchema\": {}\n      },\n      \"displayName\": \"<string>\",\n      \"jobRuns\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/JobRun detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/JobRun detected>\"\n        }\n      ],\n      \"input\": {\n        \"nulla6\": \"voluptate ut dolor ea\",\n        \"dolor_c\": false\n      },\n      \"error\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"finishedAt\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"parentId\": \"<uuid>\",\n      \"parentStepRunId\": \"<uuid>\",\n      \"additionalMetadata\": {\n        \"irure_a\": \"quis dolor in ut\"\n      }\n    },\n    \"job\": {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"versionId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"steps\": [\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"readableId\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"jobId\": \"<string>\",\n          \"action\": \"<string>\",\n          \"timeout\": \"<string>\",\n          \"isDurable\": \"<boolean>\",\n          \"slotRequests\": {\n            \"ina8\": \"<integer>\",\n            \"dolore_d1\": \"<integer>\",\n            \"aliquip_25\": \"<integer>\",\n            \"nullab\": \"<integer>\"\n          },\n          \"children\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"parents\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"metadata\": {\n            \"id\": \"<string>\",\n            \"createdAt\": \"<dateTime>\",\n            \"updatedAt\": \"<dateTime>\"\n          },\n          \"readableId\": \"<string>\",\n          \"tenantId\": \"<string>\",\n          \"jobId\": \"<string>\",\n          \"action\": \"<string>\",\n          \"timeout\": \"<string>\",\n          \"isDurable\": \"<boolean>\",\n          \"slotRequests\": {\n            \"sede91\": \"<integer>\",\n            \"laboris_c4\": \"<integer>\"\n          },\n          \"children\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"parents\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"timeout\": \"<string>\"\n    },\n    \"tickerId\": \"<string>\",\n    \"stepRuns\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/StepRun detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/StepRun detected>\"\n      }\n    ],\n    \"result\": {},\n    \"startedAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"timeoutAt\": \"<dateTime>\",\n    \"cancelledAt\": \"<dateTime>\",\n    \"cancelledReason\": \"<string>\",\n    \"cancelledError\": \"<string>\"\n  },\n  \"step\": {\n    \"metadata\": {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"readableId\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"jobId\": \"<string>\",\n    \"action\": \"<string>\",\n    \"timeout\": \"<string>\",\n    \"isDurable\": \"<boolean>\",\n    \"slotRequests\": {\n      \"consectetur_33a\": \"<integer>\",\n      \"Excepteur16\": \"<integer>\"\n    },\n    \"children\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"parents\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"childWorkflowsCount\": \"<integer>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childWorkflowRuns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workerId\": \"<string>\",\n  \"input\": \"<string>\",\n  \"output\": \"<string>\",\n  \"requeueAfter\": \"<dateTime>\",\n  \"result\": {},\n  \"error\": \"<string>\",\n  \"startedAt\": \"<dateTime>\",\n  \"startedAtEpoch\": \"<integer>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"finishedAtEpoch\": \"<integer>\",\n  \"timeoutAt\": \"<dateTime>\",\n  \"timeoutAtEpoch\": \"<integer>\",\n  \"cancelledAt\": \"<dateTime>\",\n  \"cancelledAtEpoch\": \"<integer>\",\n  \"cancelledReason\": \"<string>\",\n  \"cancelledError\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-cd455224-6da9-4f3a-afc2-bd081803a59a"
+                                },
+                                {
+                                  "id": "af05f0a4-c2b4-4f1e-a33c-c92ebf6d7096",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "step-run"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-af05f0a4-c2b4-4f1e-a33c-c92ebf6d7096"
+                                },
+                                {
+                                  "id": "9907eaf9-e0b7-4b69-b770-05b627428d9d",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "step-run"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-9907eaf9-e0b7-4b69-b770-05b627428d9d"
+                                },
+                                {
+                                  "id": "c8970dd6-fdbb-4869-b689-6113ca103b6d",
+                                  "name": "The step run was not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/tenants/:tenant/step-runs/:step-run",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "tenants",
+                                        ":tenant",
+                                        "step-runs",
+                                        ":step-run"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "step-run"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:30.000Z",
+                                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                                  "uid": "35240-c8970dd6-fdbb-4869-b689-6113ca103b6d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:30.000Z",
+                              "updatedAt": "2026-07-28T01:53:30.000Z",
+                              "uid": "35240-67435d40-7b60-471d-a158-1c734e9010aa"
+                            }
+                          ],
+                          "id": "c87128bd-4305-4ffd-9708-7504151d423e",
+                          "createdAt": "2026-07-28T01:53:30.000Z",
+                          "updatedAt": "2026-07-28T01:53:30.000Z",
+                          "uid": "35240-c87128bd-4305-4ffd-9708-7504151d423e"
+                        }
+                      ],
+                      "id": "28a5769c-a4b0-4b74-a75c-64458f3c8466",
+                      "createdAt": "2026-07-28T01:53:30.000Z",
+                      "updatedAt": "2026-07-28T01:53:30.000Z",
+                      "uid": "35240-28a5769c-a4b0-4b74-a75c-64458f3c8466"
+                    }
+                  ],
+                  "id": "bbad5e9d-9920-4d96-b811-a0d6efef838b",
+                  "createdAt": "2026-07-28T01:53:30.000Z",
+                  "updatedAt": "2026-07-28T01:53:30.000Z",
+                  "uid": "35240-bbad5e9d-9920-4d96-b811-a0d6efef838b"
+                }
+              ],
+              "id": "b964fa3d-f19b-4055-9eb4-9f8f7e704125",
+              "createdAt": "2026-07-28T01:53:30.000Z",
+              "updatedAt": "2026-07-28T01:53:30.000Z",
+              "uid": "35240-b964fa3d-f19b-4055-9eb4-9f8f7e704125"
+            }
+          ],
+          "id": "7070dc7a-19be-44da-96b9-ec17d76e2c40",
+          "createdAt": "2026-07-28T01:53:30.000Z",
+          "updatedAt": "2026-07-28T01:53:30.000Z",
+          "uid": "35240-7070dc7a-19be-44da-96b9-ec17d76e2c40"
+        }
+      ],
+      "id": "04bb3efd-30c4-407f-9249-8ba1b5a1e78f",
+      "createdAt": "2026-07-28T01:53:30.000Z",
+      "updatedAt": "2026-07-28T01:53:30.000Z",
+      "uid": "35240-04bb3efd-30c4-407f-9249-8ba1b5a1e78f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

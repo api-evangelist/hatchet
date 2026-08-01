@@ -1,0 +1,1552 @@
+{
+  "info": {
+    "_postman_id": "0327a042-87ad-4d6c-b0eb-8297588238bb",
+    "name": "Hatchet API Token Webhook API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:25.000Z",
+    "updatedAt": "2026-07-28T01:54:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0327a042-87ad-4d6c-b0eb-8297588238bb"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "stable",
+              "item": [
+                {
+                  "name": "tenants",
+                  "item": [
+                    {
+                      "name": "{tenant}",
+                      "item": [
+                        {
+                          "name": "webhooks",
+                          "item": [
+                            {
+                              "name": "{v1-webhook}",
+                              "item": [
+                                {
+                                  "name": "Get a Webhook",
+                                  "id": "872b1e4b-5f50-4755-a1b5-9599cd7e3719",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks",
+                                        ":v1-webhook"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "18524dad-783e-4a2a-80b9-bcf7bc602aea",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "98d35d7e-8fea-4eb9-abe9-df2dea413f4b",
+                                          "key": "v1-webhook",
+                                          "value": "<string>",
+                                          "description": "(Required) The webhook name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get a webhook by its name"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "72100153-50f5-421c-a569-a96a51043ac6",
+                                      "name": "Successfully got the webhook",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"authType\": \"API_KEY\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-72100153-50f5-421c-a569-a96a51043ac6"
+                                    },
+                                    {
+                                      "id": "d799c294-4379-4d74-aa94-4c86630f8e54",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-d799c294-4379-4d74-aa94-4c86630f8e54"
+                                    },
+                                    {
+                                      "id": "ca1b225c-a8d4-4a1a-8414-6eb836c33811",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-ca1b225c-a8d4-4a1a-8414-6eb836c33811"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-872b1e4b-5f50-4755-a1b5-9599cd7e3719"
+                                },
+                                {
+                                  "name": "v1-webhook:delete",
+                                  "id": "c48a8f3b-8586-4461-80dc-60b55f8f2a82",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks",
+                                        ":v1-webhook"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "0aaf7983-35aa-4378-81d1-c567ab3ab647",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "130676b7-3a01-4d17-8e79-9500c1861c49",
+                                          "key": "v1-webhook",
+                                          "value": "<string>",
+                                          "description": "(Required) The name of the webhook to delete"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Delete a webhook"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "37ade3af-9e73-4f1c-b678-7ff7344e0174",
+                                      "name": "Successfully deleted webhook",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"authType\": \"API_KEY\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-37ade3af-9e73-4f1c-b678-7ff7344e0174"
+                                    },
+                                    {
+                                      "id": "4670dbb5-59bf-4bd4-83ed-e727023079e9",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-4670dbb5-59bf-4bd4-83ed-e727023079e9"
+                                    },
+                                    {
+                                      "id": "63ee091a-26d1-49ef-8865-ff7426e7303c",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-63ee091a-26d1-49ef-8865-ff7426e7303c"
+                                    },
+                                    {
+                                      "id": "42557a26-52af-485c-b9ad-9bfeae102a0f",
+                                      "name": "Not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-42557a26-52af-485c-b9ad-9bfeae102a0f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-c48a8f3b-8586-4461-80dc-60b55f8f2a82"
+                                },
+                                {
+                                  "name": "Update a Webhook",
+                                  "id": "0c430ee6-ba9b-4455-b2f4-132dd7844d34",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"eventKeyExpression\": \"<string>\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks",
+                                        ":v1-webhook"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "1bb06cff-578f-416a-8aa2-a73b20301d33",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        },
+                                        {
+                                          "id": "636ebcc7-4343-47f5-a65d-ae591d1382ba",
+                                          "key": "v1-webhook",
+                                          "value": "<string>",
+                                          "description": "(Required) The webhook name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Update a webhook"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "65ab059f-0b11-48fc-a260-5176c117a869",
+                                      "name": "Successfully updated the webhook",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"eventKeyExpression\": \"<string>\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"authType\": \"API_KEY\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-65ab059f-0b11-48fc-a260-5176c117a869"
+                                    },
+                                    {
+                                      "id": "bd1ec491-8cb3-4e70-8ef4-b6735d9e4293",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"eventKeyExpression\": \"<string>\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-bd1ec491-8cb3-4e70-8ef4-b6735d9e4293"
+                                    },
+                                    {
+                                      "id": "606817e2-709a-4e5c-90c6-4aff77918c60",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"eventKeyExpression\": \"<string>\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-606817e2-709a-4e5c-90c6-4aff77918c60"
+                                    },
+                                    {
+                                      "id": "9d94e7e8-2392-41b1-a707-7ea9bd782f39",
+                                      "name": "Not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"eventKeyExpression\": \"<string>\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "webhooks",
+                                            ":v1-webhook"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "v1-webhook"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:26.000Z",
+                                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                                      "uid": "35240-9d94e7e8-2392-41b1-a707-7ea9bd782f39"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-0c430ee6-ba9b-4455-b2f4-132dd7844d34"
+                                }
+                              ],
+                              "id": "5ce0e51e-efd4-4fda-9089-3b01fd4bd3ef",
+                              "createdAt": "2026-07-28T01:54:26.000Z",
+                              "updatedAt": "2026-07-28T01:54:26.000Z",
+                              "uid": "35240-5ce0e51e-efd4-4fda-9089-3b01fd4bd3ef"
+                            },
+                            {
+                              "name": "List Webhooks",
+                              "id": "a0fe2506-4f70-4c6b-adea-e1718b0a3029",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks?offset=<long>&limit=<long>&sourceNames=SVIX&sourceNames=SLACK&webhookNames=<string>&webhookNames=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhooks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The source names to filter by",
+                                      "key": "sourceNames",
+                                      "value": "SVIX"
+                                    },
+                                    {
+                                      "description": "The source names to filter by",
+                                      "key": "sourceNames",
+                                      "value": "SLACK"
+                                    },
+                                    {
+                                      "description": "The webhook names to filter by",
+                                      "key": "webhookNames",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The webhook names to filter by",
+                                      "key": "webhookNames",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "04085a11-83a2-4747-9a71-df17e5e42890",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Lists all webhook for a tenant."
+                              },
+                              "response": [
+                                {
+                                  "id": "252ca305-3cf4-411a-aee6-5cba2c9a05ed",
+                                  "name": "Successfully listed the webhooks",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks?offset=<long>&limit=<long>&sourceNames=SLACK&webhookNames=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The source names to filter by",
+                                          "key": "sourceNames",
+                                          "value": "SLACK"
+                                        },
+                                        {
+                                          "description": "The webhook names to filter by",
+                                          "key": "webhookNames",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sourceName\": \"GITHUB\",\n      \"eventKeyExpression\": \"<string>\",\n      \"authType\": \"BASIC\",\n      \"scopeExpression\": \"<string>\",\n      \"staticPayload\": {},\n      \"returnEventAsResponsePayload\": \"<boolean>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sourceName\": \"LINEAR\",\n      \"eventKeyExpression\": \"<string>\",\n      \"authType\": \"BASIC\",\n      \"scopeExpression\": \"<string>\",\n      \"staticPayload\": {},\n      \"returnEventAsResponsePayload\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-252ca305-3cf4-411a-aee6-5cba2c9a05ed"
+                                },
+                                {
+                                  "id": "ef4f66bb-17a0-4915-91e0-f925cd728f9a",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks?offset=<long>&limit=<long>&sourceNames=SLACK&webhookNames=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The source names to filter by",
+                                          "key": "sourceNames",
+                                          "value": "SLACK"
+                                        },
+                                        {
+                                          "description": "The webhook names to filter by",
+                                          "key": "webhookNames",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-ef4f66bb-17a0-4915-91e0-f925cd728f9a"
+                                },
+                                {
+                                  "id": "e82d1c07-df6f-405d-b4db-4c2639e68c46",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks?offset=<long>&limit=<long>&sourceNames=SLACK&webhookNames=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The source names to filter by",
+                                          "key": "sourceNames",
+                                          "value": "SLACK"
+                                        },
+                                        {
+                                          "description": "The webhook names to filter by",
+                                          "key": "webhookNames",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-e82d1c07-df6f-405d-b4db-4c2639e68c46"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:26.000Z",
+                              "updatedAt": "2026-07-28T01:54:26.000Z",
+                              "uid": "35240-a0fe2506-4f70-4c6b-adea-e1718b0a3029"
+                            },
+                            {
+                              "name": "Create a Webhook",
+                              "id": "0bd2807a-1a9b-4e0d-81af-3094402babcc",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"auth\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"authType\": \"BASIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "webhooks"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "11545cd9-727e-4866-95cd-eb5702a9fa52",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new webhook"
+                              },
+                              "response": [
+                                {
+                                  "id": "9bb32bf4-73d1-496c-80e5-172113bfba5e",
+                                  "name": "Successfully created the webhook",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"auth\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"authType\": \"BASIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"authType\": \"API_KEY\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-9bb32bf4-73d1-496c-80e5-172113bfba5e"
+                                },
+                                {
+                                  "id": "23069488-2748-41c4-88b3-9dda0aea77f8",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"auth\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"authType\": \"BASIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-23069488-2748-41c4-88b3-9dda0aea77f8"
+                                },
+                                {
+                                  "id": "f9573d12-323a-4568-8d38-7c4a1a7050e0",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"auth\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"authType\": \"BASIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-f9573d12-323a-4568-8d38-7c4a1a7050e0"
+                                },
+                                {
+                                  "id": "4e39e308-a354-45fb-a08f-34a677f2e635",
+                                  "name": "Not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"auth\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"authType\": \"BASIC\",\n  \"eventKeyExpression\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sourceName\": \"GENERIC\",\n  \"scopeExpression\": \"<string>\",\n  \"staticPayload\": {},\n  \"returnEventAsResponsePayload\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/webhooks",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "webhooks"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:26.000Z",
+                                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                                  "uid": "35240-4e39e308-a354-45fb-a08f-34a677f2e635"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:26.000Z",
+                              "updatedAt": "2026-07-28T01:54:26.000Z",
+                              "uid": "35240-0bd2807a-1a9b-4e0d-81af-3094402babcc"
+                            }
+                          ],
+                          "id": "cbb8cee8-c826-455e-b1fc-9d9b8ecc94c9",
+                          "createdAt": "2026-07-28T01:54:26.000Z",
+                          "updatedAt": "2026-07-28T01:54:26.000Z",
+                          "uid": "35240-cbb8cee8-c826-455e-b1fc-9d9b8ecc94c9"
+                        }
+                      ],
+                      "id": "1ef8b2ab-4c76-45fc-baea-23f0bf68791b",
+                      "createdAt": "2026-07-28T01:54:26.000Z",
+                      "updatedAt": "2026-07-28T01:54:26.000Z",
+                      "uid": "35240-1ef8b2ab-4c76-45fc-baea-23f0bf68791b"
+                    }
+                  ],
+                  "id": "54a63c0f-b467-4e5d-b2d6-58de47279c77",
+                  "createdAt": "2026-07-28T01:54:26.000Z",
+                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                  "uid": "35240-54a63c0f-b467-4e5d-b2d6-58de47279c77"
+                }
+              ],
+              "id": "8f228d1b-2add-459c-b83b-030f84e1a61f",
+              "createdAt": "2026-07-28T01:54:26.000Z",
+              "updatedAt": "2026-07-28T01:54:26.000Z",
+              "uid": "35240-8f228d1b-2add-459c-b83b-030f84e1a61f"
+            }
+          ],
+          "id": "07ef0ad4-d596-42da-a376-ca1e572ced25",
+          "createdAt": "2026-07-28T01:54:26.000Z",
+          "updatedAt": "2026-07-28T01:54:26.000Z",
+          "uid": "35240-07ef0ad4-d596-42da-a376-ca1e572ced25"
+        }
+      ],
+      "id": "bad414b0-6809-472e-ac80-e429eeec75e1",
+      "createdAt": "2026-07-28T01:54:26.000Z",
+      "updatedAt": "2026-07-28T01:54:26.000Z",
+      "uid": "35240-bad414b0-6809-472e-ac80-e429eeec75e1"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

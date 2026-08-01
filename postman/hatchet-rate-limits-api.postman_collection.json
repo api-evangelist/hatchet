@@ -1,0 +1,594 @@
+{
+  "info": {
+    "_postman_id": "6a6db09b-c4f7-48b8-a00c-fd434786e7eb",
+    "name": "Hatchet API Token Rate Limits API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:27.000Z",
+    "updatedAt": "2026-07-28T01:53:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6a6db09b-c4f7-48b8-a00c-fd434786e7eb"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "rate-limits",
+                      "item": [
+                        {
+                          "name": "List Rate Limits",
+                          "id": "75065b46-13c6-4ab2-8377-97b32d13766f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?offset=<long>&limit=<long>&search=<string>&orderByField=value&orderByDirection=asc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "rate-limits"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number to skip",
+                                  "key": "offset",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "The number to limit by",
+                                  "key": "limit",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "The search query to filter for",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "What to order by",
+                                  "key": "orderByField",
+                                  "value": "value"
+                                },
+                                {
+                                  "description": "The order direction",
+                                  "key": "orderByDirection",
+                                  "value": "asc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "974aa642-2659-48c6-b0fd-7a4ebdb39c23",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Lists all rate limits for a tenant."
+                          },
+                          "response": [
+                            {
+                              "id": "0a2fb292-d447-4e04-a6a0-6b6b5a881002",
+                              "name": "Successfully listed the rate limits",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?offset=<long>&limit=<long>&search=<string>&orderByField=value&orderByDirection=asc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "rate-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The search query to filter for",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "What to order by",
+                                      "key": "orderByField",
+                                      "value": "value"
+                                    },
+                                    {
+                                      "description": "The order direction",
+                                      "key": "orderByDirection",
+                                      "value": "asc"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"key\": \"<string>\",\n      \"tenantId\": \"<string>\",\n      \"limitValue\": \"<integer>\",\n      \"value\": \"<integer>\",\n      \"window\": \"<string>\",\n      \"lastRefill\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"tenantId\": \"<string>\",\n      \"limitValue\": \"<integer>\",\n      \"value\": \"<integer>\",\n      \"window\": \"<string>\",\n      \"lastRefill\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:27.000Z",
+                              "updatedAt": "2026-07-28T01:53:27.000Z",
+                              "uid": "35240-0a2fb292-d447-4e04-a6a0-6b6b5a881002"
+                            },
+                            {
+                              "id": "cd57931d-8b62-4a98-a3d4-8dea9185e192",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?offset=<long>&limit=<long>&search=<string>&orderByField=value&orderByDirection=asc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "rate-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The search query to filter for",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "What to order by",
+                                      "key": "orderByField",
+                                      "value": "value"
+                                    },
+                                    {
+                                      "description": "The order direction",
+                                      "key": "orderByDirection",
+                                      "value": "asc"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:27.000Z",
+                              "updatedAt": "2026-07-28T01:53:27.000Z",
+                              "uid": "35240-cd57931d-8b62-4a98-a3d4-8dea9185e192"
+                            },
+                            {
+                              "id": "0a932d07-449b-41c1-a76b-8d40a683e48c",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?offset=<long>&limit=<long>&search=<string>&orderByField=value&orderByDirection=asc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "rate-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The search query to filter for",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "What to order by",
+                                      "key": "orderByField",
+                                      "value": "value"
+                                    },
+                                    {
+                                      "description": "The order direction",
+                                      "key": "orderByDirection",
+                                      "value": "asc"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:27.000Z",
+                              "updatedAt": "2026-07-28T01:53:27.000Z",
+                              "uid": "35240-0a932d07-449b-41c1-a76b-8d40a683e48c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:27.000Z",
+                          "updatedAt": "2026-07-28T01:53:27.000Z",
+                          "uid": "35240-75065b46-13c6-4ab2-8377-97b32d13766f"
+                        },
+                        {
+                          "name": "Delete Rate Limit",
+                          "id": "ba15452f-5c53-4206-801a-d02d25698eae",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?key=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "rate-limits"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The limit key",
+                                  "key": "key",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1f67b75f-3909-4619-ab72-c41db96ad508",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Delete a rate limit for a tenant."
+                          },
+                          "response": [
+                            {
+                              "id": "1e9f5408-9672-471e-a8fa-f56373553fbf",
+                              "name": "Successfully deleted the rate limit",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?key=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "rate-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The limit key",
+                                      "key": "key",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:53:27.000Z",
+                              "updatedAt": "2026-07-28T01:53:27.000Z",
+                              "uid": "35240-1e9f5408-9672-471e-a8fa-f56373553fbf"
+                            },
+                            {
+                              "id": "c757110f-520f-4a3a-adf3-0bc375ef1910",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?key=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "rate-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The limit key",
+                                      "key": "key",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:27.000Z",
+                              "updatedAt": "2026-07-28T01:53:27.000Z",
+                              "uid": "35240-c757110f-520f-4a3a-adf3-0bc375ef1910"
+                            },
+                            {
+                              "id": "bd1e92a2-d857-465a-a736-b9d445d7234c",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/rate-limits?key=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "rate-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The limit key",
+                                      "key": "key",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:27.000Z",
+                              "updatedAt": "2026-07-28T01:53:27.000Z",
+                              "uid": "35240-bd1e92a2-d857-465a-a736-b9d445d7234c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:27.000Z",
+                          "updatedAt": "2026-07-28T01:53:27.000Z",
+                          "uid": "35240-ba15452f-5c53-4206-801a-d02d25698eae"
+                        }
+                      ],
+                      "id": "dbdfeb1d-31da-4071-af0f-0aa179294739",
+                      "createdAt": "2026-07-28T01:53:27.000Z",
+                      "updatedAt": "2026-07-28T01:53:27.000Z",
+                      "uid": "35240-dbdfeb1d-31da-4071-af0f-0aa179294739"
+                    }
+                  ],
+                  "id": "50eacca7-6e2d-473c-8716-f9e68104a943",
+                  "createdAt": "2026-07-28T01:53:27.000Z",
+                  "updatedAt": "2026-07-28T01:53:27.000Z",
+                  "uid": "35240-50eacca7-6e2d-473c-8716-f9e68104a943"
+                }
+              ],
+              "id": "96822408-acb1-4e75-bd2d-106b127a0ca5",
+              "createdAt": "2026-07-28T01:53:27.000Z",
+              "updatedAt": "2026-07-28T01:53:27.000Z",
+              "uid": "35240-96822408-acb1-4e75-bd2d-106b127a0ca5"
+            }
+          ],
+          "id": "f7983464-0e00-4354-8f70-dc88483b9875",
+          "createdAt": "2026-07-28T01:53:27.000Z",
+          "updatedAt": "2026-07-28T01:53:27.000Z",
+          "uid": "35240-f7983464-0e00-4354-8f70-dc88483b9875"
+        }
+      ],
+      "id": "d764a1a4-d137-40e5-b741-764f3423a296",
+      "createdAt": "2026-07-28T01:53:27.000Z",
+      "updatedAt": "2026-07-28T01:53:27.000Z",
+      "uid": "35240-d764a1a4-d137-40e5-b741-764f3423a296"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

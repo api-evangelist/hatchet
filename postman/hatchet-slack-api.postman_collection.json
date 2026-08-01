@@ -1,0 +1,573 @@
+{
+  "info": {
+    "_postman_id": "52e0472f-3427-422f-b22a-548e2ad8f823",
+    "name": "Hatchet API Token Slack API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:28.000Z",
+    "updatedAt": "2026-07-28T01:53:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52e0472f-3427-422f-b22a-548e2ad8f823"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "slack",
+                      "item": [
+                        {
+                          "name": "List Slack Integrations",
+                          "id": "429d1da7-d78d-40c6-818c-6a0b5cc785b0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/slack",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "slack"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "327fd91b-0c92-4480-a4ed-b32169edce0c",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "List Slack webhooks"
+                          },
+                          "response": [
+                            {
+                              "id": "740f628a-cb21-4180-b478-dbc8804c9035",
+                              "name": "Successfully retrieved Slack webhooks",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/slack",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "slack"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<uuid>\",\n      \"teamName\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"channelName\": \"<string>\",\n      \"channelId\": \"<string>\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\"\n      },\n      \"tenantId\": \"<uuid>\",\n      \"teamName\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"channelName\": \"<string>\",\n      \"channelId\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:28.000Z",
+                              "updatedAt": "2026-07-28T01:53:28.000Z",
+                              "uid": "35240-740f628a-cb21-4180-b478-dbc8804c9035"
+                            },
+                            {
+                              "id": "68d86a5d-7c39-43b7-8951-914a5e9acda7",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/slack",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "slack"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:28.000Z",
+                              "updatedAt": "2026-07-28T01:53:28.000Z",
+                              "uid": "35240-68d86a5d-7c39-43b7-8951-914a5e9acda7"
+                            },
+                            {
+                              "id": "f9b1179a-9168-49c2-a53f-be398d9f1ee0",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/slack",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "slack"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:28.000Z",
+                              "updatedAt": "2026-07-28T01:53:28.000Z",
+                              "uid": "35240-f9b1179a-9168-49c2-a53f-be398d9f1ee0"
+                            },
+                            {
+                              "id": "4a921c12-8ee0-4789-a92d-7b2b3d16699e",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/slack",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "slack"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:28.000Z",
+                              "updatedAt": "2026-07-28T01:53:28.000Z",
+                              "uid": "35240-4a921c12-8ee0-4789-a92d-7b2b3d16699e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:28.000Z",
+                          "updatedAt": "2026-07-28T01:53:28.000Z",
+                          "uid": "35240-429d1da7-d78d-40c6-818c-6a0b5cc785b0"
+                        }
+                      ],
+                      "id": "fedd3aa0-4e2d-4ccb-b6b5-b5d272169cc4",
+                      "createdAt": "2026-07-28T01:53:28.000Z",
+                      "updatedAt": "2026-07-28T01:53:28.000Z",
+                      "uid": "35240-fedd3aa0-4e2d-4ccb-b6b5-b5d272169cc4"
+                    }
+                  ],
+                  "id": "f3a92f33-7d46-44d8-b8d0-4fd5d028c2b1",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-f3a92f33-7d46-44d8-b8d0-4fd5d028c2b1"
+                }
+              ],
+              "id": "6bdc1643-86b6-459c-b6a0-478bd262ef14",
+              "createdAt": "2026-07-28T01:53:28.000Z",
+              "updatedAt": "2026-07-28T01:53:28.000Z",
+              "uid": "35240-6bdc1643-86b6-459c-b6a0-478bd262ef14"
+            },
+            {
+              "name": "slack",
+              "item": [
+                {
+                  "name": "{slack}",
+                  "item": [
+                    {
+                      "name": "Delete Slack Webhook",
+                      "id": "81f9f087-b39a-4d4f-9ae7-773aa1403c6c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/slack/:slack",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "slack",
+                            ":slack"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3ddfc4dd-0027-464e-b014-1dc3bf7d388c",
+                              "key": "slack",
+                              "value": "<uuid>",
+                              "description": "(Required) The Slack webhook id"
+                            }
+                          ]
+                        },
+                        "description": "Delete Slack webhook"
+                      },
+                      "response": [
+                        {
+                          "id": "d1216cb6-cfb1-4d9f-b708-387f46a81cb8",
+                          "name": "Successfully deleted Slack webhook",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/slack/:slack",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "slack",
+                                ":slack"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slack"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:53:28.000Z",
+                          "updatedAt": "2026-07-28T01:53:28.000Z",
+                          "uid": "35240-d1216cb6-cfb1-4d9f-b708-387f46a81cb8"
+                        },
+                        {
+                          "id": "f16ddcd6-02fa-4cbc-b716-8885ab84ccab",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/slack/:slack",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "slack",
+                                ":slack"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slack"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:28.000Z",
+                          "updatedAt": "2026-07-28T01:53:28.000Z",
+                          "uid": "35240-f16ddcd6-02fa-4cbc-b716-8885ab84ccab"
+                        },
+                        {
+                          "id": "2ae34996-584d-4966-9732-1521afff1326",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/slack/:slack",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "slack",
+                                ":slack"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slack"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:28.000Z",
+                          "updatedAt": "2026-07-28T01:53:28.000Z",
+                          "uid": "35240-2ae34996-584d-4966-9732-1521afff1326"
+                        },
+                        {
+                          "id": "0f30c178-fc82-4040-acc9-dbb36db361c3",
+                          "name": "Method not allowed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/slack/:slack",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "slack",
+                                ":slack"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slack"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:28.000Z",
+                          "updatedAt": "2026-07-28T01:53:28.000Z",
+                          "uid": "35240-0f30c178-fc82-4040-acc9-dbb36db361c3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:53:28.000Z",
+                      "updatedAt": "2026-07-28T01:53:28.000Z",
+                      "uid": "35240-81f9f087-b39a-4d4f-9ae7-773aa1403c6c"
+                    }
+                  ],
+                  "id": "794495a9-5b42-45a9-aa04-b044c7091afd",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-794495a9-5b42-45a9-aa04-b044c7091afd"
+                }
+              ],
+              "id": "8fb51090-7819-4213-aa8f-4d8e9baa2be6",
+              "createdAt": "2026-07-28T01:53:28.000Z",
+              "updatedAt": "2026-07-28T01:53:28.000Z",
+              "uid": "35240-8fb51090-7819-4213-aa8f-4d8e9baa2be6"
+            }
+          ],
+          "id": "cb9856df-8c48-4d03-97a1-ad5c81f617b9",
+          "createdAt": "2026-07-28T01:53:28.000Z",
+          "updatedAt": "2026-07-28T01:53:28.000Z",
+          "uid": "35240-cb9856df-8c48-4d03-97a1-ad5c81f617b9"
+        }
+      ],
+      "id": "eb3e588f-d8b6-444a-97ff-5d9ac51bdc93",
+      "createdAt": "2026-07-28T01:53:28.000Z",
+      "updatedAt": "2026-07-28T01:53:28.000Z",
+      "uid": "35240-eb3e588f-d8b6-444a-97ff-5d9ac51bdc93"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

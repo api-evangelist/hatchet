@@ -1,0 +1,2948 @@
+{
+  "info": {
+    "_postman_id": "56a039be-1b19-4216-be03-87fde42ca33d",
+    "name": "Hatchet API Token Task API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:15.000Z",
+    "updatedAt": "2026-07-28T01:54:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-56a039be-1b19-4216-be03-87fde42ca33d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "stable",
+              "item": [
+                {
+                  "name": "tasks",
+                  "item": [
+                    {
+                      "name": "{task}",
+                      "item": [
+                        {
+                          "name": "task-events",
+                          "item": [
+                            {
+                              "name": "List Events for a Task",
+                              "id": "6027c1a4-b523-4406-a5c7-0c2da77a2e2f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/task-events?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task",
+                                    "task-events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "402ccc7c-6829-467a-8b60-0195a0fbce91",
+                                      "key": "task",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The task id"
+                                    }
+                                  ]
+                                },
+                                "description": "List events for a task"
+                              },
+                              "response": [
+                                {
+                                  "id": "e7962d0e-6512-473a-bf0a-2ea083ab2b7a",
+                                  "name": "Successfully retrieved the events",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/task-events?offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "task-events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"id\": \"<integer>\",\n      \"taskId\": \"<uuid>\",\n      \"timestamp\": \"<dateTime>\",\n      \"eventType\": \"RATE_LIMIT_ERROR\",\n      \"message\": \"<string>\",\n      \"errorMessage\": \"<string>\",\n      \"output\": \"<string>\",\n      \"workerId\": \"<uuid>\",\n      \"taskDisplayName\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"attempt\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"taskId\": \"<uuid>\",\n      \"timestamp\": \"<dateTime>\",\n      \"eventType\": \"DURABLE_EVICTED\",\n      \"message\": \"<string>\",\n      \"errorMessage\": \"<string>\",\n      \"output\": \"<string>\",\n      \"workerId\": \"<uuid>\",\n      \"taskDisplayName\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"attempt\": \"<integer>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-e7962d0e-6512-473a-bf0a-2ea083ab2b7a"
+                                },
+                                {
+                                  "id": "55206015-fe6f-40af-a787-64df7c311462",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/task-events?offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "task-events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-55206015-fe6f-40af-a787-64df7c311462"
+                                },
+                                {
+                                  "id": "c02de6d4-a876-4ead-867d-8952f03bcefc",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/task-events?offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "task-events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-c02de6d4-a876-4ead-867d-8952f03bcefc"
+                                },
+                                {
+                                  "id": "ea59bccc-5e31-4314-947d-a88b2447c746",
+                                  "name": "The task was not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/task-events?offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "task-events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-ea59bccc-5e31-4314-947d-a88b2447c746"
+                                },
+                                {
+                                  "id": "205ce624-507a-4ed5-ae95-b0de0f65f98d",
+                                  "name": "Not implemented",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/task-events?offset=<long>&limit=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "task-events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to skip",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Implemented",
+                                  "code": 501,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-205ce624-507a-4ed5-ae95-b0de0f65f98d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-6027c1a4-b523-4406-a5c7-0c2da77a2e2f"
+                            }
+                          ],
+                          "id": "0b95f785-c00a-4b2c-a154-d06e8d979df0",
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-0b95f785-c00a-4b2c-a154-d06e8d979df0"
+                        },
+                        {
+                          "name": "restore",
+                          "item": [
+                            {
+                              "name": "Restore a Task",
+                              "id": "cf4beb08-9d51-4cc2-87cf-6adac6164903",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/restore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task",
+                                    "restore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0c066fff-c863-4efa-ac36-6820ccd97c7d",
+                                      "key": "task",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The task id"
+                                    }
+                                  ]
+                                },
+                                "description": "Restore an evicted durable task"
+                              },
+                              "response": [
+                                {
+                                  "id": "e8470a68-f404-41cc-a2a4-ad4f2ee28046",
+                                  "name": "Successfully restored the task",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/restore",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "restore"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"requeued\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-e8470a68-f404-41cc-a2a4-ad4f2ee28046"
+                                },
+                                {
+                                  "id": "88268cfd-53ae-4566-9586-d282847305b7",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/restore",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "restore"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-88268cfd-53ae-4566-9586-d282847305b7"
+                                },
+                                {
+                                  "id": "a4448351-74cf-4b74-92cb-e83e4c48975c",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/restore",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "restore"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-a4448351-74cf-4b74-92cb-e83e4c48975c"
+                                },
+                                {
+                                  "id": "44cff4c9-d816-4b83-84da-635db7197eba",
+                                  "name": "The task was not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/restore",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "restore"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-44cff4c9-d816-4b83-84da-635db7197eba"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-cf4beb08-9d51-4cc2-87cf-6adac6164903"
+                            }
+                          ],
+                          "id": "f838d29a-e669-4c55-aaa6-6d54b51bc551",
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-f838d29a-e669-4c55-aaa6-6d54b51bc551"
+                        },
+                        {
+                          "name": "Get a Task",
+                          "id": "d2194d4a-e779-41ba-90f1-dbaadec5769a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/stable/tasks/:task?attempt=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "stable",
+                                "tasks",
+                                ":task"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The attempt number",
+                                  "key": "attempt",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2a0602ae-3e4e-411e-9fdc-df77c34e5c30",
+                                  "key": "task",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The task id"
+                                }
+                              ]
+                            },
+                            "description": "Get a task by id"
+                          },
+                          "response": [
+                            {
+                              "id": "99aaaebf-a23c-4e92-9acc-68fa67aad6c8",
+                              "name": "Successfully retrieved the task",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task?attempt=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The attempt number",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"metadata\": {\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"displayName\": \"<string>\",\n  \"input\": {},\n  \"numSpawnedChildren\": \"<integer>\",\n  \"output\": {},\n  \"status\": \"FAILED\",\n  \"taskExternalId\": \"<uuid>\",\n  \"taskId\": \"<integer>\",\n  \"taskInsertedAt\": \"<dateTime>\",\n  \"tenantId\": \"<uuid>\",\n  \"type\": \"DAG\",\n  \"workflowId\": \"<uuid>\",\n  \"workflowRunExternalId\": \"<uuid>\",\n  \"actionId\": \"<string>\",\n  \"retryCount\": \"<integer>\",\n  \"attempt\": \"<integer>\",\n  \"additionalMetadata\": {},\n  \"children\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n    }\n  ],\n  \"duration\": \"<integer>\",\n  \"isDurable\": \"<boolean>\",\n  \"errorMessage\": \"<string>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"isEvicted\": \"<boolean>\",\n  \"startedAt\": \"<dateTime>\",\n  \"stepId\": \"<uuid>\",\n  \"workflowName\": \"<string>\",\n  \"workflowVersionId\": \"<uuid>\",\n  \"workflowConfig\": {},\n  \"parentTaskExternalId\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-99aaaebf-a23c-4e92-9acc-68fa67aad6c8"
+                            },
+                            {
+                              "id": "da42624f-7293-4800-a3de-31a65acf8a34",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task?attempt=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The attempt number",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-da42624f-7293-4800-a3de-31a65acf8a34"
+                            },
+                            {
+                              "id": "a42b3951-9c97-4303-b2b3-32be2f5ca85a",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task?attempt=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The attempt number",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-a42b3951-9c97-4303-b2b3-32be2f5ca85a"
+                            },
+                            {
+                              "id": "40debdce-af00-4475-85f6-911783e26769",
+                              "name": "The task was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task?attempt=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The attempt number",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-40debdce-af00-4475-85f6-911783e26769"
+                            },
+                            {
+                              "id": "99656bd8-1609-4f6e-8ca2-99fd7dffed02",
+                              "name": "Not implemented",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task?attempt=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The attempt number",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Implemented",
+                              "code": 501,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-99656bd8-1609-4f6e-8ca2-99fd7dffed02"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-d2194d4a-e779-41ba-90f1-dbaadec5769a"
+                        }
+                      ],
+                      "id": "85c2cc99-6c50-408a-a921-61e273a53273",
+                      "createdAt": "2026-07-28T01:54:16.000Z",
+                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                      "uid": "35240-85c2cc99-6c50-408a-a921-61e273a53273"
+                    }
+                  ],
+                  "id": "28e3ec5a-b972-4473-92da-8af88687d239",
+                  "createdAt": "2026-07-28T01:54:16.000Z",
+                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                  "uid": "35240-28e3ec5a-b972-4473-92da-8af88687d239"
+                },
+                {
+                  "name": "tenants",
+                  "item": [
+                    {
+                      "name": "{tenant}",
+                      "item": [
+                        {
+                          "name": "tasks",
+                          "item": [
+                            {
+                              "name": "cancel",
+                              "item": [
+                                {
+                                  "name": "Cancel Tasks",
+                                  "id": "452d885e-846b-4336-a457-5220239b0f06",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/cancel",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "tasks",
+                                        "cancel"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "932db60e-a9bf-47b6-ba0d-61c49d13b41a",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Cancel tasks"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a8bf12f6-10c1-4a9a-9b36-a1824f9045c4",
+                                      "name": "Successfully cancelled the tasks",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-a8bf12f6-10c1-4a9a-9b36-a1824f9045c4"
+                                    },
+                                    {
+                                      "id": "ac117493-621a-42e8-af66-760aefd5d8e9",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-ac117493-621a-42e8-af66-760aefd5d8e9"
+                                    },
+                                    {
+                                      "id": "e86e5592-747d-4938-8869-b6f72649e9c2",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-e86e5592-747d-4938-8869-b6f72649e9c2"
+                                    },
+                                    {
+                                      "id": "2bf1eac9-06fe-46c1-89d8-3a0548379690",
+                                      "name": "The task was not found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-2bf1eac9-06fe-46c1-89d8-3a0548379690"
+                                    },
+                                    {
+                                      "id": "056f837d-e3d7-489c-9121-97f69ca9f01c",
+                                      "name": "Not implemented",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Implemented",
+                                      "code": 501,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-056f837d-e3d7-489c-9121-97f69ca9f01c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-452d885e-846b-4336-a457-5220239b0f06"
+                                }
+                              ],
+                              "id": "f5135b55-a6fd-4f13-bc8f-2e8c987c9b6f",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-f5135b55-a6fd-4f13-bc8f-2e8c987c9b6f"
+                            },
+                            {
+                              "name": "replay",
+                              "item": [
+                                {
+                                  "name": "Replay Tasks",
+                                  "id": "a6a148c4-e803-4392-b34b-ee22c3e5a76c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/replay",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "tasks",
+                                        "replay"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b04f3527-f694-4035-b560-c48f3adf93c2",
+                                          "key": "tenant",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The tenant id"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Replay tasks"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1c960326-9bce-4e82-bfc5-c9bc18204e79",
+                                      "name": "Successfully replayed the tasks",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/replay",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "replay"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-1c960326-9bce-4e82-bfc5-c9bc18204e79"
+                                    },
+                                    {
+                                      "id": "09f7f673-d15c-4aa0-8e66-7c973dedbc84",
+                                      "name": "A malformed or bad request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/replay",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "replay"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-09f7f673-d15c-4aa0-8e66-7c973dedbc84"
+                                    },
+                                    {
+                                      "id": "eaf994b3-d724-45f8-baf5-ae7ebc4d190b",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/replay",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "replay"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-eaf994b3-d724-45f8-baf5-ae7ebc4d190b"
+                                    },
+                                    {
+                                      "id": "2d2ad93f-4ed7-4ca8-88fb-d287ddddf427",
+                                      "name": "The task was not found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/replay",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "replay"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-2d2ad93f-4ed7-4ca8-88fb-d287ddddf427"
+                                    },
+                                    {
+                                      "id": "195e05d3-da12-4ed8-ac9e-f5ff501e6d92",
+                                      "name": "Not implemented",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"externalIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"filter\": {\n    \"since\": \"<dateTime>\",\n    \"until\": \"<dateTime>\",\n    \"statuses\": [\n      \"CANCELLED\",\n      \"RUNNING\"\n    ],\n    \"workflowIds\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"additionalMetadata\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/tasks/replay",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "stable",
+                                            "tenants",
+                                            ":tenant",
+                                            "tasks",
+                                            "replay"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "tenant"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Implemented",
+                                      "code": 501,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:54:16.000Z",
+                                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                                      "uid": "35240-195e05d3-da12-4ed8-ac9e-f5ff501e6d92"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-a6a148c4-e803-4392-b34b-ee22c3e5a76c"
+                                }
+                              ],
+                              "id": "d4aab85b-59d1-40cf-8914-81382e268ac2",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-d4aab85b-59d1-40cf-8914-81382e268ac2"
+                            }
+                          ],
+                          "id": "2a4f2cc0-2da2-4b56-82c1-07900db2e4d3",
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-2a4f2cc0-2da2-4b56-82c1-07900db2e4d3"
+                        },
+                        {
+                          "name": "task-metrics",
+                          "item": [
+                            {
+                              "name": "Get Task Metrics",
+                              "id": "553490dc-4ff3-4656-bf0f-38dc17224df9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-metrics?since=<dateTime>&until=<dateTime>&workflow_ids=<uuid>&workflow_ids=<uuid>&parent_task_external_id=<uuid>&triggering_event_external_id=<uuid>&additional_metadata=<string>&additional_metadata=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "task-metrics"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time to get metrics for",
+                                      "key": "since",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The end time to get metrics for",
+                                      "key": "until",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The workflow id to find runs for",
+                                      "key": "workflow_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The workflow id to find runs for",
+                                      "key": "workflow_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The parent task's external id",
+                                      "key": "parent_task_external_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The id of the event that triggered the task",
+                                      "key": "triggering_event_external_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "Additional metadata k-v pairs to filter by",
+                                      "key": "additional_metadata",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Additional metadata k-v pairs to filter by",
+                                      "key": "additional_metadata",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f65abe5b-8b39-4a53-b4f6-ba828466a8c0",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Get a summary of task run metrics for a tenant"
+                              },
+                              "response": [
+                                {
+                                  "id": "b42dfd71-d55b-48a8-b190-7fdf8275f98f",
+                                  "name": "Successfully retrieved the task run metrics",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-metrics?since=<dateTime>&until=<dateTime>&workflow_ids=<uuid>&parent_task_external_id=<uuid>&triggering_event_external_id=<uuid>&additional_metadata=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The start time to get metrics for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get metrics for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The workflow id to find runs for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The parent task's external id",
+                                          "key": "parent_task_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The id of the event that triggered the task",
+                                          "key": "triggering_event_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "Additional metadata k-v pairs to filter by",
+                                          "key": "additional_metadata",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"status\": \"FAILED\",\n    \"count\": \"<integer>\",\n    \"runningDetailCount\": {\n      \"evicted\": \"<integer>\",\n      \"onWorker\": \"<integer>\"\n    }\n  },\n  {\n    \"status\": \"CANCELLED\",\n    \"count\": \"<integer>\",\n    \"runningDetailCount\": {\n      \"evicted\": \"<integer>\",\n      \"onWorker\": \"<integer>\"\n    }\n  }\n]",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-b42dfd71-d55b-48a8-b190-7fdf8275f98f"
+                                },
+                                {
+                                  "id": "fde82321-5786-4c06-b82d-348361010b06",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-metrics?since=<dateTime>&until=<dateTime>&workflow_ids=<uuid>&parent_task_external_id=<uuid>&triggering_event_external_id=<uuid>&additional_metadata=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The start time to get metrics for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get metrics for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The workflow id to find runs for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The parent task's external id",
+                                          "key": "parent_task_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The id of the event that triggered the task",
+                                          "key": "triggering_event_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "Additional metadata k-v pairs to filter by",
+                                          "key": "additional_metadata",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-fde82321-5786-4c06-b82d-348361010b06"
+                                },
+                                {
+                                  "id": "98c11da8-0149-47f3-8b6a-1f9a38b9028f",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-metrics?since=<dateTime>&until=<dateTime>&workflow_ids=<uuid>&parent_task_external_id=<uuid>&triggering_event_external_id=<uuid>&additional_metadata=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The start time to get metrics for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get metrics for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The workflow id to find runs for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The parent task's external id",
+                                          "key": "parent_task_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The id of the event that triggered the task",
+                                          "key": "triggering_event_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "Additional metadata k-v pairs to filter by",
+                                          "key": "additional_metadata",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-98c11da8-0149-47f3-8b6a-1f9a38b9028f"
+                                },
+                                {
+                                  "id": "cdd87faf-ff6e-4ae7-8ab6-a46e365a293f",
+                                  "name": "Not implemented",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-metrics?since=<dateTime>&until=<dateTime>&workflow_ids=<uuid>&parent_task_external_id=<uuid>&triggering_event_external_id=<uuid>&additional_metadata=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The start time to get metrics for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get metrics for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The workflow id to find runs for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The parent task's external id",
+                                          "key": "parent_task_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The id of the event that triggered the task",
+                                          "key": "triggering_event_external_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "Additional metadata k-v pairs to filter by",
+                                          "key": "additional_metadata",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Implemented",
+                                  "code": 501,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-cdd87faf-ff6e-4ae7-8ab6-a46e365a293f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-553490dc-4ff3-4656-bf0f-38dc17224df9"
+                            }
+                          ],
+                          "id": "926fe521-1152-4bb3-8189-c2caa5af066f",
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-926fe521-1152-4bb3-8189-c2caa5af066f"
+                        },
+                        {
+                          "name": "task-point-metrics",
+                          "item": [
+                            {
+                              "name": "Get Task Point Metrics",
+                              "id": "7a5b9f6f-1de1-4fca-970c-06a027b30c26",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-point-metrics?createdAfter=<dateTime>&finishedBefore=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "task-point-metrics"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The time after the task was created",
+                                      "key": "createdAfter",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The time before the task was completed",
+                                      "key": "finishedBefore",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bc87e32a-8025-40f7-8000-711dd936e8f5",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Get a minute by minute breakdown of task metrics for a tenant"
+                              },
+                              "response": [
+                                {
+                                  "id": "fecc00a3-c467-4119-bc1c-5e2a27977984",
+                                  "name": "Successfully retrieved the task point metrics",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-point-metrics?createdAfter=<dateTime>&finishedBefore=<dateTime>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The time after the task was created",
+                                          "key": "createdAfter",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The time before the task was completed",
+                                          "key": "finishedBefore",
+                                          "value": "<dateTime>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"results\": [\n    {\n      \"time\": \"<dateTime>\",\n      \"SUCCEEDED\": \"<integer>\",\n      \"FAILED\": \"<integer>\"\n    },\n    {\n      \"time\": \"<dateTime>\",\n      \"SUCCEEDED\": \"<integer>\",\n      \"FAILED\": \"<integer>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-fecc00a3-c467-4119-bc1c-5e2a27977984"
+                                },
+                                {
+                                  "id": "2e1773c7-9aee-40e9-833f-48efb014f2dc",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-point-metrics?createdAfter=<dateTime>&finishedBefore=<dateTime>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The time after the task was created",
+                                          "key": "createdAfter",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The time before the task was completed",
+                                          "key": "finishedBefore",
+                                          "value": "<dateTime>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-2e1773c7-9aee-40e9-833f-48efb014f2dc"
+                                },
+                                {
+                                  "id": "c6cc57c9-ecce-490b-b28c-9665229cb71c",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-point-metrics?createdAfter=<dateTime>&finishedBefore=<dateTime>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The time after the task was created",
+                                          "key": "createdAfter",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The time before the task was completed",
+                                          "key": "finishedBefore",
+                                          "value": "<dateTime>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-c6cc57c9-ecce-490b-b28c-9665229cb71c"
+                                },
+                                {
+                                  "id": "e3e46af4-f156-44c6-9112-3cc9ee29c0c5",
+                                  "name": "Not implemented",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/task-point-metrics?createdAfter=<dateTime>&finishedBefore=<dateTime>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "task-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The time after the task was created",
+                                          "key": "createdAfter",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The time before the task was completed",
+                                          "key": "finishedBefore",
+                                          "value": "<dateTime>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Implemented",
+                                  "code": 501,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:54:16.000Z",
+                                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                                  "uid": "35240-e3e46af4-f156-44c6-9112-3cc9ee29c0c5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-7a5b9f6f-1de1-4fca-970c-06a027b30c26"
+                            }
+                          ],
+                          "id": "c9bb77d5-6783-4483-8179-52f07690aded",
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-c9bb77d5-6783-4483-8179-52f07690aded"
+                        }
+                      ],
+                      "id": "82fe26e6-f84e-461a-b81b-38e6104796a3",
+                      "createdAt": "2026-07-28T01:54:16.000Z",
+                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                      "uid": "35240-82fe26e6-f84e-461a-b81b-38e6104796a3"
+                    }
+                  ],
+                  "id": "31ec0941-9e7c-4b0c-b4f0-e168882ce92e",
+                  "createdAt": "2026-07-28T01:54:16.000Z",
+                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                  "uid": "35240-31ec0941-9e7c-4b0c-b4f0-e168882ce92e"
+                },
+                {
+                  "name": "dags",
+                  "item": [
+                    {
+                      "name": "tasks",
+                      "item": [
+                        {
+                          "name": "List Tasks",
+                          "id": "20ed751b-7829-4592-852e-fc5bfd5331a2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/stable/dags/tasks?dag_ids=<uuid>&dag_ids=<uuid>&tenant=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "stable",
+                                "dags",
+                                "tasks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external id of the DAG",
+                                  "key": "dag_ids",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The external id of the DAG",
+                                  "key": "dag_ids",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The tenant id",
+                                  "key": "tenant",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Lists all tasks that belong a specific list of dags"
+                          },
+                          "response": [
+                            {
+                              "id": "8176e2b2-4a04-4909-b008-a2381c8cd4c7",
+                              "name": "Successfully listed the tasks",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/dags/tasks?dag_ids=<uuid>&tenant=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "dags",
+                                    "tasks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external id of the DAG",
+                                      "key": "dag_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "(Required) The tenant id",
+                                      "key": "tenant",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"dagId\": \"<uuid>\",\n    \"children\": [\n      {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"displayName\": \"<string>\",\n        \"input\": {},\n        \"numSpawnedChildren\": \"<integer>\",\n        \"output\": {},\n        \"status\": \"QUEUED\",\n        \"taskExternalId\": \"<uuid>\",\n        \"taskId\": \"<integer>\",\n        \"taskInsertedAt\": \"<dateTime>\",\n        \"tenantId\": \"<uuid>\",\n        \"type\": \"TASK\",\n        \"workflowId\": \"<uuid>\",\n        \"workflowRunExternalId\": \"<uuid>\",\n        \"actionId\": \"<string>\",\n        \"retryCount\": \"<integer>\",\n        \"attempt\": \"<integer>\",\n        \"additionalMetadata\": {},\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          }\n        ],\n        \"duration\": \"<integer>\",\n        \"isDurable\": \"<boolean>\",\n        \"errorMessage\": \"<string>\",\n        \"finishedAt\": \"<dateTime>\",\n        \"isEvicted\": \"<boolean>\",\n        \"startedAt\": \"<dateTime>\",\n        \"stepId\": \"<uuid>\",\n        \"workflowName\": \"<string>\",\n        \"workflowVersionId\": \"<uuid>\",\n        \"workflowConfig\": {},\n        \"parentTaskExternalId\": \"<uuid>\"\n      },\n      {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"displayName\": \"<string>\",\n        \"input\": {},\n        \"numSpawnedChildren\": \"<integer>\",\n        \"output\": {},\n        \"status\": \"CANCELLED\",\n        \"taskExternalId\": \"<uuid>\",\n        \"taskId\": \"<integer>\",\n        \"taskInsertedAt\": \"<dateTime>\",\n        \"tenantId\": \"<uuid>\",\n        \"type\": \"TASK\",\n        \"workflowId\": \"<uuid>\",\n        \"workflowRunExternalId\": \"<uuid>\",\n        \"actionId\": \"<string>\",\n        \"retryCount\": \"<integer>\",\n        \"attempt\": \"<integer>\",\n        \"additionalMetadata\": {},\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          }\n        ],\n        \"duration\": \"<integer>\",\n        \"isDurable\": \"<boolean>\",\n        \"errorMessage\": \"<string>\",\n        \"finishedAt\": \"<dateTime>\",\n        \"isEvicted\": \"<boolean>\",\n        \"startedAt\": \"<dateTime>\",\n        \"stepId\": \"<uuid>\",\n        \"workflowName\": \"<string>\",\n        \"workflowVersionId\": \"<uuid>\",\n        \"workflowConfig\": {},\n        \"parentTaskExternalId\": \"<uuid>\"\n      }\n    ]\n  },\n  {\n    \"dagId\": \"<uuid>\",\n    \"children\": [\n      {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"displayName\": \"<string>\",\n        \"input\": {},\n        \"numSpawnedChildren\": \"<integer>\",\n        \"output\": {},\n        \"status\": \"RUNNING\",\n        \"taskExternalId\": \"<uuid>\",\n        \"taskId\": \"<integer>\",\n        \"taskInsertedAt\": \"<dateTime>\",\n        \"tenantId\": \"<uuid>\",\n        \"type\": \"TASK\",\n        \"workflowId\": \"<uuid>\",\n        \"workflowRunExternalId\": \"<uuid>\",\n        \"actionId\": \"<string>\",\n        \"retryCount\": \"<integer>\",\n        \"attempt\": \"<integer>\",\n        \"additionalMetadata\": {},\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          }\n        ],\n        \"duration\": \"<integer>\",\n        \"isDurable\": \"<boolean>\",\n        \"errorMessage\": \"<string>\",\n        \"finishedAt\": \"<dateTime>\",\n        \"isEvicted\": \"<boolean>\",\n        \"startedAt\": \"<dateTime>\",\n        \"stepId\": \"<uuid>\",\n        \"workflowName\": \"<string>\",\n        \"workflowVersionId\": \"<uuid>\",\n        \"workflowConfig\": {},\n        \"parentTaskExternalId\": \"<uuid>\"\n      },\n      {\n        \"metadata\": {\n          \"id\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"displayName\": \"<string>\",\n        \"input\": {},\n        \"numSpawnedChildren\": \"<integer>\",\n        \"output\": {},\n        \"status\": \"FAILED\",\n        \"taskExternalId\": \"<uuid>\",\n        \"taskId\": \"<integer>\",\n        \"taskInsertedAt\": \"<dateTime>\",\n        \"tenantId\": \"<uuid>\",\n        \"type\": \"DAG\",\n        \"workflowId\": \"<uuid>\",\n        \"workflowRunExternalId\": \"<uuid>\",\n        \"actionId\": \"<string>\",\n        \"retryCount\": \"<integer>\",\n        \"attempt\": \"<integer>\",\n        \"additionalMetadata\": {},\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/V1TaskSummary detected>\"\n          }\n        ],\n        \"duration\": \"<integer>\",\n        \"isDurable\": \"<boolean>\",\n        \"errorMessage\": \"<string>\",\n        \"finishedAt\": \"<dateTime>\",\n        \"isEvicted\": \"<boolean>\",\n        \"startedAt\": \"<dateTime>\",\n        \"stepId\": \"<uuid>\",\n        \"workflowName\": \"<string>\",\n        \"workflowVersionId\": \"<uuid>\",\n        \"workflowConfig\": {},\n        \"parentTaskExternalId\": \"<uuid>\"\n      }\n    ]\n  }\n]",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-8176e2b2-4a04-4909-b008-a2381c8cd4c7"
+                            },
+                            {
+                              "id": "4e3fe00d-5411-46f8-a1e0-131bb4e2904d",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/dags/tasks?dag_ids=<uuid>&tenant=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "dags",
+                                    "tasks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external id of the DAG",
+                                      "key": "dag_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "(Required) The tenant id",
+                                      "key": "tenant",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-4e3fe00d-5411-46f8-a1e0-131bb4e2904d"
+                            },
+                            {
+                              "id": "cb63e878-cccc-48dd-92f9-1f373cfd4b3f",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/dags/tasks?dag_ids=<uuid>&tenant=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "dags",
+                                    "tasks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external id of the DAG",
+                                      "key": "dag_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "(Required) The tenant id",
+                                      "key": "tenant",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-cb63e878-cccc-48dd-92f9-1f373cfd4b3f"
+                            },
+                            {
+                              "id": "c85d653d-f38a-44a1-bb43-6b2956fc9d61",
+                              "name": "Not implemented",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/dags/tasks?dag_ids=<uuid>&tenant=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "dags",
+                                    "tasks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external id of the DAG",
+                                      "key": "dag_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "(Required) The tenant id",
+                                      "key": "tenant",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Implemented",
+                              "code": 501,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:54:16.000Z",
+                              "updatedAt": "2026-07-28T01:54:16.000Z",
+                              "uid": "35240-c85d653d-f38a-44a1-bb43-6b2956fc9d61"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:54:16.000Z",
+                          "updatedAt": "2026-07-28T01:54:16.000Z",
+                          "uid": "35240-20ed751b-7829-4592-852e-fc5bfd5331a2"
+                        }
+                      ],
+                      "id": "fa602036-2665-4ba8-8e30-d8f5fc1bfae9",
+                      "createdAt": "2026-07-28T01:54:16.000Z",
+                      "updatedAt": "2026-07-28T01:54:16.000Z",
+                      "uid": "35240-fa602036-2665-4ba8-8e30-d8f5fc1bfae9"
+                    }
+                  ],
+                  "id": "50e47e7f-31c1-45ef-b3a6-2f6947b42210",
+                  "createdAt": "2026-07-28T01:54:16.000Z",
+                  "updatedAt": "2026-07-28T01:54:16.000Z",
+                  "uid": "35240-50e47e7f-31c1-45ef-b3a6-2f6947b42210"
+                }
+              ],
+              "id": "0fa82f6f-7a16-4c14-a74e-41fb09fcbbde",
+              "createdAt": "2026-07-28T01:54:16.000Z",
+              "updatedAt": "2026-07-28T01:54:16.000Z",
+              "uid": "35240-0fa82f6f-7a16-4c14-a74e-41fb09fcbbde"
+            }
+          ],
+          "id": "e19439d2-f1ff-4507-a865-8bdf6165e597",
+          "createdAt": "2026-07-28T01:54:16.000Z",
+          "updatedAt": "2026-07-28T01:54:16.000Z",
+          "uid": "35240-e19439d2-f1ff-4507-a865-8bdf6165e597"
+        }
+      ],
+      "id": "fe1b635e-a165-4963-abc6-6ed377182ad7",
+      "createdAt": "2026-07-28T01:54:16.000Z",
+      "updatedAt": "2026-07-28T01:54:16.000Z",
+      "uid": "35240-fe1b635e-a165-4963-abc6-6ed377182ad7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

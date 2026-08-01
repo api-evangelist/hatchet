@@ -1,0 +1,382 @@
+{
+  "info": {
+    "_postman_id": "57807631-1efc-4b4d-9dfe-cffea88f5c9a",
+    "name": "Hatchet API Token Durable Tasks API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:13.000Z",
+    "updatedAt": "2026-07-28T01:53:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57807631-1efc-4b4d-9dfe-cffea88f5c9a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "stable",
+              "item": [
+                {
+                  "name": "durable-tasks",
+                  "item": [
+                    {
+                      "name": "{durable-task}",
+                      "item": [
+                        {
+                          "name": "List Durable Event Log",
+                          "id": "3f865785-fd9a-475e-94e9-cabf5f5c7b09",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/stable/durable-tasks/:durable-task?offset=<long>&limit=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "stable",
+                                "durable-tasks",
+                                ":durable-task"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number of event log entries to skip",
+                                  "key": "offset",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "The number of event log entries to limit by",
+                                  "key": "limit",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a50c0498-6b7b-4d0c-b1c8-41e0cd39b01d",
+                                  "key": "durable-task",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The durable task external id"
+                                }
+                              ]
+                            },
+                            "description": "Lists all event log entries for a durable task."
+                          },
+                          "response": [
+                            {
+                              "id": "03a9108d-f9bb-4504-86e3-d8b8dbe8574f",
+                              "name": "Successfully listed event log entries",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/durable-tasks/:durable-task?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "durable-tasks",
+                                    ":durable-task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of event log entries to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number of event log entries to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "durable-task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"nodeId\": \"<long>\",\n    \"branchId\": \"<long>\",\n    \"kind\": \"WAIT_FOR\",\n    \"isSatisfied\": \"<boolean>\",\n    \"insertedAt\": \"<dateTime>\",\n    \"taskExternalId\": \"<uuid>\",\n    \"taskDisplayName\": \"<string>\",\n    \"waitData\": [\n      {\n        \"kind\": \"CHILD_WORKFLOW\",\n        \"sleepDurationMs\": \"<long>\",\n        \"eventKey\": \"<string>\",\n        \"workflowName\": \"<string>\",\n        \"or\": [\n          {\n            \"kind\": \"CHILD_WORKFLOW\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          },\n          {\n            \"kind\": \"SLEEP\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"kind\": \"SLEEP\",\n        \"sleepDurationMs\": \"<long>\",\n        \"eventKey\": \"<string>\",\n        \"workflowName\": \"<string>\",\n        \"or\": [\n          {\n            \"kind\": \"USER_EVENT\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          },\n          {\n            \"kind\": \"SLEEP\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"satisfiedAt\": \"<dateTime>\",\n    \"userMessage\": \"<string>\"\n  },\n  {\n    \"nodeId\": \"<long>\",\n    \"branchId\": \"<long>\",\n    \"kind\": \"RUN\",\n    \"isSatisfied\": \"<boolean>\",\n    \"insertedAt\": \"<dateTime>\",\n    \"taskExternalId\": \"<uuid>\",\n    \"taskDisplayName\": \"<string>\",\n    \"waitData\": [\n      {\n        \"kind\": \"USER_EVENT\",\n        \"sleepDurationMs\": \"<long>\",\n        \"eventKey\": \"<string>\",\n        \"workflowName\": \"<string>\",\n        \"or\": [\n          {\n            \"kind\": \"SLEEP\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          },\n          {\n            \"kind\": \"SLEEP\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"kind\": \"CHILD_WORKFLOW\",\n        \"sleepDurationMs\": \"<long>\",\n        \"eventKey\": \"<string>\",\n        \"workflowName\": \"<string>\",\n        \"or\": [\n          {\n            \"kind\": \"USER_EVENT\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          },\n          {\n            \"kind\": \"CHILD_WORKFLOW\",\n            \"sleepDurationMs\": \"<long>\",\n            \"eventKey\": \"<string>\",\n            \"workflowName\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"satisfiedAt\": \"<dateTime>\",\n    \"userMessage\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-07-28T01:53:14.000Z",
+                              "updatedAt": "2026-07-28T01:53:14.000Z",
+                              "uid": "35240-03a9108d-f9bb-4504-86e3-d8b8dbe8574f"
+                            },
+                            {
+                              "id": "d31a232d-5599-48aa-8b19-5956c6ca1b74",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/durable-tasks/:durable-task?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "durable-tasks",
+                                    ":durable-task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of event log entries to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number of event log entries to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "durable-task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:14.000Z",
+                              "updatedAt": "2026-07-28T01:53:14.000Z",
+                              "uid": "35240-d31a232d-5599-48aa-8b19-5956c6ca1b74"
+                            },
+                            {
+                              "id": "4d2037a8-6366-4068-87cb-16b088fc6535",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/durable-tasks/:durable-task?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "durable-tasks",
+                                    ":durable-task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of event log entries to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number of event log entries to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "durable-task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:14.000Z",
+                              "updatedAt": "2026-07-28T01:53:14.000Z",
+                              "uid": "35240-4d2037a8-6366-4068-87cb-16b088fc6535"
+                            },
+                            {
+                              "id": "a95d1e9f-1804-4a28-a84c-a98846694776",
+                              "name": "Not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/durable-tasks/:durable-task?offset=<long>&limit=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "durable-tasks",
+                                    ":durable-task"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of event log entries to skip",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The number of event log entries to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "durable-task"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:14.000Z",
+                              "updatedAt": "2026-07-28T01:53:14.000Z",
+                              "uid": "35240-a95d1e9f-1804-4a28-a84c-a98846694776"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:14.000Z",
+                          "updatedAt": "2026-07-28T01:53:14.000Z",
+                          "uid": "35240-3f865785-fd9a-475e-94e9-cabf5f5c7b09"
+                        }
+                      ],
+                      "id": "bf04fce1-3faf-442b-9a4e-74142f263f2e",
+                      "createdAt": "2026-07-28T01:53:14.000Z",
+                      "updatedAt": "2026-07-28T01:53:14.000Z",
+                      "uid": "35240-bf04fce1-3faf-442b-9a4e-74142f263f2e"
+                    }
+                  ],
+                  "id": "14df0253-1ebe-4c7d-b82f-c8242306bd10",
+                  "createdAt": "2026-07-28T01:53:14.000Z",
+                  "updatedAt": "2026-07-28T01:53:14.000Z",
+                  "uid": "35240-14df0253-1ebe-4c7d-b82f-c8242306bd10"
+                }
+              ],
+              "id": "731c6104-d292-4fc1-aeea-70e8036dbf92",
+              "createdAt": "2026-07-28T01:53:14.000Z",
+              "updatedAt": "2026-07-28T01:53:14.000Z",
+              "uid": "35240-731c6104-d292-4fc1-aeea-70e8036dbf92"
+            }
+          ],
+          "id": "c12166fe-3a20-4799-b281-1848364aeaf2",
+          "createdAt": "2026-07-28T01:53:14.000Z",
+          "updatedAt": "2026-07-28T01:53:14.000Z",
+          "uid": "35240-c12166fe-3a20-4799-b281-1848364aeaf2"
+        }
+      ],
+      "id": "b0231c93-5e67-448d-8dd0-148d9d797aeb",
+      "createdAt": "2026-07-28T01:53:14.000Z",
+      "updatedAt": "2026-07-28T01:53:14.000Z",
+      "uid": "35240-b0231c93-5e67-448d-8dd0-148d9d797aeb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

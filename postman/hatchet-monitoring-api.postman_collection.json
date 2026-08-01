@@ -1,0 +1,211 @@
+{
+  "info": {
+    "_postman_id": "55d3269b-74b5-4955-9d9c-8e7bc39eb684",
+    "name": "Hatchet API Token Monitoring API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:20.000Z",
+    "updatedAt": "2026-07-28T01:53:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-55d3269b-74b5-4955-9d9c-8e7bc39eb684"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "monitoring",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "probe",
+                      "item": [
+                        {
+                          "name": "Detailed Health Probe for the Instance",
+                          "id": "024a25f1-06a2-4680-97cb-2d2def76fd2d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/monitoring/:tenant/probe",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "monitoring",
+                                ":tenant",
+                                "probe"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d996517d-ffa3-48da-acfe-1bcb0c25b1ad",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant id"
+                                }
+                              ]
+                            },
+                            "description": "Triggers a workflow to check the status of the instance"
+                          },
+                          "response": [
+                            {
+                              "id": "7276dd41-39f8-4433-a94a-93900387b7b3",
+                              "name": "Successfully executed the probe.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/monitoring/:tenant/probe",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "monitoring",
+                                    ":tenant",
+                                    "probe"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:53:21.000Z",
+                              "updatedAt": "2026-07-28T01:53:21.000Z",
+                              "uid": "35240-7276dd41-39f8-4433-a94a-93900387b7b3"
+                            },
+                            {
+                              "id": "59116fcd-d58e-4ce4-8684-1ce29445d096",
+                              "name": "Not authorized to perform this action",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/monitoring/:tenant/probe",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "monitoring",
+                                    ":tenant",
+                                    "probe"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:21.000Z",
+                              "updatedAt": "2026-07-28T01:53:21.000Z",
+                              "uid": "35240-59116fcd-d58e-4ce4-8684-1ce29445d096"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:21.000Z",
+                          "updatedAt": "2026-07-28T01:53:21.000Z",
+                          "uid": "35240-024a25f1-06a2-4680-97cb-2d2def76fd2d"
+                        }
+                      ],
+                      "id": "07da64a6-fd1c-48a8-b44c-3f21e92ff17c",
+                      "createdAt": "2026-07-28T01:53:21.000Z",
+                      "updatedAt": "2026-07-28T01:53:21.000Z",
+                      "uid": "35240-07da64a6-fd1c-48a8-b44c-3f21e92ff17c"
+                    }
+                  ],
+                  "id": "e8aba352-76dd-4b7f-b83b-bf41ad6c14da",
+                  "createdAt": "2026-07-28T01:53:21.000Z",
+                  "updatedAt": "2026-07-28T01:53:21.000Z",
+                  "uid": "35240-e8aba352-76dd-4b7f-b83b-bf41ad6c14da"
+                }
+              ],
+              "id": "13c66526-7fb9-4b6a-b3aa-9b0909083548",
+              "createdAt": "2026-07-28T01:53:21.000Z",
+              "updatedAt": "2026-07-28T01:53:21.000Z",
+              "uid": "35240-13c66526-7fb9-4b6a-b3aa-9b0909083548"
+            }
+          ],
+          "id": "9ff6bfbe-2ab2-43a2-bce3-79631d27197d",
+          "createdAt": "2026-07-28T01:53:21.000Z",
+          "updatedAt": "2026-07-28T01:53:21.000Z",
+          "uid": "35240-9ff6bfbe-2ab2-43a2-bce3-79631d27197d"
+        }
+      ],
+      "id": "000f0627-5b25-4a95-8da9-ba2f28330bc7",
+      "createdAt": "2026-07-28T01:53:21.000Z",
+      "updatedAt": "2026-07-28T01:53:21.000Z",
+      "uid": "35240-000f0627-5b25-4a95-8da9-ba2f28330bc7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

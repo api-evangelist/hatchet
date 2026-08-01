@@ -1,0 +1,382 @@
+{
+  "info": {
+    "_postman_id": "da2a50b9-9f7f-4ec9-853c-9196868dab25",
+    "name": "Hatchet API Token Feature Flags API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:15.000Z",
+    "updatedAt": "2026-07-28T01:53:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-da2a50b9-9f7f-4ec9-853c-9196868dab25"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "feature-flags",
+                      "item": [
+                        {
+                          "name": "Evaluate a Feature Flag for a Tenant",
+                          "id": "ca3d5a4f-dfae-444e-a131-aff6a4feabc5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tenants/:tenant/feature-flags?featureFlagId=trace-minimap-enabled&isEnabledIfNoPosthog=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tenants",
+                                ":tenant",
+                                "feature-flags"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The feature flag id to evaluate",
+                                  "key": "featureFlagId",
+                                  "value": "trace-minimap-enabled"
+                                },
+                                {
+                                  "description": "(Required) A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable",
+                                  "key": "isEnabledIfNoPosthog",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "da81ccff-7f25-42d2-9a7e-cee18148344e",
+                                  "key": "tenant",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The tenant ID"
+                                }
+                              ]
+                            },
+                            "description": "Evaluate a feature flag for a tenant"
+                          },
+                          "response": [
+                            {
+                              "id": "65716584-f3bf-4c9f-9786-acffee865e1c",
+                              "name": "Successfully evaluated the feature flag for the tenant",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/feature-flags?featureFlagId=trace-minimap-enabled&isEnabledIfNoPosthog=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "feature-flags"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The feature flag id to evaluate",
+                                      "key": "featureFlagId",
+                                      "value": "trace-minimap-enabled"
+                                    },
+                                    {
+                                      "description": "(Required) A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable",
+                                      "key": "isEnabledIfNoPosthog",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"isEnabled\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T01:53:16.000Z",
+                              "updatedAt": "2026-07-28T01:53:16.000Z",
+                              "uid": "35240-65716584-f3bf-4c9f-9786-acffee865e1c"
+                            },
+                            {
+                              "id": "16319536-5f64-4ca5-a6f2-9d8ef97870bd",
+                              "name": "A malformed or bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/feature-flags?featureFlagId=trace-minimap-enabled&isEnabledIfNoPosthog=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "feature-flags"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The feature flag id to evaluate",
+                                      "key": "featureFlagId",
+                                      "value": "trace-minimap-enabled"
+                                    },
+                                    {
+                                      "description": "(Required) A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable",
+                                      "key": "isEnabledIfNoPosthog",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:16.000Z",
+                              "updatedAt": "2026-07-28T01:53:16.000Z",
+                              "uid": "35240-16319536-5f64-4ca5-a6f2-9d8ef97870bd"
+                            },
+                            {
+                              "id": "39b57632-2b04-4979-a833-559c067c84e6",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/feature-flags?featureFlagId=trace-minimap-enabled&isEnabledIfNoPosthog=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "feature-flags"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The feature flag id to evaluate",
+                                      "key": "featureFlagId",
+                                      "value": "trace-minimap-enabled"
+                                    },
+                                    {
+                                      "description": "(Required) A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable",
+                                      "key": "isEnabledIfNoPosthog",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:16.000Z",
+                              "updatedAt": "2026-07-28T01:53:16.000Z",
+                              "uid": "35240-39b57632-2b04-4979-a833-559c067c84e6"
+                            },
+                            {
+                              "id": "150f5e0f-24cd-4162-880a-1e6fe5f59210",
+                              "name": "Not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant/feature-flags?featureFlagId=trace-minimap-enabled&isEnabledIfNoPosthog=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "tenants",
+                                    ":tenant",
+                                    "feature-flags"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The feature flag id to evaluate",
+                                      "key": "featureFlagId",
+                                      "value": "trace-minimap-enabled"
+                                    },
+                                    {
+                                      "description": "(Required) A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable",
+                                      "key": "isEnabledIfNoPosthog",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:53:16.000Z",
+                              "updatedAt": "2026-07-28T01:53:16.000Z",
+                              "uid": "35240-150f5e0f-24cd-4162-880a-1e6fe5f59210"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:53:16.000Z",
+                          "updatedAt": "2026-07-28T01:53:16.000Z",
+                          "uid": "35240-ca3d5a4f-dfae-444e-a131-aff6a4feabc5"
+                        }
+                      ],
+                      "id": "b29aa65f-9ac3-4bf3-b737-135a9d3a72b2",
+                      "createdAt": "2026-07-28T01:53:16.000Z",
+                      "updatedAt": "2026-07-28T01:53:16.000Z",
+                      "uid": "35240-b29aa65f-9ac3-4bf3-b737-135a9d3a72b2"
+                    }
+                  ],
+                  "id": "4190debb-2e6f-4221-af6f-eea6a79ab896",
+                  "createdAt": "2026-07-28T01:53:16.000Z",
+                  "updatedAt": "2026-07-28T01:53:16.000Z",
+                  "uid": "35240-4190debb-2e6f-4221-af6f-eea6a79ab896"
+                }
+              ],
+              "id": "bf84973d-37a2-4c06-9d24-83bcc1da154f",
+              "createdAt": "2026-07-28T01:53:16.000Z",
+              "updatedAt": "2026-07-28T01:53:16.000Z",
+              "uid": "35240-bf84973d-37a2-4c06-9d24-83bcc1da154f"
+            }
+          ],
+          "id": "3fa9cbe2-ed5c-4c8e-9177-77e3a0fb8437",
+          "createdAt": "2026-07-28T01:53:16.000Z",
+          "updatedAt": "2026-07-28T01:53:16.000Z",
+          "uid": "35240-3fa9cbe2-ed5c-4c8e-9177-77e3a0fb8437"
+        }
+      ],
+      "id": "1f6759c5-034a-4280-a572-2d4cf2d047d2",
+      "createdAt": "2026-07-28T01:53:16.000Z",
+      "updatedAt": "2026-07-28T01:53:16.000Z",
+      "uid": "35240-1f6759c5-034a-4280-a572-2d4cf2d047d2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

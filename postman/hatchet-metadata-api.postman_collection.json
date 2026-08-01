@@ -1,0 +1,453 @@
+{
+  "info": {
+    "_postman_id": "cea7b4ee-5be9-4200-8d84-857ffff1a487",
+    "name": "Hatchet API Token Metadata API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:19.000Z",
+    "updatedAt": "2026-07-28T01:53:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cea7b4ee-5be9-4200-8d84-857ffff1a487"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "meta",
+              "item": [
+                {
+                  "name": "integrations",
+                  "item": [
+                    {
+                      "name": "List Integrations",
+                      "id": "92a4a9b8-f553-4789-b8cf-6e8ce2e1011c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/meta/integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "meta",
+                            "integrations"
+                          ]
+                        },
+                        "description": "List all integrations"
+                      },
+                      "response": [
+                        {
+                          "id": "14e4bf4d-80d3-4eaa-ae92-6c231f7a224b",
+                          "name": "Successfully retrieved the list of integrations",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/meta/integrations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "meta",
+                                "integrations"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"name\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-07-28T01:53:20.000Z",
+                          "updatedAt": "2026-07-28T01:53:20.000Z",
+                          "uid": "35240-14e4bf4d-80d3-4eaa-ae92-6c231f7a224b"
+                        },
+                        {
+                          "id": "5a18cf77-404e-439a-9e0a-7a0d71983299",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/meta/integrations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "meta",
+                                "integrations"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:20.000Z",
+                          "updatedAt": "2026-07-28T01:53:20.000Z",
+                          "uid": "35240-5a18cf77-404e-439a-9e0a-7a0d71983299"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:53:20.000Z",
+                      "updatedAt": "2026-07-28T01:53:20.000Z",
+                      "uid": "35240-92a4a9b8-f553-4789-b8cf-6e8ce2e1011c"
+                    }
+                  ],
+                  "id": "8e58d16e-dd14-4c03-a5da-2595af777b62",
+                  "createdAt": "2026-07-28T01:53:20.000Z",
+                  "updatedAt": "2026-07-28T01:53:20.000Z",
+                  "uid": "35240-8e58d16e-dd14-4c03-a5da-2595af777b62"
+                },
+                {
+                  "name": "Get Metadata",
+                  "id": "48b2b637-f5cc-42d8-bc04-3e2cf7b15bbe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/meta",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "meta"
+                      ]
+                    },
+                    "description": "Gets metadata for the Hatchet instance"
+                  },
+                  "response": [
+                    {
+                      "id": "3f29270a-4282-4940-a6f7-dfdee25b2cf0",
+                      "name": "Successfully retrieved the metadata",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/meta",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "meta"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"auth\": {\n    \"schemes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"pylonAppId\": \"<string>\",\n  \"posthog\": {\n    \"apiKey\": \"<string>\",\n    \"apiHost\": \"<string>\"\n  },\n  \"allowSignup\": \"<boolean>\",\n  \"allowInvites\": \"<boolean>\",\n  \"allowCreateTenant\": \"<boolean>\",\n  \"allowChangePassword\": \"<boolean>\",\n  \"observabilityEnabled\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T01:53:20.000Z",
+                      "updatedAt": "2026-07-28T01:53:20.000Z",
+                      "uid": "35240-3f29270a-4282-4940-a6f7-dfdee25b2cf0"
+                    },
+                    {
+                      "id": "442d13b9-36d5-4c8e-b45a-7949d5d06aac",
+                      "name": "A malformed or bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/meta",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "meta"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:53:20.000Z",
+                      "updatedAt": "2026-07-28T01:53:20.000Z",
+                      "uid": "35240-442d13b9-36d5-4c8e-b45a-7949d5d06aac"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:53:20.000Z",
+                  "updatedAt": "2026-07-28T01:53:20.000Z",
+                  "uid": "35240-48b2b637-f5cc-42d8-bc04-3e2cf7b15bbe"
+                }
+              ],
+              "id": "0271b04d-dbc9-45d8-b4bf-7605e5c4cf0a",
+              "createdAt": "2026-07-28T01:53:20.000Z",
+              "updatedAt": "2026-07-28T01:53:20.000Z",
+              "uid": "35240-0271b04d-dbc9-45d8-b4bf-7605e5c4cf0a"
+            },
+            {
+              "name": "cloud",
+              "item": [
+                {
+                  "name": "metadata",
+                  "item": [
+                    {
+                      "name": "Get Cloud Metadata",
+                      "id": "63f2a79f-c1bc-4765-9e03-bbfd59e95161",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/cloud/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "cloud",
+                            "metadata"
+                          ]
+                        },
+                        "description": "Gets metadata for the Hatchet cloud instance"
+                      },
+                      "response": [
+                        {
+                          "id": "1e2b8c2f-0c96-40fc-9916-4483a8d96f0d",
+                          "name": "Cloud unavailable",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/cloud/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "cloud",
+                                "metadata"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:20.000Z",
+                          "updatedAt": "2026-07-28T01:53:20.000Z",
+                          "uid": "35240-1e2b8c2f-0c96-40fc-9916-4483a8d96f0d"
+                        },
+                        {
+                          "id": "fa058e36-e506-403a-8e0c-9cef80fba042",
+                          "name": "A malformed or bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/cloud/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "cloud",
+                                "metadata"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:53:20.000Z",
+                          "updatedAt": "2026-07-28T01:53:20.000Z",
+                          "uid": "35240-fa058e36-e506-403a-8e0c-9cef80fba042"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:53:20.000Z",
+                      "updatedAt": "2026-07-28T01:53:20.000Z",
+                      "uid": "35240-63f2a79f-c1bc-4765-9e03-bbfd59e95161"
+                    }
+                  ],
+                  "id": "4629bf69-77b6-4ea7-9146-956c9176889d",
+                  "createdAt": "2026-07-28T01:53:20.000Z",
+                  "updatedAt": "2026-07-28T01:53:20.000Z",
+                  "uid": "35240-4629bf69-77b6-4ea7-9146-956c9176889d"
+                }
+              ],
+              "id": "8c9d66e7-b58d-4a7b-bfc9-a61dce3b6947",
+              "createdAt": "2026-07-28T01:53:20.000Z",
+              "updatedAt": "2026-07-28T01:53:20.000Z",
+              "uid": "35240-8c9d66e7-b58d-4a7b-bfc9-a61dce3b6947"
+            }
+          ],
+          "id": "09e847b9-f509-427a-8e25-db65ec3aab52",
+          "createdAt": "2026-07-28T01:53:20.000Z",
+          "updatedAt": "2026-07-28T01:53:20.000Z",
+          "uid": "35240-09e847b9-f509-427a-8e25-db65ec3aab52"
+        }
+      ],
+      "id": "4e2444a9-699c-4c45-a1a1-cdbe2e0b7ddb",
+      "createdAt": "2026-07-28T01:53:20.000Z",
+      "updatedAt": "2026-07-28T01:53:20.000Z",
+      "uid": "35240-4e2444a9-699c-4c45-a1a1-cdbe2e0b7ddb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

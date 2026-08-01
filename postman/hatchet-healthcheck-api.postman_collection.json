@@ -1,0 +1,275 @@
+{
+  "info": {
+    "_postman_id": "2932cf53-dce2-4320-88cc-18e8eb50acb2",
+    "name": "Hatchet API Token Healthcheck API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:18.000Z",
+    "updatedAt": "2026-07-28T01:53:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2932cf53-dce2-4320-88cc-18e8eb50acb2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "ready",
+          "item": [
+            {
+              "name": "Get Readiness",
+              "id": "ebd842e0-5a62-4259-87ea-0120f1eaddbf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ready"
+                  ]
+                },
+                "description": "Gets the readiness status"
+              },
+              "response": [
+                {
+                  "id": "ea51b914-1e70-432b-ae85-dc182de9cea5",
+                  "name": "Healthy",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ready",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ready"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:53:18.000Z",
+                  "updatedAt": "2026-07-28T01:53:18.000Z",
+                  "uid": "35240-ea51b914-1e70-432b-ae85-dc182de9cea5"
+                },
+                {
+                  "id": "12e0f422-29dd-4584-80b6-32bbf519c391",
+                  "name": "Not ready to accept traffic",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ready",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ready"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:53:18.000Z",
+                  "updatedAt": "2026-07-28T01:53:18.000Z",
+                  "uid": "35240-12e0f422-29dd-4584-80b6-32bbf519c391"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:18.000Z",
+              "updatedAt": "2026-07-28T01:53:18.000Z",
+              "uid": "35240-ebd842e0-5a62-4259-87ea-0120f1eaddbf"
+            }
+          ],
+          "id": "9b8a5aab-6349-48f4-b9b2-d595424c55dc",
+          "createdAt": "2026-07-28T01:53:18.000Z",
+          "updatedAt": "2026-07-28T01:53:18.000Z",
+          "uid": "35240-9b8a5aab-6349-48f4-b9b2-d595424c55dc"
+        },
+        {
+          "name": "live",
+          "item": [
+            {
+              "name": "Get Liveness",
+              "id": "6cebb641-e385-496e-ab6c-5fba2825a348",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/live",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "live"
+                  ]
+                },
+                "description": "Gets the liveness status"
+              },
+              "response": [
+                {
+                  "id": "942e007c-13bc-4f47-a115-caaf8b21f118",
+                  "name": "Healthy",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/live",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "live"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:53:18.000Z",
+                  "updatedAt": "2026-07-28T01:53:18.000Z",
+                  "uid": "35240-942e007c-13bc-4f47-a115-caaf8b21f118"
+                },
+                {
+                  "id": "6ef1b835-6c35-4aa7-8848-a931de65e4f6",
+                  "name": "Not liveness",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/live",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "live"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:53:18.000Z",
+                  "updatedAt": "2026-07-28T01:53:18.000Z",
+                  "uid": "35240-6ef1b835-6c35-4aa7-8848-a931de65e4f6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:18.000Z",
+              "updatedAt": "2026-07-28T01:53:18.000Z",
+              "uid": "35240-6cebb641-e385-496e-ab6c-5fba2825a348"
+            }
+          ],
+          "id": "138e1c61-652c-452c-b2a9-30e87dd32383",
+          "createdAt": "2026-07-28T01:53:18.000Z",
+          "updatedAt": "2026-07-28T01:53:18.000Z",
+          "uid": "35240-138e1c61-652c-452c-b2a9-30e87dd32383"
+        }
+      ],
+      "id": "098d2fb4-5aa8-4a2d-bedd-f4ecd1713e5a",
+      "createdAt": "2026-07-28T01:53:18.000Z",
+      "updatedAt": "2026-07-28T01:53:18.000Z",
+      "uid": "35240-098d2fb4-5aa8-4a2d-bedd-f4ecd1713e5a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

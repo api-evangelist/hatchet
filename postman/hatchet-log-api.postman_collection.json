@@ -1,0 +1,1358 @@
+{
+  "info": {
+    "_postman_id": "d6dcba76-7afe-434c-a42e-48d4631c794b",
+    "name": "Hatchet API Token Log API",
+    "description": "The Hatchet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:19.000Z",
+    "updatedAt": "2026-07-28T01:53:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d6dcba76-7afe-434c-a42e-48d4631c794b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "stable",
+              "item": [
+                {
+                  "name": "tasks",
+                  "item": [
+                    {
+                      "name": "{task}",
+                      "item": [
+                        {
+                          "name": "logs",
+                          "item": [
+                            {
+                              "name": "List Log Lines",
+                              "id": "72f7cc86-8395-435e-a008-ed28ce0e6eaa",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=ERROR&levels=DEBUG&order_by_direction=DESC&attempt=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tasks",
+                                    ":task",
+                                    "logs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The start time to get logs for",
+                                      "key": "since",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The end time to get logs for",
+                                      "key": "until",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "A full-text search query to filter for",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The log level(s) to include",
+                                      "key": "levels",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "description": "The log level(s) to include",
+                                      "key": "levels",
+                                      "value": "DEBUG"
+                                    },
+                                    {
+                                      "description": "The direction to order by",
+                                      "key": "order_by_direction",
+                                      "value": "DESC"
+                                    },
+                                    {
+                                      "description": "The attempt number to filter for",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7765c13e-bcac-4ed0-a77a-30515d1c59ee",
+                                      "key": "task",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The task id"
+                                    }
+                                  ]
+                                },
+                                "description": "Lists log lines for a task"
+                              },
+                              "response": [
+                                {
+                                  "id": "42663091-d7a1-4c3f-a63d-ead0793fc080",
+                                  "name": "Successfully listed the events",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&order_by_direction=DESC&attempt=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "logs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The direction to order by",
+                                          "key": "order_by_direction",
+                                          "value": "DESC"
+                                        },
+                                        {
+                                          "description": "The attempt number to filter for",
+                                          "key": "attempt",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"message\": \"<string>\",\n      \"metadata\": {},\n      \"taskExternalId\": \"<uuid>\",\n      \"taskDisplayName\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"attempt\": \"<integer>\",\n      \"level\": \"DEBUG\"\n    },\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"message\": \"<string>\",\n      \"metadata\": {},\n      \"taskExternalId\": \"<uuid>\",\n      \"taskDisplayName\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"attempt\": \"<integer>\",\n      \"level\": \"WARN\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-42663091-d7a1-4c3f-a63d-ead0793fc080"
+                                },
+                                {
+                                  "id": "7159520a-d340-4e62-9ebd-6b6d0aa2bbd9",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&order_by_direction=DESC&attempt=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "logs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The direction to order by",
+                                          "key": "order_by_direction",
+                                          "value": "DESC"
+                                        },
+                                        {
+                                          "description": "The attempt number to filter for",
+                                          "key": "attempt",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-7159520a-d340-4e62-9ebd-6b6d0aa2bbd9"
+                                },
+                                {
+                                  "id": "eb63ad24-3612-4a76-98a9-366ec8ffff72",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tasks/:task/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&order_by_direction=DESC&attempt=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tasks",
+                                        ":task",
+                                        "logs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The direction to order by",
+                                          "key": "order_by_direction",
+                                          "value": "DESC"
+                                        },
+                                        {
+                                          "description": "The attempt number to filter for",
+                                          "key": "attempt",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "task"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-eb63ad24-3612-4a76-98a9-366ec8ffff72"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:19.000Z",
+                              "updatedAt": "2026-07-28T01:53:19.000Z",
+                              "uid": "35240-72f7cc86-8395-435e-a008-ed28ce0e6eaa"
+                            }
+                          ],
+                          "id": "a479fde6-a476-4e6d-96ef-12fb0fdc3f4e",
+                          "createdAt": "2026-07-28T01:53:19.000Z",
+                          "updatedAt": "2026-07-28T01:53:19.000Z",
+                          "uid": "35240-a479fde6-a476-4e6d-96ef-12fb0fdc3f4e"
+                        }
+                      ],
+                      "id": "f5a8dba4-e079-4887-80e8-286eef3c0f55",
+                      "createdAt": "2026-07-28T01:53:19.000Z",
+                      "updatedAt": "2026-07-28T01:53:19.000Z",
+                      "uid": "35240-f5a8dba4-e079-4887-80e8-286eef3c0f55"
+                    }
+                  ],
+                  "id": "8b171c96-e4f8-463b-9b33-0edb2545aa46",
+                  "createdAt": "2026-07-28T01:53:19.000Z",
+                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                  "uid": "35240-8b171c96-e4f8-463b-9b33-0edb2545aa46"
+                },
+                {
+                  "name": "tenants",
+                  "item": [
+                    {
+                      "name": "{tenant}",
+                      "item": [
+                        {
+                          "name": "logs",
+                          "item": [
+                            {
+                              "name": "List Log Lines",
+                              "id": "428bc642-973a-476f-8005-4e89c5f9a318",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=ERROR&levels=DEBUG&order_by_direction=DESC&attempt=<integer>&taskExternalIds=<uuid>&taskExternalIds=<uuid>&workflow_ids=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>&step_ids=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "logs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number to limit by",
+                                      "key": "limit",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "The start time to get logs for",
+                                      "key": "since",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The end time to get logs for",
+                                      "key": "until",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "A full-text search query to filter for",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The log level(s) to include",
+                                      "key": "levels",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "description": "The log level(s) to include",
+                                      "key": "levels",
+                                      "value": "DEBUG"
+                                    },
+                                    {
+                                      "description": "The direction to order by",
+                                      "key": "order_by_direction",
+                                      "value": "DESC"
+                                    },
+                                    {
+                                      "description": "The attempt number to filter for",
+                                      "key": "attempt",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "The task external ID(s) to filter by",
+                                      "key": "taskExternalIds",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The task external ID(s) to filter by",
+                                      "key": "taskExternalIds",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The workflow id(s) to filter for",
+                                      "key": "workflow_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The workflow id(s) to filter for",
+                                      "key": "workflow_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The step id(s) to filter for",
+                                      "key": "step_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The step id(s) to filter for",
+                                      "key": "step_ids",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b1eeac6f-144d-4cc6-b0fe-2c1932abf763",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Lists log lines for a tenant"
+                              },
+                              "response": [
+                                {
+                                  "id": "c69da06c-e27d-4eab-b039-c74ca906e981",
+                                  "name": "Successfully listed the logs",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&order_by_direction=DESC&attempt=<integer>&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "logs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The direction to order by",
+                                          "key": "order_by_direction",
+                                          "value": "DESC"
+                                        },
+                                        {
+                                          "description": "The attempt number to filter for",
+                                          "key": "attempt",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"pagination\": {\n    \"current_page\": \"<long>\",\n    \"next_page\": \"<long>\",\n    \"num_pages\": \"<long>\"\n  },\n  \"rows\": [\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"message\": \"<string>\",\n      \"metadata\": {},\n      \"taskExternalId\": \"<uuid>\",\n      \"taskDisplayName\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"attempt\": \"<integer>\",\n      \"level\": \"DEBUG\"\n    },\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"message\": \"<string>\",\n      \"metadata\": {},\n      \"taskExternalId\": \"<uuid>\",\n      \"taskDisplayName\": \"<string>\",\n      \"retryCount\": \"<integer>\",\n      \"attempt\": \"<integer>\",\n      \"level\": \"WARN\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-c69da06c-e27d-4eab-b039-c74ca906e981"
+                                },
+                                {
+                                  "id": "97b08335-125e-4d9a-ad95-39879b298398",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&order_by_direction=DESC&attempt=<integer>&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "logs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The direction to order by",
+                                          "key": "order_by_direction",
+                                          "value": "DESC"
+                                        },
+                                        {
+                                          "description": "The attempt number to filter for",
+                                          "key": "attempt",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-97b08335-125e-4d9a-ad95-39879b298398"
+                                },
+                                {
+                                  "id": "a50da05d-4be6-4c5c-a204-a06e6ff1cb7b",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/logs?limit=<long>&since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&order_by_direction=DESC&attempt=<integer>&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "logs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The number to limit by",
+                                          "key": "limit",
+                                          "value": "<long>"
+                                        },
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The direction to order by",
+                                          "key": "order_by_direction",
+                                          "value": "DESC"
+                                        },
+                                        {
+                                          "description": "The attempt number to filter for",
+                                          "key": "attempt",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-a50da05d-4be6-4c5c-a204-a06e6ff1cb7b"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:19.000Z",
+                              "updatedAt": "2026-07-28T01:53:19.000Z",
+                              "uid": "35240-428bc642-973a-476f-8005-4e89c5f9a318"
+                            }
+                          ],
+                          "id": "29b09156-b203-4e5f-b4a5-47c8b5af5bb6",
+                          "createdAt": "2026-07-28T01:53:19.000Z",
+                          "updatedAt": "2026-07-28T01:53:19.000Z",
+                          "uid": "35240-29b09156-b203-4e5f-b4a5-47c8b5af5bb6"
+                        },
+                        {
+                          "name": "log-point-metrics",
+                          "item": [
+                            {
+                              "name": "Get Log Point Metrics",
+                              "id": "928e201a-0c77-4534-a3c6-072190f34906",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/log-point-metrics?since=<dateTime>&until=<dateTime>&search=<string>&levels=ERROR&levels=DEBUG&taskExternalIds=<uuid>&taskExternalIds=<uuid>&workflow_ids=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>&step_ids=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "stable",
+                                    "tenants",
+                                    ":tenant",
+                                    "log-point-metrics"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The start time to get logs for",
+                                      "key": "since",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The end time to get logs for",
+                                      "key": "until",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "A full-text search query to filter for",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The log level(s) to include",
+                                      "key": "levels",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "description": "The log level(s) to include",
+                                      "key": "levels",
+                                      "value": "DEBUG"
+                                    },
+                                    {
+                                      "description": "The task external ID(s) to filter by",
+                                      "key": "taskExternalIds",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The task external ID(s) to filter by",
+                                      "key": "taskExternalIds",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The workflow id(s) to filter for",
+                                      "key": "workflow_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The workflow id(s) to filter for",
+                                      "key": "workflow_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The step id(s) to filter for",
+                                      "key": "step_ids",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "The step id(s) to filter for",
+                                      "key": "step_ids",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "40e5e710-8e5b-4801-8f0b-503539e95e8a",
+                                      "key": "tenant",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The tenant id"
+                                    }
+                                  ]
+                                },
+                                "description": "Get a minute by minute breakdown of log metrics for a tenant"
+                              },
+                              "response": [
+                                {
+                                  "id": "3694895b-9d82-42ac-9083-73a3fa0aa6e4",
+                                  "name": "Successfully retrieved the log point metrics",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/log-point-metrics?since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "log-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"results\": [\n    {\n      \"time\": \"<dateTime>\",\n      \"DEBUG\": \"<integer>\",\n      \"INFO\": \"<integer>\",\n      \"WARN\": \"<integer>\",\n      \"ERROR\": \"<integer>\"\n    },\n    {\n      \"time\": \"<dateTime>\",\n      \"DEBUG\": \"<integer>\",\n      \"INFO\": \"<integer>\",\n      \"WARN\": \"<integer>\",\n      \"ERROR\": \"<integer>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-3694895b-9d82-42ac-9083-73a3fa0aa6e4"
+                                },
+                                {
+                                  "id": "46e27f98-14e5-4efb-ac9b-499f0f4f5580",
+                                  "name": "A malformed or bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/log-point-metrics?since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "log-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-46e27f98-14e5-4efb-ac9b-499f0f4f5580"
+                                },
+                                {
+                                  "id": "81f756c2-2a65-414b-a9db-3208d30b6b33",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/log-point-metrics?since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "log-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-81f756c2-2a65-414b-a9db-3208d30b6b33"
+                                },
+                                {
+                                  "id": "89454188-19d1-425c-bef3-f07d3616f0d8",
+                                  "name": "Not implemented",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/stable/tenants/:tenant/log-point-metrics?since=<dateTime>&until=<dateTime>&search=<string>&levels=DEBUG&taskExternalIds=<uuid>&workflow_ids=<uuid>&step_ids=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "stable",
+                                        "tenants",
+                                        ":tenant",
+                                        "log-point-metrics"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The start time to get logs for",
+                                          "key": "since",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The end time to get logs for",
+                                          "key": "until",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "A full-text search query to filter for",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The log level(s) to include",
+                                          "key": "levels",
+                                          "value": "DEBUG"
+                                        },
+                                        {
+                                          "description": "The task external ID(s) to filter by",
+                                          "key": "taskExternalIds",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The workflow id(s) to filter for",
+                                          "key": "workflow_ids",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "The step id(s) to filter for",
+                                          "key": "step_ids",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenant"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Implemented",
+                                  "code": 501,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"code\": \"<integer>\",\n      \"field\": \"<string>\",\n      \"docs_link\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:53:19.000Z",
+                                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                                  "uid": "35240-89454188-19d1-425c-bef3-f07d3616f0d8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:53:19.000Z",
+                              "updatedAt": "2026-07-28T01:53:19.000Z",
+                              "uid": "35240-928e201a-0c77-4534-a3c6-072190f34906"
+                            }
+                          ],
+                          "id": "dfdc556d-6169-474f-b1f4-572501bbe07d",
+                          "createdAt": "2026-07-28T01:53:19.000Z",
+                          "updatedAt": "2026-07-28T01:53:19.000Z",
+                          "uid": "35240-dfdc556d-6169-474f-b1f4-572501bbe07d"
+                        }
+                      ],
+                      "id": "38903390-8386-4224-aea0-6786eb25a382",
+                      "createdAt": "2026-07-28T01:53:19.000Z",
+                      "updatedAt": "2026-07-28T01:53:19.000Z",
+                      "uid": "35240-38903390-8386-4224-aea0-6786eb25a382"
+                    }
+                  ],
+                  "id": "22d2a3e4-c288-481c-aaaf-c20025985a82",
+                  "createdAt": "2026-07-28T01:53:19.000Z",
+                  "updatedAt": "2026-07-28T01:53:19.000Z",
+                  "uid": "35240-22d2a3e4-c288-481c-aaaf-c20025985a82"
+                }
+              ],
+              "id": "14feb274-73f5-475e-8f3d-f158e79ac999",
+              "createdAt": "2026-07-28T01:53:19.000Z",
+              "updatedAt": "2026-07-28T01:53:19.000Z",
+              "uid": "35240-14feb274-73f5-475e-8f3d-f158e79ac999"
+            }
+          ],
+          "id": "d462d9bf-1dc0-4a79-a7b0-1b9dc9513d35",
+          "createdAt": "2026-07-28T01:53:19.000Z",
+          "updatedAt": "2026-07-28T01:53:19.000Z",
+          "uid": "35240-d462d9bf-1dc0-4a79-a7b0-1b9dc9513d35"
+        }
+      ],
+      "id": "7db577f8-9fee-4d6d-8d21-4425dd393701",
+      "createdAt": "2026-07-28T01:53:19.000Z",
+      "updatedAt": "2026-07-28T01:53:19.000Z",
+      "uid": "35240-7db577f8-9fee-4d6d-8d21-4425dd393701"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
