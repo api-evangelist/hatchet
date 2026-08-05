@@ -17,13 +17,13 @@ domains:
     description: Authored definitions composed of one or more tasks with dependencies.
   - id: execution
     name: Execution
-    description: Runtime concerns: task runs, workflow runs, retries, replays.
+    description: "Runtime concerns: task runs, workflow runs, retries, replays."
   - id: ingestion
     name: Event Ingestion
-    description: Ways work enters the system: events, schedules, crons, webhooks, filters.
+    description: "Ways work enters the system: events, schedules, crons, webhooks, filters."
   - id: observability
     name: Observability
-    description: Telemetry surface: task events, logs, metrics, traces, alerting.
+    description: "Telemetry surface: task events, logs, metrics, traces, alerting."
   - id: governance
     name: Governance
     description: Tenants, users, API tokens, rate limits, feature flags.
