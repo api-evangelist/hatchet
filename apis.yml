@@ -2413,6 +2413,17 @@ apis:
   - type: SourceCode
     url: https://github.com/hatchet-dev/hatchet
 common:
+  - type: IssueTracker
+    url: https://github.com/hatchet-dev/hatchet/issues
+  - type: Releases
+    url: https://github.com/hatchet-dev/hatchet/releases
+  - type: SecurityPolicy
+    url: https://github.com/hatchet-dev/hatchet/blob/main/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/hatchet-dev/hatchet/blob/main/CONTRIBUTING.md
+  - type: License
+    name: MIT
+    url: https://github.com/hatchet-dev/hatchet/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/hatchet/overview
   - type: AgenticAccess
