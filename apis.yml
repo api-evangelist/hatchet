@@ -34,7 +34,7 @@ url: https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/ap
 humanURL: https://hatchet.run/
 created: '2026-03-27'
 modified: '2026-05-25'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: hatchet:hatchet-api-token-api
   name: Hatchet API Token API
