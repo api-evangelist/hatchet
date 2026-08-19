@@ -1,0 +1,798 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Workflow API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workflow Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/queue-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflows",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow IDs to filter by"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              }
+            ]
+          },
+          "docs": "Get the queue metrics for the tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Search by name"
+              }
+            ]
+          },
+          "docs": "Get all workflows for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "The order by field"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order by direction"
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "parentWorkflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent workflow run id"
+              },
+              {
+                "name": "parentStepRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent step run id"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of scheduled run statuses to filter by"
+              }
+            ]
+          },
+          "docs": "Get all scheduled workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/:scheduled-workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "scheduled-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The scheduled workflow id"
+              }
+            ]
+          },
+          "docs": "Get a scheduled workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Scheduled Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/:scheduled-workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "scheduled-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The scheduled workflow id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (reschedule) a scheduled workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Scheduled Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/:scheduled-workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "scheduled-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The scheduled workflow id"
+              }
+            ]
+          },
+          "docs": "Delete a scheduled workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Bulk Delete Scheduled Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/bulk-delete",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk delete scheduled workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Bulk Update Scheduled Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/scheduled/bulk-update",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk update (reschedule) scheduled workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Cron Job Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/crons",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "query",
+                "description": "The workflow name to get runs for."
+              },
+              {
+                "name": "cronName",
+                "value": "",
+                "type": "query",
+                "description": "The cron name to get runs for."
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "The order by field"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order by direction"
+              }
+            ]
+          },
+          "docs": "Get all cron job workflow triggers for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Cron Job Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/crons/:cron-workflow",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "cron-workflow",
+                "value": "",
+                "type": "path",
+                "description": "The cron job id"
+              }
+            ]
+          },
+          "docs": "Get a cron job workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Cron Job Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/workflows/crons/:cron-workflow",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "cron-workflow",
+                "value": "",
+                "type": "path",
+                "description": "The cron job id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a cron workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Cron Job Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/workflows/crons/:cron-workflow",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "cron-workflow",
+                "value": "",
+                "type": "path",
+                "description": "The cron job id"
+              }
+            ]
+          },
+          "docs": "Delete a cron job workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workflows/:workflow",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ]
+          },
+          "docs": "Get a workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/workflows/:workflow",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/workflows/:workflow",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ]
+          },
+          "docs": "Delete a workflow for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workflows/:workflow/versions",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The workflow version. If not supplied, the latest version is fetched."
+              }
+            ]
+          },
+          "docs": "Get a workflow version for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workflows/:workflow/metrics",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "A status of workflow run statuses to filter by"
+              },
+              {
+                "name": "groupKey",
+                "value": "",
+                "type": "query",
+                "description": "A group key to filter metrics by"
+              }
+            ]
+          },
+          "docs": "Get the metrics for a workflow version"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Worker Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/:workflow/worker-count",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              }
+            ]
+          },
+          "docs": "Get a count of the workers available for workflow"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/runs",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "The event id to get runs for."
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "parentWorkflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent workflow run id"
+              },
+              {
+                "name": "parentStepRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent step run id"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow run statuses to filter by"
+              },
+              {
+                "name": "kinds",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow kinds to filter by"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "createdAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the workflow run was created"
+              },
+              {
+                "name": "createdBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the workflow run was created"
+              },
+              {
+                "name": "finishedAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the workflow run was finished"
+              },
+              {
+                "name": "finishedBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the workflow run was finished"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "The order by field"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order by direction"
+              }
+            ]
+          },
+          "docs": "Get all workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Runs Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflows/runs/metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "The event id to get runs for."
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to get runs for."
+              },
+              {
+                "name": "parentWorkflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent workflow run id"
+              },
+              {
+                "name": "parentStepRunId",
+                "value": "",
+                "type": "query",
+                "description": "The parent step run id"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "createdAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the workflow run was created"
+              },
+              {
+                "name": "createdBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the workflow run was created"
+              }
+            ]
+          },
+          "docs": "Get a summary of  workflow run metrics for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              }
+            ]
+          },
+          "docs": "Get a workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run/shape",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              }
+            ]
+          },
+          "docs": "Get a workflow run for a tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

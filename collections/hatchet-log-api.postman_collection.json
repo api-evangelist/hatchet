@@ -1,0 +1,1396 @@
+{
+  "item": [
+    {
+      "id": "ab1ade2f-2583-4c8c-8b6c-0464a970f351",
+      "name": "Log",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e40c6dd6-11b1-41ab-a10b-ba2cb3e3fae8",
+          "name": "List Log Lines",
+          "request": {
+            "name": "List Log Lines",
+            "description": {
+              "content": "Lists log lines for a task",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "stable",
+                "tasks",
+                ":task",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "The number to limit by"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "The start time to get logs for"
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<dateTime>",
+                  "description": "The end time to get logs for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A full-text search query to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "levels",
+                  "value": "<string>",
+                  "description": "The log level(s) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "levels",
+                  "value": "<string>",
+                  "description": "The log level(s) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by_direction",
+                  "value": "<string>",
+                  "description": "The direction to order by"
+                },
+                {
+                  "disabled": false,
+                  "key": "attempt",
+                  "value": "<integer>",
+                  "description": "The attempt number to filter for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "task",
+                  "description": "(Required) The task id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49493677-cfe9-4c4a-a77f-661d9915defa",
+              "name": "Successfully listed the events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tasks",
+                    ":task",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "order_by_direction",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "attempt",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "task",
+                      "description": "(Required) The task id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"next_page\": 3,\n    \"num_pages\": 10,\n    \"current_page\": 2\n  },\n  \"rows\": [\n    {\n      \"createdAt\": \"1954-08-17T08:53:52.579Z\",\n      \"message\": \"string\",\n      \"metadata\": {},\n      \"taskExternalId\": \"be4a2822-97a4-8f00-07b5-176637ab22d7\",\n      \"taskDisplayName\": \"string\",\n      \"retryCount\": 1966,\n      \"attempt\": 5493,\n      \"level\": \"ERROR\"\n    },\n    {\n      \"createdAt\": \"1986-01-06T04:55:27.690Z\",\n      \"message\": \"string\",\n      \"metadata\": {},\n      \"taskExternalId\": \"c3ce7447-38a2-3055-6768-df5ad44b6184\",\n      \"taskDisplayName\": \"string\",\n      \"retryCount\": 5975,\n      \"attempt\": 8086,\n      \"level\": \"DEBUG\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "219f446b-96ec-449f-bba4-ac97d622ac4c",
+              "name": "A malformed or bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tasks",
+                    ":task",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "order_by_direction",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "attempt",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "task",
+                      "description": "(Required) The task id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40cf3465-a719-4e7d-871f-5cfe2030b159",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tasks",
+                    ":task",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "order_by_direction",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "attempt",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "task",
+                      "description": "(Required) The task id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41eeb448-1fe5-4e49-ae12-aa4c5d291bb1",
+          "name": "List Log Lines",
+          "request": {
+            "name": "List Log Lines",
+            "description": {
+              "content": "Lists log lines for a tenant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "stable",
+                "tenants",
+                ":tenant",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "The number to limit by"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "The start time to get logs for"
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<dateTime>",
+                  "description": "The end time to get logs for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A full-text search query to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "levels",
+                  "value": "<string>",
+                  "description": "The log level(s) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "levels",
+                  "value": "<string>",
+                  "description": "The log level(s) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by_direction",
+                  "value": "<string>",
+                  "description": "The direction to order by"
+                },
+                {
+                  "disabled": false,
+                  "key": "attempt",
+                  "value": "<integer>",
+                  "description": "The attempt number to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskExternalIds",
+                  "value": "<uuid>",
+                  "description": "The task external ID(s) to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskExternalIds",
+                  "value": "<uuid>",
+                  "description": "The task external ID(s) to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "workflow_ids",
+                  "value": "<uuid>",
+                  "description": "The workflow id(s) to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "workflow_ids",
+                  "value": "<uuid>",
+                  "description": "The workflow id(s) to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "step_ids",
+                  "value": "<uuid>",
+                  "description": "The step id(s) to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "step_ids",
+                  "value": "<uuid>",
+                  "description": "The step id(s) to filter for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tenant",
+                  "description": "(Required) The tenant id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c20ea7d-766b-430a-bde0-e657bd5b7e89",
+              "name": "Successfully listed the logs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "order_by_direction",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "attempt",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"next_page\": 3,\n    \"num_pages\": 10,\n    \"current_page\": 2\n  },\n  \"rows\": [\n    {\n      \"createdAt\": \"1954-08-17T08:53:52.579Z\",\n      \"message\": \"string\",\n      \"metadata\": {},\n      \"taskExternalId\": \"be4a2822-97a4-8f00-07b5-176637ab22d7\",\n      \"taskDisplayName\": \"string\",\n      \"retryCount\": 1966,\n      \"attempt\": 5493,\n      \"level\": \"ERROR\"\n    },\n    {\n      \"createdAt\": \"1986-01-06T04:55:27.690Z\",\n      \"message\": \"string\",\n      \"metadata\": {},\n      \"taskExternalId\": \"c3ce7447-38a2-3055-6768-df5ad44b6184\",\n      \"taskDisplayName\": \"string\",\n      \"retryCount\": 5975,\n      \"attempt\": 8086,\n      \"level\": \"DEBUG\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e54d73c4-5127-4dcf-bce2-3a2c500f6ea8",
+              "name": "A malformed or bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "order_by_direction",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "attempt",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5da603f6-ec34-4cad-8357-ff8308ac8be0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "order_by_direction",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "attempt",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb95f634-7001-4c80-9668-ce75cd502307",
+          "name": "Get Log Point Metrics",
+          "request": {
+            "name": "Get Log Point Metrics",
+            "description": {
+              "content": "Get a minute by minute breakdown of log metrics for a tenant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "stable",
+                "tenants",
+                ":tenant",
+                "log-point-metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "The start time to get logs for"
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<dateTime>",
+                  "description": "The end time to get logs for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A full-text search query to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "levels",
+                  "value": "<string>",
+                  "description": "The log level(s) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "levels",
+                  "value": "<string>",
+                  "description": "The log level(s) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskExternalIds",
+                  "value": "<uuid>",
+                  "description": "The task external ID(s) to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskExternalIds",
+                  "value": "<uuid>",
+                  "description": "The task external ID(s) to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "workflow_ids",
+                  "value": "<uuid>",
+                  "description": "The workflow id(s) to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "workflow_ids",
+                  "value": "<uuid>",
+                  "description": "The workflow id(s) to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "step_ids",
+                  "value": "<uuid>",
+                  "description": "The step id(s) to filter for"
+                },
+                {
+                  "disabled": false,
+                  "key": "step_ids",
+                  "value": "<uuid>",
+                  "description": "The step id(s) to filter for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tenant",
+                  "description": "(Required) The tenant id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9248c0d-5cd9-45e0-8c1c-bce347c3aec7",
+              "name": "Successfully retrieved the log point metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "log-point-metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"time\": \"1949-04-07T03:24:06.796Z\",\n      \"DEBUG\": 4363,\n      \"INFO\": 5561,\n      \"WARN\": 7006,\n      \"ERROR\": 394\n    },\n    {\n      \"time\": \"2011-10-06T22:28:59.415Z\",\n      \"DEBUG\": 9655,\n      \"INFO\": 2273,\n      \"WARN\": 5435,\n      \"ERROR\": 7848\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38eac53c-9d70-4662-b21c-c5c3baf685c6",
+              "name": "A malformed or bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "log-point-metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "154d7f3f-3a1e-4963-8f1f-e4195c387999",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "log-point-metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "224370da-3684-450e-bd44-de37f7f2b86a",
+              "name": "Not implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "stable",
+                    "tenants",
+                    ":tenant",
+                    "log-point-metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "levels",
+                      "value": "DEBUG"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "taskExternalIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "workflow_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "step_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9aeba9b8-68f5-4bde-82cb-b0452548d57c",
+    "name": "Hatchet API Token Log API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Hatchet API",
+      "type": "text/plain"
+    }
+  }
+}

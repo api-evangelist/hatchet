@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token User API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logs in a user."
+        },
+        {
+          "info": {
+            "name": "Start Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/google/start"
+          },
+          "docs": "Starts the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Complete Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/google/callback"
+          },
+          "docs": "Completes the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Start Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/github/start"
+          },
+          "docs": "Starts the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Complete Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/github/callback"
+          },
+          "docs": "Completes the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Start Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/slack/start",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Starts the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Complete Oauth Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/slack/callback",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Completes the OAuth flow"
+        },
+        {
+          "info": {
+            "name": "Get Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/current",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Gets the current user"
+        },
+        {
+          "info": {
+            "name": "Change User Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Update a user password."
+        },
+        {
+          "info": {
+            "name": "Register User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a user."
+        },
+        {
+          "info": {
+            "name": "Logout User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/logout",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Logs out a user."
+        },
+        {
+          "info": {
+            "name": "List Tenant Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/memberships",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Lists all tenant memberships for the current user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

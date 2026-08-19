@@ -1,0 +1,221 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Step Run API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Step Run",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events for Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/step-runs/:step-run/events",
+            "params": [
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              }
+            ]
+          },
+          "docs": "List events for a step run"
+        },
+        {
+          "info": {
+            "name": "List Events for All Step Runs for a Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run/step-run-events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              },
+              {
+                "name": "lastId",
+                "value": "",
+                "type": "query",
+                "description": "Last ID of the last event"
+              }
+            ]
+          },
+          "docs": "List events for all step runs for a workflow run"
+        },
+        {
+          "info": {
+            "name": "List Archives for Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/step-runs/:step-run/archives",
+            "params": [
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              }
+            ]
+          },
+          "docs": "List archives for a step run"
+        },
+        {
+          "info": {
+            "name": "Get Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ]
+          },
+          "docs": "Get a step run by id"
+        },
+        {
+          "info": {
+            "name": "Rerun Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run/rerun",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reruns a step run"
+        },
+        {
+          "info": {
+            "name": "Attempts to Cancel a Step Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ]
+          },
+          "docs": "Attempts to cancel a step run"
+        },
+        {
+          "info": {
+            "name": "Get Step Run Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/step-runs/:step-run/schema",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "step-run",
+                "value": "",
+                "type": "path",
+                "description": "The step run id"
+              }
+            ]
+          },
+          "docs": "Get the schema for a step run"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

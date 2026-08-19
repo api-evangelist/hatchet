@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Workflow Run API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Run",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/:workflow/scheduled",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedule a new workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Create Cron Job Workflow Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/:workflow/crons",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new cron job workflow trigger for a tenant"
+        },
+        {
+          "info": {
+            "name": "Cancel Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflows/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a batch of workflow runs"
+        },
+        {
+          "info": {
+            "name": "Trigger Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/workflows/:workflow/trigger",
+            "params": [
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path",
+                "description": "The workflow id"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The workflow version. If not supplied, the latest version is fetched."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a new workflow run for a tenant"
+        },
+        {
+          "info": {
+            "name": "Replay Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/replay",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replays a list of workflow runs."
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/workflow-runs/:workflow-run/input",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id"
+              }
+            ]
+          },
+          "docs": "Get the input for a workflow run."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

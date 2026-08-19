@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Worker API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Worker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/worker",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by worker status"
+              }
+            ]
+          },
+          "docs": "Get all workers for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/workers/:worker",
+            "params": [
+              {
+                "name": "worker",
+                "value": "",
+                "type": "path",
+                "description": "The worker id"
+              }
+            ]
+          },
+          "docs": "Get a worker"
+        },
+        {
+          "info": {
+            "name": "Update Worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/workers/:worker",
+            "params": [
+              {
+                "name": "worker",
+                "value": "",
+                "type": "path",
+                "description": "The worker id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a worker"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

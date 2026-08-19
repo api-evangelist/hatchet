@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token SNS API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SNS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SNS Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/sns",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "List SNS integrations"
+        },
+        {
+          "info": {
+            "name": "Create SNS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/sns",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create SNS integration"
+        },
+        {
+          "info": {
+            "name": "Delete SNS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/sns/:sns",
+            "params": [
+              {
+                "name": "sns",
+                "value": "",
+                "type": "path",
+                "description": "The SNS integration id"
+              }
+            ]
+          },
+          "docs": "Delete SNS integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

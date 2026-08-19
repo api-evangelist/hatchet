@@ -1,0 +1,782 @@
+{
+  "item": [
+    {
+      "id": "55183486-fbfa-4804-b1a9-2896ac8386e8",
+      "name": "Worker",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfdec426-c7e7-4b2e-a6da-6257a59baff5",
+          "name": "Get Workers",
+          "request": {
+            "name": "Get Workers",
+            "description": {
+              "content": "Get all workers for a tenant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tenants",
+                ":tenant",
+                "worker"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "The number to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "The number to limit by"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter by worker status"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter by worker status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tenant",
+                  "description": "(Required) The tenant id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06e55441-b68e-4c29-9673-798baa32cd6e",
+              "name": "Successfully retrieved the workflows",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants",
+                    ":tenant",
+                    "worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"next_page\": 3,\n    \"num_pages\": 10,\n    \"current_page\": 2\n  },\n  \"rows\": [\n    {\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"name\": \"string\",\n      \"type\": \"SELFHOSTED\",\n      \"lastHeartbeatAt\": \"2022-12-13T15:06:48.888358-05:00\",\n      \"lastListenerEstablished\": \"2022-12-13T15:06:48.888358-05:00\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"registeredWorkflows\": [\n        {\n          \"id\": \"e734e71d-9187-1ab1-0934-f7f1692c610b\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"e766489e-753c-06e4-2cb6-5c6963b07c57\",\n          \"name\": \"string\"\n        }\n      ],\n      \"slots\": [\n        {\n          \"stepRunId\": \"c38f2d1b-8834-44e0-6aa6-0629ecc93edd\",\n          \"actionId\": \"string\",\n          \"workflowRunId\": \"93a2ffb6-8b19-c656-2d61-9962b4f6aae0\",\n          \"startedAt\": \"1970-06-26T09:31:58.451Z\",\n          \"timeoutAt\": \"2025-11-24T21:30:26.822Z\",\n          \"status\": \"SUCCEEDED\"\n        },\n        {\n          \"stepRunId\": \"ca877da3-c7cf-b57b-5863-03191d3d29bc\",\n          \"actionId\": \"string\",\n          \"workflowRunId\": \"5549a164-dcc5-4bd5-ff98-9d666e68e4ac\",\n          \"startedAt\": \"1969-02-08T23:31:37.202Z\",\n          \"timeoutAt\": \"1952-01-21T18:36:57.742Z\",\n          \"status\": \"BACKOFF\"\n        }\n      ],\n      \"recentStepRuns\": [\n        {\n          \"actionId\": \"string\",\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"status\": \"FAILED\",\n          \"workflowRunId\": \"e1227c1f-ba69-7d97-7f2a-2b12547c15d7\",\n          \"startedAt\": \"1977-10-08T08:13:39.186Z\",\n          \"finishedAt\": \"2017-03-12T15:17:25.976Z\",\n          \"cancelledAt\": \"1988-07-23T21:21:27.978Z\"\n        },\n        {\n          \"actionId\": \"string\",\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"status\": \"FAILED\",\n          \"workflowRunId\": \"203dd50e-8b70-81e0-b7da-94d9bd144d1d\",\n          \"startedAt\": \"2002-10-15T19:47:31.086Z\",\n          \"finishedAt\": \"1983-12-08T20:03:03.303Z\",\n          \"cancelledAt\": \"1985-02-02T12:24:36.453Z\"\n        }\n      ],\n      \"status\": \"INACTIVE\",\n      \"slotConfig\": {\n        \"key_0\": {\n          \"limit\": 7582,\n          \"available\": 7674\n        },\n        \"key_1\": {\n          \"limit\": 4007,\n          \"available\": 8855\n        }\n      },\n      \"dispatcherId\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n      \"labels\": [\n        {\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"webhookUrl\": \"string\",\n      \"webhookId\": \"5f7a0979-8538-3960-2aef-906c7541a861\",\n      \"runtimeInfo\": {\n        \"sdkVersion\": \"string\",\n        \"language\": \"RUBY\",\n        \"languageVersion\": \"string\",\n        \"os\": \"string\",\n        \"runtimeExtra\": \"string\"\n      }\n    },\n    {\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"name\": \"string\",\n      \"type\": \"SELFHOSTED\",\n      \"lastHeartbeatAt\": \"2022-12-13T15:06:48.888358-05:00\",\n      \"lastListenerEstablished\": \"2022-12-13T15:06:48.888358-05:00\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"registeredWorkflows\": [\n        {\n          \"id\": \"8e0a9ad5-4fd2-7687-c511-ae51308fc42e\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"e15b9928-07ea-76e1-a6b5-c5bf1082f6ca\",\n          \"name\": \"string\"\n        }\n      ],\n      \"slots\": [\n        {\n          \"stepRunId\": \"8fe71274-9eaf-90a5-3f8f-515873da1342\",\n          \"actionId\": \"string\",\n          \"workflowRunId\": \"9fa9e58c-c956-e043-c33b-95c8575fa3da\",\n          \"startedAt\": \"1972-01-10T05:42:37.379Z\",\n          \"timeoutAt\": \"1965-11-07T00:52:51.743Z\",\n          \"status\": \"BACKOFF\"\n        },\n        {\n          \"stepRunId\": \"6b04c182-c05d-e84a-f37f-e01c09bdef13\",\n          \"actionId\": \"string\",\n          \"workflowRunId\": \"6c698a33-b78c-f215-b536-4f9244297cb2\",\n          \"startedAt\": \"1960-09-28T04:49:04.164Z\",\n          \"timeoutAt\": \"1965-02-11T07:05:47.976Z\",\n          \"status\": \"BACKOFF\"\n        }\n      ],\n      \"recentStepRuns\": [\n        {\n          \"actionId\": \"string\",\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"status\": \"ASSIGNED\",\n          \"workflowRunId\": \"150d310c-ece5-ca27-04d0-c492ed3f16ee\",\n          \"startedAt\": \"2009-04-30T03:10:51.751Z\",\n          \"finishedAt\": \"2006-12-31T17:17:27.006Z\",\n          \"cancelledAt\": \"1978-02-06T04:51:21.971Z\"\n        },\n        {\n          \"actionId\": \"string\",\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"status\": \"SUCCEEDED\",\n          \"workflowRunId\": \"ad9a4532-8e92-2174-57a5-95b657ead3ca\",\n          \"startedAt\": \"2002-10-21T22:14:53.632Z\",\n          \"finishedAt\": \"2022-06-25T02:11:27.700Z\",\n          \"cancelledAt\": \"1951-06-09T05:09:36.534Z\"\n        }\n      ],\n      \"status\": \"ACTIVE\",\n      \"slotConfig\": {\n        \"key_0\": {\n          \"limit\": 8133,\n          \"available\": 9769\n        },\n        \"key_1\": {\n          \"limit\": 3193,\n          \"available\": 1617\n        }\n      },\n      \"dispatcherId\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n      \"labels\": [\n        {\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"metadata\": {\n            \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n            \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n            \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n          },\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"webhookUrl\": \"string\",\n      \"webhookId\": \"a76f59b4-e42b-552a-3845-b1efff0fbf42\",\n      \"runtimeInfo\": {\n        \"sdkVersion\": \"string\",\n        \"language\": \"RUBY\",\n        \"languageVersion\": \"string\",\n        \"os\": \"string\",\n        \"runtimeExtra\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b0bae9e-ae41-4144-8479-c4586a821699",
+              "name": "A malformed or bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants",
+                    ":tenant",
+                    "worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3d0c539-171e-4c8e-9ee0-3e035fb10162",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants",
+                    ":tenant",
+                    "worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant",
+                      "description": "(Required) The tenant id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65353bb8-3479-497d-bb64-6841159bd578",
+          "name": "Update Worker",
+          "request": {
+            "name": "Update Worker",
+            "description": {
+              "content": "Update a worker",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workers",
+                ":worker"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "worker",
+                  "description": "(Required) The worker id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "903bbaf1-6c5a-4a25-b254-74f344da6eb9",
+              "name": "Successfully updated the worker",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workers",
+                    ":worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "worker",
+                      "description": "(Required) The worker id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n    \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n    \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n  },\n  \"name\": \"string\",\n  \"type\": \"SELFHOSTED\",\n  \"lastHeartbeatAt\": \"2022-12-13T15:06:48.888358-05:00\",\n  \"lastListenerEstablished\": \"2022-12-13T15:06:48.888358-05:00\",\n  \"actions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"registeredWorkflows\": [\n    {\n      \"id\": \"2c4febcd-b369-b0ff-3118-1dd22ae2e3e4\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"a5f74d80-24b2-4003-41b7-487733dfe8d9\",\n      \"name\": \"string\"\n    }\n  ],\n  \"slots\": [\n    {\n      \"stepRunId\": \"89b87153-b80d-5bbb-1b54-f7ec1da55e79\",\n      \"actionId\": \"string\",\n      \"workflowRunId\": \"16f3332a-0c28-d453-b954-5cf70cea7dc3\",\n      \"startedAt\": \"1985-02-17T04:05:59.526Z\",\n      \"timeoutAt\": \"1962-04-10T17:18:13.958Z\",\n      \"status\": \"SUCCEEDED\"\n    },\n    {\n      \"stepRunId\": \"35d91a38-eed7-6558-16d0-8099fb692a6b\",\n      \"actionId\": \"string\",\n      \"workflowRunId\": \"3144bc3c-4c1d-87e0-a44f-e897e420c967\",\n      \"startedAt\": \"1949-11-11T01:38:22.718Z\",\n      \"timeoutAt\": \"1948-01-21T05:09:25.388Z\",\n      \"status\": \"FAILED\"\n    }\n  ],\n  \"recentStepRuns\": [\n    {\n      \"actionId\": \"string\",\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"status\": \"CANCELLING\",\n      \"workflowRunId\": \"a35f0b89-48a3-c3e2-3f55-1394e932f38f\",\n      \"startedAt\": \"1983-11-29T03:43:33.217Z\",\n      \"finishedAt\": \"1998-08-11T00:29:47.456Z\",\n      \"cancelledAt\": \"2019-06-16T21:35:46.838Z\"\n    },\n    {\n      \"actionId\": \"string\",\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"status\": \"SUCCEEDED\",\n      \"workflowRunId\": \"4c20093b-6c8f-59ca-e1c1-d0715ec74243\",\n      \"startedAt\": \"2011-12-30T15:36:59.344Z\",\n      \"finishedAt\": \"2003-02-15T07:14:52.940Z\",\n      \"cancelledAt\": \"1986-08-17T05:16:01.556Z\"\n    }\n  ],\n  \"status\": \"PAUSED\",\n  \"slotConfig\": {\n    \"key_0\": {\n      \"limit\": 5527,\n      \"available\": 5976\n    }\n  },\n  \"dispatcherId\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n  \"labels\": [\n    {\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"webhookUrl\": \"string\",\n  \"webhookId\": \"fa6ec640-cd3c-7d1c-964c-23930bdfc96e\",\n  \"runtimeInfo\": {\n    \"sdkVersion\": \"string\",\n    \"language\": \"PYTHON\",\n    \"languageVersion\": \"string\",\n    \"os\": \"string\",\n    \"runtimeExtra\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01cf7350-cfb2-4bff-931f-61f19b39c050",
+              "name": "A malformed or bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workers",
+                    ":worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "worker",
+                      "description": "(Required) The worker id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9465a727-cc04-4112-b1cb-d7c1adb1d627",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workers",
+                    ":worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "worker",
+                      "description": "(Required) The worker id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isPaused\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15ce496c-b6f1-4fb6-891a-2aa8dc4c0edb",
+          "name": "Get Worker",
+          "request": {
+            "name": "Get Worker",
+            "description": {
+              "content": "Get a worker",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workers",
+                ":worker"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "worker",
+                  "description": "(Required) The worker id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7414dff8-5f85-463b-91d7-8785da63b648",
+              "name": "Successfully retrieved the worker",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workers",
+                    ":worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "worker",
+                      "description": "(Required) The worker id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n    \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n    \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n  },\n  \"name\": \"string\",\n  \"type\": \"SELFHOSTED\",\n  \"lastHeartbeatAt\": \"2022-12-13T15:06:48.888358-05:00\",\n  \"lastListenerEstablished\": \"2022-12-13T15:06:48.888358-05:00\",\n  \"actions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"registeredWorkflows\": [\n    {\n      \"id\": \"2c4febcd-b369-b0ff-3118-1dd22ae2e3e4\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"a5f74d80-24b2-4003-41b7-487733dfe8d9\",\n      \"name\": \"string\"\n    }\n  ],\n  \"slots\": [\n    {\n      \"stepRunId\": \"89b87153-b80d-5bbb-1b54-f7ec1da55e79\",\n      \"actionId\": \"string\",\n      \"workflowRunId\": \"16f3332a-0c28-d453-b954-5cf70cea7dc3\",\n      \"startedAt\": \"1985-02-17T04:05:59.526Z\",\n      \"timeoutAt\": \"1962-04-10T17:18:13.958Z\",\n      \"status\": \"SUCCEEDED\"\n    },\n    {\n      \"stepRunId\": \"35d91a38-eed7-6558-16d0-8099fb692a6b\",\n      \"actionId\": \"string\",\n      \"workflowRunId\": \"3144bc3c-4c1d-87e0-a44f-e897e420c967\",\n      \"startedAt\": \"1949-11-11T01:38:22.718Z\",\n      \"timeoutAt\": \"1948-01-21T05:09:25.388Z\",\n      \"status\": \"FAILED\"\n    }\n  ],\n  \"recentStepRuns\": [\n    {\n      \"actionId\": \"string\",\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"status\": \"CANCELLING\",\n      \"workflowRunId\": \"a35f0b89-48a3-c3e2-3f55-1394e932f38f\",\n      \"startedAt\": \"1983-11-29T03:43:33.217Z\",\n      \"finishedAt\": \"1998-08-11T00:29:47.456Z\",\n      \"cancelledAt\": \"2019-06-16T21:35:46.838Z\"\n    },\n    {\n      \"actionId\": \"string\",\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"status\": \"SUCCEEDED\",\n      \"workflowRunId\": \"4c20093b-6c8f-59ca-e1c1-d0715ec74243\",\n      \"startedAt\": \"2011-12-30T15:36:59.344Z\",\n      \"finishedAt\": \"2003-02-15T07:14:52.940Z\",\n      \"cancelledAt\": \"1986-08-17T05:16:01.556Z\"\n    }\n  ],\n  \"status\": \"PAUSED\",\n  \"slotConfig\": {\n    \"key_0\": {\n      \"limit\": 5527,\n      \"available\": 5976\n    }\n  },\n  \"dispatcherId\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n  \"labels\": [\n    {\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"metadata\": {\n        \"id\": \"bb214807-246e-43a5-a25d-41761d1cff9e\",\n        \"createdAt\": \"2022-12-13T15:06:48.888358-05:00\",\n        \"updatedAt\": \"2022-12-13T15:06:48.888358-05:00\"\n      },\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"webhookUrl\": \"string\",\n  \"webhookId\": \"fa6ec640-cd3c-7d1c-964c-23930bdfc96e\",\n  \"runtimeInfo\": {\n    \"sdkVersion\": \"string\",\n    \"language\": \"PYTHON\",\n    \"languageVersion\": \"string\",\n    \"os\": \"string\",\n    \"runtimeExtra\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc2c4037-d87c-42e9-84ce-d1a4fe262be2",
+              "name": "A malformed or bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workers",
+                    ":worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "worker",
+                      "description": "(Required) The worker id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ba620de-6c85-4860-9a3a-5fde6303c461",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workers",
+                    ":worker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "worker",
+                      "description": "(Required) The worker id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "64d74a94-fde5-4e57-a751-0671d1ad4f93",
+    "name": "Hatchet API Token Worker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Hatchet API",
+      "type": "text/plain"
+    }
+  }
+}

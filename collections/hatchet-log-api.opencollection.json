@@ -1,0 +1,225 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Log API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Log Lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tasks/:task/logs",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get logs for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get logs for"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A full-text search query to filter for"
+              },
+              {
+                "name": "levels",
+                "value": "",
+                "type": "query",
+                "description": "The log level(s) to include"
+              },
+              {
+                "name": "order_by_direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction to order by"
+              },
+              {
+                "name": "attempt",
+                "value": "",
+                "type": "query",
+                "description": "The attempt number to filter for"
+              }
+            ]
+          },
+          "docs": "Lists log lines for a task"
+        },
+        {
+          "info": {
+            "name": "List Log Lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/logs",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get logs for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get logs for"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A full-text search query to filter for"
+              },
+              {
+                "name": "levels",
+                "value": "",
+                "type": "query",
+                "description": "The log level(s) to include"
+              },
+              {
+                "name": "order_by_direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction to order by"
+              },
+              {
+                "name": "attempt",
+                "value": "",
+                "type": "query",
+                "description": "The attempt number to filter for"
+              },
+              {
+                "name": "taskExternalIds",
+                "value": "",
+                "type": "query",
+                "description": "The task external ID(s) to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id(s) to filter for"
+              },
+              {
+                "name": "step_ids",
+                "value": "",
+                "type": "query",
+                "description": "The step id(s) to filter for"
+              }
+            ]
+          },
+          "docs": "Lists log lines for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Log Point Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/log-point-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get logs for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get logs for"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A full-text search query to filter for"
+              },
+              {
+                "name": "levels",
+                "value": "",
+                "type": "query",
+                "description": "The log level(s) to include"
+              },
+              {
+                "name": "taskExternalIds",
+                "value": "",
+                "type": "query",
+                "description": "The task external ID(s) to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id(s) to filter for"
+              },
+              {
+                "name": "step_ids",
+                "value": "",
+                "type": "query",
+                "description": "The step id(s) to filter for"
+              }
+            ]
+          },
+          "docs": "Get a minute by minute breakdown of log metrics for a tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

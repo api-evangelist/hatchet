@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Rate Limits API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rate Limits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Rate Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/rate-limits",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "The search query to filter for"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "What to order by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order direction"
+              }
+            ]
+          },
+          "docs": "Lists all rate limits for a tenant."
+        },
+        {
+          "info": {
+            "name": "Delete Rate Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/rate-limits",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The limit key"
+              }
+            ]
+          },
+          "docs": "Delete a rate limit for a tenant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

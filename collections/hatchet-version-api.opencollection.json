@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Version API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Version",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "We Return the Version for the Currently Running Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/version"
+          },
+          "docs": "Get the version of the server"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

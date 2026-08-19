@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Task API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tasks/:task",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              },
+              {
+                "name": "attempt",
+                "value": "",
+                "type": "query",
+                "description": "The attempt number"
+              }
+            ]
+          },
+          "docs": "Get a task by id"
+        },
+        {
+          "info": {
+            "name": "List Events for a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tasks/:task/task-events",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              }
+            ]
+          },
+          "docs": "List events for a task"
+        },
+        {
+          "info": {
+            "name": "Cancel Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/tasks/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel tasks"
+        },
+        {
+          "info": {
+            "name": "Replay Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/tasks/replay",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replay tasks"
+        },
+        {
+          "info": {
+            "name": "Restore a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tasks/:task/restore",
+            "params": [
+              {
+                "name": "task",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              }
+            ]
+          },
+          "docs": "Restore an evicted durable task"
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/dags/tasks",
+            "params": [
+              {
+                "name": "dag_ids",
+                "value": "",
+                "type": "query",
+                "description": "The external id of the DAG"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "query",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all tasks that belong a specific list of dags"
+        },
+        {
+          "info": {
+            "name": "Get Task Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/task-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The start time to get metrics for"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The end time to get metrics for"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow id to find runs for"
+              },
+              {
+                "name": "parent_task_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The parent task's external id"
+              },
+              {
+                "name": "triggering_event_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the event that triggered the task"
+              },
+              {
+                "name": "additional_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Additional metadata k-v pairs to filter by"
+              }
+            ]
+          },
+          "docs": "Get a summary of task run metrics for a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Task Point Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/task-point-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "createdAfter",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time after the task was created"
+              },
+              {
+                "name": "finishedBefore",
+                "value": "2021-01-01T00:00:00Z",
+                "type": "query",
+                "description": "The time before the task was completed"
+              }
+            ]
+          },
+          "docs": "Get a minute by minute breakdown of task metrics for a tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

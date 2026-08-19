@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Filter API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/filters",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "workflowIds",
+                "value": "",
+                "type": "query",
+                "description": "The workflow ids to filter by"
+              },
+              {
+                "name": "scopes",
+                "value": "",
+                "type": "query",
+                "description": "The scopes to subset candidate filters by"
+              }
+            ]
+          },
+          "docs": "Lists all filters for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create a Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/filters",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new filter"
+        },
+        {
+          "info": {
+            "name": "Get a Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-filter",
+                "value": "",
+                "type": "path",
+                "description": "The filter id"
+              }
+            ]
+          },
+          "docs": "Get a filter by its id"
+        },
+        {
+          "info": {
+            "name": "v1-filter:update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-filter",
+                "value": "",
+                "type": "path",
+                "description": "The filter id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a filter"
+        },
+        {
+          "info": {
+            "name": "v1-filter:delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/stable/tenants/:tenant/filters/:v1-filter",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-filter",
+                "value": "",
+                "type": "path",
+                "description": "The filter id to delete"
+              }
+            ]
+          },
+          "docs": "Delete a filter"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Feature Flags API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feature Flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Evaluate a Feature Flag for a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/feature-flags",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant ID"
+              },
+              {
+                "name": "featureFlagId",
+                "value": "",
+                "type": "query",
+                "description": "The feature flag id to evaluate"
+              },
+              {
+                "name": "isEnabledIfNoPosthog",
+                "value": "",
+                "type": "query",
+                "description": "A flag indicating what the behavior of the feature flag should be if PostHog is disabled or unavailable"
+              }
+            ]
+          },
+          "docs": "Evaluate a feature flag for a tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

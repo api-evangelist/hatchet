@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Slack API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Slack",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Slack Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/slack",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "List Slack webhooks"
+        },
+        {
+          "info": {
+            "name": "Delete Slack Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/slack/:slack",
+            "params": [
+              {
+                "name": "slack",
+                "value": "",
+                "type": "path",
+                "description": "The Slack webhook id"
+              }
+            ]
+          },
+          "docs": "Delete Slack webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

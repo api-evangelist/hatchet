@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "e898379d-07db-486d-b453-c2ccad28edcd",
+      "name": "Healthcheck",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c05a8cf-efba-44de-8385-3cb437e3b3aa",
+          "name": "Get Readiness",
+          "request": {
+            "name": "Get Readiness",
+            "description": {
+              "content": "Gets the readiness status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ready"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f41df9d-02a7-4fb0-b298-f3080cdf8374",
+              "name": "Healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe5b0e7c-b949-4477-9fb7-d3cb44325c42",
+              "name": "Not ready to accept traffic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baf5c50b-7e83-4188-8645-89fd1ddf9c21",
+          "name": "Get Liveness",
+          "request": {
+            "name": "Get Liveness",
+            "description": {
+              "content": "Gets the liveness status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "live"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a370b6ed-f41f-4618-91b5-b6bcba68ebc1",
+              "name": "Healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7bea368-6d83-47de-a69a-971a094ec759",
+              "name": "Not liveness",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    },\n    {\n      \"description\": \"A descriptive error message\",\n      \"code\": 1400,\n      \"field\": \"name\",\n      \"docs_link\": \"github.com/hatchet-dev/hatchet\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7bbf877e-a5e4-4fe3-b34c-4ff49a6ef723",
+    "name": "Hatchet API Token Healthcheck API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Hatchet API",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Webhook API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "sourceNames",
+                "value": "",
+                "type": "query",
+                "description": "The source names to filter by"
+              },
+              {
+                "name": "webhookNames",
+                "value": "",
+                "type": "query",
+                "description": "The webhook names to filter by"
+              }
+            ]
+          },
+          "docs": "Lists all webhook for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook"
+        },
+        {
+          "info": {
+            "name": "Get a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook name"
+              }
+            ]
+          },
+          "docs": "Get a webhook by its name"
+        },
+        {
+          "info": {
+            "name": "Post a Webhook Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook name"
+              }
+            ]
+          },
+          "docs": "Post an incoming webhook message"
+        },
+        {
+          "info": {
+            "name": "Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook"
+        },
+        {
+          "info": {
+            "name": "v1-webhook:delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/stable/tenants/:tenant/webhooks/:v1-webhook",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-webhook",
+                "value": "",
+                "type": "path",
+                "description": "The name of the webhook to delete"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

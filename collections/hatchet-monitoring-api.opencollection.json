@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Monitoring API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detailed Health Probe for the Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/monitoring/:tenant/probe",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Triggers a workflow to check the status of the instance"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,341 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Workflow Runs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of statuses to filter by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The earliest date to filter by"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The latest date to filter by"
+              },
+              {
+                "name": "additional_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Additional metadata k-v pairs to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow ids to find runs for"
+              },
+              {
+                "name": "worker_id",
+                "value": "",
+                "type": "query",
+                "description": "The worker id to filter by"
+              },
+              {
+                "name": "only_tasks",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include DAGs or only to include tasks"
+              },
+              {
+                "name": "parent_task_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The parent task external id to filter by"
+              },
+              {
+                "name": "triggering_event_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The external id of the event that triggered the workflow run"
+              },
+              {
+                "name": "include_payloads",
+                "value": "",
+                "type": "query",
+                "description": "A flag for whether or not to include the input and output payloads in the response. Defaults to `true` if unset."
+              },
+              {
+                "name": "running_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter within the RUNNING status bucket. ALL returns both on-worker and evicted tasks, ON_WORKER returns only tasks running on a worker, EVICTED returns only evicted tasks. Defaults to ALL."
+              }
+            ]
+          },
+          "docs": "Lists workflow runs for a tenant."
+        },
+        {
+          "info": {
+            "name": "List Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs/display-names",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "external_ids",
+                "value": "",
+                "type": "query",
+                "description": "The external ids of the workflow runs to get display names for"
+              }
+            ]
+          },
+          "docs": "Lists displayable names of workflow runs for a tenant"
+        },
+        {
+          "info": {
+            "name": "List Workflow Run External Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs/external-ids",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of statuses to filter by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The earliest date to filter by"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "The latest date to filter by"
+              },
+              {
+                "name": "additional_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Additional metadata k-v pairs to filter by"
+              },
+              {
+                "name": "workflow_ids",
+                "value": "",
+                "type": "query",
+                "description": "The workflow ids to find runs for"
+              },
+              {
+                "name": "running_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter within the RUNNING status bucket. ALL returns both on-worker and evicted tasks, ON_WORKER returns only tasks running on a worker, EVICTED returns only evicted tasks. Defaults to ALL."
+              }
+            ]
+          },
+          "docs": "Lists external ids for workflow runs matching filters"
+        },
+        {
+          "info": {
+            "name": "Create Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/workflow-runs/trigger",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a new workflow run"
+        },
+        {
+          "info": {
+            "name": "Branch Durable Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/stable/tenants/:tenant/durable-tasks/branch",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Branch a durable task from a specific node, creating a new branch and re-processing its matches."
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run",
+            "params": [
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to get"
+              }
+            ]
+          },
+          "docs": "Get a workflow run and its metadata to display on the \"detail\" page"
+        },
+        {
+          "info": {
+            "name": "Get Workflow Run Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run/status",
+            "params": [
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to get the status for"
+              }
+            ]
+          },
+          "docs": "Get the status of a workflow run."
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run/task-events",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to find runs for"
+              }
+            ]
+          },
+          "docs": "List all tasks for a workflow run"
+        },
+        {
+          "info": {
+            "name": "List Timings for a Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/workflow-runs/:v1-workflow-run/task-timings",
+            "params": [
+              {
+                "name": "v1-workflow-run",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run id to get"
+              },
+              {
+                "name": "depth",
+                "value": "",
+                "type": "query",
+                "description": "The depth to retrieve children"
+              }
+            ]
+          },
+          "docs": "Get the timings for a workflow run"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

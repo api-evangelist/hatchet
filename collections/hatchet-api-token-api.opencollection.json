@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/api-tokens",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "List API tokens for a tenant"
+        },
+        {
+          "info": {
+            "name": "Create API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/api-tokens",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API token for a tenant"
+        },
+        {
+          "info": {
+            "name": "Revoke API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/api-tokens/:api-token",
+            "params": [
+              {
+                "name": "api-token",
+                "value": "",
+                "type": "path",
+                "description": "The API token"
+              }
+            ]
+          },
+          "docs": "Revoke an API token for a tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

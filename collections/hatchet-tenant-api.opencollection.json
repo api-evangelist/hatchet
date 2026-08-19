@@ -1,0 +1,428 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Tenant API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenant Alert Email Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/alerting-email-groups",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets a list of tenant alert email groups"
+        },
+        {
+          "info": {
+            "name": "Create Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/alerting-email-groups",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant alert email group"
+        },
+        {
+          "info": {
+            "name": "Create Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/resource-policy",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets the resource policy for a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/alerting-email-groups/:alert-email-group",
+            "params": [
+              {
+                "name": "alert-email-group",
+                "value": "",
+                "type": "path",
+                "description": "The tenant alert email group id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a tenant alert email group"
+        },
+        {
+          "info": {
+            "name": "Delete Tenant Alert Email Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/alerting-email-groups/:alert-email-group",
+            "params": [
+              {
+                "name": "alert-email-group",
+                "value": "",
+                "type": "path",
+                "description": "The tenant alert email group id"
+              }
+            ]
+          },
+          "docs": "Deletes a tenant alert email group"
+        },
+        {
+          "info": {
+            "name": "List Tenant Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/users/invites",
+            "auth": {
+              "type": "apikey",
+              "key": "hatchet",
+              "value": "{{hatchet}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Lists all tenant invites for the current user"
+        },
+        {
+          "info": {
+            "name": "Accept Tenant Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/invites/accept",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accepts a tenant invite"
+        },
+        {
+          "info": {
+            "name": "Reject Tenant Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/users/invites/reject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rejects a tenant invite"
+        },
+        {
+          "info": {
+            "name": "Create Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant"
+        },
+        {
+          "info": {
+            "name": "Get Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id to get details for"
+              }
+            ]
+          },
+          "docs": "Get the details of a tenant"
+        },
+        {
+          "info": {
+            "name": "Update Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing tenant"
+        },
+        {
+          "info": {
+            "name": "Get Tenant Alerting Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/alerting/settings",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets the alerting settings for a tenant"
+        },
+        {
+          "info": {
+            "name": "List Tenant Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/invites",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets a list of tenant invites"
+        },
+        {
+          "info": {
+            "name": "Create Tenant Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/invites",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant invite"
+        },
+        {
+          "info": {
+            "name": "Get Step Run Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/step-run-queue-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Get the queue metrics for the tenant"
+        },
+        {
+          "info": {
+            "name": "List Tenant Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/members",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Gets a list of tenant members"
+        },
+        {
+          "info": {
+            "name": "Update a Tenant Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v1/tenants/:tenant/members/:member",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "member",
+                "value": "",
+                "type": "path",
+                "description": "The tenant member id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a tenant member"
+        },
+        {
+          "info": {
+            "name": "Delete a Tenant Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/tenants/:tenant/members/:member",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "member",
+                "value": "",
+                "type": "path",
+                "description": "The tenant member id"
+              }
+            ]
+          },
+          "docs": "Delete a member from a tenant"
+        },
+        {
+          "info": {
+            "name": "Get Prometheus Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/prometheus-metrics",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Get the prometheus metrics for the tenant"
+        },
+        {
+          "info": {
+            "name": "Get Task Stats for Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/task-stats",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant ID"
+              },
+              {
+                "name": "taskNames",
+                "value": "",
+                "type": "query",
+                "description": "Task names that must appear in the response. Missing tasks are zero-filled so KEDA's metrics-api JSONPath always resolves."
+              }
+            ]
+          },
+          "docs": "Get task stats for tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

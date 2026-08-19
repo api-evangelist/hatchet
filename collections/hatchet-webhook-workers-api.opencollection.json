@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Webhook Workers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook Workers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/webhook-workers/:webhook",
+            "params": [
+              {
+                "name": "webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook"
+        },
+        {
+          "info": {
+            "name": "List Webhook Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/webhook-workers/:webhook/requests",
+            "params": [
+              {
+                "name": "webhook",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Lists all requests for a webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

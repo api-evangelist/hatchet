@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Healthcheck API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Healthcheck",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Readiness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/ready"
+          },
+          "docs": "Gets the readiness status"
+        },
+        {
+          "info": {
+            "name": "Get Liveness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/live"
+          },
+          "docs": "Gets the liveness status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

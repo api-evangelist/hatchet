@@ -1,0 +1,400 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Event API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "A list of keys to filter by"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Consider events that occurred after this time"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Consider events that occurred before this time"
+              },
+              {
+                "name": "workflowIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter to events that are associated with a specific workflow run"
+              },
+              {
+                "name": "workflowRunStatuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter to events that are associated with workflow runs matching a certain status"
+              },
+              {
+                "name": "eventIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific events by their ids"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by additional metadata on the events"
+              },
+              {
+                "name": "scopes",
+                "value": "",
+                "type": "query",
+                "description": "The scopes to filter by"
+              }
+            ]
+          },
+          "docs": "Lists all events for a tenant."
+        },
+        {
+          "info": {
+            "name": "Get Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/events/:v1-event",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "v1-event",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              }
+            ]
+          },
+          "docs": "Get an event by its id"
+        },
+        {
+          "info": {
+            "name": "List Event Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/tenants/:tenant/events/keys",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all event keys for a tenant."
+        },
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number to limit by"
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "A list of keys to filter by"
+              },
+              {
+                "name": "workflows",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow IDs to filter by"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of workflow run statuses to filter by"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "The search query to filter for"
+              },
+              {
+                "name": "orderByField",
+                "value": "",
+                "type": "query",
+                "description": "What to order by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order direction"
+              },
+              {
+                "name": "additionalMetadata",
+                "value": "key1:value1,key2:value2",
+                "type": "query",
+                "description": "A list of metadata key value pairs to filter by"
+              },
+              {
+                "name": "eventIds",
+                "value": "",
+                "type": "query",
+                "description": "A list of event ids to filter by"
+              }
+            ]
+          },
+          "docs": "Lists all events for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new event."
+        },
+        {
+          "info": {
+            "name": "Bulk Create Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events/bulk",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk creates new events."
+        },
+        {
+          "info": {
+            "name": "Replay Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events/replay",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replays a list of events."
+        },
+        {
+          "info": {
+            "name": "Replay Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/tenants/:tenant/events/cancel",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels all runs for a list of events."
+        },
+        {
+          "info": {
+            "name": "Get Event Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/events/:event",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              }
+            ]
+          },
+          "docs": "Get an event."
+        },
+        {
+          "info": {
+            "name": "Get Event Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/events/:event/data",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              }
+            ]
+          },
+          "docs": "Get the data for an event."
+        },
+        {
+          "info": {
+            "name": "Get Event Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/events/:event-with-tenant/data",
+            "params": [
+              {
+                "name": "event-with-tenant",
+                "value": "",
+                "type": "path",
+                "description": "The event id"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Get the data for an event."
+        },
+        {
+          "info": {
+            "name": "List Event Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/tenants/:tenant/events/keys",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              }
+            ]
+          },
+          "docs": "Lists all event keys for a tenant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

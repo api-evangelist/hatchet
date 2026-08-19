@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Durable Tasks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Durable Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Durable Event Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/stable/durable-tasks/:durable-task",
+            "params": [
+              {
+                "name": "durable-task",
+                "value": "",
+                "type": "path",
+                "description": "The durable task external id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of event log entries to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of event log entries to limit by"
+              }
+            ]
+          },
+          "docs": "Lists all event log entries for a durable task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

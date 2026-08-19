@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Github API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Github",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Github App Tenant Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/sns/:tenant/:event",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "The tenant id"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "The event key"
+              }
+            ]
+          },
+          "docs": "SNS event"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

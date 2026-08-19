@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hatchet API Token Metadata API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/meta"
+          },
+          "docs": "Gets metadata for the Hatchet instance"
+        },
+        {
+          "info": {
+            "name": "Get Cloud Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/cloud/metadata"
+          },
+          "docs": "Gets metadata for the Hatchet cloud instance"
+        },
+        {
+          "info": {
+            "name": "List Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/meta/integrations"
+          },
+          "docs": "List all integrations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
