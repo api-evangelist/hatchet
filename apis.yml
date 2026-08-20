@@ -29,6 +29,15 @@ tags:
   - AI Agents
   - Orchestration
   - PostgreSQL
+  - Open-Source
+tags_raw:
+  - Task Queue
+  - Workflow Engine
+  - Durable Execution
+  - Background Tasks
+  - AI Agents
+  - Orchestration
+  - PostgreSQL
   - Open Source
 url: https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml
 humanURL: https://hatchet.run/
@@ -570,6 +579,8 @@ apis:
   humanURL: https://docs.hatchet.run/
   baseURL: https://api.hatchet-cloud.run
   tags:
+  - GitHub
+  tags_raw:
   - Github
   properties:
   - type: OpenAPI
@@ -658,6 +669,8 @@ apis:
   humanURL: https://docs.hatchet.run/
   baseURL: https://api.hatchet-cloud.run
   tags:
+  - Health Check
+  tags_raw:
   - Healthcheck
   properties:
   - type: OpenAPI
@@ -2154,6 +2167,8 @@ apis:
   humanURL: https://docs.hatchet.run/
   baseURL: https://api.hatchet-cloud.run
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
