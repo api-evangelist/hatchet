@@ -593,7 +593,7 @@ apis:
   humanURL: https://docs.hatchet.run/
   baseURL: https://api.hatchet-cloud.run
   tags:
-  - Github
+  - GitHub
   tags_raw:
   - Github
   properties:
@@ -683,7 +683,7 @@ apis:
   humanURL: https://docs.hatchet.run/
   baseURL: https://api.hatchet-cloud.run
   tags:
-  - Healthcheck
+  - Health Check
   tags_raw:
   - Healthcheck
   properties:
