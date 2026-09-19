@@ -1476,6 +1476,8 @@ apis:
   humanURL: https://docs.hatchet.run/
   baseURL: https://api.hatchet-cloud.run
   tags:
+  - Tenants
+  tags_raw:
   - Tenant
   properties:
   - type: OpenAPI
