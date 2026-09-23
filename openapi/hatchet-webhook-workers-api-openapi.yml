@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Webhook Workers API
+  title: Hatchet Webhook Workers API
   description: The Hatchet API
 servers:
 - url: ''
@@ -99,45 +99,6 @@ paths:
       - Webhook Workers
 components:
   schemas:
-    WebhookWorkerRequestMethod:
-      enum:
-      - GET
-      - POST
-      - PUT
-    WebhookWorkerRequest:
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time the request was created.
-        method:
-          $ref: '#/components/schemas/WebhookWorkerRequestMethod'
-          description: The HTTP method used for the request.
-        statusCode:
-          type: integer
-          description: The HTTP status code of the response.
-      required:
-      - created_at
-      - method
-      - statusCode
-      type: object
-    WebhookWorkerRequestListResponse:
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookWorkerRequest'
-          description: The list of webhook requests.
-      type: object
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     APIError:
       type: object
       properties:
@@ -160,6 +121,45 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    WebhookWorkerRequestMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
+    WebhookWorkerRequest:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the request was created.
+        method:
+          $ref: '#/components/schemas/WebhookWorkerRequestMethod'
+          description: The HTTP method used for the request.
+        statusCode:
+          type: integer
+          description: The HTTP status code of the response.
+      required:
+      - created_at
+      - method
+      - statusCode
+      type: object
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    WebhookWorkerRequestListResponse:
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookWorkerRequest'
+          description: The list of webhook requests.
+      type: object
   securitySchemes:
     bearerAuth:
       type: http

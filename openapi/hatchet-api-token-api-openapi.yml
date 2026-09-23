@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
   title: Hatchet API Token API
@@ -128,45 +128,50 @@ paths:
       - API Token
 components:
   schemas:
-    APIToken:
+    CreateAPITokenRequest:
       type: object
       properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
         name:
           type: string
-          description: The name of the API token.
+          description: A name for the API token.
           maxLength: 255
-        expiresAt:
+        expiresIn:
           type: string
-          format: date-time
-          description: When the API token expires.
+          description: The duration for which the token is valid.
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,duration
       required:
-      - metadata
       - name
-      - expiresAt
-    PaginationResponse:
+    CreateAPITokenResponse:
       type: object
       properties:
-        current_page:
+        token:
+          type: string
+          description: The API token.
+      required:
+      - token
+    APIError:
+      type: object
+      properties:
+        code:
           type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
     APIErrors:
       type: object
       properties:
@@ -176,14 +181,6 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
-    CreateAPITokenResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The API token.
-      required:
-      - token
     APIResourceMeta:
       type: object
       properties:
@@ -207,20 +204,23 @@ components:
       - id
       - createdAt
       - updatedAt
-    CreateAPITokenRequest:
+    APIToken:
       type: object
       properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
         name:
           type: string
-          description: A name for the API token.
+          description: The name of the API token.
           maxLength: 255
-        expiresIn:
+        expiresAt:
           type: string
-          description: The duration for which the token is valid.
-          x-oapi-codegen-extra-tags:
-            validate: omitnil,duration
+          format: date-time
+          description: When the API token expires.
       required:
+      - metadata
       - name
+      - expiresAt
     ListAPITokensResponse:
       properties:
         pagination:
@@ -229,28 +229,28 @@ components:
           items:
             $ref: '#/components/schemas/APIToken'
           type: array
-    APIError:
+    PaginationResponse:
       type: object
       properties:
-        code:
+        current_page:
           type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Filter API
+  title: Hatchet Filter API
   description: The Hatchet API
 servers:
 - url: ''
@@ -234,6 +234,8 @@ paths:
           description: Not found
       tags:
       - Filter
+      summary: V1 filter:delete
+      x-summary-source: derived
     patch:
       x-resources:
       - tenant
@@ -293,42 +295,19 @@ paths:
           description: Not found
       tags:
       - Filter
+      summary: V1 filter:update
+      x-summary-source: derived
 components:
   schemas:
-    PaginationResponse:
+    V1FilterList:
       type: object
       properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    V1UpdateFilterRequest:
-      type: object
-      properties:
-        expression:
-          type: string
-          description: The expression for the filter
-        scope:
-          type: string
-          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
-        payload:
-          type: object
-          description: The payload for the filter
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1Filter'
     V1CreateFilterRequest:
       type: object
       properties:
@@ -351,6 +330,37 @@ components:
       - workflowId
       - scope
       - expression
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     APIResourceMeta:
       type: object
       properties:
@@ -406,46 +416,40 @@ components:
       - scope
       - expression
       - payload
-    APIErrors:
+    V1UpdateFilterRequest:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1FilterList:
+        expression:
+          type: string
+          description: The expression for the filter
+        scope:
+          type: string
+          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
+        payload:
+          type: object
+          description: The payload for the filter
+    PaginationResponse:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1Filter'
-    APIError:
-      type: object
-      properties:
-        code:
+        current_page:
           type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

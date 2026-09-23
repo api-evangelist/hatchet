@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Metadata API
+  title: Hatchet Metadata API
   description: The Hatchet API
 servers:
 - url: ''
@@ -77,45 +77,28 @@ paths:
       - Metadata
 components:
   schemas:
-    APIMetaPosthog:
+    APIError:
       type: object
       properties:
-        apiKey:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
           type: string
-          description: the PostHog API key
-          example: phk_1234567890abcdef
-        apiHost:
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
           type: string
-          description: the PostHog API host
-          example: https://posthog.example.com
-    ListAPIMetaIntegration:
-      type: array
-      items:
-        $ref: '#/components/schemas/APIMetaIntegration'
-    APIMetaAuth:
-      type: object
-      properties:
-        schemes:
-          items:
-            type: string
-          type: array
-          description: the supported types of authentication
-          example:
-          - basic
-          - google
-    APIMetaIntegration:
-      type: object
-      properties:
-        name:
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
           type: string
-          description: the name of the integration
-          example: github
-        enabled:
-          type: boolean
-          description: whether this integration is enabled on the instance
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
       required:
-      - name
-      - enabled
+      - description
     APIMeta:
       type: object
       properties:
@@ -147,6 +130,17 @@ components:
           type: boolean
           description: whether or not observability (trace collection) is enabled on this instance
           example: false
+    APIMetaAuth:
+      type: object
+      properties:
+        schemes:
+          items:
+            type: string
+          type: array
+          description: the supported types of authentication
+          example:
+          - basic
+          - google
     APIErrors:
       type: object
       properties:
@@ -156,28 +150,34 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
-    APIError:
+    APIMetaPosthog:
       type: object
       properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
+        apiKey:
           type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
+          description: the PostHog API key
+          example: phk_1234567890abcdef
+        apiHost:
           type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
+          description: the PostHog API host
+          example: https://posthog.example.com
+    ListAPIMetaIntegration:
+      type: array
+      items:
+        $ref: '#/components/schemas/APIMetaIntegration'
+    APIMetaIntegration:
+      type: object
+      properties:
+        name:
           type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
+          description: the name of the integration
+          example: github
+        enabled:
+          type: boolean
+          description: whether this integration is enabled on the instance
       required:
-      - description
+      - name
+      - enabled
   securitySchemes:
     bearerAuth:
       type: http

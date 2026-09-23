@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Rate Limits API
+  title: Hatchet Rate Limits API
   description: The Hatchet API
 servers:
 - url: ''
@@ -127,34 +127,37 @@ components:
       enum:
       - asc
       - desc
-    RateLimitOrderByField:
-      type: string
-      enum:
-      - key
-      - value
-      - limitValue
-    PaginationResponse:
+    APIError:
       type: object
       properties:
-        current_page:
+        code:
           type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     RateLimit:
       properties:
         key:
@@ -192,37 +195,34 @@ components:
           items:
             $ref: '#/components/schemas/RateLimit'
           type: array
-    APIErrors:
+    PaginationResponse:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    APIError:
-      type: object
-      properties:
-        code:
+        current_page:
           type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    RateLimitOrderByField:
+      type: string
+      enum:
+      - key
+      - value
+      - limitValue
   securitySchemes:
     bearerAuth:
       type: http

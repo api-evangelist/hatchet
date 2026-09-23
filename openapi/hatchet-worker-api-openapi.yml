@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Worker API
+  title: Hatchet Worker API
   description: The Hatchet API
 servers:
 - url: ''
@@ -157,46 +157,19 @@ paths:
       - Worker
 components:
   schemas:
-    WorkerSlotConfig:
-      type: object
-      description: Slot availability and limits for a slot type.
-      properties:
-        available:
-          type: integer
-          description: The number of available units for this slot type.
-        limit:
-          type: integer
-          description: The maximum number of units for this slot type.
-      required:
-      - limit
-    PaginationResponse:
-      type: object
-      properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    UpdateWorkerRequest:
-      properties:
-        isPaused:
-          type: boolean
-          description: Whether the worker is paused and cannot accept new runs.
-      type: object
+    WorkerRuntimeSDKs:
+      type: string
+      enum:
+      - GOLANG
+      - PYTHON
+      - TYPESCRIPT
+      - RUBY
+    WorkerStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - PAUSED
     WorkerLabel:
       properties:
         metadata:
@@ -211,23 +184,6 @@ components:
       - metadata
       - key
       type: object
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    WorkerList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/Worker'
-          type: array
     StepRunStatus:
       type: string
       enum:
@@ -240,35 +196,55 @@ components:
       - CANCELLED
       - CANCELLING
       - BACKOFF
-    APIResourceMeta:
+    SemaphoreSlots:
+      properties:
+        stepRunId:
+          type: string
+          description: The step run id.
+          format: uuid
+        actionId:
+          type: string
+          description: The action id.
+        startedAt:
+          type: string
+          description: The time this slot was started.
+          format: date-time
+        timeoutAt:
+          type: string
+          description: The time this slot will timeout.
+          format: date-time
+        workflowRunId:
+          type: string
+          description: The workflow run id.
+          format: uuid
+        status:
+          $ref: '#/components/schemas/StepRunStatus'
+      required:
+      - stepRunId
+      - actionId
+      - workflowRunId
+    APIError:
       type: object
       properties:
-        id:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
           type: string
-          description: the id of this resource, in UUID format
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 0
-          maxLength: 36
-        createdAt:
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
           type: string
-          description: the time that this resource was created
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-        updatedAt:
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
           type: string
-          description: the time that this resource was last updated
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
       required:
-      - id
-      - createdAt
-      - updatedAt
-    WorkerStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - INACTIVE
-      - PAUSED
+      - description
     RecentStepRuns:
       properties:
         metadata:
@@ -309,12 +285,21 @@ components:
       required:
       - id
       - name
-    WorkerType:
-      type: string
-      enum:
-      - SELFHOSTED
-      - MANAGED
-      - WEBHOOK
+    UpdateWorkerRequest:
+      properties:
+        isPaused:
+          type: boolean
+          description: Whether the worker is paused and cannot accept new runs.
+      type: object
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     WorkerRuntimeInfo:
       properties:
         sdkVersion:
@@ -327,6 +312,47 @@ components:
           type: string
         runtimeExtra:
           type: string
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    WorkerSlotConfig:
+      type: object
+      description: Slot availability and limits for a slot type.
+      properties:
+        available:
+          type: integer
+          description: The number of available units for this slot type.
+        limit:
+          type: integer
+          description: The maximum number of units for this slot type.
+      required:
+      - limit
+    WorkerType:
+      type: string
+      enum:
+      - SELFHOSTED
+      - MANAGED
+      - WEBHOOK
     Worker:
       properties:
         metadata:
@@ -400,62 +426,36 @@ components:
       - name
       - type
       type: object
-    WorkerRuntimeSDKs:
-      type: string
-      enum:
-      - GOLANG
-      - PYTHON
-      - TYPESCRIPT
-      - RUBY
-    SemaphoreSlots:
+    WorkerList:
       properties:
-        stepRunId:
-          type: string
-          description: The step run id.
-          format: uuid
-        actionId:
-          type: string
-          description: The action id.
-        startedAt:
-          type: string
-          description: The time this slot was started.
-          format: date-time
-        timeoutAt:
-          type: string
-          description: The time this slot will timeout.
-          format: date-time
-        workflowRunId:
-          type: string
-          description: The workflow run id.
-          format: uuid
-        status:
-          $ref: '#/components/schemas/StepRunStatus'
-      required:
-      - stepRunId
-      - actionId
-      - workflowRunId
-    APIError:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/Worker'
+          type: array
+    PaginationResponse:
       type: object
       properties:
-        code:
+        current_page:
           type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Task API
+  title: Hatchet Task API
   description: The Hatchet API
 servers:
 - url: ''
@@ -504,19 +504,13 @@ paths:
       - Task
 components:
   schemas:
-    V1ReplayTaskRequest:
+    V1TaskPointMetrics:
       type: object
       properties:
-        externalIds:
+        results:
           type: array
-          description: A list of external IDs, which can refer to either task or workflow run external IDs
           items:
-            type: string
-            format: uuid
-            minLength: 36
-            maxLength: 36
-        filter:
-          $ref: '#/components/schemas/V1TaskFilter'
+            $ref: '#/components/schemas/V1TaskPointMetric'
     V1TaskEventType:
       type: string
       enum:
@@ -543,108 +537,27 @@ components:
       - COULD_NOT_SEND_TO_WORKER
       - DURABLE_EVICTED
       - DURABLE_RESTORING
-    V1TaskRunMetric:
+    V1ReplayTaskRequest:
       type: object
       properties:
-        status:
-          $ref: '#/components/schemas/V1TaskStatus'
-        count:
-          type: integer
-        runningDetailCount:
-          $ref: '#/components/schemas/V1RunningDetailCount'
-      required:
-      - status
-      - count
-    APIResourceMeta:
-      type: object
+        externalIds:
+          type: array
+          description: A list of external IDs, which can refer to either task or workflow run external IDs
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+        filter:
+          $ref: '#/components/schemas/V1TaskFilter'
+    V1TaskEventList:
       properties:
-        id:
-          type: string
-          description: the id of this resource, in UUID format
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 0
-          maxLength: 36
-        createdAt:
-          type: string
-          description: the time that this resource was created
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-        updatedAt:
-          type: string
-          description: the time that this resource was last updated
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-      required:
-      - id
-      - createdAt
-      - updatedAt
-    V1TaskRunMetrics:
-      type: array
-      items:
-        $ref: '#/components/schemas/V1TaskRunMetric'
-    V1TaskPointMetric:
-      type: object
-      properties:
-        time:
-          type: string
-          format: date-time
-        SUCCEEDED:
-          type: integer
-        FAILED:
-          type: integer
-      required:
-      - time
-      - SUCCEEDED
-      - FAILED
-    V1WorkflowType:
-      type: string
-      enum:
-      - DAG
-      - TASK
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    PaginationResponse:
-      type: object
-      properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1TaskEvent'
+          type: array
     V1TaskFilter:
       type: object
       properties:
@@ -669,79 +582,13 @@ components:
             type: string
       required:
       - since
-    V1ReplayedTasks:
-      properties:
-        ids:
-          type: array
-          description: The list of task external ids that were replayed
-          items:
-            type: string
-            format: uuid
-            minLength: 36
-            maxLength: 36
-    V1TaskEvent:
+    V1RestoreTaskResponse:
       type: object
       properties:
-        id:
-          type: integer
-        taskId:
-          type: string
-          format: uuid
-        timestamp:
-          type: string
-          format: date-time
-        eventType:
-          $ref: '#/components/schemas/V1TaskEventType'
-        message:
-          type: string
-        errorMessage:
-          type: string
-        output:
-          type: string
-        workerId:
-          type: string
-          format: uuid
-        taskDisplayName:
-          type: string
-        retryCount:
-          type: integer
-          description: The number of retries of the task.
-        attempt:
-          type: integer
-          description: The attempt number of the task.
+        requeued:
+          type: boolean
       required:
-      - id
-      - taskId
-      - timestamp
-      - eventType
-      - message
-    V1TaskPointMetrics:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1TaskPointMetric'
-    V1DagChildren:
-      type: object
-      properties:
-        dagId:
-          type: string
-          format: uuid
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1TaskSummary'
-    V1CancelledTasks:
-      properties:
-        ids:
-          type: array
-          description: The list of task external ids that were cancelled
-          items:
-            type: string
-            format: uuid
-            minLength: 36
-            maxLength: 36
+      - requeued
     V1TaskSummary:
       properties:
         metadata:
@@ -875,30 +722,100 @@ components:
       - type
       - workflowId
       - workflowRunExternalId
-    V1TaskEventList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/V1TaskEvent'
-          type: array
-    APIErrors:
+    V1RunningDetailCount:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
+        evicted:
+          type: integer
+          description: The number of evicted tasks within the RUNNING status bucket.
+        onWorker:
+          type: integer
+          description: The number of tasks currently on a worker within the RUNNING status bucket.
       required:
-      - errors
-    V1RestoreTaskResponse:
+      - evicted
+      - onWorker
+    V1ReplayedTasks:
+      properties:
+        ids:
+          type: array
+          description: The list of task external ids that were replayed
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+    V1TaskStatus:
+      type: string
+      enum:
+      - QUEUED
+      - RUNNING
+      - COMPLETED
+      - CANCELLED
+      - FAILED
+    V1CancelledTasks:
+      properties:
+        ids:
+          type: array
+          description: The list of task external ids that were cancelled
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+    V1TaskRunMetrics:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1TaskRunMetric'
+    V1TaskPointMetric:
       type: object
       properties:
-        requeued:
-          type: boolean
+        time:
+          type: string
+          format: date-time
+        SUCCEEDED:
+          type: integer
+        FAILED:
+          type: integer
       required:
-      - requeued
+      - time
+      - SUCCEEDED
+      - FAILED
+    V1TaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/V1TaskEventType'
+        message:
+          type: string
+        errorMessage:
+          type: string
+        output:
+          type: string
+        workerId:
+          type: string
+          format: uuid
+        taskDisplayName:
+          type: string
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+      required:
+      - id
+      - taskId
+      - timestamp
+      - eventType
+      - message
     V1CancelTaskRequest:
       type: object
       properties:
@@ -912,26 +829,109 @@ components:
             maxLength: 36
         filter:
           $ref: '#/components/schemas/V1TaskFilter'
-    V1RunningDetailCount:
-      type: object
-      properties:
-        evicted:
-          type: integer
-          description: The number of evicted tasks within the RUNNING status bucket.
-        onWorker:
-          type: integer
-          description: The number of tasks currently on a worker within the RUNNING status bucket.
-      required:
-      - evicted
-      - onWorker
-    V1TaskStatus:
+    V1WorkflowType:
       type: string
       enum:
-      - QUEUED
-      - RUNNING
-      - COMPLETED
-      - CANCELLED
-      - FAILED
+      - DAG
+      - TASK
+    V1TaskRunMetric:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        count:
+          type: integer
+        runningDetailCount:
+          $ref: '#/components/schemas/V1RunningDetailCount'
+      required:
+      - status
+      - count
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    V1DagChildren:
+      type: object
+      properties:
+        dagId:
+          type: string
+          format: uuid
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet API Token Log API
+  title: Hatchet Log API
   description: The Hatchet API
 servers:
 - url: ''
@@ -322,6 +322,59 @@ paths:
       - Log
 components:
   schemas:
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    V1LogLineLevel:
+      type: string
+      enum:
+      - DEBUG
+      - INFO
+      - WARN
+      - ERROR
+    V1LogLineList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1LogLine'
+          type: array
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1LogsPointMetrics:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1LogsPointMetric'
     V1LogLine:
       properties:
         createdAt:
@@ -356,6 +409,11 @@ components:
       - createdAt
       - message
       - metadata
+    V1LogLineOrderByDirection:
+      type: string
+      enum:
+      - ASC
+      - DESC
     PaginationResponse:
       type: object
       properties:
@@ -398,64 +456,6 @@ components:
       - INFO
       - WARN
       - ERROR
-    V1LogsPointMetrics:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1LogsPointMetric'
-    V1LogLineOrderByDirection:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    V1LogLineList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/V1LogLine'
-          type: array
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1LogLineLevel:
-      type: string
-      enum:
-      - DEBUG
-      - INFO
-      - WARN
-      - ERROR
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
   securitySchemes:
     bearerAuth:
       type: http
