@@ -80,66 +80,6 @@ paths:
       - Observability
 components:
   schemas:
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    OtelSpanList:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        retryCounts:
-          type: array
-          items:
-            type: integer
-            format: int32
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/OtelSpan'
-    OtelStatusCode:
-      type: string
-      enum:
-      - UNSET
-      - OK
-      - ERROR
-    OtelSpanKind:
-      type: string
-      enum:
-      - UNSPECIFIED
-      - INTERNAL
-      - SERVER
-      - CLIENT
-      - PRODUCER
-      - CONSUMER
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     OtelSpan:
       type: object
       properties:
@@ -190,6 +130,57 @@ components:
       - durationNs
       - createdAt
       - retryCount
+    OtelStatusCode:
+      type: string
+      enum:
+      - UNSET
+      - OK
+      - ERROR
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    OtelSpanList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        retryCounts:
+          type: array
+          items:
+            type: integer
+            format: int32
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/OtelSpan'
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     PaginationResponse:
       type: object
       properties:
@@ -212,6 +203,15 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    OtelSpanKind:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - INTERNAL
+      - SERVER
+      - CLIENT
+      - PRODUCER
+      - CONSUMER
   securitySchemes:
     bearerAuth:
       type: http

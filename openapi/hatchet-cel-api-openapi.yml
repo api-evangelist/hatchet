@@ -58,6 +58,25 @@ paths:
       - CEL
 components:
   schemas:
+    V1CELDebugResponseStatus:
+      type: string
+      description: The status of the CEL evaluation
+      enum:
+      - SUCCESS
+      - ERROR
+    V1CELDebugResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/V1CELDebugResponseStatus'
+        output:
+          type: boolean
+          description: The result of the CEL expression evaluation, if successful
+        error:
+          type: string
+          description: The error message if the evaluation failed
+      required:
+      - status
     APIError:
       type: object
       properties:
@@ -80,28 +99,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1CELDebugResponse:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/V1CELDebugResponseStatus'
-        output:
-          type: boolean
-          description: The result of the CEL expression evaluation, if successful
-        error:
-          type: string
-          description: The error message if the evaluation failed
-      required:
-      - status
     V1CELDebugRequest:
       type: object
       properties:
@@ -120,12 +117,15 @@ components:
       required:
       - expression
       - input
-    V1CELDebugResponseStatus:
-      type: string
-      description: The status of the CEL evaluation
-      enum:
-      - SUCCESS
-      - ERROR
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
   securitySchemes:
     bearerAuth:
       type: http

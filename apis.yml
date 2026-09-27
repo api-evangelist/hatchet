@@ -44,7 +44,7 @@ tags:
   - AI Agents
   - Orchestration
   - PostgreSQL
-  - Open-Source
+  - Open Source
 tags_raw:
   - Task Queue
   - Workflow Engine
@@ -54,6 +54,7 @@ tags_raw:
   - Orchestration
   - PostgreSQL
   - Open Source
+  - Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml
 humanURL: https://hatchet.run/
 created: '2026-03-27'

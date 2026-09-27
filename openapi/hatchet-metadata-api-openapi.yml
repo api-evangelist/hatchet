@@ -77,6 +77,41 @@ paths:
       - Metadata
 components:
   schemas:
+    APIMetaIntegration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of the integration
+          example: github
+        enabled:
+          type: boolean
+          description: whether this integration is enabled on the instance
+      required:
+      - name
+      - enabled
+    APIMetaAuth:
+      type: object
+      properties:
+        schemes:
+          items:
+            type: string
+          type: array
+          description: the supported types of authentication
+          example:
+          - basic
+          - google
+    APIMetaPosthog:
+      type: object
+      properties:
+        apiKey:
+          type: string
+          description: the PostHog API key
+          example: phk_1234567890abcdef
+        apiHost:
+          type: string
+          description: the PostHog API host
+          example: https://posthog.example.com
     APIError:
       type: object
       properties:
@@ -99,6 +134,19 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    ListAPIMetaIntegration:
+      type: array
+      items:
+        $ref: '#/components/schemas/APIMetaIntegration'
     APIMeta:
       type: object
       properties:
@@ -130,54 +178,6 @@ components:
           type: boolean
           description: whether or not observability (trace collection) is enabled on this instance
           example: false
-    APIMetaAuth:
-      type: object
-      properties:
-        schemes:
-          items:
-            type: string
-          type: array
-          description: the supported types of authentication
-          example:
-          - basic
-          - google
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    APIMetaPosthog:
-      type: object
-      properties:
-        apiKey:
-          type: string
-          description: the PostHog API key
-          example: phk_1234567890abcdef
-        apiHost:
-          type: string
-          description: the PostHog API host
-          example: https://posthog.example.com
-    ListAPIMetaIntegration:
-      type: array
-      items:
-        $ref: '#/components/schemas/APIMetaIntegration'
-    APIMetaIntegration:
-      type: object
-      properties:
-        name:
-          type: string
-          description: the name of the integration
-          example: github
-        enabled:
-          type: boolean
-          description: whether this integration is enabled on the instance
-      required:
-      - name
-      - enabled
   securitySchemes:
     bearerAuth:
       type: http

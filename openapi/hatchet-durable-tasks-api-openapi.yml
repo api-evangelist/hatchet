@@ -71,6 +71,14 @@ paths:
       - Durable Tasks
 components:
   schemas:
+    V1DurableEventLogList:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1DurableEventLogEntry'
+    V1WaitData:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1WaitItem'
     APIError:
       type: object
       properties:
@@ -93,23 +101,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    V1DurableEventLogList:
-      type: array
-      items:
-        $ref: '#/components/schemas/V1DurableEventLogEntry'
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1WaitData:
-      type: array
-      items:
-        $ref: '#/components/schemas/V1WaitItem'
     V1DurableWaitCondition:
       type: object
       properties:
@@ -124,28 +115,15 @@ components:
           type: string
       required:
       - kind
-    V1WaitItem:
+    APIErrors:
       type: object
       properties:
-        kind:
-          $ref: '#/components/schemas/V1DurableWaitConditionKind'
-        sleepDurationMs:
-          type: integer
-          format: int64
-        eventKey:
-          type: string
-        workflowName:
-          type: string
-        or:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/V1DurableWaitCondition'
-    V1DurableWaitConditionKind:
-      type: string
-      enum:
-      - SLEEP
-      - USER_EVENT
-      - CHILD_WORKFLOW
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     V1DurableEventLogEntry:
       type: object
       properties:
@@ -192,6 +170,28 @@ components:
       - insertedAt
       - taskExternalId
       - taskDisplayName
+    V1WaitItem:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/V1DurableWaitConditionKind'
+        sleepDurationMs:
+          type: integer
+          format: int64
+        eventKey:
+          type: string
+        workflowName:
+          type: string
+        or:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1DurableWaitCondition'
+    V1DurableWaitConditionKind:
+      type: string
+      enum:
+      - SLEEP
+      - USER_EVENT
+      - CHILD_WORKFLOW
     V1DurableEventLogKind:
       type: string
       enum:

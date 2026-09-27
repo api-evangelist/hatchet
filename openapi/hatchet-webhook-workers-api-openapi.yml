@@ -99,6 +99,31 @@ paths:
       - Webhook Workers
 components:
   schemas:
+    WebhookWorkerRequest:
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the request was created.
+        method:
+          $ref: '#/components/schemas/WebhookWorkerRequestMethod'
+          description: The HTTP method used for the request.
+        statusCode:
+          type: integer
+          description: The HTTP status code of the response.
+      required:
+      - created_at
+      - method
+      - statusCode
+      type: object
+    WebhookWorkerRequestListResponse:
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookWorkerRequest'
+          description: The list of webhook requests.
+      type: object
     APIError:
       type: object
       properties:
@@ -126,23 +151,6 @@ components:
       - GET
       - POST
       - PUT
-    WebhookWorkerRequest:
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time the request was created.
-        method:
-          $ref: '#/components/schemas/WebhookWorkerRequestMethod'
-          description: The HTTP method used for the request.
-        statusCode:
-          type: integer
-          description: The HTTP status code of the response.
-      required:
-      - created_at
-      - method
-      - statusCode
-      type: object
     APIErrors:
       type: object
       properties:
@@ -152,14 +160,6 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
-    WebhookWorkerRequestListResponse:
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookWorkerRequest'
-          description: The list of webhook requests.
-      type: object
   securitySchemes:
     bearerAuth:
       type: http

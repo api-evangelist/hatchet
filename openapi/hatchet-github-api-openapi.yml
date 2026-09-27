@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Hatchet Github API
+  title: Hatchet GitHub API
   description: The Hatchet API
 servers:
 - url: ''
@@ -60,15 +60,6 @@ paths:
       - Github
 components:
   schemas:
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     APIError:
       type: object
       properties:
@@ -91,6 +82,15 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
   securitySchemes:
     bearerAuth:
       type: http
