@@ -99,6 +99,20 @@ paths:
       - Webhook Workers
 components:
   schemas:
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    WebhookWorkerRequestMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
     WebhookWorkerRequest:
       properties:
         created_at:
@@ -115,14 +129,6 @@ components:
       - created_at
       - method
       - statusCode
-      type: object
-    WebhookWorkerRequestListResponse:
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookWorkerRequest'
-          description: The list of webhook requests.
       type: object
     APIError:
       type: object
@@ -146,20 +152,14 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    WebhookWorkerRequestMethod:
-      enum:
-      - GET
-      - POST
-      - PUT
-    APIErrors:
-      type: object
+    WebhookWorkerRequestListResponse:
       properties:
-        errors:
+        requests:
           type: array
           items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
+            $ref: '#/components/schemas/WebhookWorkerRequest'
+          description: The list of webhook requests.
+      type: object
   securitySchemes:
     bearerAuth:
       type: http

@@ -122,48 +122,14 @@ paths:
       - Rate Limits
 components:
   schemas:
-    RateLimitOrderByDirection:
-      type: string
-      enum:
-      - asc
-      - desc
-    APIError:
-      type: object
+    RateLimitList:
       properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
           items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    RateLimitOrderByField:
-      type: string
-      enum:
-      - key
-      - value
-      - limitValue
+            $ref: '#/components/schemas/RateLimit'
+          type: array
     PaginationResponse:
       type: object
       properties:
@@ -186,6 +152,21 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    RateLimitOrderByField:
+      type: string
+      enum:
+      - key
+      - value
+      - limitValue
     RateLimit:
       properties:
         key:
@@ -215,14 +196,33 @@ components:
       - value
       - window
       - lastRefill
-    RateLimitList:
+    APIError:
+      type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/RateLimit'
-          type: array
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    RateLimitOrderByDirection:
+      type: string
+      enum:
+      - asc
+      - desc
   securitySchemes:
     bearerAuth:
       type: http

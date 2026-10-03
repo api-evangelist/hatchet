@@ -146,59 +146,6 @@ paths:
       - SNS
 components:
   schemas:
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    ListSNSIntegrations:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/SNSIntegration'
-      required:
-      - pagination
-      - rows
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    CreateSNSIntegrationRequest:
-      properties:
-        topicArn:
-          type: string
-          description: The Amazon Resource Name (ARN) of the SNS topic.
-          x-oapi-codegen-extra-tags:
-            validate: required,min=1,max=256
-      required:
-      - topicArn
-      type: object
     PaginationResponse:
       type: object
       properties:
@@ -221,6 +168,15 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     APIResourceMeta:
       type: object
       properties:
@@ -244,6 +200,28 @@ components:
       - id
       - createdAt
       - updatedAt
+    ListSNSIntegrations:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SNSIntegration'
+      required:
+      - pagination
+      - rows
+    CreateSNSIntegrationRequest:
+      properties:
+        topicArn:
+          type: string
+          description: The Amazon Resource Name (ARN) of the SNS topic.
+          x-oapi-codegen-extra-tags:
+            validate: required,min=1,max=256
+      required:
+      - topicArn
+      type: object
     SNSIntegration:
       type: object
       properties:
@@ -263,6 +241,28 @@ components:
       - metadata
       - tenantId
       - topicArn
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
   securitySchemes:
     bearerAuth:
       type: http

@@ -349,12 +349,72 @@ paths:
       - User
 components:
   schemas:
-    TenantEnvironment:
+    UserTenantPublic:
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        name:
+          type: string
+          description: The display name of the user.
+      required:
+      - email
+      type: object
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    TenantMemberRole:
       enum:
-      - local
-      - development
-      - production
+      - OWNER
+      - ADMIN
+      - MEMBER
       type: string
+    UserLoginRequest:
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,email
+        password:
+          type: string
+          description: The password of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+      required:
+      - email
+      - password
+      type: object
     APIResourceMeta:
       type: object
       properties:
@@ -378,152 +438,6 @@ components:
       - id
       - createdAt
       - updatedAt
-    UserChangePasswordRequest:
-      properties:
-        password:
-          type: string
-          description: The password of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-        newPassword:
-          type: string
-          description: The new password for the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-      required:
-      - password
-      - newPassword
-      type: object
-    UserTenantPublic:
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-        name:
-          type: string
-          description: The display name of the user.
-      required:
-      - email
-      type: object
-    UserTenantMembershipsList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/TenantMember'
-          type: array
-          x-go-name: Rows
-    TenantMember:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        user:
-          $ref: '#/components/schemas/UserTenantPublic'
-          description: The user associated with this tenant member.
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-        tenant:
-          $ref: '#/components/schemas/Tenant'
-          description: The tenant associated with this tenant member.
-      required:
-      - metadata
-      - user
-      - role
-      type: object
-    UserLoginRequest:
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,email
-        password:
-          type: string
-          description: The password of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-      required:
-      - email
-      - password
-      type: object
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    UserRegisterRequest:
-      properties:
-        name:
-          type: string
-          description: The name of the user.
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,email
-        password:
-          type: string
-          description: The password of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-      required:
-      - name
-      - email
-      - password
-      type: object
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    PaginationResponse:
-      type: object
-      properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
     User:
       properties:
         metadata:
@@ -549,10 +463,27 @@ components:
       - email
       - emailVerified
       type: object
-    TenantVersion:
+    UserChangePasswordRequest:
+      properties:
+        password:
+          type: string
+          description: The password of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+        newPassword:
+          type: string
+          description: The new password for the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+      required:
+      - password
+      - newPassword
+      type: object
+    TenantEnvironment:
       enum:
-      - V0
-      - V1
+      - local
+      - development
+      - production
       type: string
     Tenant:
       properties:
@@ -588,12 +519,81 @@ components:
       - slug
       - version
       type: object
-    TenantMemberRole:
+    UserTenantMembershipsList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/TenantMember'
+          type: array
+          x-go-name: Rows
+    TenantVersion:
       enum:
-      - OWNER
-      - ADMIN
-      - MEMBER
+      - V0
+      - V1
       type: string
+    UserRegisterRequest:
+      properties:
+        name:
+          type: string
+          description: The name of the user.
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,email
+        password:
+          type: string
+          description: The password of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+      required:
+      - name
+      - email
+      - password
+      type: object
+    TenantMember:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        user:
+          $ref: '#/components/schemas/UserTenantPublic'
+          description: The user associated with this tenant member.
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+          description: The tenant associated with this tenant member.
+      required:
+      - metadata
+      - user
+      - role
+      type: object
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
   securitySchemes:
     bearerAuth:
       type: http

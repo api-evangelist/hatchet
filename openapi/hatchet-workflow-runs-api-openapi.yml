@@ -600,327 +600,6 @@ paths:
       - Workflow Runs
 components:
   schemas:
-    V1TaskTiming:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        depth:
-          type: integer
-          description: The depth of the task in the waterfall.
-        status:
-          $ref: '#/components/schemas/V1TaskStatus'
-        isEvicted:
-          type: boolean
-          description: Whether the task has been evicted from a worker (still counts as RUNNING).
-        taskDisplayName:
-          type: string
-          description: The display name of the task run.
-        taskExternalId:
-          type: string
-          description: The external ID of the task.
-          format: uuid
-          minLength: 36
-          maxLength: 36
-        taskId:
-          type: integer
-          description: The ID of the task.
-        taskInsertedAt:
-          type: string
-          format: date-time
-          description: The timestamp the task was inserted.
-        tenantId:
-          type: string
-          description: The ID of the tenant.
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 36
-          maxLength: 36
-          format: uuid
-        parentTaskExternalId:
-          type: string
-          description: The external ID of the parent task.
-          format: uuid
-          minLength: 36
-          maxLength: 36
-        queuedAt:
-          type: string
-          format: date-time
-          description: The timestamp the task run was queued.
-        startedAt:
-          type: string
-          format: date-time
-          description: The timestamp the task run started.
-        finishedAt:
-          type: string
-          format: date-time
-          description: The timestamp the task run finished.
-        workflowRunId:
-          type: string
-          format: uuid
-          description: The external ID of the workflow run.
-        retryCount:
-          type: integer
-          description: The number of retries of the task.
-        attempt:
-          type: integer
-          description: The attempt number of the task.
-      required:
-      - metadata
-      - depth
-      - status
-      - taskDisplayName
-      - taskExternalId
-      - taskId
-      - taskInsertedAt
-      - tenantId
-    V1TaskStatus:
-      type: string
-      enum:
-      - QUEUED
-      - RUNNING
-      - COMPLETED
-      - CANCELLED
-      - FAILED
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    V1BranchDurableTaskRequest:
-      properties:
-        taskExternalId:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36
-          description: The external id of the durable task to branch.
-        nodeId:
-          type: integer
-          format: int64
-          description: The node id to replay from.
-        branchId:
-          type: integer
-          format: int64
-          description: The branch id to replay from.
-      required:
-      - taskExternalId
-      - nodeId
-      - branchId
-    V1WorkflowRunDetails:
-      properties:
-        run:
-          $ref: '#/components/schemas/V1WorkflowRun'
-        taskEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1TaskEvent'
-          description: The list of task events for the workflow run
-        shape:
-          $ref: '#/components/schemas/WorkflowRunShapeForWorkflowRunDetails'
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1TaskSummary'
-        workflowConfig:
-          type: object
-      required:
-      - run
-      - taskEvents
-      - shape
-      - tasks
-    V1WorkflowRunDisplayNameList:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1WorkflowRunDisplayName'
-          description: The list of display names
-      required:
-      - pagination
-      - rows
-    V1RunningFilter:
-      type: string
-      enum:
-      - ALL
-      - EVICTED
-      - ON_WORKER
-    V1TriggerWorkflowRunRequest:
-      properties:
-        workflowName:
-          type: string
-          description: The name of the workflow.
-        input:
-          type: object
-        additionalMetadata:
-          type: object
-        priority:
-          type: integer
-          description: The priority of the workflow run.
-      required:
-      - workflowName
-      - input
-    V1WorkflowType:
-      type: string
-      enum:
-      - DAG
-      - TASK
-    V1WorkflowRun:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        status:
-          $ref: '#/components/schemas/V1TaskStatus'
-        startedAt:
-          type: string
-          format: date-time
-          description: The timestamp the task run started.
-        finishedAt:
-          type: string
-          format: date-time
-          description: The timestamp the task run finished.
-        duration:
-          type: integer
-          description: The duration of the task run, in milliseconds.
-        tenantId:
-          type: string
-          description: The ID of the tenant.
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 36
-          maxLength: 36
-          format: uuid
-        additionalMetadata:
-          type: object
-          description: Additional metadata for the task run.
-        displayName:
-          type: string
-          description: The display name of the task run.
-        workflowId:
-          type: string
-          format: uuid
-        output:
-          type: object
-          x-go-type: openapi.NonNullableJSON
-          x-go-type-import:
-            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
-            name: NonNullableJSON
-          x-nullable: false
-          description: The output of the task run (for the latest run)
-        errorMessage:
-          type: string
-          description: The error message of the task run (for the latest run)
-        workflowVersionId:
-          type: string
-          format: uuid
-          description: The ID of the workflow version.
-        input:
-          type: object
-          x-go-type: openapi.NonNullableJSON
-          x-go-type-import:
-            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
-            name: NonNullableJSON
-          x-nullable: false
-          description: The input of the task run.
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp the task run was created.
-        parentTaskExternalId:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36
-      required:
-      - metadata
-      - id
-      - status
-      - tenantId
-      - displayName
-      - workflowId
-      - output
-      - input
-    V1TaskSummaryList:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1TaskSummary'
-          description: The list of tasks
-      required:
-      - pagination
-      - rows
-    V1TaskEventType:
-      type: string
-      enum:
-      - REQUEUED_NO_WORKER
-      - REQUEUED_RATE_LIMIT
-      - SCHEDULING_TIMED_OUT
-      - ASSIGNED
-      - STARTED
-      - FINISHED
-      - FAILED
-      - RETRYING
-      - CANCELLED
-      - TIMED_OUT
-      - REASSIGNED
-      - SLOT_RELEASED
-      - TIMEOUT_REFRESHED
-      - RETRIED_BY_USER
-      - SENT_TO_WORKER
-      - RATE_LIMIT_ERROR
-      - ACKNOWLEDGED
-      - CREATED
-      - QUEUED
-      - SKIPPED
-      - COULD_NOT_SEND_TO_WORKER
-      - DURABLE_EVICTED
-      - DURABLE_RESTORING
-    V1WorkflowRunDisplayName:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        displayName:
-          type: string
-      required:
-      - metadata
-      - displayName
-    V1TaskEventList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/V1TaskEvent'
-          type: array
-    V1WorkflowRunExternalIdList:
-      type: array
-      items:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-      description: The list of external IDs
     PaginationResponse:
       type: object
       properties:
@@ -943,19 +622,23 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
-    V1TaskTimingList:
+    APIErrors:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/V1TaskTiming'
-          description: The list of task timings
+            $ref: '#/components/schemas/APIError'
       required:
-      - pagination
-      - rows
+      - errors
+    V1TaskStatus:
+      type: string
+      enum:
+      - QUEUED
+      - RUNNING
+      - COMPLETED
+      - CANCELLED
+      - FAILED
     APIResourceMeta:
       type: object
       properties:
@@ -979,53 +662,132 @@ components:
       - id
       - createdAt
       - updatedAt
-    V1BranchDurableTaskResponse:
+    V1WorkflowRunDetails:
       properties:
-        taskExternalId:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36
-          description: The external id of the durable task.
-        nodeId:
-          type: integer
-          format: int64
-          description: The node id of the new entry.
-        branchId:
-          type: integer
-          format: int64
-          description: The branch id of the new entry.
-      required:
-      - taskExternalId
-      - nodeId
-      - branchId
-    WorkflowRunShapeItemForWorkflowRunDetails:
-      type: object
-      properties:
-        taskExternalId:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36
-        stepId:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36
-        childrenStepIds:
+        run:
+          $ref: '#/components/schemas/V1WorkflowRun'
+        taskEvents:
           type: array
           items:
-            type: string
-            format: uuid
-            minLength: 36
-            maxLength: 36
-        taskName:
+            $ref: '#/components/schemas/V1TaskEvent'
+          description: The list of task events for the workflow run
+        shape:
+          $ref: '#/components/schemas/WorkflowRunShapeForWorkflowRunDetails'
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+        workflowConfig:
+          type: object
+      required:
+      - run
+      - taskEvents
+      - shape
+      - tasks
+    V1RunningFilter:
+      type: string
+      enum:
+      - ALL
+      - EVICTED
+      - ON_WORKER
+    V1WorkflowType:
+      type: string
+      enum:
+      - DAG
+      - TASK
+    V1WorkflowRunDisplayName:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        displayName:
           type: string
       required:
-      - taskExternalId
-      - stepId
-      - childrenStepIds
-      - taskName
+      - metadata
+      - displayName
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    V1TaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/V1TaskEventType'
+        message:
+          type: string
+        errorMessage:
+          type: string
+        output:
+          type: string
+        workerId:
+          type: string
+          format: uuid
+        taskDisplayName:
+          type: string
+        retryCount:
+          type: integer
+          description: The number of retries of the task.
+        attempt:
+          type: integer
+          description: The attempt number of the task.
+      required:
+      - id
+      - taskId
+      - timestamp
+      - eventType
+      - message
+    V1WorkflowRunDisplayNameList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1WorkflowRunDisplayName'
+          description: The list of display names
+      required:
+      - pagination
+      - rows
+    V1TaskTimingList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskTiming'
+          description: The list of task timings
+      required:
+      - pagination
+      - rows
     V1TaskSummary:
       properties:
         metadata:
@@ -1159,43 +921,71 @@ components:
       - type
       - workflowId
       - workflowRunExternalId
-    WorkflowRunShapeForWorkflowRunDetails:
+    V1WorkflowRunExternalIdList:
       type: array
       items:
-        $ref: '#/components/schemas/WorkflowRunShapeItemForWorkflowRunDetails'
-    APIErrors:
-      type: object
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+      description: The list of external IDs
+    V1TaskTiming:
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1TaskEvent:
-      type: object
-      properties:
-        id:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        depth:
           type: integer
-        taskId:
-          type: string
-          format: uuid
-        timestamp:
-          type: string
-          format: date-time
-        eventType:
-          $ref: '#/components/schemas/V1TaskEventType'
-        message:
-          type: string
-        errorMessage:
-          type: string
-        output:
-          type: string
-        workerId:
-          type: string
-          format: uuid
+          description: The depth of the task in the waterfall.
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        isEvicted:
+          type: boolean
+          description: Whether the task has been evicted from a worker (still counts as RUNNING).
         taskDisplayName:
           type: string
+          description: The display name of the task run.
+        taskExternalId:
+          type: string
+          description: The external ID of the task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        taskId:
+          type: integer
+          description: The ID of the task.
+        taskInsertedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task was inserted.
+        tenantId:
+          type: string
+          description: The ID of the tenant.
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        parentTaskExternalId:
+          type: string
+          description: The external ID of the parent task.
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        queuedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run was queued.
+        startedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run started.
+        finishedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run finished.
+        workflowRunId:
+          type: string
+          format: uuid
+          description: The external ID of the workflow run.
         retryCount:
           type: integer
           description: The number of retries of the task.
@@ -1203,11 +993,221 @@ components:
           type: integer
           description: The attempt number of the task.
       required:
-      - id
+      - metadata
+      - depth
+      - status
+      - taskDisplayName
+      - taskExternalId
       - taskId
-      - timestamp
-      - eventType
-      - message
+      - taskInsertedAt
+      - tenantId
+    V1BranchDurableTaskResponse:
+      properties:
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The external id of the durable task.
+        nodeId:
+          type: integer
+          format: int64
+          description: The node id of the new entry.
+        branchId:
+          type: integer
+          format: int64
+          description: The branch id of the new entry.
+      required:
+      - taskExternalId
+      - nodeId
+      - branchId
+    V1BranchDurableTaskRequest:
+      properties:
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          description: The external id of the durable task to branch.
+        nodeId:
+          type: integer
+          format: int64
+          description: The node id to replay from.
+        branchId:
+          type: integer
+          format: int64
+          description: The branch id to replay from.
+      required:
+      - taskExternalId
+      - nodeId
+      - branchId
+    V1TaskSummaryList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1TaskSummary'
+          description: The list of tasks
+      required:
+      - pagination
+      - rows
+    WorkflowRunShapeForWorkflowRunDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/WorkflowRunShapeItemForWorkflowRunDetails'
+    V1TaskEventType:
+      type: string
+      enum:
+      - REQUEUED_NO_WORKER
+      - REQUEUED_RATE_LIMIT
+      - SCHEDULING_TIMED_OUT
+      - ASSIGNED
+      - STARTED
+      - FINISHED
+      - FAILED
+      - RETRYING
+      - CANCELLED
+      - TIMED_OUT
+      - REASSIGNED
+      - SLOT_RELEASED
+      - TIMEOUT_REFRESHED
+      - RETRIED_BY_USER
+      - SENT_TO_WORKER
+      - RATE_LIMIT_ERROR
+      - ACKNOWLEDGED
+      - CREATED
+      - QUEUED
+      - SKIPPED
+      - COULD_NOT_SEND_TO_WORKER
+      - DURABLE_EVICTED
+      - DURABLE_RESTORING
+    V1TriggerWorkflowRunRequest:
+      properties:
+        workflowName:
+          type: string
+          description: The name of the workflow.
+        input:
+          type: object
+        additionalMetadata:
+          type: object
+        priority:
+          type: integer
+          description: The priority of the workflow run.
+      required:
+      - workflowName
+      - input
+    V1TaskEventList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1TaskEvent'
+          type: array
+    V1WorkflowRun:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        status:
+          $ref: '#/components/schemas/V1TaskStatus'
+        startedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run started.
+        finishedAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run finished.
+        duration:
+          type: integer
+          description: The duration of the task run, in milliseconds.
+        tenantId:
+          type: string
+          description: The ID of the tenant.
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        additionalMetadata:
+          type: object
+          description: Additional metadata for the task run.
+        displayName:
+          type: string
+          description: The display name of the task run.
+        workflowId:
+          type: string
+          format: uuid
+        output:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The output of the task run (for the latest run)
+        errorMessage:
+          type: string
+          description: The error message of the task run (for the latest run)
+        workflowVersionId:
+          type: string
+          format: uuid
+          description: The ID of the workflow version.
+        input:
+          type: object
+          x-go-type: openapi.NonNullableJSON
+          x-go-type-import:
+            path: github.com/hatchet-dev/hatchet/api/v1/server/oas
+            name: NonNullableJSON
+          x-nullable: false
+          description: The input of the task run.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the task run was created.
+        parentTaskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+      required:
+      - metadata
+      - id
+      - status
+      - tenantId
+      - displayName
+      - workflowId
+      - output
+      - input
+    WorkflowRunShapeItemForWorkflowRunDetails:
+      type: object
+      properties:
+        taskExternalId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        stepId:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+        childrenStepIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+        taskName:
+          type: string
+      required:
+      - taskExternalId
+      - stepId
+      - childrenStepIds
+      - taskName
   securitySchemes:
     bearerAuth:
       type: http

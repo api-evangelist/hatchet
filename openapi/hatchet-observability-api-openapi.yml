@@ -80,6 +80,57 @@ paths:
       - Observability
 components:
   schemas:
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    OtelStatusCode:
+      type: string
+      enum:
+      - UNSET
+      - OK
+      - ERROR
+    OtelSpanList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        retryCounts:
+          type: array
+          items:
+            type: integer
+            format: int32
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/OtelSpan'
     OtelSpan:
       type: object
       properties:
@@ -130,12 +181,15 @@ components:
       - durationNs
       - createdAt
       - retryCount
-    OtelStatusCode:
+    OtelSpanKind:
       type: string
       enum:
-      - UNSET
-      - OK
-      - ERROR
+      - UNSPECIFIED
+      - INTERNAL
+      - SERVER
+      - CLIENT
+      - PRODUCER
+      - CONSUMER
     APIError:
       type: object
       properties:
@@ -158,60 +212,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    OtelSpanList:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        retryCounts:
-          type: array
-          items:
-            type: integer
-            format: int32
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/OtelSpan'
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    PaginationResponse:
-      type: object
-      properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    OtelSpanKind:
-      type: string
-      enum:
-      - UNSPECIFIED
-      - INTERNAL
-      - SERVER
-      - CLIENT
-      - PRODUCER
-      - CONSUMER
   securitySchemes:
     bearerAuth:
       type: http

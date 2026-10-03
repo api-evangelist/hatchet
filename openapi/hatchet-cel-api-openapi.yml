@@ -58,12 +58,39 @@ paths:
       - CEL
 components:
   schemas:
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     V1CELDebugResponseStatus:
       type: string
       description: The status of the CEL evaluation
       enum:
       - SUCCESS
       - ERROR
+    V1CELDebugRequest:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: The CEL expression to evaluate
+        input:
+          type: object
+          description: The input, which simulates the workflow run input
+        filterPayload:
+          type: object
+          description: The filter payload, which simulates a payload set on a previous-created filter
+        additionalMetadata:
+          type: object
+          description: Additional metadata, which simulates metadata that could be sent with an event or a workflow run
+      required:
+      - expression
+      - input
     V1CELDebugResponse:
       type: object
       properties:
@@ -99,33 +126,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    V1CELDebugRequest:
-      type: object
-      properties:
-        expression:
-          type: string
-          description: The CEL expression to evaluate
-        input:
-          type: object
-          description: The input, which simulates the workflow run input
-        filterPayload:
-          type: object
-          description: The filter payload, which simulates a payload set on a previous-created filter
-        additionalMetadata:
-          type: object
-          description: Additional metadata, which simulates metadata that could be sent with an event or a workflow run
-      required:
-      - expression
-      - input
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
   securitySchemes:
     bearerAuth:
       type: http

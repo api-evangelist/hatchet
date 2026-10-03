@@ -837,314 +837,15 @@ paths:
       - Tenant
 components:
   schemas:
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    TenantResource:
-      enum:
-      - WORKER
-      - WORKER_SLOT
-      - EVENT
-      - TASK_RUN
-      - CRON
-      - SCHEDULE
-      - INCOMING_WEBHOOK
-      type: string
-    TenantAlertingSettings:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        alertMemberEmails:
-          type: boolean
-          description: Whether to alert tenant members.
-        enableWorkflowRunFailureAlerts:
-          type: boolean
-          description: Whether to send alerts when workflow runs fail.
-        enableExpiringTokenAlerts:
-          type: boolean
-          description: Whether to enable alerts when tokens are approaching expiration.
-        enableTenantResourceLimitAlerts:
-          type: boolean
-          description: Whether to enable alerts when tenant resources are approaching limits.
-        maxAlertingFrequency:
-          type: string
-          description: The max frequency at which to alert.
-        lastAlertedAt:
-          type: string
-          description: The last time an alert was sent.
-          format: date-time
-      required:
-      - metadata
-      - maxAlertingFrequency
-      type: object
-    TenantMemberRole:
-      enum:
-      - OWNER
-      - ADMIN
-      - MEMBER
-      type: string
-    UpdateTenantAlertEmailGroupRequest:
-      properties:
-        emails:
-          type: array
-          items:
-            type: string
-          description: A list of emails for users
-          x-oapi-codegen-extra-tags:
-            validate: required,dive,email
-      required:
-      - emails
-      type: object
-    TenantInviteList:
+    TenantAlertEmailGroupList:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationResponse'
         rows:
           items:
-            $ref: '#/components/schemas/TenantInvite'
+            $ref: '#/components/schemas/TenantAlertEmailGroup'
           type: array
           x-go-name: Rows
-    TaskStatusStat:
-      properties:
-        total:
-          type: integer
-          format: int64
-        queues:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int64
-        concurrency:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConcurrencyStat'
-        oldest:
-          type: string
-          format: date-time
-      type: object
-    TenantStepRunQueueMetrics:
-      properties:
-        queues:
-          type: object
-    CreateTenantAlertEmailGroupRequest:
-      properties:
-        emails:
-          type: array
-          items:
-            type: string
-          description: A list of emails for users
-          x-oapi-codegen-extra-tags:
-            validate: required,dive,email
-      required:
-      - emails
-      type: object
-    TaskStat:
-      properties:
-        queued:
-          $ref: '#/components/schemas/TaskStatusStat'
-        running:
-          $ref: '#/components/schemas/TaskStatusStat'
-      type: object
-    TenantAlertEmailGroup:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        emails:
-          type: array
-          items:
-            type: string
-          description: A list of emails for users
-      required:
-      - metadata
-      - emails
-      type: object
-    CreateTenantInviteRequest:
-      properties:
-        email:
-          type: string
-          description: The email of the user to invite.
-          x-oapi-codegen-extra-tags:
-            validate: required,email
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-          x-oapi-codegen-extra-tags:
-            validate: required
-      required:
-      - email
-      - role
-      type: object
-    TenantResourceLimit:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        resource:
-          $ref: '#/components/schemas/TenantResource'
-          description: The resource associated with this limit.
-        limitValue:
-          type: integer
-          description: The limit associated with this limit.
-        alarmValue:
-          type: integer
-          description: The alarm value associated with this limit to warn of approaching limit value.
-        value:
-          type: integer
-          description: The current value associated with this limit.
-        window:
-          type: string
-          description: The meter window for the limit. (i.e. 1 day, 1 week, 1 month)
-        lastRefill:
-          type: string
-          description: The last time the limit was refilled.
-          format: date-time
-      required:
-      - metadata
-      - tenantId
-      - resource
-      - limitValue
-      - value
-      type: object
-    TenantInvite:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        email:
-          type: string
-          description: The email of the user to invite.
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-        tenantId:
-          type: string
-          description: The tenant id associated with this tenant invite.
-        tenantName:
-          type: string
-          description: The tenant name for the tenant.
-        expires:
-          type: string
-          description: The time that this invite expires.
-          format: date-time
-      required:
-      - metadata
-      - email
-      - role
-      - expires
-      - tenantId
-      type: object
-    TenantResourcePolicy:
-      properties:
-        limits:
-          type: array
-          items:
-            $ref: '#/components/schemas/TenantResourceLimit'
-          description: A list of resource limits for the tenant.
-      required:
-      - limits
-      type: object
-    RejectInviteRequest:
-      properties:
-        invite:
-          type: string
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 36
-          maxLength: 36
-          x-oapi-codegen-extra-tags:
-            validate: required,uuid
-      required:
-      - invite
-      type: object
-    TaskStats:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/TaskStat'
-    UserTenantPublic:
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-        name:
-          type: string
-          description: The display name of the user.
-      required:
-      - email
-      type: object
-    TenantMember:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        user:
-          $ref: '#/components/schemas/UserTenantPublic'
-          description: The user associated with this tenant member.
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-        tenant:
-          $ref: '#/components/schemas/Tenant'
-          description: The tenant associated with this tenant member.
-      required:
-      - metadata
-      - user
-      - role
-      type: object
-    UpdateTenantRequest:
-      properties:
-        name:
-          type: string
-          description: The name of the tenant.
-        analyticsOptOut:
-          type: boolean
-          description: Whether the tenant has opted out of analytics.
-        alertMemberEmails:
-          type: boolean
-          description: Whether to alert tenant members.
-        enableWorkflowRunFailureAlerts:
-          type: boolean
-          description: Whether to send alerts when workflow runs fail.
-        enableExpiringTokenAlerts:
-          type: boolean
-          description: Whether to enable alerts when tokens are approaching expiration.
-        enableTenantResourceLimitAlerts:
-          type: boolean
-          description: Whether to enable alerts when tenant resources are approaching limits.
-        maxAlertingFrequency:
-          type: string
-          description: The max frequency at which to alert.
-          x-oapi-codegen-extra-tags:
-            validate: omitnil,duration
-        version:
-          $ref: '#/components/schemas/TenantVersion'
-          description: The version of the tenant.
-      type: object
-    UpdateTenantMemberRequest:
-      properties:
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-          x-oapi-codegen-extra-tags:
-            validate: required
-      required:
-      - role
-      type: object
     PaginationResponse:
       type: object
       properties:
@@ -1167,6 +868,33 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    RejectInviteRequest:
+      properties:
+        invite:
+          type: string
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+      required:
+      - invite
+      type: object
+    TenantMemberRole:
+      enum:
+      - OWNER
+      - ADMIN
+      - MEMBER
+      type: string
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     APIResourceMeta:
       type: object
       properties:
@@ -1190,92 +918,13 @@ components:
       - id
       - createdAt
       - updatedAt
-    TenantVersion:
-      enum:
-      - V0
-      - V1
-      type: string
-    CreateTenantRequest:
-      properties:
-        name:
-          type: string
-          description: The name of the tenant.
-          x-oapi-codegen-extra-tags:
-            validate: required
-        slug:
-          type: string
-          description: The slug of the tenant.
-          x-oapi-codegen-extra-tags:
-            validate: required,hatchetName
-        engineVersion:
-          $ref: '#/components/schemas/TenantVersion'
-          description: The engine version of the tenant. Defaults to V0.
-        environment:
-          $ref: '#/components/schemas/TenantEnvironment'
-          description: The environment type of the tenant.
-        onboardingData:
-          type: object
-          description: Additional onboarding data to store with the tenant.
-          additionalProperties: true
-      required:
-      - name
-      - slug
-      type: object
-    TenantEnvironment:
-      enum:
-      - local
-      - development
-      - production
-      type: string
-    TenantMemberList:
+    TenantInviteList:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationResponse'
         rows:
           items:
-            $ref: '#/components/schemas/TenantMember'
-          type: array
-          x-go-name: Rows
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    ConcurrencyStat:
-      properties:
-        expression:
-          type: string
-        type:
-          type: string
-        keys:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int64
-      type: object
-    AcceptInviteRequest:
-      properties:
-        invite:
-          type: string
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 36
-          maxLength: 36
-          x-oapi-codegen-extra-tags:
-            validate: required,uuid
-      required:
-      - invite
-      type: object
-    TenantAlertEmailGroupList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/TenantAlertEmailGroup'
+            $ref: '#/components/schemas/TenantInvite'
           type: array
           x-go-name: Rows
     Tenant:
@@ -1311,6 +960,357 @@ components:
       - name
       - slug
       - version
+      type: object
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    TaskStatusStat:
+      properties:
+        total:
+          type: integer
+          format: int64
+        queues:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+        concurrency:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConcurrencyStat'
+        oldest:
+          type: string
+          format: date-time
+      type: object
+    UpdateTenantAlertEmailGroupRequest:
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+          description: A list of emails for users
+          x-oapi-codegen-extra-tags:
+            validate: required,dive,email
+      required:
+      - emails
+      type: object
+    TaskStat:
+      properties:
+        queued:
+          $ref: '#/components/schemas/TaskStatusStat'
+        running:
+          $ref: '#/components/schemas/TaskStatusStat'
+      type: object
+    ConcurrencyStat:
+      properties:
+        expression:
+          type: string
+        type:
+          type: string
+        keys:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+      type: object
+    TenantResource:
+      enum:
+      - WORKER
+      - WORKER_SLOT
+      - EVENT
+      - TASK_RUN
+      - CRON
+      - SCHEDULE
+      - INCOMING_WEBHOOK
+      type: string
+    TenantAlertEmailGroup:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        emails:
+          type: array
+          items:
+            type: string
+          description: A list of emails for users
+      required:
+      - metadata
+      - emails
+      type: object
+    CreateTenantInviteRequest:
+      properties:
+        email:
+          type: string
+          description: The email of the user to invite.
+          x-oapi-codegen-extra-tags:
+            validate: required,email
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+          x-oapi-codegen-extra-tags:
+            validate: required
+      required:
+      - email
+      - role
+      type: object
+    TenantStepRunQueueMetrics:
+      properties:
+        queues:
+          type: object
+    TenantInvite:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        email:
+          type: string
+          description: The email of the user to invite.
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+        tenantId:
+          type: string
+          description: The tenant id associated with this tenant invite.
+        tenantName:
+          type: string
+          description: The tenant name for the tenant.
+        expires:
+          type: string
+          description: The time that this invite expires.
+          format: date-time
+      required:
+      - metadata
+      - email
+      - role
+      - expires
+      - tenantId
+      type: object
+    CreateTenantAlertEmailGroupRequest:
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+          description: A list of emails for users
+          x-oapi-codegen-extra-tags:
+            validate: required,dive,email
+      required:
+      - emails
+      type: object
+    UpdateTenantRequest:
+      properties:
+        name:
+          type: string
+          description: The name of the tenant.
+        analyticsOptOut:
+          type: boolean
+          description: Whether the tenant has opted out of analytics.
+        alertMemberEmails:
+          type: boolean
+          description: Whether to alert tenant members.
+        enableWorkflowRunFailureAlerts:
+          type: boolean
+          description: Whether to send alerts when workflow runs fail.
+        enableExpiringTokenAlerts:
+          type: boolean
+          description: Whether to enable alerts when tokens are approaching expiration.
+        enableTenantResourceLimitAlerts:
+          type: boolean
+          description: Whether to enable alerts when tenant resources are approaching limits.
+        maxAlertingFrequency:
+          type: string
+          description: The max frequency at which to alert.
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,duration
+        version:
+          $ref: '#/components/schemas/TenantVersion'
+          description: The version of the tenant.
+      type: object
+    AcceptInviteRequest:
+      properties:
+        invite:
+          type: string
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+      required:
+      - invite
+      type: object
+    UserTenantPublic:
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        name:
+          type: string
+          description: The display name of the user.
+      required:
+      - email
+      type: object
+    TenantResourcePolicy:
+      properties:
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantResourceLimit'
+          description: A list of resource limits for the tenant.
+      required:
+      - limits
+      type: object
+    UpdateTenantMemberRequest:
+      properties:
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+          x-oapi-codegen-extra-tags:
+            validate: required
+      required:
+      - role
+      type: object
+    TaskStats:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/TaskStat'
+    TenantAlertingSettings:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        alertMemberEmails:
+          type: boolean
+          description: Whether to alert tenant members.
+        enableWorkflowRunFailureAlerts:
+          type: boolean
+          description: Whether to send alerts when workflow runs fail.
+        enableExpiringTokenAlerts:
+          type: boolean
+          description: Whether to enable alerts when tokens are approaching expiration.
+        enableTenantResourceLimitAlerts:
+          type: boolean
+          description: Whether to enable alerts when tenant resources are approaching limits.
+        maxAlertingFrequency:
+          type: string
+          description: The max frequency at which to alert.
+        lastAlertedAt:
+          type: string
+          description: The last time an alert was sent.
+          format: date-time
+      required:
+      - metadata
+      - maxAlertingFrequency
+      type: object
+    CreateTenantRequest:
+      properties:
+        name:
+          type: string
+          description: The name of the tenant.
+          x-oapi-codegen-extra-tags:
+            validate: required
+        slug:
+          type: string
+          description: The slug of the tenant.
+          x-oapi-codegen-extra-tags:
+            validate: required,hatchetName
+        engineVersion:
+          $ref: '#/components/schemas/TenantVersion'
+          description: The engine version of the tenant. Defaults to V0.
+        environment:
+          $ref: '#/components/schemas/TenantEnvironment'
+          description: The environment type of the tenant.
+        onboardingData:
+          type: object
+          description: Additional onboarding data to store with the tenant.
+          additionalProperties: true
+      required:
+      - name
+      - slug
+      type: object
+    TenantResourceLimit:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        resource:
+          $ref: '#/components/schemas/TenantResource'
+          description: The resource associated with this limit.
+        limitValue:
+          type: integer
+          description: The limit associated with this limit.
+        alarmValue:
+          type: integer
+          description: The alarm value associated with this limit to warn of approaching limit value.
+        value:
+          type: integer
+          description: The current value associated with this limit.
+        window:
+          type: string
+          description: The meter window for the limit. (i.e. 1 day, 1 week, 1 month)
+        lastRefill:
+          type: string
+          description: The last time the limit was refilled.
+          format: date-time
+      required:
+      - metadata
+      - tenantId
+      - resource
+      - limitValue
+      - value
+      type: object
+    TenantEnvironment:
+      enum:
+      - local
+      - development
+      - production
+      type: string
+    TenantVersion:
+      enum:
+      - V0
+      - V1
+      type: string
+    TenantMemberList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/TenantMember'
+          type: array
+          x-go-name: Rows
+    TenantMember:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        user:
+          $ref: '#/components/schemas/UserTenantPublic'
+          description: The user associated with this tenant member.
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+          description: The tenant associated with this tenant member.
+      required:
+      - metadata
+      - user
+      - role
       type: object
   securitySchemes:
     bearerAuth:

@@ -69,6 +69,14 @@ paths:
       - Feature Flags
 components:
   schemas:
+    FeatureFlagEvaluationResult:
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+          description: Whether the feature flag is enabled for the tenant
+      required:
+      - isEnabled
     APIError:
       type: object
       properties:
@@ -91,20 +99,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    FeatureFlagEvaluationResult:
-      type: object
-      properties:
-        isEnabled:
-          type: boolean
-          description: Whether the feature flag is enabled for the tenant
-      required:
-      - isEnabled
-    FeatureFlagId:
-      type: string
-      enum:
-      - tenant-log-workflow-filter-enabled
-      - trace-minimap-enabled
-      - organization-sso-enabled
     APIErrors:
       type: object
       properties:
@@ -114,6 +108,12 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
+    FeatureFlagId:
+      type: string
+      enum:
+      - tenant-log-workflow-filter-enabled
+      - trace-minimap-enabled
+      - organization-sso-enabled
   securitySchemes:
     bearerAuth:
       type: http
