@@ -322,6 +322,19 @@ paths:
       - Log
 components:
   schemas:
+    V1LogLineList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1LogLine'
+          type: array
+    V1LogLineOrderByDirection:
+      type: string
+      enum:
+      - ASC
+      - DESC
     APIError:
       type: object
       properties:
@@ -344,42 +357,26 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    PaginationResponse:
+    V1LogsPointMetric:
       type: object
       properties:
-        current_page:
+        time:
+          type: string
+          format: date-time
+        DEBUG:
           type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
+        INFO:
           type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
+        WARN:
           type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
+        ERROR:
+          type: integer
       required:
-      - errors
-    V1LogLineOrderByDirection:
-      type: string
-      enum:
-      - ASC
-      - DESC
+      - time
+      - DEBUG
+      - INFO
+      - WARN
+      - ERROR
     V1LogLineLevel:
       type: string
       enum:
@@ -421,14 +418,15 @@ components:
       - createdAt
       - message
       - metadata
-    V1LogLineList:
+    APIErrors:
+      type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/V1LogLine'
+        errors:
           type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     V1LogsPointMetrics:
       type: object
       properties:
@@ -436,26 +434,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/V1LogsPointMetric'
-    V1LogsPointMetric:
+    PaginationResponse:
       type: object
       properties:
-        time:
-          type: string
-          format: date-time
-        DEBUG:
+        current_page:
           type: integer
-        INFO:
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
           type: integer
-        WARN:
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
           type: integer
-        ERROR:
-          type: integer
-      required:
-      - time
-      - DEBUG
-      - INFO
-      - WARN
-      - ERROR
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

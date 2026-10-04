@@ -299,6 +299,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    V1FilterList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1Filter'
     PaginationResponse:
       type: object
       properties:
@@ -321,15 +330,6 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     V1CreateFilterRequest:
       type: object
       properties:
@@ -375,15 +375,49 @@ components:
       - id
       - createdAt
       - updatedAt
-    V1FilterList:
+    V1UpdateFilterRequest:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
+        expression:
+          type: string
+          description: The expression for the filter
+        scope:
+          type: string
+          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
+        payload:
+          type: object
+          description: The payload for the filter
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/V1Filter'
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     V1Filter:
       properties:
         metadata:
@@ -416,40 +450,6 @@ components:
       - scope
       - expression
       - payload
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    V1UpdateFilterRequest:
-      type: object
-      properties:
-        expression:
-          type: string
-          description: The expression for the filter
-        scope:
-          type: string
-          description: The scope associated with this filter. Used for subsetting candidate filters at evaluation time
-        payload:
-          type: object
-          description: The payload for the filter
   securitySchemes:
     bearerAuth:
       type: http

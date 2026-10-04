@@ -71,19 +71,12 @@ paths:
       - Durable Tasks
 components:
   schemas:
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1WaitData:
-      type: array
-      items:
-        $ref: '#/components/schemas/V1WaitItem'
+    V1DurableEventLogKind:
+      type: string
+      enum:
+      - RUN
+      - WAIT_FOR
+      - MEMO
     V1WaitItem:
       type: object
       properties:
@@ -100,18 +93,46 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/V1DurableWaitCondition'
-    V1DurableWaitConditionKind:
-      type: string
-      enum:
-      - SLEEP
-      - USER_EVENT
-      - CHILD_WORKFLOW
-    V1DurableEventLogKind:
-      type: string
-      enum:
-      - RUN
-      - WAIT_FOR
-      - MEMO
+    V1DurableWaitCondition:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/V1DurableWaitConditionKind'
+        sleepDurationMs:
+          type: integer
+          format: int64
+        eventKey:
+          type: string
+        workflowName:
+          type: string
+      required:
+      - kind
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    V1WaitData:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1WaitItem'
     V1DurableEventLogEntry:
       type: object
       properties:
@@ -158,46 +179,25 @@ components:
       - insertedAt
       - taskExternalId
       - taskDisplayName
+    V1DurableWaitConditionKind:
+      type: string
+      enum:
+      - SLEEP
+      - USER_EVENT
+      - CHILD_WORKFLOW
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
     V1DurableEventLogList:
       type: array
       items:
         $ref: '#/components/schemas/V1DurableEventLogEntry'
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    V1DurableWaitCondition:
-      type: object
-      properties:
-        kind:
-          $ref: '#/components/schemas/V1DurableWaitConditionKind'
-        sleepDurationMs:
-          type: integer
-          format: int64
-        eventKey:
-          type: string
-        workflowName:
-          type: string
-      required:
-      - kind
   securitySchemes:
     bearerAuth:
       type: http

@@ -195,65 +195,6 @@ paths:
       - Tenants
 components:
   schemas:
-    WebhookWorker:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        name:
-          type: string
-          description: The name of the webhook worker.
-        url:
-          type: string
-          description: The webhook url.
-      required:
-      - metadata
-      - name
-      - url
-      type: object
-    PaginationResponse:
-      type: object
-      properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    WebhookWorkerCreateRequest:
-      properties:
-        name:
-          type: string
-          description: The name of the webhook worker.
-        url:
-          type: string
-          description: The webhook url.
-        secret:
-          type: string
-          description: The secret key for validation. If not provided, a random secret will be generated.
-          minLength: 32
-      required:
-      - name
-      - url
-      type: object
-    TenantMemberRole:
-      enum:
-      - OWNER
-      - ADMIN
-      - MEMBER
-      type: string
     TenantInvite:
       properties:
         metadata:
@@ -281,15 +222,46 @@ components:
       - expires
       - tenantId
       type: object
-    APIErrors:
-      type: object
+    UpdateTenantInviteRequest:
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+          x-oapi-codegen-extra-tags:
+            validate: required
       required:
-      - errors
+      - role
+      type: object
+    WebhookWorker:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the webhook worker.
+        url:
+          type: string
+          description: The webhook url.
+      required:
+      - metadata
+      - name
+      - url
+      type: object
+    TenantMemberRole:
+      enum:
+      - OWNER
+      - ADMIN
+      - MEMBER
+      type: string
+    WebhookWorkerListResponse:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/WebhookWorker'
+          type: array
+      type: object
     APIResourceMeta:
       type: object
       properties:
@@ -313,44 +285,6 @@ components:
       - id
       - createdAt
       - updatedAt
-    WebhookWorkerCreated:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        name:
-          type: string
-          description: The name of the webhook worker.
-        url:
-          type: string
-          description: The webhook url.
-        secret:
-          type: string
-          description: The secret key for validation.
-      required:
-      - metadata
-      - name
-      - url
-      - secret
-      type: object
-    UpdateTenantInviteRequest:
-      properties:
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-          x-oapi-codegen-extra-tags:
-            validate: required
-      required:
-      - role
-      type: object
-    WebhookWorkerListResponse:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/WebhookWorker'
-          type: array
-      type: object
     APIError:
       type: object
       properties:
@@ -373,6 +307,72 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    WebhookWorkerCreateRequest:
+      properties:
+        name:
+          type: string
+          description: The name of the webhook worker.
+        url:
+          type: string
+          description: The webhook url.
+        secret:
+          type: string
+          description: The secret key for validation. If not provided, a random secret will be generated.
+          minLength: 32
+      required:
+      - name
+      - url
+      type: object
+    WebhookWorkerCreated:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the webhook worker.
+        url:
+          type: string
+          description: The webhook url.
+        secret:
+          type: string
+          description: The secret key for validation.
+      required:
+      - metadata
+      - name
+      - url
+      - secret
+      type: object
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

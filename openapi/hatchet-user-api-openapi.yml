@@ -349,18 +349,11 @@ paths:
       - User
 components:
   schemas:
-    UserTenantPublic:
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-        name:
-          type: string
-          description: The display name of the user.
-      required:
-      - email
-      type: object
+    TenantVersion:
+      enum:
+      - V0
+      - V1
+      type: string
     PaginationResponse:
       type: object
       properties:
@@ -383,107 +376,11 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     TenantMemberRole:
       enum:
       - OWNER
       - ADMIN
       - MEMBER
-      type: string
-    UserLoginRequest:
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,email
-        password:
-          type: string
-          description: The password of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-      required:
-      - email
-      - password
-      type: object
-    APIResourceMeta:
-      type: object
-      properties:
-        id:
-          type: string
-          description: the id of this resource, in UUID format
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 0
-          maxLength: 36
-        createdAt:
-          type: string
-          description: the time that this resource was created
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-        updatedAt:
-          type: string
-          description: the time that this resource was last updated
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-      required:
-      - id
-      - createdAt
-      - updatedAt
-    User:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        name:
-          type: string
-          description: The display name of the user.
-        email:
-          type: string
-          format: email
-          description: The email address of the user.
-        emailVerified:
-          type: boolean
-          description: Whether the user has verified their email address.
-        hasPassword:
-          type: boolean
-          description: Whether the user has a password set.
-        emailHash:
-          type: string
-          description: A hash of the user's email address for use with Pylon Support Chat
-      required:
-      - metadata
-      - email
-      - emailVerified
-      type: object
-    UserChangePasswordRequest:
-      properties:
-        password:
-          type: string
-          description: The password of the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-        newPassword:
-          type: string
-          description: The new password for the user.
-          x-oapi-codegen-extra-tags:
-            validate: required,password
-      required:
-      - password
-      - newPassword
-      type: object
-    TenantEnvironment:
-      enum:
-      - local
-      - development
-      - production
       type: string
     Tenant:
       properties:
@@ -519,25 +416,31 @@ components:
       - slug
       - version
       type: object
-    UserTenantMembershipsList:
+    APIResourceMeta:
+      type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/TenantMember'
-          type: array
-          x-go-name: Rows
-    TenantVersion:
-      enum:
-      - V0
-      - V1
-      type: string
-    UserRegisterRequest:
-      properties:
-        name:
+        id:
           type: string
-          description: The name of the user.
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    UserLoginRequest:
+      properties:
         email:
           type: string
           format: email
@@ -550,27 +453,8 @@ components:
           x-oapi-codegen-extra-tags:
             validate: required,password
       required:
-      - name
       - email
       - password
-      type: object
-    TenantMember:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        user:
-          $ref: '#/components/schemas/UserTenantPublic'
-          description: The user associated with this tenant member.
-        role:
-          $ref: '#/components/schemas/TenantMemberRole'
-          description: The role of the user in the tenant.
-        tenant:
-          $ref: '#/components/schemas/Tenant'
-          description: The tenant associated with this tenant member.
-      required:
-      - metadata
-      - user
-      - role
       type: object
     APIError:
       type: object
@@ -594,6 +478,122 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    UserTenantPublic:
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        name:
+          type: string
+          description: The display name of the user.
+      required:
+      - email
+      type: object
+    TenantEnvironment:
+      enum:
+      - local
+      - development
+      - production
+      type: string
+    UserTenantMembershipsList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/TenantMember'
+          type: array
+          x-go-name: Rows
+    User:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The display name of the user.
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        emailVerified:
+          type: boolean
+          description: Whether the user has verified their email address.
+        hasPassword:
+          type: boolean
+          description: Whether the user has a password set.
+        emailHash:
+          type: string
+          description: A hash of the user's email address for use with Pylon Support Chat
+      required:
+      - metadata
+      - email
+      - emailVerified
+      type: object
+    TenantMember:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        user:
+          $ref: '#/components/schemas/UserTenantPublic'
+          description: The user associated with this tenant member.
+        role:
+          $ref: '#/components/schemas/TenantMemberRole'
+          description: The role of the user in the tenant.
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+          description: The tenant associated with this tenant member.
+      required:
+      - metadata
+      - user
+      - role
+      type: object
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    UserRegisterRequest:
+      properties:
+        name:
+          type: string
+          description: The name of the user.
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,email
+        password:
+          type: string
+          description: The password of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+      required:
+      - name
+      - email
+      - password
+      type: object
+    UserChangePasswordRequest:
+      properties:
+        password:
+          type: string
+          description: The password of the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+        newPassword:
+          type: string
+          description: The new password for the user.
+          x-oapi-codegen-extra-tags:
+            validate: required,password
+      required:
+      - password
+      - newPassword
+      type: object
   securitySchemes:
     bearerAuth:
       type: http

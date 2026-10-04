@@ -77,15 +77,43 @@ paths:
       - Metadata
 components:
   schemas:
-    APIErrors:
+    APIMetaPosthog:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
+        apiKey:
+          type: string
+          description: the PostHog API key
+          example: phk_1234567890abcdef
+        apiHost:
+          type: string
+          description: the PostHog API host
+          example: https://posthog.example.com
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
       required:
-      - errors
+      - description
+    ListAPIMetaIntegration:
+      type: array
+      items:
+        $ref: '#/components/schemas/APIMetaIntegration'
     APIMetaIntegration:
       type: object
       properties:
@@ -99,21 +127,26 @@ components:
       required:
       - name
       - enabled
-    APIMetaPosthog:
+    APIErrors:
       type: object
       properties:
-        apiKey:
-          type: string
-          description: the PostHog API key
-          example: phk_1234567890abcdef
-        apiHost:
-          type: string
-          description: the PostHog API host
-          example: https://posthog.example.com
-    ListAPIMetaIntegration:
-      type: array
-      items:
-        $ref: '#/components/schemas/APIMetaIntegration'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    APIMetaAuth:
+      type: object
+      properties:
+        schemes:
+          items:
+            type: string
+          type: array
+          description: the supported types of authentication
+          example:
+          - basic
+          - google
     APIMeta:
       type: object
       properties:
@@ -145,39 +178,6 @@ components:
           type: boolean
           description: whether or not observability (trace collection) is enabled on this instance
           example: false
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    APIMetaAuth:
-      type: object
-      properties:
-        schemes:
-          items:
-            type: string
-          type: array
-          description: the supported types of authentication
-          example:
-          - basic
-          - google
   securitySchemes:
     bearerAuth:
       type: http

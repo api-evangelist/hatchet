@@ -157,65 +157,6 @@ paths:
       - Worker
 components:
   schemas:
-    WorkerLabel:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        key:
-          type: string
-          description: The key of the label.
-        value:
-          type: string
-          description: The value of the label.
-      required:
-      - metadata
-      - key
-      type: object
-    WorkerStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - INACTIVE
-      - PAUSED
-    PaginationResponse:
-      type: object
-      properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    WorkerList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/Worker'
-          type: array
     RegisteredWorkflow:
       type: object
       properties:
@@ -229,47 +170,12 @@ components:
       required:
       - id
       - name
-    UpdateWorkerRequest:
-      properties:
-        isPaused:
-          type: boolean
-          description: Whether the worker is paused and cannot accept new runs.
-      type: object
-    StepRunStatus:
+    WorkerType:
       type: string
       enum:
-      - PENDING
-      - PENDING_ASSIGNMENT
-      - ASSIGNED
-      - RUNNING
-      - SUCCEEDED
-      - FAILED
-      - CANCELLED
-      - CANCELLING
-      - BACKOFF
-    APIResourceMeta:
-      type: object
-      properties:
-        id:
-          type: string
-          description: the id of this resource, in UUID format
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 0
-          maxLength: 36
-        createdAt:
-          type: string
-          description: the time that this resource was created
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-        updatedAt:
-          type: string
-          description: the time that this resource was last updated
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-      required:
-      - id
-      - createdAt
-      - updatedAt
+      - SELFHOSTED
+      - MANAGED
+      - WEBHOOK
     WorkerSlotConfig:
       type: object
       description: Slot availability and limits for a slot type.
@@ -282,46 +188,14 @@ components:
           description: The maximum number of units for this slot type.
       required:
       - limit
-    RecentStepRuns:
+    WorkerList:
       properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        actionId:
-          type: string
-          description: The action id.
-        status:
-          $ref: '#/components/schemas/StepRunStatus'
-        startedAt:
-          type: string
-          format: date-time
-        finishedAt:
-          type: string
-          format: date-time
-        cancelledAt:
-          type: string
-          format: date-time
-        workflowRunId:
-          type: string
-          format: uuid
-      required:
-      - actionId
-      - metadata
-      - status
-      - workflowRunId
-      type: object
-    WorkerType:
-      type: string
-      enum:
-      - SELFHOSTED
-      - MANAGED
-      - WEBHOOK
-    WorkerRuntimeSDKs:
-      type: string
-      enum:
-      - GOLANG
-      - PYTHON
-      - TYPESCRIPT
-      - RUBY
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/Worker'
+          type: array
     SemaphoreSlots:
       properties:
         stepRunId:
@@ -349,40 +223,36 @@ components:
       - stepRunId
       - actionId
       - workflowRunId
-    WorkerRuntimeInfo:
-      properties:
-        sdkVersion:
-          type: string
-        language:
-          $ref: '#/components/schemas/WorkerRuntimeSDKs'
-        languageVersion:
-          type: string
-        os:
-          type: string
-        runtimeExtra:
-          type: string
-    APIError:
+    APIResourceMeta:
       type: object
       properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
+        id:
           type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
           type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
           type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
       required:
-      - description
+      - id
+      - createdAt
+      - updatedAt
+    WorkerRuntimeSDKs:
+      type: string
+      enum:
+      - GOLANG
+      - PYTHON
+      - TYPESCRIPT
+      - RUBY
     Worker:
       properties:
         metadata:
@@ -456,6 +326,136 @@ components:
       - name
       - type
       type: object
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    WorkerStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - PAUSED
+    RecentStepRuns:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        actionId:
+          type: string
+          description: The action id.
+        status:
+          $ref: '#/components/schemas/StepRunStatus'
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        cancelledAt:
+          type: string
+          format: date-time
+        workflowRunId:
+          type: string
+          format: uuid
+      required:
+      - actionId
+      - metadata
+      - status
+      - workflowRunId
+      type: object
+    StepRunStatus:
+      type: string
+      enum:
+      - PENDING
+      - PENDING_ASSIGNMENT
+      - ASSIGNED
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - CANCELLED
+      - CANCELLING
+      - BACKOFF
+    WorkerLabel:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        key:
+          type: string
+          description: The key of the label.
+        value:
+          type: string
+          description: The value of the label.
+      required:
+      - metadata
+      - key
+      type: object
+    WorkerRuntimeInfo:
+      properties:
+        sdkVersion:
+          type: string
+        language:
+          $ref: '#/components/schemas/WorkerRuntimeSDKs'
+        languageVersion:
+          type: string
+        os:
+          type: string
+        runtimeExtra:
+          type: string
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    UpdateWorkerRequest:
+      properties:
+        isPaused:
+          type: boolean
+          description: Whether the worker is paused and cannot accept new runs.
+      type: object
+    PaginationResponse:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
   securitySchemes:
     bearerAuth:
       type: http

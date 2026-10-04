@@ -365,6 +365,13 @@ paths:
       - Workflow Run
 components:
   schemas:
+    WorkflowTriggerEventRef:
+      type: object
+      properties:
+        parent_id:
+          type: string
+        event_key:
+          type: string
     WorkflowVersionMeta:
       type: object
       properties:
@@ -385,94 +392,6 @@ components:
       - version
       - order
       - workflowId
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    WorkflowRun:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        tenantId:
-          type: string
-        workflowVersionId:
-          type: string
-        workflowVersion:
-          $ref: '#/components/schemas/WorkflowVersion'
-        status:
-          $ref: '#/components/schemas/WorkflowRunStatus'
-        displayName:
-          type: string
-        jobRuns:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobRun'
-        triggeredBy:
-          $ref: '#/components/schemas/WorkflowRunTriggeredBy'
-        input:
-          type: object
-          additionalProperties: true
-        error:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        finishedAt:
-          type: string
-          format: date-time
-        duration:
-          type: integer
-          example: 1000
-        parentId:
-          type: string
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 36
-          maxLength: 36
-          format: uuid
-        parentStepRunId:
-          type: string
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 36
-          maxLength: 36
-          format: uuid
-        additionalMetadata:
-          type: object
-          additionalProperties: true
-      required:
-      - metadata
-      - tenantId
-      - workflowVersionId
-      - status
-      - triggeredBy
-    APIResourceMeta:
-      type: object
-      properties:
-        id:
-          type: string
-          description: the id of this resource, in UUID format
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 0
-          maxLength: 36
-        createdAt:
-          type: string
-          description: the time that this resource was created
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-        updatedAt:
-          type: string
-          description: the time that this resource was last updated
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-      required:
-      - id
-      - createdAt
-      - updatedAt
     StepRunStatus:
       type: string
       enum:
@@ -485,159 +404,13 @@ components:
       - CANCELLED
       - CANCELLING
       - BACKOFF
-    ConcurrencySetting:
-      type: object
-      properties:
-        maxRuns:
-          type: integer
-          format: int32
-          description: The maximum number of concurrent workflow runs.
-        limitStrategy:
-          $ref: '#/components/schemas/ConcurrencyLimitStrategy'
-          description: The strategy to use when the concurrency limit is reached.
-        expression:
-          type: string
-          description: The concurrency expression, used to generate a key from task inputs, metadata, etc.
-        stepReadableId:
-          type: string
-          description: The readable id of the step to which this concurrency setting applies.
-        scope:
-          $ref: '#/components/schemas/ConcurrencyScope'
-          description: The scope of the concurrency setting.
-      required:
-      - maxRuns
-      - limitStrategy
-      - expression
-      - scope
-    ReplayWorkflowRunsResponse:
-      properties:
-        workflowRuns:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowRun'
-      required:
-      - workflowRuns
-    WorkflowTriggerEventRef:
+    WorkflowTriggerCronRef:
       type: object
       properties:
         parent_id:
           type: string
-        event_key:
-          type: string
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    Job:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        tenantId:
-          type: string
-        versionId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-          description: The description of the job.
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/Step'
-        timeout:
-          type: string
-          description: The timeout of the job.
-      required:
-      - metadata
-      - tenantId
-      - versionId
-      - name
-      - steps
-    CronWorkflows:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        tenantId:
-          type: string
-        workflowVersionId:
-          type: string
-        workflowId:
-          type: string
-        workflowName:
-          type: string
         cron:
           type: string
-        name:
-          type: string
-        input:
-          type: object
-          additionalProperties: true
-        additionalMetadata:
-          type: object
-          additionalProperties: true
-        enabled:
-          type: boolean
-        method:
-          $ref: '#/components/schemas/CronWorkflowsMethod'
-        priority:
-          type: integer
-          minimum: 1
-          maximum: 3
-          format: int32
-      required:
-      - metadata
-      - tenantId
-      - workflowVersionId
-      - workflowName
-      - workflowId
-      - cron
-      - enabled
-      - method
-    ConcurrencyLimitStrategy:
-      type: string
-      enum:
-      - CANCEL_IN_PROGRESS
-      - DROP_NEWEST
-      - QUEUE_NEWEST
-      - GROUP_ROUND_ROBIN
-    WorkflowTriggers:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        workflow_version_id:
-          type: string
-        tenant_id:
-          type: string
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowTriggerEventRef'
-        crons:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowTriggerCronRef'
     JobRunStatus:
       type: string
       enum:
@@ -647,6 +420,71 @@ components:
       - FAILED
       - CANCELLED
       - BACKOFF
+    WorkflowTag:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the workflow.
+        color:
+          type: string
+          description: The description of the workflow.
+      required:
+      - name
+      - color
+    WorkflowRunTriggeredBy:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        parentWorkflowRunId:
+          type: string
+        eventId:
+          type: string
+        cronParentId:
+          type: string
+        cronSchedule:
+          type: string
+      required:
+      - metadata
+    WorkflowRunsCancelRequest:
+      type: object
+      properties:
+        workflowRunIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            minLength: 36
+            maxLength: 36
+      required:
+      - workflowRunIds
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    WorkflowConcurrency:
+      type: object
+      properties:
+        maxRuns:
+          type: integer
+          format: int32
+          description: The maximum number of concurrent workflow runs.
+        limitStrategy:
+          $ref: '#/components/schemas/ConcurrencyLimitStrategy'
+          description: The strategy to use when the concurrency limit is reached.
+        getConcurrencyGroup:
+          type: string
+          description: An action which gets the concurrency group for the WorkflowRun.
+      required:
+      - maxRuns
+      - limitStrategy
+      - getConcurrencyGroup
     WorkflowVersion:
       type: object
       properties:
@@ -693,96 +531,131 @@ components:
       - version
       - order
       - workflowId
-    WorkflowRunsCancelRequest:
+    ConcurrencySetting:
       type: object
       properties:
-        workflowRunIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-            minLength: 36
-            maxLength: 36
+        maxRuns:
+          type: integer
+          format: int32
+          description: The maximum number of concurrent workflow runs.
+        limitStrategy:
+          $ref: '#/components/schemas/ConcurrencyLimitStrategy'
+          description: The strategy to use when the concurrency limit is reached.
+        expression:
+          type: string
+          description: The concurrency expression, used to generate a key from task inputs, metadata, etc.
+        stepReadableId:
+          type: string
+          description: The readable id of the step to which this concurrency setting applies.
+        scope:
+          $ref: '#/components/schemas/ConcurrencyScope'
+          description: The scope of the concurrency setting.
       required:
-      - workflowRunIds
-    TriggerWorkflowRunRequest:
-      properties:
-        input:
-          type: object
-        additionalMetadata:
-          type: object
-      required:
-      - input
-    StepRun:
+      - maxRuns
+      - limitStrategy
+      - expression
+      - scope
+    ConcurrencyScope:
+      type: string
+      enum:
+      - WORKFLOW
+      - TASK
+    ScheduledWorkflowsMethod:
+      type: string
+      enum:
+      - DEFAULT
+      - API
+    CronWorkflows:
       type: object
       properties:
         metadata:
           $ref: '#/components/schemas/APIResourceMeta'
         tenantId:
           type: string
-        jobRunId:
+        workflowVersionId:
           type: string
-        jobRun:
-          $ref: '#/components/schemas/JobRun'
-        stepId:
+        workflowId:
           type: string
-        step:
-          $ref: '#/components/schemas/Step'
-        childWorkflowsCount:
-          type: integer
-        parents:
-          type: array
-          items:
-            type: string
-        childWorkflowRuns:
-          type: array
-          items:
-            type: string
-        workerId:
+        workflowName:
+          type: string
+        cron:
+          type: string
+        name:
           type: string
         input:
-          type: string
-        output:
-          type: string
-        status:
-          $ref: '#/components/schemas/StepRunStatus'
-        requeueAfter:
-          type: string
-          format: date-time
-        result:
           type: object
-        error:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        startedAtEpoch:
+          additionalProperties: true
+        additionalMetadata:
+          type: object
+          additionalProperties: true
+        enabled:
+          type: boolean
+        method:
+          $ref: '#/components/schemas/CronWorkflowsMethod'
+        priority:
           type: integer
-        finishedAt:
-          type: string
-          format: date-time
-        finishedAtEpoch:
-          type: integer
-        timeoutAt:
-          type: string
-          format: date-time
-        timeoutAtEpoch:
-          type: integer
-        cancelledAt:
-          type: string
-          format: date-time
-        cancelledAtEpoch:
-          type: integer
-        cancelledReason:
-          type: string
-        cancelledError:
-          type: string
+          minimum: 1
+          maximum: 3
+          format: int32
       required:
       - metadata
       - tenantId
-      - jobRunId
-      - stepId
-      - status
+      - workflowVersionId
+      - workflowName
+      - workflowId
+      - cron
+      - enabled
+      - method
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    Job:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+        versionId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          description: The description of the job.
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+        timeout:
+          type: string
+          description: The timeout of the job.
+      required:
+      - metadata
+      - tenantId
+      - versionId
+      - name
+      - steps
     WorkflowRunStatus:
       type: string
       enum:
@@ -793,11 +666,70 @@ components:
       - CANCELLED
       - QUEUED
       - BACKOFF
-    ConcurrencyScope:
-      type: string
-      enum:
-      - WORKFLOW
-      - TASK
+    JobRun:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+        workflowRunId:
+          type: string
+        workflowRun:
+          $ref: '#/components/schemas/WorkflowRun'
+        jobId:
+          type: string
+        job:
+          $ref: '#/components/schemas/Job'
+        tickerId:
+          type: string
+        stepRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRun'
+        status:
+          $ref: '#/components/schemas/JobRunStatus'
+        result:
+          type: object
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        timeoutAt:
+          type: string
+          format: date-time
+        cancelledAt:
+          type: string
+          format: date-time
+        cancelledReason:
+          type: string
+        cancelledError:
+          type: string
+      required:
+      - metadata
+      - tenantId
+      - workflowRunId
+      - jobId
+      - status
+    WorkflowTriggers:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        workflow_version_id:
+          type: string
+        tenant_id:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowTriggerEventRef'
+        crons:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowTriggerCronRef'
     Step:
       type: object
       properties:
@@ -888,11 +820,13 @@ components:
       - workflowId
       - triggerAt
       - method
-    ScheduledWorkflowsMethod:
+    ConcurrencyLimitStrategy:
       type: string
       enum:
-      - DEFAULT
-      - API
+      - CANCEL_IN_PROGRESS
+      - DROP_NEWEST
+      - QUEUE_NEWEST
+      - GROUP_ROUND_ROBIN
     Workflow:
       properties:
         metadata:
@@ -928,80 +862,66 @@ components:
       - name
       - tenantId
       type: object
-    WorkflowConcurrency:
-      type: object
-      properties:
-        maxRuns:
-          type: integer
-          format: int32
-          description: The maximum number of concurrent workflow runs.
-        limitStrategy:
-          $ref: '#/components/schemas/ConcurrencyLimitStrategy'
-          description: The strategy to use when the concurrency limit is reached.
-        getConcurrencyGroup:
-          type: string
-          description: An action which gets the concurrency group for the WorkflowRun.
-      required:
-      - maxRuns
-      - limitStrategy
-      - getConcurrencyGroup
-    CronWorkflowsMethod:
-      type: string
-      enum:
-      - DEFAULT
-      - API
-    WorkflowRunTriggeredBy:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        parentWorkflowRunId:
-          type: string
-        eventId:
-          type: string
-        cronParentId:
-          type: string
-        cronSchedule:
-          type: string
-      required:
-      - metadata
-    JobRun:
+    StepRun:
       type: object
       properties:
         metadata:
           $ref: '#/components/schemas/APIResourceMeta'
         tenantId:
           type: string
-        workflowRunId:
+        jobRunId:
           type: string
-        workflowRun:
-          $ref: '#/components/schemas/WorkflowRun'
-        jobId:
+        jobRun:
+          $ref: '#/components/schemas/JobRun'
+        stepId:
           type: string
-        job:
-          $ref: '#/components/schemas/Job'
-        tickerId:
-          type: string
-        stepRuns:
+        step:
+          $ref: '#/components/schemas/Step'
+        childWorkflowsCount:
+          type: integer
+        parents:
           type: array
           items:
-            $ref: '#/components/schemas/StepRun'
+            type: string
+        childWorkflowRuns:
+          type: array
+          items:
+            type: string
+        workerId:
+          type: string
+        input:
+          type: string
+        output:
+          type: string
         status:
-          $ref: '#/components/schemas/JobRunStatus'
+          $ref: '#/components/schemas/StepRunStatus'
+        requeueAfter:
+          type: string
+          format: date-time
         result:
           type: object
+        error:
+          type: string
         startedAt:
           type: string
           format: date-time
+        startedAtEpoch:
+          type: integer
         finishedAt:
           type: string
           format: date-time
+        finishedAtEpoch:
+          type: integer
         timeoutAt:
           type: string
           format: date-time
+        timeoutAtEpoch:
+          type: integer
         cancelledAt:
           type: string
           format: date-time
+        cancelledAtEpoch:
+          type: integer
         cancelledReason:
           type: string
         cancelledError:
@@ -1009,39 +929,78 @@ components:
       required:
       - metadata
       - tenantId
-      - workflowRunId
-      - jobId
+      - jobRunId
+      - stepId
       - status
-    WorkflowTag:
+    ReplayWorkflowRunsResponse:
+      properties:
+        workflowRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowRun'
+      required:
+      - workflowRuns
+    WorkflowRun:
       type: object
       properties:
-        name:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
           type: string
-          description: The name of the workflow.
-        color:
+        workflowVersionId:
           type: string
-          description: The description of the workflow.
-      required:
-      - name
-      - color
-    ScheduleWorkflowRunRequest:
-      properties:
+        workflowVersion:
+          $ref: '#/components/schemas/WorkflowVersion'
+        status:
+          $ref: '#/components/schemas/WorkflowRunStatus'
+        displayName:
+          type: string
+        jobRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRun'
+        triggeredBy:
+          $ref: '#/components/schemas/WorkflowRunTriggeredBy'
         input:
           type: object
-        additionalMetadata:
-          type: object
-        triggerAt:
+          additionalProperties: true
+        error:
+          type: string
+        startedAt:
           type: string
           format: date-time
-        priority:
+        finishedAt:
+          type: string
+          format: date-time
+        duration:
           type: integer
-          minimum: 1
-          maximum: 3
-          format: int32
+          example: 1000
+        parentId:
+          type: string
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        parentStepRunId:
+          type: string
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 36
+          maxLength: 36
+          format: uuid
+        additionalMetadata:
+          type: object
+          additionalProperties: true
       required:
-      - input
-      - additionalMetadata
-      - triggerAt
+      - metadata
+      - tenantId
+      - workflowVersionId
+      - status
+      - triggeredBy
+    CronWorkflowsMethod:
+      type: string
+      enum:
+      - DEFAULT
+      - API
     CreateCronWorkflowTriggerRequest:
       properties:
         input:
@@ -1062,6 +1021,46 @@ components:
       - additionalMetadata
       - cronName
       - cronExpression
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    ScheduleWorkflowRunRequest:
+      properties:
+        input:
+          type: object
+        additionalMetadata:
+          type: object
+        triggerAt:
+          type: string
+          format: date-time
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 3
+          format: int32
+      required:
+      - input
+      - additionalMetadata
+      - triggerAt
     ReplayWorkflowRunsRequest:
       properties:
         workflowRunIds:
@@ -1075,13 +1074,14 @@ components:
             format: uuid
       required:
       - workflowRunIds
-    WorkflowTriggerCronRef:
-      type: object
+    TriggerWorkflowRunRequest:
       properties:
-        parent_id:
-          type: string
-        cron:
-          type: string
+        input:
+          type: object
+        additionalMetadata:
+          type: object
+      required:
+      - input
   securitySchemes:
     bearerAuth:
       type: http
