@@ -1,0 +1,47 @@
+slug: hatchet
+provider: Hatchet
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Observability
+  spec_file: hatchet-observability-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.8
+  evidence: GET /api/v1/stable/tenants/{tenant}/traces  v1-observability:get-trace  Get Otel Trace
+  reason: Retrieval of OpenTelemetry traces (OtelSpan, OtelSpanKind, OtelStatusCode) is distributed tracing
+    of the running service — squarely Observability Management.
+- tag: Tenant
+  spec_file: hatchet-tenant-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.72
+  evidence: POST /api/v1/tenants  tenant:create  Create Tenant ... PATCH /api/v1/tenants/{tenant}  tenant:update  Update
+    Tenant ... POST /api/v1/users/invites/accept  tenant-invite:accept  Accept Tenant Invite
+  reason: Operations create, update and read tenants of the multi-tenant orchestration platform and manage
+    tenant member invites and resource policy — tenant provisioning and lifecycle in a multi-tenant SaaS
+    fleet. Some operations (alert email groups, alerting settings, resource policy) are tenant configuration,
+    hence confidence below 0.8 on the specific L2.
+- tag: Log
+  spec_file: hatchet-log-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.7
+  evidence: GET /api/v1/stable/tasks/{task}/logs  v1-log-line:list  List Log Lines ... GET /api/v1/stable/tenants/{tenant}/log-point-metrics  Get
+    Log Point Metrics
+  reason: Operations expose log lines and log point metrics for running tasks, with schemas V1LogLine/V1LogLineLevel/V1LogsPointMetric
+    — logs and metrics that make a running workload understandable, i.e. Observability Management. Not
+    business logging of any domain kind.
