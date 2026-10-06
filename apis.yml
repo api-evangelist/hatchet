@@ -58,7 +58,7 @@ tags_raw:
 url: https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml
 humanURL: https://hatchet.run/
 created: '2026-03-27'
-modified: '2026-05-25'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: hatchet:hatchet-api-token-api
@@ -2444,6 +2444,8 @@ apis:
   - type: SourceCode
     url: https://github.com/hatchet-dev/hatchet
 common:
+  - url: https://hatchet.run/rss.xml
+    type: BlogRSS
   - type: CapabilityMap
     url: capabilities/hatchet-capability-edges.yml
     name: Hatchet Business Capability Map
