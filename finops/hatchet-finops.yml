@@ -1,11 +1,9 @@
+# Coverage demoted 2026-10-07 (roadmap#942, PLAN.md Stage A): this file was written by an API Evangelist
+# sweep and names no billing unit, meters or pricing category read from the provider — it restates the
+# FinOps framework. It is `x-coverage: unmeasured`, and the FOCUS alignment it claimed has been removed.
+x-coverage: unmeasured
 specification: FinOps Framework
 specificationVersion: '1.0'
-alignedWith:
-  framework: FinOps Foundation Framework
-  frameworkUrl: https://www.finops.org/framework/
-  dataSpec: FOCUS
-  dataSpecVersion: '1.3'
-  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Hatchet
 providerId: hatchet
 publisherName: Hatchet
@@ -151,16 +149,12 @@ apis:
 unitEconomics:
   - name: Cost per Million Task Runs
     metric: billed_cost / (task_runs / 1000000)
-    target: '10.00 USD (Developer overage benchmark)'
   - name: Cost per Workflow Run
     metric: billed_cost / workflow_runs
-    target: TBD
   - name: Subscription Coverage Ratio
     metric: (included_task_runs - overage_task_runs) / included_task_runs
-    target: '>= 0.85 (signals the right plan is selected)'
   - name: Self-Hosting Break-Even
     metric: hatchet_cloud_monthly_spend / (postgres_infra_cost + ops_overhead)
-    target: '>= 1.0 (when ratio exceeds 1, self-hosting becomes cheaper)'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
