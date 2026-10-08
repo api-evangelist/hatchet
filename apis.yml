@@ -2444,6 +2444,10 @@ apis:
   - type: SourceCode
     url: https://github.com/hatchet-dev/hatchet
 common:
+  - type: RateLimits
+    url: rate-limits/hatchet-rate-limits.yml
+  - type: FinOps
+    url: finops/hatchet-finops.yml
   - url: https://hatchet.run/rss.xml
     type: BlogRSS
   - type: CapabilityMap
