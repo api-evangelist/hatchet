@@ -128,45 +128,6 @@ paths:
       - API Token
 components:
   schemas:
-    CreateAPITokenResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The API token.
-      required:
-      - token
-    APIToken:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        name:
-          type: string
-          description: The name of the API token.
-          maxLength: 255
-        expiresAt:
-          type: string
-          format: date-time
-          description: When the API token expires.
-      required:
-      - metadata
-      - name
-      - expiresAt
-    CreateAPITokenRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the API token.
-          maxLength: 255
-        expiresIn:
-          type: string
-          description: The duration for which the token is valid.
-          x-oapi-codegen-extra-tags:
-            validate: omitnil,duration
-      required:
-      - name
     APIResourceMeta:
       type: object
       properties:
@@ -212,14 +173,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    ListAPITokensResponse:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/APIToken'
-          type: array
     APIErrors:
       type: object
       properties:
@@ -229,6 +182,14 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
+    ListAPITokensResponse:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/APIToken'
+          type: array
     PaginationResponse:
       type: object
       properties:
@@ -251,6 +212,45 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    CreateAPITokenRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the API token.
+          maxLength: 255
+        expiresIn:
+          type: string
+          description: The duration for which the token is valid.
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,duration
+      required:
+      - name
+    APIToken:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        name:
+          type: string
+          description: The name of the API token.
+          maxLength: 255
+        expiresAt:
+          type: string
+          format: date-time
+          description: When the API token expires.
+      required:
+      - metadata
+      - name
+      - expiresAt
+    CreateAPITokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The API token.
+      required:
+      - token
   securitySchemes:
     bearerAuth:
       type: http

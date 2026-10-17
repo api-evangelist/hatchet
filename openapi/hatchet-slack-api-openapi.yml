@@ -98,69 +98,6 @@ paths:
       - Slack
 components:
   schemas:
-    ListSlackWebhooks:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackWebhook'
-      required:
-      - pagination
-      - rows
-    SlackWebhook:
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        tenantId:
-          type: string
-          format: uuid
-          description: The unique identifier for the tenant that the SNS integration belongs to.
-        teamName:
-          type: string
-          description: The team name associated with this slack webhook.
-        teamId:
-          type: string
-          description: The team id associated with this slack webhook.
-        channelName:
-          type: string
-          description: The channel name associated with this slack webhook.
-        channelId:
-          type: string
-          description: The channel id associated with this slack webhook.
-      required:
-      - metadata
-      - tenantId
-      - teamName
-      - teamId
-      - channelName
-      - channelId
-    APIResourceMeta:
-      type: object
-      properties:
-        id:
-          type: string
-          description: the id of this resource, in UUID format
-          example: bb214807-246e-43a5-a25d-41761d1cff9e
-          minLength: 0
-          maxLength: 36
-        createdAt:
-          type: string
-          description: the time that this resource was created
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-        updatedAt:
-          type: string
-          description: the time that this resource was last updated
-          format: date-time
-          example: '2022-12-13T15:06:48.888358-05:00'
-      required:
-      - id
-      - createdAt
-      - updatedAt
     APIError:
       type: object
       properties:
@@ -214,6 +151,69 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    SlackWebhook:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        tenantId:
+          type: string
+          format: uuid
+          description: The unique identifier for the tenant that the SNS integration belongs to.
+        teamName:
+          type: string
+          description: The team name associated with this slack webhook.
+        teamId:
+          type: string
+          description: The team id associated with this slack webhook.
+        channelName:
+          type: string
+          description: The channel name associated with this slack webhook.
+        channelId:
+          type: string
+          description: The channel id associated with this slack webhook.
+      required:
+      - metadata
+      - tenantId
+      - teamName
+      - teamId
+      - channelName
+      - channelId
+    APIResourceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of this resource, in UUID format
+          example: bb214807-246e-43a5-a25d-41761d1cff9e
+          minLength: 0
+          maxLength: 36
+        createdAt:
+          type: string
+          description: the time that this resource was created
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+        updatedAt:
+          type: string
+          description: the time that this resource was last updated
+          format: date-time
+          example: '2022-12-13T15:06:48.888358-05:00'
+      required:
+      - id
+      - createdAt
+      - updatedAt
+    ListSlackWebhooks:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackWebhook'
+      required:
+      - pagination
+      - rows
   securitySchemes:
     bearerAuth:
       type: http

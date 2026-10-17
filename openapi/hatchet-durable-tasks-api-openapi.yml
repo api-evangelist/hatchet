@@ -71,12 +71,6 @@ paths:
       - Durable Tasks
 components:
   schemas:
-    V1DurableEventLogKind:
-      type: string
-      enum:
-      - RUN
-      - WAIT_FOR
-      - MEMO
     V1WaitItem:
       type: object
       properties:
@@ -93,20 +87,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/V1DurableWaitCondition'
-    V1DurableWaitCondition:
-      type: object
-      properties:
-        kind:
-          $ref: '#/components/schemas/V1DurableWaitConditionKind'
-        sleepDurationMs:
-          type: integer
-          format: int64
-        eventKey:
-          type: string
-        workflowName:
-          type: string
-      required:
-      - kind
+    V1DurableWaitConditionKind:
+      type: string
+      enum:
+      - SLEEP
+      - USER_EVENT
+      - CHILD_WORKFLOW
+    V1DurableEventLogKind:
+      type: string
+      enum:
+      - RUN
+      - WAIT_FOR
+      - MEMO
     APIError:
       type: object
       properties:
@@ -129,10 +121,37 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    V1DurableEventLogList:
+      type: array
+      items:
+        $ref: '#/components/schemas/V1DurableEventLogEntry'
     V1WaitData:
       type: array
       items:
         $ref: '#/components/schemas/V1WaitItem'
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1DurableWaitCondition:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/V1DurableWaitConditionKind'
+        sleepDurationMs:
+          type: integer
+          format: int64
+        eventKey:
+          type: string
+        workflowName:
+          type: string
+      required:
+      - kind
     V1DurableEventLogEntry:
       type: object
       properties:
@@ -179,25 +198,6 @@ components:
       - insertedAt
       - taskExternalId
       - taskDisplayName
-    V1DurableWaitConditionKind:
-      type: string
-      enum:
-      - SLEEP
-      - USER_EVENT
-      - CHILD_WORKFLOW
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    V1DurableEventLogList:
-      type: array
-      items:
-        $ref: '#/components/schemas/V1DurableEventLogEntry'
   securitySchemes:
     bearerAuth:
       type: http

@@ -705,21 +705,7 @@ paths:
       - Event
 components:
   schemas:
-    EventKey:
-      type: string
-      description: The key for the event.
-    V1EventList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/V1Event'
-          type: array
-    WorkflowID:
-      type: string
-      description: A workflow ID.
-    ReplayEventRequest:
+    CancelEventRequest:
       properties:
         eventIds:
           type: array
@@ -731,43 +717,9 @@ components:
             format: uuid
       required:
       - eventIds
-    TenantEnvironment:
-      enum:
-      - local
-      - development
-      - production
+    WorkflowID:
       type: string
-    EventSearch:
-      type: string
-    EventData:
-      properties:
-        data:
-          type: string
-          description: The data for the event (JSON bytes).
-      required:
-      - data
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
-    TenantVersion:
-      enum:
-      - V0
-      - V1
-      type: string
-    V1TaskStatus:
-      type: string
-      enum:
-      - QUEUED
-      - RUNNING
-      - COMPLETED
-      - CANCELLED
-      - FAILED
+      description: A workflow ID.
     APIResourceMeta:
       type: object
       properties:
@@ -791,27 +743,6 @@ components:
       - id
       - createdAt
       - updatedAt
-    CreateEventRequest:
-      properties:
-        key:
-          type: string
-          description: The key for the event.
-        data:
-          type: object
-          description: The data for the event.
-        additionalMetadata:
-          type: object
-          description: Additional metadata for the event.
-        priority:
-          type: integer
-          description: The priority of the event.
-          format: int32
-        scope:
-          type: string
-          description: The scope for event filtering.
-      required:
-      - key
-      - data
     WorkflowRunStatus:
       type: string
       enum:
@@ -822,48 +753,17 @@ components:
       - CANCELLED
       - QUEUED
       - BACKOFF
-    PaginationResponse:
-      type: object
+    WorkflowRunStatusList:
+      type: array
+      items:
+        $ref: '#/components/schemas/WorkflowRunStatus'
+    EventData:
       properties:
-        current_page:
-          type: integer
-          description: the current page
-          format: int64
-          example: 2
-        next_page:
-          type: integer
-          description: the next page
-          format: int64
-          example: 3
-        num_pages:
-          type: integer
-          description: the total number of pages for listing
-          format: int64
-          example: 10
-      example:
-        next_page: 3
-        num_pages: 10
-        current_page: 2
-    BulkCreateEventRequest:
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEventRequest'
+        data:
+          type: string
+          description: The data for the event (JSON bytes).
       required:
-      - events
-    EventKeyList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/EventKey'
-          type: array
-    EventOrderByField:
-      type: string
-      enum:
-      - createdAt
+      - data
     V1Event:
       properties:
         metadata:
@@ -906,71 +806,19 @@ components:
       - key
       - tenantId
       - workflowRunSummary
-    CancelEventRequest:
-      properties:
-        eventIds:
-          type: array
-          items:
-            type: string
-            example: bb214807-246e-43a5-a25d-41761d1cff9e
-            minLength: 36
-            maxLength: 36
-            format: uuid
-      required:
-      - eventIds
-    EventOrderByDirection:
+    EventOrderByField:
       type: string
       enum:
-      - asc
-      - desc
-    Events:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/APIResourceMeta'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-          description: The events.
-      required:
-      - metadata
-      - events
-    EventList:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          items:
-            $ref: '#/components/schemas/Event'
-          type: array
-    V1EventWorkflowRunSummary:
-      properties:
-        running:
-          type: integer
-          format: int64
-          description: The number of running runs.
-        queued:
-          type: integer
-          format: int64
-          description: The number of queued runs.
-        succeeded:
-          type: integer
-          format: int64
-          description: The number of succeeded runs.
-        failed:
-          type: integer
-          format: int64
-          description: The number of failed runs.
-        cancelled:
-          type: integer
-          format: int64
-          description: The number of cancelled runs.
-      required:
-      - running
-      - queued
-      - succeeded
-      - failed
-      - cancelled
+      - createdAt
+    TenantEnvironment:
+      enum:
+      - local
+      - development
+      - production
+      type: string
+    EventKey:
+      type: string
+      description: The key for the event.
     Tenant:
       properties:
         metadata:
@@ -1005,10 +853,92 @@ components:
       - slug
       - version
       type: object
-    WorkflowRunStatusList:
-      type: array
-      items:
-        $ref: '#/components/schemas/WorkflowRunStatus'
+    TenantVersion:
+      enum:
+      - V0
+      - V1
+      type: string
+    V1EventTriggeredRun:
+      type: object
+      properties:
+        workflowRunId:
+          type: string
+          format: uuid
+          description: The external ID of the triggered run.
+          minLength: 36
+          maxLength: 36
+        filterId:
+          type: string
+          format: uuid
+          description: The ID of the filter that triggered the run, if applicable.
+      required:
+      - workflowRunId
+    CreateEventRequest:
+      properties:
+        key:
+          type: string
+          description: The key for the event.
+        data:
+          type: object
+          description: The data for the event.
+        additionalMetadata:
+          type: object
+          description: Additional metadata for the event.
+        priority:
+          type: integer
+          description: The priority of the event.
+          format: int32
+        scope:
+          type: string
+          description: The scope for event filtering.
+      required:
+      - key
+      - data
+    Event:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/APIResourceMeta'
+        key:
+          type: string
+          description: The key for the event.
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+          description: The tenant associated with this event.
+        tenantId:
+          type: string
+          description: The ID of the tenant associated with this event.
+        workflowRunSummary:
+          $ref: '#/components/schemas/EventWorkflowRunSummary'
+          description: The workflow run summary for this event.
+        additionalMetadata:
+          type: object
+          description: Additional metadata for the event.
+      required:
+      - metadata
+      - key
+      - tenantId
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
     EventWorkflowRunSummary:
       properties:
         pending:
@@ -1035,66 +965,136 @@ components:
           type: integer
           format: int64
           description: The number of cancelled runs.
-    APIError:
+    EventOrderByDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+    BulkCreateEventRequest:
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEventRequest'
+      required:
+      - events
+    EventKeyList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/EventKey'
+          type: array
+    EventList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/Event'
+          type: array
+    EventSearch:
+      type: string
+    APIErrors:
       type: object
       properties:
-        code:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    V1EventWorkflowRunSummary:
+      properties:
+        running:
           type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
+          format: int64
+          description: The number of running runs.
+        queued:
+          type: integer
+          format: int64
+          description: The number of queued runs.
+        succeeded:
+          type: integer
+          format: int64
+          description: The number of succeeded runs.
+        failed:
+          type: integer
+          format: int64
+          description: The number of failed runs.
+        cancelled:
+          type: integer
+          format: int64
+          description: The number of cancelled runs.
       required:
-      - description
-    V1EventTriggeredRun:
+      - running
+      - queued
+      - succeeded
+      - failed
+      - cancelled
+    V1EventList:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          items:
+            $ref: '#/components/schemas/V1Event'
+          type: array
+    PaginationResponse:
       type: object
       properties:
-        workflowRunId:
-          type: string
-          format: uuid
-          description: The external ID of the triggered run.
-          minLength: 36
-          maxLength: 36
-        filterId:
-          type: string
-          format: uuid
-          description: The ID of the filter that triggered the run, if applicable.
+        current_page:
+          type: integer
+          description: the current page
+          format: int64
+          example: 2
+        next_page:
+          type: integer
+          description: the next page
+          format: int64
+          example: 3
+        num_pages:
+          type: integer
+          description: the total number of pages for listing
+          format: int64
+          example: 10
+      example:
+        next_page: 3
+        num_pages: 10
+        current_page: 2
+    ReplayEventRequest:
+      properties:
+        eventIds:
+          type: array
+          items:
+            type: string
+            example: bb214807-246e-43a5-a25d-41761d1cff9e
+            minLength: 36
+            maxLength: 36
+            format: uuid
       required:
-      - workflowRunId
-    Event:
+      - eventIds
+    Events:
       properties:
         metadata:
           $ref: '#/components/schemas/APIResourceMeta'
-        key:
-          type: string
-          description: The key for the event.
-        tenant:
-          $ref: '#/components/schemas/Tenant'
-          description: The tenant associated with this event.
-        tenantId:
-          type: string
-          description: The ID of the tenant associated with this event.
-        workflowRunSummary:
-          $ref: '#/components/schemas/EventWorkflowRunSummary'
-          description: The workflow run summary for this event.
-        additionalMetadata:
-          type: object
-          description: Additional metadata for the event.
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+          description: The events.
       required:
       - metadata
-      - key
-      - tenantId
+      - events
+    V1TaskStatus:
+      type: string
+      enum:
+      - QUEUED
+      - RUNNING
+      - COMPLETED
+      - CANCELLED
+      - FAILED
   securitySchemes:
     bearerAuth:
       type: http

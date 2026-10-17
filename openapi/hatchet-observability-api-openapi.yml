@@ -80,15 +80,6 @@ paths:
       - Observability
 components:
   schemas:
-    OtelSpanKind:
-      type: string
-      enum:
-      - UNSPECIFIED
-      - INTERNAL
-      - SERVER
-      - CLIENT
-      - PRODUCER
-      - CONSUMER
     OtelSpan:
       type: object
       properties:
@@ -139,6 +130,21 @@ components:
       - durationNs
       - createdAt
       - retryCount
+    OtelSpanKind:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - INTERNAL
+      - SERVER
+      - CLIENT
+      - PRODUCER
+      - CONSUMER
+    OtelStatusCode:
+      type: string
+      enum:
+      - UNSET
+      - OK
+      - ERROR
     APIError:
       type: object
       properties:
@@ -161,12 +167,6 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
-    OtelStatusCode:
-      type: string
-      enum:
-      - UNSET
-      - OK
-      - ERROR
     APIErrors:
       type: object
       properties:
@@ -176,20 +176,6 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
-    OtelSpanList:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        retryCounts:
-          type: array
-          items:
-            type: integer
-            format: int32
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/OtelSpan'
     PaginationResponse:
       type: object
       properties:
@@ -212,6 +198,20 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
+    OtelSpanList:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        retryCounts:
+          type: array
+          items:
+            type: integer
+            format: int32
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/OtelSpan'
   securitySchemes:
     bearerAuth:
       type: http

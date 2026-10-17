@@ -165,6 +165,18 @@ components:
       - metadata
       - tenantId
       - topicArn
+    ListSNSIntegrations:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SNSIntegration'
+      required:
+      - pagination
+      - rows
     APIResourceMeta:
       type: object
       properties:
@@ -219,16 +231,6 @@ components:
             $ref: '#/components/schemas/APIError'
       required:
       - errors
-    CreateSNSIntegrationRequest:
-      properties:
-        topicArn:
-          type: string
-          description: The Amazon Resource Name (ARN) of the SNS topic.
-          x-oapi-codegen-extra-tags:
-            validate: required,min=1,max=256
-      required:
-      - topicArn
-      type: object
     PaginationResponse:
       type: object
       properties:
@@ -251,18 +253,16 @@ components:
         next_page: 3
         num_pages: 10
         current_page: 2
-    ListSNSIntegrations:
-      type: object
+    CreateSNSIntegrationRequest:
       properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/SNSIntegration'
+        topicArn:
+          type: string
+          description: The Amazon Resource Name (ARN) of the SNS topic.
+          x-oapi-codegen-extra-tags:
+            validate: required,min=1,max=256
       required:
-      - pagination
-      - rows
+      - topicArn
+      type: object
   securitySchemes:
     bearerAuth:
       type: http

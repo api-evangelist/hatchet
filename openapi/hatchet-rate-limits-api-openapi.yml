@@ -130,6 +130,48 @@ components:
           items:
             $ref: '#/components/schemas/RateLimit'
           type: array
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: a custom Hatchet error code
+          format: uint64
+          example: 1400
+        field:
+          type: string
+          description: the field that this error is associated with, if applicable
+          example: name
+        description:
+          type: string
+          description: a description for this error
+          example: A descriptive error message
+        docs_link:
+          type: string
+          description: a link to the documentation for this error, if it exists
+          example: github.com/hatchet-dev/hatchet
+      required:
+      - description
+    RateLimitOrderByDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
+    RateLimitOrderByField:
+      type: string
+      enum:
+      - key
+      - value
+      - limitValue
     RateLimit:
       properties:
         key:
@@ -159,48 +201,6 @@ components:
       - value
       - window
       - lastRefill
-    APIError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: a custom Hatchet error code
-          format: uint64
-          example: 1400
-        field:
-          type: string
-          description: the field that this error is associated with, if applicable
-          example: name
-        description:
-          type: string
-          description: a description for this error
-          example: A descriptive error message
-        docs_link:
-          type: string
-          description: a link to the documentation for this error, if it exists
-          example: github.com/hatchet-dev/hatchet
-      required:
-      - description
-    RateLimitOrderByDirection:
-      type: string
-      enum:
-      - asc
-      - desc
-    RateLimitOrderByField:
-      type: string
-      enum:
-      - key
-      - value
-      - limitValue
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     PaginationResponse:
       type: object
       properties:

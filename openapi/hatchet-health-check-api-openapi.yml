@@ -47,15 +47,6 @@ paths:
       - Health Check
 components:
   schemas:
-    APIErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIError'
-      required:
-      - errors
     APIError:
       type: object
       properties:
@@ -78,6 +69,15 @@ components:
           example: github.com/hatchet-dev/hatchet
       required:
       - description
+    APIErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIError'
+      required:
+      - errors
   securitySchemes:
     bearerAuth:
       type: http
