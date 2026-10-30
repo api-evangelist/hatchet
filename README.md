@@ -1,4 +1,4 @@
-# Hatchet (hatchet)
+# Hatchet
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,124 +66,238 @@
 
 Hatchet is an open-source distributed task queue and workflow orchestration engine for background jobs, AI agents, and durable workflows. It is Postgres-backed, MIT-licensed, and ships with first-class SDKs for Python, TypeScript, Go, and Ruby plus a managed offering (Hatchet Cloud) and a self-hostable engine (Docker Compose, Hatchet Lite, Helm chart). The platform separates the orchestration engine from worker execution so workers can run on the operator's own infrastructure (Kubernetes, ECS, Render, Railway, Porter, or any container platform).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hatchet/refs/heads/main/apis.yml)
+**Areas:** Task Queue · Workflow Engine · Durable Execution · Background Tasks · AI Agents · Orchestration · PostgreSQL · Open Source
 
-## Scope
+## Hatchet on APIs.io
 
-- **Type:** Index
+Everything profiled for Hatchet is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hatchet/](https://apis.io/providers/hatchet/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (27)
 
-- Task Queue
-- Workflow Engine
-- Durable Execution
-- Background Tasks
-- AI Agents
-- Orchestration
-- PostgreSQL
-- Open Source
+- [Hatchet API Token API](https://apis.io/apis/hatchet/hatchet-api-token-api/) — The API Token API from Hatchet — 2 operation(s) for api token.
+- [Hatchet CEL API](https://apis.io/apis/hatchet/hatchet-cel-api/) — The CEL API from Hatchet — 1 operation(s) for cel.
+- [Hatchet Durable Tasks API](https://apis.io/apis/hatchet/hatchet-durable-tasks-api/) — The Durable Tasks API from Hatchet — 1 operation(s) for durable tasks.
+- [Hatchet Event API](https://apis.io/apis/hatchet/hatchet-event-api/) — The Event API from Hatchet — 11 operation(s) for event.
+- [Hatchet Feature Flags API](https://apis.io/apis/hatchet/hatchet-feature-flags-api/) — The Feature Flags API from Hatchet — 1 operation(s) for feature flags.
+- [Hatchet Filter API](https://apis.io/apis/hatchet/hatchet-filter-api/) — The Filter API from Hatchet — 2 operation(s) for filter.
+- [Hatchet Github API](https://apis.io/apis/hatchet/hatchet-github-api/) — The Github API from Hatchet — 1 operation(s) for github.
+- [Hatchet Log API](https://apis.io/apis/hatchet/hatchet-log-api/) — The Log API from Hatchet — 3 operation(s) for log.
+- [Hatchet Metadata API](https://apis.io/apis/hatchet/hatchet-metadata-api/) — The Metadata API from Hatchet — 3 operation(s) for metadata.
+- [Hatchet Monitoring API](https://apis.io/apis/hatchet/hatchet-monitoring-api/) — The Monitoring API from Hatchet — 1 operation(s) for monitoring.
+- [Hatchet Observability API](https://apis.io/apis/hatchet/hatchet-observability-api/) — The Observability API from Hatchet — 1 operation(s) for observability.
+- [Hatchet Rate Limits API](https://apis.io/apis/hatchet/hatchet-rate-limits-api/) — The Rate Limits API from Hatchet — 1 operation(s) for rate limits.
+- [Hatchet Slack API](https://apis.io/apis/hatchet/hatchet-slack-api/) — The Slack API from Hatchet — 2 operation(s) for slack.
+- [Hatchet SNS API](https://apis.io/apis/hatchet/hatchet-sns-api/) — The SNS API from Hatchet — 2 operation(s) for sns.
+- [Hatchet Step Run API](https://apis.io/apis/hatchet/hatchet-step-run-api/) — The Step Run API from Hatchet — 7 operation(s) for step run.
+- [Hatchet Task API](https://apis.io/apis/hatchet/hatchet-task-api/) — The Task API from Hatchet — 8 operation(s) for task.
+- [Hatchet Tenant API](https://apis.io/apis/hatchet/hatchet-tenant-api/) — The Tenant API from Hatchet — 15 operation(s) for tenant.
+- [Hatchet Tenants API](https://apis.io/apis/hatchet/hatchet-tenants-api/) — The Tenants API from Hatchet — 2 operation(s) for tenants.
+- [Hatchet User API](https://apis.io/apis/hatchet/hatchet-user-api/) — The User API from Hatchet — 12 operation(s) for user.
+- [Hatchet Version API](https://apis.io/apis/hatchet/hatchet-version-api/) — The Version API from Hatchet — 1 operation(s) for version.
+- [Hatchet Webhook API](https://apis.io/apis/hatchet/hatchet-webhook-api/) — The Webhook API from Hatchet — 2 operation(s) for webhook.
+- [Hatchet Webhook Workers API](https://apis.io/apis/hatchet/hatchet-webhook-workers-api/) — The Webhook Workers API from Hatchet — 2 operation(s) for webhook workers.
+- [Hatchet Worker API](https://apis.io/apis/hatchet/hatchet-worker-api/) — The Worker API from Hatchet — 2 operation(s) for worker.
+- [Hatchet Workflow API](https://apis.io/apis/hatchet/hatchet-workflow-api/) — The Workflow API from Hatchet — 16 operation(s) for workflow.
+- [Hatchet Workflow Run API](https://apis.io/apis/hatchet/hatchet-workflow-run-api/) — The Workflow Run API from Hatchet — 6 operation(s) for workflow run.
+- [Hatchet Workflow Runs API](https://apis.io/apis/hatchet/hatchet-workflow-runs-api/) — The Workflow Runs API from Hatchet — 9 operation(s) for workflow runs.
+- [Hatchet Health Check API](https://apis.io/apis/hatchet/hatchet-health-check-api/) — The Health Check API from Hatchet — 2 operation(s) for health check.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Hatchet API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Hatchet REST API is the control plane for the Hatchet engine. It exposes operations for tasks, workflow runs, durable tasks, events, filters (CEL-based event routing), webhooks/webhook workers, tenants, users, workers, scheduled and cron workflows, alerting, rate limits, API tokens, observability (logs, traces, metrics), feature flags, and engine metadata. The contract is OpenAPI 3.1 and ships in-tree at hatchet-dev/hatchet under api-contracts/openapi. Stable endpoints are namespaced under /api/v1/stable; legacy endpoints remain under /api/v1. Authentication is bearer token or session cookie.
+- [Hatchet Agentic Access](https://apis.io/agentic-access/hatchet/hatchet-agentic-access/)
 
-- **Human URL:** [https://docs.hatchet.run/](https://docs.hatchet.run/)
-- **Base URL:** `https://api.hatchet-cloud.run`
+#### JSON Schema (12)
 
-#### Tags
+The data models the API reads and writes.
 
-- Task Queue
-- Workflow Engine
-- Durable Execution
-- Background Tasks
-- AI Agents
-- Orchestration
+- [APIToken](https://apis.io/schemas/hatchet/hatchet-api-token/)
+- [RateLimit](https://apis.io/schemas/hatchet/hatchet-rate-limit/)
+- [Tenant](https://apis.io/schemas/hatchet/hatchet-tenant/)
+- [V1Event](https://apis.io/schemas/hatchet/hatchet-v1-event/)
+- [V1Filter](https://apis.io/schemas/hatchet/hatchet-v1-filter/)
+- [V1LogLine](https://apis.io/schemas/hatchet/hatchet-v1-log-line/)
+- [V1TaskSummary](https://apis.io/schemas/hatchet/hatchet-v1-task/)
+- [V1TaskEvent](https://apis.io/schemas/hatchet/hatchet-v1-task-event/)
+- [V1Webhook](https://apis.io/schemas/hatchet/hatchet-v1-webhook/)
+- [V1WorkflowRun](https://apis.io/schemas/hatchet/hatchet-v1-workflow-run/)
+- [Worker](https://apis.io/schemas/hatchet/hatchet-worker/)
+- [Workflow](https://apis.io/schemas/hatchet/hatchet-workflow/)
 
-#### Properties
+#### JSON Structure (12)
 
-- [Documentation](https://docs.hatchet.run/)
-- [Getting Started](https://docs.hatchet.run/home/quickstart)
-- [Quickstart](https://docs.hatchet.run/home/quickstart)
-- [API Reference](https://docs.hatchet.run/)
-- [OpenAPI](openapi/hatchet-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hatchet.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hatchet.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [OpenAPI](https://raw.githubusercontent.com/hatchet-dev/hatchet/main/api-contracts/openapi/openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/hatchet-v1-task-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-v1-workflow-run-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-v1-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-v1-filter-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-v1-webhook-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-v1-task-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-v1-log-line-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-tenant-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-worker-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-rate-limit-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-api-token-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/hatchet-workflow-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/v1-task-get-example.json)
-- [Example](examples/v1-workflow-run-trigger-example.json)
-- [Example](examples/v1-event-create-example.json)
-- [Example](examples/v1-filter-create-example.json)
-- [Example](examples/v1-task-cancel-example.json)
-- [Example](examples/v1-task-replay-example.json)
-- [Example](examples/v1-log-line-list-example.json)
-- [Example](examples/rate-limit-upsert-example.json)
-- [Example](examples/webhook-worker-create-example.json)
-- [Example](examples/worker-list-example.json)
-- [SDK](https://pypi.org/project/hatchet-sdk/)
-- [SDK](https://www.npmjs.com/package/@hatchet-dev/typescript-sdk)
-- [SDK](https://github.com/hatchet-dev/hatchet/tree/main/sdks/go)
-- [SDK](https://github.com/hatchet-dev/hatchet/tree/main/sdks/ruby)
-- [Code Examples](https://github.com/hatchet-dev/hatchet-python-quickstart)
-- [Code Examples](https://github.com/hatchet-dev/hatchet-typescript-quickstart)
-- [Code Examples](https://github.com/hatchet-dev/hatchet-go-quickstart)
-- [Code Examples](https://github.com/hatchet-dev/hatchet-typescript-deep-research)
-- [Code Examples](https://github.com/hatchet-dev/hatchet-typescript-code-agent)
-- [Code Examples](https://github.com/hatchet-dev/hatchet-infra-examples)
-- [Authentication](https://docs.hatchet.run/)
-- [Rate Limits](rate-limits/hatchet-rate-limits.yml)
-- [Self Hosting](https://docs.hatchet.run/self-hosting)
-- [Source Code](https://github.com/hatchet-dev/hatchet)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Hatchet Api Token Structure](https://apis.io/json-structure/hatchet/hatchet-api-token-structure/)
+- [Hatchet Rate Limit Structure](https://apis.io/json-structure/hatchet/hatchet-rate-limit-structure/)
+- [Hatchet Tenant Structure](https://apis.io/json-structure/hatchet/hatchet-tenant-structure/)
+- [Hatchet V1 Event Structure](https://apis.io/json-structure/hatchet/hatchet-v1-event-structure/)
+- [Hatchet V1 Filter Structure](https://apis.io/json-structure/hatchet/hatchet-v1-filter-structure/)
+- [Hatchet V1 Log Line Structure](https://apis.io/json-structure/hatchet/hatchet-v1-log-line-structure/)
+- [Hatchet V1 Task Event Structure](https://apis.io/json-structure/hatchet/hatchet-v1-task-event-structure/)
+- [Hatchet V1 Task Structure](https://apis.io/json-structure/hatchet/hatchet-v1-task-structure/)
+- [Hatchet V1 Webhook Structure](https://apis.io/json-structure/hatchet/hatchet-v1-webhook-structure/)
+- [Hatchet V1 Workflow Run Structure](https://apis.io/json-structure/hatchet/hatchet-v1-workflow-run-structure/)
+- [Hatchet Worker Structure](https://apis.io/json-structure/hatchet/hatchet-worker-structure/)
+- [Hatchet Workflow Structure](https://apis.io/json-structure/hatchet/hatchet-workflow-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Hatchet Context](https://apis.io/jsonld/hatchet/hatchet-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Hatchet Vocabulary](https://apis.io/vocabularies/hatchet/hatchet-vocabulary/)
+
+#### Examples (10)
+
+Example requests and responses.
+
+- [Rate Limit Upsert Example](https://apis.io/examples/hatchet/rate-limit-upsert-example/)
+- [V1 Event Create Example](https://apis.io/examples/hatchet/v1-event-create-example/)
+- [V1 Filter Create Example](https://apis.io/examples/hatchet/v1-filter-create-example/)
+- [V1 Log Line List Example](https://apis.io/examples/hatchet/v1-log-line-list-example/)
+- [V1 Task Cancel Example](https://apis.io/examples/hatchet/v1-task-cancel-example/)
+- [V1 Task Get Example](https://apis.io/examples/hatchet/v1-task-get-example/)
+- [V1 Task Replay Example](https://apis.io/examples/hatchet/v1-task-replay-example/)
+- [V1 Workflow Run Trigger Example](https://apis.io/examples/hatchet/v1-workflow-run-trigger-example/)
+- [Webhook Worker Create Example](https://apis.io/examples/hatchet/webhook-worker-create-example/)
+- [Worker List Example](https://apis.io/examples/hatchet/worker-list-example/)
+
+#### Collections (55)
+
+Postman and Open Collection request collections.
+
+- [Hatchet API](https://apis.io/collections/hatchet/open-hatchet/)
+- [Hatchet API Token API](https://apis.io/collections/hatchet/open-hatchet-api-token-api/)
+- [Hatchet API Token CEL API](https://apis.io/collections/hatchet/open-hatchet-cel-api/)
+- [Hatchet API Token Durable Tasks API](https://apis.io/collections/hatchet/open-hatchet-durable-tasks-api/)
+- [Hatchet API Token Event API](https://apis.io/collections/hatchet/open-hatchet-event-api/)
+- [Hatchet API Token Feature Flags API](https://apis.io/collections/hatchet/open-hatchet-feature-flags-api/)
+- [Hatchet API Token Filter API](https://apis.io/collections/hatchet/open-hatchet-filter-api/)
+- [Hatchet API Token Github API](https://apis.io/collections/hatchet/open-hatchet-github-api/)
+- [Hatchet API Token Healthcheck API](https://apis.io/collections/hatchet/open-hatchet-healthcheck-api/)
+- [Hatchet API Token Log API](https://apis.io/collections/hatchet/open-hatchet-log-api/)
+- [Hatchet API Token Metadata API](https://apis.io/collections/hatchet/open-hatchet-metadata-api/)
+- [Hatchet API Token Monitoring API](https://apis.io/collections/hatchet/open-hatchet-monitoring-api/)
+- [Hatchet API Token Observability API](https://apis.io/collections/hatchet/open-hatchet-observability-api/)
+- [Hatchet API Token Rate Limits API](https://apis.io/collections/hatchet/open-hatchet-rate-limits-api/)
+- [Hatchet API Token Slack API](https://apis.io/collections/hatchet/open-hatchet-slack-api/)
+- [Hatchet API Token SNS API](https://apis.io/collections/hatchet/open-hatchet-sns-api/)
+- [Hatchet API Token Step Run API](https://apis.io/collections/hatchet/open-hatchet-step-run-api/)
+- [Hatchet API Token Task API](https://apis.io/collections/hatchet/open-hatchet-task-api/)
+- [Hatchet API Token Tenant API](https://apis.io/collections/hatchet/open-hatchet-tenant-api/)
+- [Hatchet API Token Tenants API](https://apis.io/collections/hatchet/open-hatchet-tenants-api/)
+- [Hatchet API Token User API](https://apis.io/collections/hatchet/open-hatchet-user-api/)
+- [Hatchet API Token Version API](https://apis.io/collections/hatchet/open-hatchet-version-api/)
+- [Hatchet API Token Webhook API](https://apis.io/collections/hatchet/open-hatchet-webhook-api/)
+- [Hatchet API Token Webhook Workers API](https://apis.io/collections/hatchet/open-hatchet-webhook-workers-api/)
+- [Hatchet API Token Worker API](https://apis.io/collections/hatchet/open-hatchet-worker-api/)
+- …and 30 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Hatchet — jsonschema rules](https://apis.io/rules/hatchet/hatchet-jsonschema-spectral-rules/)
+- [Hatchet API Rules](https://apis.io/rules/hatchet/hatchet-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hatchet Authentication](https://apis.io/security/hatchet/hatchet-authentication/)
+- [Hatchet Domain Security](https://apis.io/security/hatchet/hatchet-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Hatchet Plans Pricing](https://apis.io/plans/hatchet/hatchet-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hatchet Rate Limits](https://apis.io/rate-limits/hatchet/hatchet-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Hatchet Finops](https://apis.io/finops/hatchet/hatchet-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://hatchet.run/)
 - [Documentation](https://docs.hatchet.run/)
-- [L L Ms Txt](https://docs.hatchet.run/llms.txt)
 - [Pricing](https://hatchet.run/pricing)
-- [Plans](plans/hatchet-plans-pricing.yml)
 - [Blog](https://hatchet.run/blog)
-- [GitHub Organization](https://github.com/hatchet-dev)
-- [GitHub Repository](https://github.com/hatchet-dev/hatchet)
-- [Source Code](https://github.com/hatchet-dev/hatchet)
-- [LinkedIn](https://www.linkedin.com/company/hatchet-run)
-- [C L I](https://install.hatchet.run/install.sh)
-- [Tools](https://github.com/hatchet-dev/homebrew-hatchet)
-- [Tools](https://github.com/hatchet-dev/hatchet-charts)
-- [Tools](https://github.com/hatchet-dev/terraform-provider-hatchet)
-- [Tools](https://github.com/hatchet-dev/pgoutbox)
-- [Tools](https://github.com/hatchet-dev/s3-batch-object-store)
-- [Tools](https://github.com/hatchet-dev/buffered)
-- [Tools](https://github.com/hatchet-dev/timediff)
-- [Tutorials](https://github.com/hatchet-dev/hatchet-infra-examples)
-- [Spectral Rules](rules/hatchet-rules.yml)
-- [Vocabulary](vocabulary/hatchet-vocabulary.yml)
-- [JSON-LD](json-ld/hatchet-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 - [Compliance](https://hatchet.run/pricing)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [GitHub](https://github.com/hatchet-dev)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 54.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 64.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 67.9 |
+| Access clarity | 26.3 |
+
+**Agent readiness 26.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hatchet/](https://apis.io/providers/hatchet/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hatchet: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hatchet/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
